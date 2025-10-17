@@ -11,6 +11,7 @@ import Signup from './pages/signup/Signup'
 import AccountSatement from './pages/accountstatement/AccountStatement'
 import ProfitLoss from './pages/profitloss/ProfitLoss'
 import Profile from './pages/profile/Profile'
+import Deposit from './pages/Deposit/Deposit'
 
 
 
@@ -117,6 +118,7 @@ function App() {
             {/* <Route path='/ac-statement' element={<AccountSatement />} />
             <Route path='/profit-loss' element={<ProfitLoss />} /> */}
             <Route path="/profile" element={<Profile />} />
+            <Route path="/deposit" element={<Deposit />} />
             <Route path="*" element={<Layout />} />
           </Routes>
         </BrowserRouter>

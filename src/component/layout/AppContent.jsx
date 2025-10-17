@@ -16,6 +16,7 @@ import ProfitLoss from '../../pages/profitloss/ProfitLoss'
 import ViewMatchRacing from '../../pages/viewMatch/ViewMatchRacing'
 import BonusList from '../../pages/bonusList/BonusList'
 import ChangePassword from '../profile/ChangePassword'
+import Wallet from '../../pages/Wallet/Wallet'
 
 
 
@@ -30,6 +31,7 @@ const AppContent = () => {
       <Route path="/profile/:tab?" element={<Profile />} />
       <Route path='/ac-statement' element={<AccountSatement />} />
       <Route path='/changepassword' element={<ChangePassword />} />
+      <Route path="/wallet" element={<Wallet />} />
       <Route path='/all-casino' element={<AllCasino />} />
       <Route path='/sports-book' element={<SportsBook />} />
       <Route path='/market-analysis' element={<MarketAnalysis />} />

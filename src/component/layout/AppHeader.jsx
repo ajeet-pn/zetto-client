@@ -8,7 +8,7 @@ import { BiLockAlt } from "react-icons/bi";
 import { IoClose, IoPerson, IoPersonOutline } from "react-icons/io5";
 import { BsBarChart, BsBarChartSteps, BsBoxArrowRight, BsCardText, BsListNested } from "react-icons/bs";
 import BonusRules from "../bonusRules/BonusRules";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LiveMatches from "../dashboard/LiveMatches";
 import Login from "../login/Login";
 import { domainName } from "../../config/Auth";
@@ -406,8 +406,8 @@ const AppHeader = ({ setSidebarOpen }) => {
                                           </div>
 
                                           <div className="flex gap-2 !mt-5">
-                                            <button className='w-[50%] text-[12px] font-semibold rounded-[3px] h-[35px] border border-[--secondary] text-[--secondary] hover:bg-[--secondary] hover:text-white'>WALLET</button>
-                                            <button className='w-[50%] text-[12px] font-semibold text-black rounded-[3px] h-[35px] border border-[--secondary] hover:opacity-[0.8] bg-[--secondary]'>DEPOSIT</button>
+                                            <Link to='/wallet' className='w-[50%] text-[12px] font-semibold rounded-[3px] h-[35px] border border-[--secondary] flex items-center justify-center text-[--secondary] hover:bg-[--secondary] hover:text-white'>WALLET</Link>
+                                            <Link to='/deposit' className=' flex justify-center items-center w-[50%] text-[12px] font-semibold text-black rounded-[3px] h-[35px] border border-[--secondary] hover:opacity-[0.8] bg-[--secondary]'>DEPOSIT</Link>
                                           </div>
                                           {/* <div className="flex justify-between">
                                             <span>Bonus</span>
