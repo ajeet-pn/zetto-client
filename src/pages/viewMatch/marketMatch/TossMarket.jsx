@@ -46,26 +46,30 @@ const TossDataComponent = ({
               
               
               <div className="flex whitespace-normal max-w-full border-b border-gray-200">
-                <div className="lg:w-1/2 xl:w-[58%] w-[65%] flex px-2">
+                <div className="lg:w-1/2 xl:w-[30%] w-[65%] flex px-2">
                  
                 </div>
-                <div className="lg:w-1/2 xl:w-[42%] w-[35%] grid grid-cols-6">
+                <div className="lg:w-1/2 xl:w-[70%] w-[35%] grid grid-cols-6 gap-x-2 py-1">
                   <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"></span>
                   <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"></span>
-                  <span className="lg:col-span-1 col-span-3 rounded-md">
-                    <div className="py-1 flex justify-center items-center">
-                      <div className="text-center leading-3">
-                        <span className="text-xs uppercase text-gray-800 font-bold">Back</span>
+                    <span className="lg:col-span-1 col-span-3 rounded-md w-full">
+                      <div className="py-1.5 w-full flex justify-center items-center ">
+                        <div className="text-center leading-3 w-full">
+                          <span className="text-xs uppercase w-full block  bg-[#8DD9FF] h-[20px] rounded-[4px] px-4 text-gray-800 font-bold">
+                            Back
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                  </span>
-                  <span className="lg:col-span-1 col-span-3 rounded-md">
-                    <div className="py-1 flex justify-center items-center">
-                      <div className="text-center leading-3">
-                        <span className="text-xs uppercase text-gray-800 font-bold">Lay</span>
-                      </div>
-                    </div>
-                  </span>
+                    </span>
+                    <span className="lg:col-span-1 col-span-3 rounded-md">
+                        <div className="py-1.5 w-full flex justify-center items-center">
+                          <div className="text-center leading-3 w-full">
+                            <span className="text-xs px-4 w-full  block rounded-[4px] h-[20px] bg-[#FF94BC] uppercase text-gray-800 font-bold">
+                              Lay
+                            </span>
+                          </div>
+                        </div>
+                      </span>
                   <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"></span>
                   <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"></span>
                 </div>
@@ -82,7 +86,7 @@ const TossDataComponent = ({
                         className="relative border-b border-gray-200 flex decoration-none whitespace-normal max-w-full"
                       >
                     
-                        <div className="lg:w-1/2 xl:w-[58%] w-[65%] flex px-2">
+                        <div className="lg:w-1/2 xl:w-[30%] w-[65%] flex px-2">
                           <div className="w-full leading-3 flex items-center">
                             <span className="text-[13px] font-bold text-[#333333]">
                               <span>{commList.team_name}</span>
@@ -106,12 +110,12 @@ const TossDataComponent = ({
                         </div>
                         
 
-                        <div className="lg:w-1/2 xl:w-[42%] w-[35%] grid grid-cols-6">
+                        <div className="lg:w-1/2 xl:w-[70%] w-[35%] grid grid-cols-6 gap-x-2 py-1">
                           <span className="lg:block hidden">
                             <BlinkingComponent
                               price={0}
                               size={0}
-                              color={"bg-[#E9F6FC]"}
+                              color={"bg-[#8DD9FF]"}
                               blinkColor={"bg-[#CDEBEB]"}
                               textColors={"text-black"}
                               boderColors={"border-black"}
@@ -121,7 +125,7 @@ const TossDataComponent = ({
                             <BlinkingComponent
                               price={0}
                               size={0}
-                              color={"bg-[#E9F6FC]"}
+                              color={"bg-[#8DD9FF]"}
                               blinkColor={"bg-[#CDEBEB]"}
                               textColors={"text-black"}
                               boderColors={"border-black"}
@@ -151,7 +155,7 @@ const TossDataComponent = ({
                             <BlinkingComponent
                               price={parseFloat(commList.lgaai * 100).toFixed(2).replace(/\.?0+$/, "")}
                               size={100}
-                              color={"bg-[#8DD2F0]"}
+                              color={"bg-[#8DD9FF]"}
                               blinkColor={"bg-[#00B2FF]"}
                               textColors={"text-black"}
                               boderColors={"border-[#489bbd]"}
@@ -213,7 +217,7 @@ const TossDataComponent = ({
                             <BlinkingComponent
                               price={parseFloat(commList.khaai * 100).toFixed(2).replace(/\.?0+$/, "")}
                               size={100}
-                              color={"bg-[#FEAFB2]"}
+                              color={"bg-[#FF94BC]"}
                               blinkColor={"bg-[#FE7A7F]"}
                               textColors={"text-black"}
                               boderColors={"border-[#f996ab]"}
@@ -245,7 +249,7 @@ const TossDataComponent = ({
                             <BlinkingComponent
                               price={parseFloat(commList.khaai * 100).toFixed(2).replace(/\.?0+$/, "")}
                               size={100}
-                              color={"bg-[#FEAFB2]"}
+                              color={"bg-[#FF94BC]"}
                               blinkColor={"bg-[#FE7A7F]"}
                               textColors={"text-black"}
                               boderColors={"border-[#f996ab]"}
@@ -255,7 +259,7 @@ const TossDataComponent = ({
                             <BlinkingComponent
                               price={0}
                               size={0}
-                              color={"bg-[#E9F6FC]"}
+                              color={"bg-[#FF94BC]"}
                               blinkColor={"bg-[#CDEBEB]"}
                               textColors={"text-black"}
                               boderColors={"border-black"}
@@ -265,7 +269,7 @@ const TossDataComponent = ({
                             <BlinkingComponent
                               price={0}
                               size={0}
-                              color={"bg-[#E9F6FC]"}
+                              color={"bg-[#FF94BC]"}
                               blinkColor={"bg-[#CDEBEB]"}
                               textColors={"text-black"}
                               boderColors={"border-black"}

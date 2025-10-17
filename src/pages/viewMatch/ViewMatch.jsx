@@ -1058,7 +1058,7 @@ const ViewMatches = () => {
 
             <div className="flex flex-col xl:flex-row text-black h-full w-100 gap-x-2">
                 {/* {(matchTab === 1 || matchTab === 3) && ( */}
-                <div className="w-full xl:w-2/3 overflow-y-auto xl:pb-[60px]">
+                <div className="w-full overflow-y-auto xl:pb-[60px]">
                     <div className="">
                         {/* {matchTab === 3 && ( */}
                         {/* <div className="xl:hidden block">
@@ -1078,19 +1078,19 @@ const ViewMatches = () => {
                         <div className="xl:block hidden">
                             {inplayMatch &&
                                 inplayMatch?.matchName ? (
-                                <div className="bg-[var(--darkcolor)] item-center px-2 py-1.5 flex justify-between">
-                                    <span className="text-white text-[14px] font-semibold">{inplayMatch?.matchName}</span>
-                                    <span className="text-white text-[14px] font-semibold">({inplayMatch?.matchDate})</span>
+                                <div className="bg-[var(--secondary)] item-center px-2 py-1.5 flex justify-between">
+                                    <span className="text-black text-[14px] font-semibold">{inplayMatch?.matchName}</span>
+                                    <span className="text-black text-[14px] font-semibold">({inplayMatch?.matchDate})</span>
                                     <div className="flex space-x-1 justify-end items-center">
                                         <div
                                             onClick={() => setFullScreen((state) => !state)}
-                                            className="text-white bg-button rounded-sm px-2 py-1 text-xs font-semibold cursor-pointer"
+                                            className="text-black bg-button rounded-sm px-2 py-1 text-xs font-semibold cursor-pointer"
                                         >
                                             {fullscreen ? "HS" : "FS"}
                                         </div>
                                         <span
                                             onClick={() => handleScore()}
-                                            className="text-white font-semibold cursor-pointer">
+                                            className="text-black font-semibold cursor-pointer">
                                             <img src={"/scorecard-icon.webp"} className="w-[25px] h-[25px] invertimage" />
                                         </span>
                                     </div>
@@ -1101,28 +1101,28 @@ const ViewMatches = () => {
                         <div className="xl:hidden block">
                             {inplayMatch &&
                                 inplayMatch?.matchName ? (
-                                <div className="bg-[var(--darkcolor)] item-center px-2 py-1 flex justify-between items-center">
+                                <div className="bg-[var(--secondary)] item-center px-2 py-1 flex justify-between items-center">
                                     <div className="flex flex-col uppercase">
-                                        <span className="text-white text-[14px] font-[400]">{inplayMatch?.matchName}</span>
-                                        <span className="text-white text-[8px] font-[400]">({inplayMatch?.matchDate})</span>
+                                        <span className="text-black text-[14px] font-bold">{inplayMatch?.matchName}</span>
+                                        <span className="text-black text-[8px] font-bold">({inplayMatch?.matchDate})</span>
                                     </div>
                                     <div className="flex justify-end items-center gap-1.5">
                                         <div
                                             onClick={() => setFullScreen((state) => !state)}
-                                            className="text-white bg-button rounded-sm py-1 text-xs font-semibold cursor-pointer"
+                                            className="text-black bg-button rounded-sm py-1 text-xs font-bold cursor-pointer"
                                         >
                                             {fullscreen ? "HS" : "FS"}
                                         </div>
                                         <span
                                             onClick={() => handleScore()}
-                                            className="text-white  font-semibold">
+                                            className="text-black  font-bold">
                                             <img src={"/scorecard-icon.webp"} className="w-[25px] h-[25px] invertimage" />
                                         </span>
-                                        <span className="bg-[var(--primary)] text-white px-[3px] py-[3px] tracking-wide rounded-[3px] uppercase text-[12px]"
+                                        <span className="bg-[var(--primary)] text-black px-[3px] py-[3px] tracking-wide rounded-[3px] uppercase text-[12px]"
                                             onClick={() => handleBets()}>Bets</span>
                                         <span onClick={() => {
                                             handelTvModal();
-                                        }} className='text-white'><img src={"/dashbaord/score-tv-icon.svg"} className="w-[18px] h-[18px] invertimage" /></span>
+                                        }} className='text-black'><img src={"/dashbaord/score-tv-icon.svg"} className="w-[18px] h-[18px] invertimage" /></span>
 
                                     </div>
                                 </div>
@@ -1320,7 +1320,7 @@ const ViewMatches = () => {
                     </div>
                 </div>
                 {/* // )} */}
-                <div className="w-full xl:w-1/3 xl:block hidden ">
+                {/* <div className="w-full xl:w-1/3 xl:block hidden ">
                     <div>
                         <div className="bg-[var(--darkcolor)] rounded-[5px] cursor-pointer flex justify-between items-center py-1.5 px-4 text-white text-sm font-semibold" onClick={() => handelTvModal()}>
                             <span>Live Match</span>
@@ -1402,7 +1402,6 @@ const ViewMatches = () => {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {/* Odds Bets */}
                                                 {activeBets === "oddsBetData" &&
                                                     (oddsBetData?.length > 0 ? (
                                                         oddsBetData.map((element, index) => (
@@ -1440,7 +1439,6 @@ const ViewMatches = () => {
                                                         </tr>
                                                     ))}
 
-                                                {/* Fancy Bets */}
                                                 {activeBets === "fancyBetData" &&
                                                     (fancyBetData?.length > 0 ? (
                                                         fancyBetData.map((element, index) => (
@@ -1475,7 +1473,6 @@ const ViewMatches = () => {
                                                         </tr>
                                                     ))}
 
-                                                {/* Unsettle Bets */}
                                                 {activeBets === "UnsettleBets" &&
                                                     (fancyBetData?.length > 0 ? (
                                                         fancyBetData.map((element, index) => (
@@ -1511,7 +1508,7 @@ const ViewMatches = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
 
             <>

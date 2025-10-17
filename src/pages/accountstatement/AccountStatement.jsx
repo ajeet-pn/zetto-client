@@ -5,6 +5,10 @@ import { getAccountStatement } from "../../redux/reducers/user_reducer";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { FaRegCalendar } from "react-icons/fa6";
+import { Header } from "antd/es/layout/layout";
+import TopHeader from "../../component/dashboard/TopHeader";
+import AppHeader from "../../component/layout/AppHeader";
+import AppFooter from "../../component/layout/AppFooter";
 
 const AccountSatement = () => {
   const [payloadData, setPayloadData] = useState({
@@ -110,14 +114,14 @@ const AccountSatement = () => {
     <>
       <div className="w-full min-h-screen flex">
         <div className="border w-full">
-          <div className='bg-[var(--darkcolor)] uppercase text-black py-1 px-1.5'>
-            <h2 className='text-[13px] text-white'>Account Statement</h2>
+          <div className='bg-[var(--secondary)] rounded-t-[4px] uppercase text-black py-1 px-1.5'>
+            <h2 className='text-[13px] text-black font-semibold'>Account Statement</h2>
           </div>
           <div className="mt-1.5 border-1 border-gray-400 space-y-2">
             {/* desktop view */}
-            <div className="bg-[#DFDDE0] p-1 justify-start hidden md:flex items-center">
-              <div className="flex justify-between sm:space-x-8 ">
-                <select
+            <div className="justify-start hidden md:flex items-center">
+              <div className="grid w-full grid-cols-3 gap-3 justify-between mt-3 mb-5 md:px-8">
+                {/* <select
                   className="px-3 py-[2px] text-md bg-transparent border bg-white border-gray-400 xl:w-[252px] w-[165px] rounded-md focus:outline-none text-[#495057] placeholder-text-gray-500"
                   onChange={handleSelectChange}
                   value={setPayloadData?.statementFor}
@@ -125,24 +129,24 @@ const AccountSatement = () => {
                   <option value="">All</option>
                   <option value="profitLoss">Sports Reports</option>
                   <option value="ACCOUNT_STATEMENT">Deposit/Withdraw Reports</option>
-                </select>
-                <div className="">
+                </select> */}
+                <div className="w-full">
                   <DatePicker
                     selected={payloadData?.fromDate}
                     onChange={(date) => setPayloadData({ ...payloadData, fromDate: date })}
                     dateFormat="dd/MM/yyyy"
-                    className="!px-2 !py-[4px] text-sm border bg-white border-gray-400 xl:w-[252px] w-[165px] rounded-md focus:outline-none text-black"
+                    className="!px-2 !py-[4px] w-full text-sm border border-black h-[43px] bg-white  rounded-md focus:outline-none text-black"
                     required
                     showIcon
                     icon={calendarIcon}
                   />
                 </div>
-                <div className="">
+                <div className="w-full">
                   <DatePicker
                     selected={payloadData?.toDate}
                     onChange={(date) => setPayloadData({ ...payloadData, toDate: date })}
                     dateFormat="dd/MM/yyyy"
-                    className="!px-2 !py-[4px] text-sm border bg-white border-gray-400 xl:w-[252px] w-[165px] rounded-md focus:outline-none text-black"
+                    className="!px-2 !py-[4px] w-full text-sm border border-black h-[43px] bg-white  rounded-md focus:outline-none text-black"
                     required
                     showIcon
                     icon={calendarIcon}
@@ -151,31 +155,31 @@ const AccountSatement = () => {
 
                 <button
                   onClick={handleSubmit}
-                  className="h-[30px] text-[12px] uppercase bg-black md:border-[var(--primary)] hover:bg-[var(--secondary)] text-white text-md xl:w-[252px] w-[165px] rounded-md">
-                  Get Statement
+                  className="text-[12px] uppercase h-[43px] bg-[--primary] md:border-[var(--primary)] hover:bg-[var(--secondary)] hover:text-black transition text-[--secondary] w-full text-md px-5 rounded-md">
+                  Submit
                 </button>
               </div>
             </div>
             {/* mobile view */}
             <div className="flex p-1 flex-col bg-white md:hidden justify-center items-center space-y-2 lg:space-y-0 space-x-0 lg:space-x-6">
               <div className="flex w-full justify-center items-center  gap-1">
-                <div className="">
+                <div className="w-1/2">
                   <DatePicker
                     selected={payloadData?.fromDate}
                     onChange={(date) => setPayloadData({ ...payloadData, fromDate: date })}
                     dateFormat="dd/MM/yyyy"
-                    className="!px-2 !py-[4px] text-sm border bg-white border-gray-400 w-full rounded-md focus:outline-none text-black"
+                    className="!px-2 !py-[4px] text-sm border bg-white h-[43px] border-gray-400 w-full rounded-md focus:outline-none text-black"
                     required
                     showIcon
                     icon={calendarIcon}
                   />
                 </div>
-                <div className="">
+                <div className="w-1/2">
                   <DatePicker
                     selected={payloadData?.toDate}
                     onChange={(date) => setPayloadData({ ...payloadData, toDate: date })}
                     dateFormat="dd/MM/yyyy"
-                    className="!px-2 !py-[4px] text-sm border bg-white border-gray-400 w-full rounded-md focus:outline-none text-black"
+                    className="!px-2 !py-[4px] text-sm border bg-white h-[43px] border-gray-400 w-full rounded-md focus:outline-none text-black"
                     required
                     showIcon
                     icon={calendarIcon}
@@ -183,7 +187,7 @@ const AccountSatement = () => {
                 </div>
               </div>
               <div className="flex gap-1 w-full">
-                <select
+                {/* <select
                   className="px-3 py-[2px] text-md bg-transparent border bg-white w-1/2 border-gray-400 rounded-md focus:outline-none text-[#495057] placeholder-text-gray-500"
                   onChange={handleSelectChange}
                   value={setPayloadData?.statementFor}
@@ -191,11 +195,11 @@ const AccountSatement = () => {
                   <option value="">All</option>
                   <option value="profitLoss">Sports Reports</option>
                   <option value="ACCOUNT_STATEMENT">Deposit/Withdraw Reports</option>
-                </select>
+                </select> */}
                 <button
                   onClick={handleSubmit}
-                  className="h-[30px] text-[12px] uppercase bg-black md:border-[var(--primary)] hover:bg-[var(--secondary)] text-white text-md w-1/2 rounded-md">
-                  Get Statement
+                  className="text-[12px] uppercase h-[43px] bg-black md:border-[var(--primary)] hover:bg-[var(--secondary)] text-white text-md w-full rounded-md">
+                  Submit
                 </button>
               </div>
             </div>
@@ -205,7 +209,7 @@ const AccountSatement = () => {
                 <div className="inline-block min-w-full">
                   <div className="overflow-hidden w-full">
                     <table className="min-w-full border-collapse border overflow-x-auto border-gray-400">
-                      <thead className="bg-[#DFDDE0]">
+                      <thead className="bg-gray-100">
                         <tr className="text-left text-[12px] lg:bg-transparent text-[#212529]  font-semibold border border-[#c7c8ca]/50">
                           <th className="px-3 py-2 border whitespace-nowrap border-[#c7c8ca]/50">No</th>
                           <th className="px-3 py-2 border border-[#c7c8ca]/50">Date</th>
@@ -220,7 +224,7 @@ const AccountSatement = () => {
                         {finalData && finalData.length > 0 ? (
                           finalData?.map((element, index) => (
                             <tr
-                              className={index % 2 === 0 ? "bg-[#F2F2F2] text-[12px]" : "bg-[#E6E6E6] text-[12px]"}
+                              className={index % 2 === 0 ? "bg-white text-[12px]" : "bg-white text-[12px]"}
                               key={index}
                             >
                               <td className="px-3 py-2 border border-[#c7c8ca]/50">{index + 1}</td>

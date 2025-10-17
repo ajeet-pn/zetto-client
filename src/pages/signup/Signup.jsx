@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { message } from "antd";
 import { useSelector } from "react-redux";
 import settings from "../../domainConfig";
 import { apiCall } from "../../config/HTTP";
+import { MdKeyboardArrowDown } from "react-icons/md";
+import AppHeader from "../../component/layout/AppHeader";
+import AppFooter from "../../component/layout/AppFooter";
 
 function Signup({ setShowLogin }) {
 
@@ -127,7 +130,7 @@ function Signup({ setShowLogin }) {
 
   return (
     <>
-      <div className="fixed inset-0 z-50 flex justify-center items-center bg-[var(--secondary)]">
+      {/* <div className="fixed inset-0 z-50 flex justify-center items-center ">
         <div className="bg-[#212121] bg-cover bg-center font-sans  w-[430px] max-w-[430px] min-h-[90%] max-h-[90%] p-0  flex flex-col justify-center rounded-[10px] border-2 border-white mx-1">
 
           <div className="w-[100%] px-[0px] mx-auto">
@@ -137,11 +140,8 @@ function Signup({ setShowLogin }) {
             </div>
 
             <div className="space-y-5 lg:p-10 p-4 pb-0 bg-transparent border-none shadow-none transition-all duration-300 ease-in-out ">
-              {/* Form Inputs (Same as before) */}
-
               <div className="mb-4">
                 <div className="relative flex items-center">
-                  {/* Country code select dropdown */}
                   <select
                     name="countryCode"
                     value={user.countryCode}
@@ -161,7 +161,6 @@ function Signup({ setShowLogin }) {
                     className="bg-transparent w-full text-white border-b border-gray-300 rounded-none text-center text-[13px] h-[45px] outline-none focus:outline-none focus:ring-0 focus:bg-black focus:border-[var(--secondary)] focus:text-white " />
                 </div>
 
-                {/* Validation error */}
                 {errors.mobileNo && (
                   <div className="mt-1 text-xs text-[#FF0000]">{errors.mobileNo}</div>
                 )}
@@ -225,8 +224,140 @@ function Signup({ setShowLogin }) {
 
 
         </div>
-      </div>
+      </div> */}
+      <AppHeader/>
+        <div className="flex w-full items-start justify-center h-full overflow-y-auto md:my-4 bg-white">
+          <div className="w-full flex justify-center rounded-[4px] text-white bg-[]">
+            <div className="!max-w-[400px] hidden sm:block shadow-md max-h-[500px]">
+              <img className="!w-full !h-full rounded-[3px] " src="/images/zetto/signup.png" alt="" srcset="" />
+            </div>
+            <div className="!max-w-full w-full shadow-md sm:!max-w-[450px]">
+              <form className="!px-6 md:!py-4 bg-white w-full h-full !py-8 flex flex-col " onSubmit={(e) => {
+                  e.preventDefault(); 
+                  // handleSubmit(e);
+                }}>
+                  <div className="mx-auto block sm:hidden">
+                    <img className="!w-full !h-auto" src="/images/zetto/login.png" alt="" srcset="" />
+                  </div>
+                  <div className="text-[18px] text-center font-bold mb-3 text-black dark:text-white">Create Account</div>
+                  {/* <div className="text-[14px] text-black dark:text-white mb-3">Welcome to our Exchange! Please enter detail to continue.</div> */}
+                <div className="flex flex-col mb-4">
+                  {/* <label className="text-[14px] font-[400] text-black !mb-[5px] dark:text-white">Full Name</label> */}
+                  <div className="">
+                    <input
+                      type="text"
+                      placeholder="username"
+                      className="bg-[#EFEFEF] h-[43px] text-black w-full rounded-[5px] border border-[#c0ccda] placeholder:text-[#9da3bd] placeholder:text-[14px] font-normal px-2"
+                      name="username"
+                      // value={formData.username}
+                      // onChange={handleChange}
+                    />
+                  </div>
+                  {errors.username && <p className="text-red-500 text-sm mt-1">{errors.username}</p>}
+                </div>
+                <div className="flex flex-col mb-4">
+                  {/* <label className="text-[14px] font-[400] text-black dark:text-white !mb-[5px]">Mobile Number</label> */}
+                  <div className="relative">
+                    <input
+                      type="text"
+                      placeholder="Phone Number"
+                      className="bg-[#EFEFEF] h-[43px] w-full text-black rounded-[5px] border border-[#c0ccda] placeholder:text-[#9da3bd] placeholder:text-[14px] !pl-[70px]"
+                      // name="username"
+                      id="mobile"
+                      name="mobileNo"
+                      value={user.mobileNo}
+                      onChange={handleOnChange}
+                      // value={formData.username}
+                      // onChange={handleChange}
+                    />
+                    <label className="absolute !flex gap-1 text-[#9da3bd] text-[14px] top-1/2 -translate-y-1/2 left-[10px]" htmlFor="">+ 91 <MdKeyboardArrowDown /></label>
+                  </div>
+                  {errors.username && <p className="text-red-500 text-sm mt-1">{errors.username}</p>}
+                </div>
 
+                <div className="flex flex-col mb-4 relative">
+                  <div className="flex justify-between">
+                    {/* <label className="text-[14px] font-[400] text-black dark:text-white !mb-[5px]">Password</label> */}
+                    {/* <Link className="text-[14px]" to=''>Forgot Password?</Link> */}
+                  </div>
+                  <input
+                    type="password"
+                    placeholder="Enter Password"
+                    className="bg-[#EFEFEF] h-[43px] rounded-[5px] text-black border border-[#c0ccda] placeholder:text-[#9da3bd] placeholder:text-[14px] !px-2"
+                    name="password"
+                    // value={formData.password}
+                    // onChange={handleChange}
+                  />
+                  
+                  <img className="!w-[20px] !h-[20px] absolute top-[22%] dark:brightness-100 brightness-0 right-[15px]" src="/images/zetto/passwordhide.png" alt="" srcset="" />
+                  {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password}</p>}
+                </div>
+
+                <div className="flex flex-col mb-4 relative">
+                  <div className="flex justify-between">
+                    {/* <label className="text-[14px] font-[400] text-black dark:text-white !mb-[5px]">Password</label> */}
+                    {/* <Link className="text-[14px]" to=''>Forgot Password?</Link> */}
+                  </div>
+                  <input
+                    type="password"
+                    placeholder="Confirm Password"
+                    className="bg-[#EFEFEF] h-[43px] rounded-[5px] text-black border border-[#c0ccda] placeholder:text-[#9da3bd] placeholder:text-[14px] !px-2"
+                    name="confirmpassword"
+                    // value={formData.password}
+                    // onChange={handleChange}
+                  />
+                  
+                  <img className="!w-[20px] !h-[20px] absolute top-[22%] dark:brightness-100 brightness-0 right-[15px]" src="/images/zetto/passwordhide.png" alt="" srcset="" />
+                  {/* {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password}</p>} */}
+                </div>
+
+                
+                <div className="flex flex-col mb-4">
+                  <div className="flex justify-between">
+                    {/* <label className="text-[14px] font-[400] text-black dark:text-white !mb-[5px]">Agent Code (Optional)</label> */}
+                  </div>
+                  <input
+                    type="password"
+                    placeholder="Enter Referral Id (Optional)"
+                    className="bg-[#EFEFEF] h-[43px] rounded-[5px] text-black border border-[#c0ccda] placeholder:text-[#9da3bd] placeholder:text-[14px] !px-2"
+                    name="password"
+                    // value={formData.password}
+                    // onChange={handleChange}
+                  />
+                  {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password}</p>}
+                </div>
+
+                {/* <div className="flex items-center gap-2 text-[14px] mb-3">
+                  <input
+                    type="checkbox"
+                    checked={checked}
+                    onChange={() => setChecked(!checked)}
+                    className="accent-blue-500"
+                  />
+                  <p className="text-black dark:text-white text-[14px] mb-0">
+                    I am over 18 years old and I accept the agreement with offer contract
+                  </p>
+                </div> */}
+
+                <div className="flex flex-col">
+                  <button type="submit" className="h-[50px] mb-2 rounded-[3px] border border-[#c2c7c3] text-[#c2c7c3] text-[16x]">
+                    Sign Up
+                  </button>
+                  <div className="text-[10px] text-sm text-black dark:text-white text-center">
+                    By Signing up, I agree to the  <Link className="!text-black font-bold">Terms and Conditions</Link>
+                  </div>
+                  <div className="text-[10px] text-sm text-black dark:text-white text-center">
+                    Already a member?  <Link className="!text-black font-bold !underline">Login</Link>
+                  </div>
+                  <div className="text-[10px] text-sm text-black dark:text-white text-center">
+                    <Link className="!text-black font-bold !underline">Watch how to Sign up </Link>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <AppFooter/>
     </>
   );
 }

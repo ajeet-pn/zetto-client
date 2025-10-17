@@ -15,6 +15,7 @@ const MatchOddsComponent = ({
   handleBackOpen,
   formatNumber,
   betplaceSection,
+  minMax
 }) => {
   if (!inplayMatch?.isMatchOdds || activeTab !== "all") {
     return null;
@@ -69,24 +70,26 @@ const MatchOddsComponent = ({
                 }
               >
                 <div className="flex whitespace-normal max-w-full border-b border-gray-200">
-                  <div className="lg:w-1/2 xl:w-[58%] w-[65%] flex px-2"></div>
+                  <div className="lg:w-1/2 xl:w-[30%] w-[65%] flex items-center text-[12px] px-2">
+                  Min: {minMax} | Max: {minMax}
+                  </div>
 
-                  <div className="lg:w-1/2 xl:w-[42%] w-[35%] grid grid-cols-6">
+                  <div className="lg:w-1/2 xl:w-[70%] w-[35%] grid grid-cols-6 gap-x-2">
                     <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"></span>
                     <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"></span>
-                    <span className="lg:col-span-1 col-span-3 rounded-md">
-                      <div className="py-1.5 flex justify-center items-center ">
-                        <div className="text-center leading-3">
-                          <span className="text-xs uppercase text-gray-800 font-bold">
+                    <span className="lg:col-span-1 col-span-3 rounded-md w-full">
+                      <div className="py-1.5 w-full flex justify-center items-center ">
+                        <div className="text-center leading-3 w-full">
+                          <span className="text-xs uppercase w-full block  bg-[#8DD9FF] h-[20px] rounded-[4px] px-4 text-gray-800 font-bold">
                             Back
                           </span>
                         </div>
                       </div>
                     </span>
                     <span className="lg:col-span-1 col-span-3 rounded-md">
-                      <div className="py-1.5 flex justify-center items-center">
-                        <div className="text-center leading-3">
-                          <span className="text-xs uppercase text-gray-800 font-bold">
+                      <div className="py-1.5 w-full flex justify-center items-center">
+                        <div className="text-center leading-3 w-full">
+                          <span className="text-xs px-4 w-full  block rounded-[4px] h-[20px] bg-[#FF94BC] uppercase text-gray-800 font-bold">
                             Lay
                           </span>
                         </div>
@@ -100,10 +103,10 @@ const MatchOddsComponent = ({
                   element.runners.map((elementtemp, index) => (
                     <>
                       <div
-                        className="flex whitespace-normal max-w-full border-b border-gray-200"
+                        className="flex whitespace-normal py-1 max-w-full border-b border-gray-200"
                         key={index}
                       >
-                        <div className="lg:w-1/2 xl:w-[58%] w-[65%] flex px-2">
+                        <div className="lg:w-1/2 xl:w-[30%] w-[65%] flex px-2">
                           <div className="w-full py-1 leading-3 flex items-center text-[#333333]">
                             <span className="text-[13px] font-bold">
                               <span>
@@ -133,7 +136,7 @@ const MatchOddsComponent = ({
                           </div>
                         </div>
 
-                        <div className="lg:w-1/2 xl:w-[42%] w-[35%] grid grid-cols-6">
+                        <div className="lg:w-1/2 xl:w-[70%] w-[35%] gap-x-2 grid grid-cols-6">
                           {/* Available to Back (non-clickable) */}
                           {elementtemp?.ex?.availableToBack?.length > 0 &&
                             elementtemp.ex.availableToBack
@@ -141,12 +144,12 @@ const MatchOddsComponent = ({
                               .map((tempData, index) => (
                                 <span
                                   key={index}
-                                  className="lg:col-span-1 col-span-3 rounded-md lg:block hidden"
+                                  className="lg:col-span-1 col-span-3 h-[33px] rounded-md lg:block hidden"
                                 >
                                   <BlinkingComponent
                                     price={tempData.price}
                                     size={tempData.size}
-                                    color={"bg-[#c7eeff]"}
+                                    color={"bg-[#8DD9FF]"}
                                     blinkColor={"bg-[#00B2FF]"}
                                     hoverColor={"bg-sky-600"}
                                   />
@@ -187,7 +190,7 @@ const MatchOddsComponent = ({
                                     <BlinkingComponent
                                       price={tempData.price}
                                       size={tempData.size}
-                                      color={"bg-[#8DD2F0]"}
+                                      color={"bg-[#8DD9FF]"}
                                       blinkColor={"bg-[#00B2FF]"}
                                     />
                                   </span>
@@ -266,7 +269,7 @@ const MatchOddsComponent = ({
                                         <BlinkingComponent
                                           price={tempData.price}
                                           size={tempData.size}
-                                          color={"bg-[#f9c8d3]"}
+                                          color={"bg-[#FF94BC]"}
                                           blinkColor={"bg-[#FE7A7F]"}
                                         />
                                       </span>
@@ -300,7 +303,7 @@ const MatchOddsComponent = ({
                                         <BlinkingComponent
                                           price={tempData.price}
                                           size={tempData.size}
-                                          color={"bg-[#F9C8D3]"}
+                                          color={"bg-[#FF94BC]"}
                                           blinkColor={"bg-[#FE7A7F]"}
                                         />
                                       </span>
@@ -310,7 +313,7 @@ const MatchOddsComponent = ({
                                       <BlinkingComponent
                                         price={tempData.price}
                                         size={tempData.size}
-                                        color={"bg-[#efe1e5]"}
+                                        color={"bg-[#FF94BC]"}
                                         blinkColor={"bg-[#CDEBEB]"}
                                       />
                                     </span>

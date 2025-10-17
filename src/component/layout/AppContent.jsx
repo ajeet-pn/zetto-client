@@ -15,6 +15,7 @@ import UnsettledBets from '../../pages/unsettledBets/UnsettledBets'
 import ProfitLoss from '../../pages/profitloss/ProfitLoss'
 import ViewMatchRacing from '../../pages/viewMatch/ViewMatchRacing'
 import BonusList from '../../pages/bonusList/BonusList'
+import ChangePassword from '../profile/ChangePassword'
 
 
 
@@ -24,10 +25,11 @@ const AppContent = () => {
     <Routes>
       <Route path="/" element={<Navigate to="/dashboard" />} />
       <Route path='/dashboard' element={<Dashboard />} />
-      <Route path='/signup' element={<Signup />} />
-      <Route path="/profile" element={<Profile />} />
+      {/* <Route path='/signup' element={<Signup />} /> */}
+      {/* <Route path="/profile" element={<Profile />} /> */}
       <Route path="/profile/:tab?" element={<Profile />} />
       <Route path='/ac-statement' element={<AccountSatement />} />
+      <Route path='/changepassword' element={<ChangePassword />} />
       <Route path='/all-casino' element={<AllCasino />} />
       <Route path='/sports-book' element={<SportsBook />} />
       <Route path='/market-analysis' element={<MarketAnalysis />} />

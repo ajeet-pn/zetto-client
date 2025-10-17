@@ -17,7 +17,8 @@ const BookmakerComponent = ({
   toggleRowVisibility,
   handleBackOpen,
   formatNumber,
-  betplaceSection
+  betplaceSection,
+  minMax
 }) => {
   if (!inplayMatch?.isBookmaker || !(activeTab === "bookmaker" || activeTab === "all")) {
     return null;
@@ -61,27 +62,31 @@ const BookmakerComponent = ({
              marketType={`Bookmaker`} minMax={{ min: 100, max: formatNumber(isMatchCoin?.max) }}>
               {/* (${inplayMatch?.matchName + " - " + inplayMatch?.seriesName}) */}
               <div className="flex  whitespace-normal max-w-full border-b border-gray-200">
-                <div className="lg:w-1/2 xl:w-[58%] w-[65%] flex px-2">
+                  <div className="lg:w-1/2 xl:w-[30%] w-[65%] flex items-center text-[12px] px-2">
+                  Min: {minMax} | Max: {minMax}
+                  </div>
 
-                </div>
-
-                <div className="lg:w-1/2 xl:w-[42%] w-[35%] grid grid-cols-6">
+                <div className="lg:w-1/2 xl:w-[70%] w-[35%] grid grid-cols-6 gap-x-2">
                   <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"></span>
                   <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"></span>
-                  <span className="lg:col-span-1 col-span-3 rounded-md">
-                    <div className="py-1.5 flex justify-center items-center ">
-                      <div className="text-center leading-3">
-                        <span className="text-xs uppercase text-gray-800 font-bold">Back</span>
+                  <span className="lg:col-span-1 col-span-3 rounded-md w-full">
+                      <div className="py-1.5 w-full flex justify-center items-center ">
+                        <div className="text-center leading-3 w-full">
+                          <span className="text-xs uppercase w-full block  bg-[#8DD9FF] h-[20px] rounded-[4px] px-4 text-gray-800 font-bold">
+                            Back
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                  </span>
+                    </span>
                   <span className="lg:col-span-1 col-span-3 rounded-md">
-                    <div className="py-1.5 flex justify-center items-center ">
-                      <div className="text-center leading-3">
-                        <span className="text-xs uppercase text-gray-800 font-bold">Lay</span>
+                      <div className="py-1.5 w-full flex justify-center items-center">
+                        <div className="text-center leading-3 w-full">
+                          <span className="text-xs px-4 w-full  block rounded-[4px] h-[20px] bg-[#FF94BC] uppercase text-gray-800 font-bold">
+                            Lay
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                  </span>
+                    </span>
                   <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"></span>
                   <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"></span>
                 </div>
@@ -91,8 +96,8 @@ const BookmakerComponent = ({
 
                 <>
 
-                  <div key={index} className="relative border-b border-gray-200 flex decoration-none whitespace-normal max-w-full">
-                    <div className="lg:w-1/2 xl:w-[58%] w-[65%] flex">
+                  <div key={index} className="relative border-b border-gray-200 flex decoration-none whitespace-normal max-w-full py-1">
+                    <div className="lg:w-1/2 xl:w-[30%] w-[65%] flex ">
                       <div className="w-full leading-3 flex items-center capitalize text-[#333333]">
                         <span className="text-[13px] px-2 font-bold">
                           <span>{commList.team_name}</span>
@@ -112,12 +117,12 @@ const BookmakerComponent = ({
                       </div>
                     </div>
 
-                    <div className="lg:w-1/2 xl:w-[42%] w-[35%] grid grid-cols-6">
+                    <div className="lg:w-1/2 xl:w-[70%] w-[35%] grid grid-cols-6 gap-x-2">
                       <span className="lg:block hidden">
                         <BlinkingComponent
                           price={0}
                           size={0}
-                          color={"bg-[#E9F6FC]"}
+                          color={"bg-[#8DD9FF]"}
                           blinkColor={"bg-[#CDEBEB]"}
                           textColors={"text-black"}
                           boderColors={"border-black"}
@@ -128,7 +133,7 @@ const BookmakerComponent = ({
                         <BlinkingComponent
                           price={0}
                           size={0}
-                          color={"bg-[#E9F6FC]"}
+                          color={"bg-[#8DD9FF]"}
                           blinkColor={"bg-[#CDEBEB]"}
                           textColors={"text-black"}
                           boderColors={"border-black"}
@@ -161,7 +166,7 @@ const BookmakerComponent = ({
                         <BlinkingComponent
                           price={(commList.lgaai * 100).toFixed(2)}
                           size={(commList.khaai * 100).toFixed(2)}
-                          color={"bg-[#8DD2F0]"}
+                          color={"bg-[#8DD9FF]"}
                           blinkColor={"bg-[#00B2FF]"}
                           textColors={"text-black"}
                           boderColors={"border-[#489bbd]"}
@@ -194,7 +199,7 @@ const BookmakerComponent = ({
                         <BlinkingComponent
                           price={(commList.lgaai * 100).toFixed(2)}
                           size={(commList.khaai * 100).toFixed(2)}
-                          color={"bg-[#8DD2F0]"}
+                          color={"bg-[#8DD9FF]"}
                           blinkColor={"bg-[#00B2FF]"}
                           textColors={"text-black"}
                           boderColors={"border-[#489bbd]"}
@@ -227,7 +232,7 @@ const BookmakerComponent = ({
                         <BlinkingComponent
                           price={(commList.khaai * 100).toFixed(2)}
                           size={(commList.lgaai * 100).toFixed(2)}
-                          color={"bg-[#F9C8D3]"}
+                          color={"bg-[#FF94BC]"}
                           blinkColor={"bg-[#FE7A7F]"}
                           textColors={"text-black"}
                           boderColors={"border-[#f996ab]"}
@@ -238,7 +243,7 @@ const BookmakerComponent = ({
                         <BlinkingComponent
                           price={0}
                           size={0}
-                          color={"bg-[#E9F6FC]"}
+                          color={"bg-[#FF94BC]"}
                           blinkColor={"bg-[#CDEBEB]"}
                           textColors={"text-black"}
                           boderColors={"border-black"}
@@ -249,7 +254,7 @@ const BookmakerComponent = ({
                         <BlinkingComponent
                           price={0}
                           size={0}
-                          color={"bg-[#E9F6FC]"}
+                          color={"bg-[#FF94BC]"}
                           blinkColor={"bg-[#CDEBEB]"}
                           textColors={"text-black"}
                           boderColors={"border-black"}
@@ -282,7 +287,7 @@ const BookmakerComponent = ({
                         <BlinkingComponent
                           price={(commList.khaai * 100).toFixed(2)}
                           size={(commList.lgaai * 100).toFixed(2)}
-                          color={"bg-[#FEAFB2]"}
+                          color={"bg-[#FF94BC]"}
                           blinkColor={"bg-[#FE7A7F]"}
                           textColors={"text-black"}
                           boderColors={"border-[#f996ab]"}
@@ -291,9 +296,9 @@ const BookmakerComponent = ({
                     </div>
 
                     {(commList.lgaai === "0.00" || commList.lgaai === "0.000") && (
-                      <div className="xl:w-[42%] bg-white/90 border-l-red-500 border-[0.5px] border-r-red-500 lg:w-1/2 w-[35%] px-0.5 right-0 h-full absolute flex justify-center items-center ">
-                        <div className="2xl:px-14 lg:px-14 py-2 px-2 text-nowrap rounded font-bold bg-transparent opacity-90">
-                          <span className="text-[#FF071B] xl:text-[16px] text-sm font-bold uppercase">
+                      <div className="xl:w-[70%] h-[40px] lg:h-[33px] bg-black/60 rounded-[4px] lg:w-1/2 w-[35%] px-0.5 right-0 absolute flex justify-center items-center ">
+                        <div className="2xl:px-14 lg:px-14 py-2 px-2 text-nowrap rounded font-medium bg-transparent opacity-90">
+                          <span className="text-white xl:text-[12px] text-sm font-normal uppercase">
                             SUSPENDED
                           </span>
                         </div>
@@ -359,7 +364,7 @@ const BookmakerComponent = ({
 
               {bookmaker2Fancy.map((commList, index) => (
                 <>
-                  <div key={index} className="relative border-b border-gray-200 flex decoration-none whitespace-normal max-w-full">
+                  <div key={index} className="relative border-b border-gray-200 flex decoration-none whitespace-normal max-w-full py-1">
                     <div className="w-1/2 flex">
                       <div className="w-full leading-3 flex items-center capitalize text-[#333333]">
                         <span className="text-[13px] px-2 font-bold">

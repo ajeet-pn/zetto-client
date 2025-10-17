@@ -15,20 +15,20 @@ function Banner() {
               {domainSetting.banner
                 ?.sort((a, b) => a.priority - b.priority)
                 ?.map((req, index) => (
-                  <div key={index} className="border-0 rounded-lg md:h-[300px] h-40">
+                  <div key={index} className="border-0 rounded-lg h-40">
                     {req?.url ? (
                       <a href={req.url}>
                         <img
                           src={req.image}
                           alt={req.name}
-                          className="md:h-[300px] h-40 w-full "
+                          className="block h-40 w-full rounded-[3px] "
                         />
                       </a>
                     ) : (
                       <img
                         src={req.image}
                         alt={req.name}
-                        className="md:h-[300px] h-40 w-full"
+                        className="block h-40 w-full rounded-[3px]"
                       />
                     )}
                   </div>
@@ -37,12 +37,12 @@ function Banner() {
           ) : (
             <Carousel autoplay speed={200}>
               <img
-                src="/assests/logobanner.jpeg"
+                src="/images/zetto/banner1.webp"
                 alt=""
                 className="md:h-[300px] h-36 w-full "
               />
               <img
-                src="/assests/img5.jpg"
+                src="/images/zetto/banner2.webp"
                 alt=""
                 className="md:h-[300px] h-36 w-full "
               />

@@ -19,6 +19,7 @@ import DashboardUpcoming from "../../component/dashboard/DashboardUpcoming";
 import Banner from "../../component/banner/Banner";
 import SubHeader from "../../component/header/SubHeader";
 import SeeMoreLess from "../../component/seeMore/SeeMore";
+import GameSlider from "../../component/GameSlider/GameSlider";
 
 
 export const sportlistArray = [
@@ -203,42 +204,48 @@ const getSportName = (sportId) => {
   return (
     <>
       <div className=" ">
-        <Banner />
-          <div className="flex flex-wrap items-center gap-1 px-2 py-2">
+        <div className='hidden md:block' >
+          <Banner/>
+        </div>
+        <GameSlider/>
+        <div className='block md:hidden mt-2' >
+          <GameSlider className='mt-2'/>
+        </div>
+          <div className="flex flex-nowrap overflow-x-auto items-center gap-1 md:px-2 py-2">
         {tabList.map((tab) => (
-          <button
+          <div
             key={tab.id}
-             onClick={() => {
+              onClick={() => {
         if (tab.tab) {
           setActiveTab(tab.id);
         } else {
           window.location.href = `${tab.link}`;
         }
       }}
-            className={`flex flex-col justify-center items-center w-[80px] h-[60px] rounded-md ${
-              activeTab === tab.id ? "bg-cyan-300 text-black" : "bg-[#03254c] text-white"
+            className={`flex flex-col justify-center items-center min-w-[67px] h-[60px] rounded-md ${
+              activeTab === tab.id ? "bg-[--secondary] text-black" : "bg-[#03254c] text-white"
             }`}
           >
-            <div className="text-xl">{tab.icon}</div>
-            <div className="text-xs font-semibold">{tab.label}</div>
-          </button>
+            <div className="text-lg">{tab.icon}</div>
+            <div className="!text-[9px] md:text-base font-medium leading-normal">{tab.label}</div>
+          </div>
         ))}
       </div>
         <div className="space-y-0">
-  {activeTab === "inplay" ? (
-    [...new Set(filteredData.filter(item => [4, 2, 1].includes(item.sportId)).map(item => item.sportId))].map((sportId) => {
-      const sportWiseMatches = filteredData.filter(item => item.sportId === sportId);
-      const sportName = getSportName(sportId);
-      return (
-        <DashboardInplay
-          key={sportId}
-          activeTab={sportId}
-          matchlistItems={sportWiseMatches}
-          sportName={sportName}
-        />
-      );
-    })
-  ) : (
+      {activeTab === "inplay" ? (
+        [...new Set(filteredData.filter(item => [4, 2, 1].includes(item.sportId)).map(item => item.sportId))].map((sportId) => {
+          const sportWiseMatches = filteredData.filter(item => item.sportId === sportId);
+          const sportName = getSportName(sportId);
+          return (
+            <DashboardInplay
+              key={sportId}
+              activeTab={sportId}
+              matchlistItems={sportWiseMatches}
+              sportName={sportName}
+            />
+          );
+        })
+      ) : (
     <DashboardInplay
       activeTab={activeTab}
       matchlistItems={filteredData}
@@ -246,7 +253,9 @@ const getSportName = (sportId) => {
     />
   )}
 </div>
-        <Providers filterSection={"providers"} name={"Casino Provider"} providersData={groupCasinoList?.providerList} />
+        <Providers filterSection={"providers"} 
+        // name={"Casino Game Provider"} 
+        providersData={groupCasinoList?.providerList} />
 
         <SeeMoreLess />
       </div>

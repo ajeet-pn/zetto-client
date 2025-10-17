@@ -4,6 +4,8 @@ import Overview from '../../component/profile/Overview';
 import StakeSettings from '../../component/profile/StakeSettings';
 import ChangePassword from '../../component/profile/ChangePassword';
 import { useLocation, useNavigate } from 'react-router-dom';
+import AppHeader from '../../component/layout/AppHeader';
+import AppFooter from '../../component/layout/AppFooter';
 
 const Profile = () => {
 
@@ -37,67 +39,68 @@ const Profile = () => {
 
     return (
         <>
+            <AppHeader/>
+                <div className='w-full h-full'>
 
-            <div className='w-full'>
-
-                <div className='bg-[var(--darkcolor)] uppercase text-black py-1 px-1.5'>
-                    <h2 className='text-[13px] text-white'>PROFILE</h2>
-                </div>
-
-                <div className='lg:flex justify-between items-start lg:space-x-5 w-full mt-2'>
-
-                    <div className='lg:w-[35%] border rounded-md shadow-xl bg-white p-5 border-gray-200 w-full flex flex-col justify-center items-center'>
-                        <img src={"/dashbaord/profile_image.png"} className='w-[120px] h-[120px]' />
-                        <p className='font-[900] uppercase mt-[10px] text-[30px] tracking-wider'>
-                            {user && user?.data && user?.data?.username}
-                        </p>
+                    <div className='bg-[var(--secondary)] rounded-t-[4px] uppercase text-black py-1 px-1.5'>
+                        <h2 className='text-[13px] text-black'>PROFILE</h2>
                     </div>
 
+                    <div className='lg:flex lg:flex-col justify-between items-center lg:space-x-5 w-full mt-2'>
 
-                    <div className='lg:w-[65%] w-full border rounded-md shadow-lg px-3 bg-white  border-gray-100'>
-                        <div className='flex border-b border-gray-200 w-full justify-center items-center text-center'>
-                            <button
-                                className={`px-4 py-2 sm:text-[13px] text-xs font-[600] uppercase w-full whitespace-nowrap tracking-wide ${activeTab === 'profile' ? 'text-black border-b-2 border-[var(--secondary)]' : 'text-black hover:text-[var(--secondary)]'}`}
-                                onClick={() => handleTabChange('profile')}
-                            >
-                                overview
-                            </button>
-                            <button
-                                className={`px-4 py-2 sm:text-[13px] text-xs font-[600] uppercase w-full whitespace-nowrap tracking-wide ${activeTab === 'stacksettings' ? 'text-black border-b-2 border-[var(--secondary)]' : 'text-black hover:text-[var(--secondary)]'}`}
-                                onClick={() => handleTabChange('stacksettings')}
-                            >
-                                stack settings
-                            </button>
-                            <button
-                                className={`px-4 py-2 sm:text-[13px] text-xs font-[600] uppercase w-full whitespace-nowrap tracking-wide ${activeTab === 'changepassword' ? 'text-black border-b-2 border-[var(--secondary)]' : 'text-black hover:text-[var(--secondary)]'}`}
-                                onClick={() => handleTabChange('changepassword')}
-                            >
-                                CHANGE PASSWORD
-                            </button>
+                        <div className='lg:w-[35%] border rounded-md shadow-xl bg-white p-5 border-gray-200 w-full flex flex-col justify-center items-center'>
+                            <img src={"/dashbaord/profile_image.png"} className='w-[120px] h-[120px]' />
+                            <p className='font-[900] uppercase mt-[10px] text-[30px] tracking-wider'>
+                                {user && user?.data && user?.data?.username}
+                            </p>
                         </div>
-                        <>
-                            {activeTab === 'profile' && (
-                                <>
-                                    <Overview />
-                                </>
-                            )}
-
-                            {activeTab === 'stacksettings' && (
-                                <>
-                                    <StakeSettings />
-                                </>
-                            )}
 
 
-                            {activeTab === 'changepassword' && (
-                                <>
-                                    <ChangePassword />
-                                </>
-                            )}
-                        </>
+                        <div className='lg:w-[65%] w-full border rounded-md shadow-lg px-3 bg-white  border-gray-100'>
+                            <div className='flex border-b border-gray-200 w-full justify-center items-center text-center'>
+                                <button
+                                    className={`px-4 py-2 sm:text-[13px] text-xs font-[600] uppercase w-full whitespace-nowrap tracking-wide ${activeTab === 'profile' ? 'text-black border-b-2 border-[var(--secondary)]' : 'text-black hover:text-[var(--secondary)]'}`}
+                                    onClick={() => handleTabChange('profile')}
+                                >
+                                    overview
+                                </button>
+                                <button
+                                    className={`px-4 py-2 sm:text-[13px] text-xs font-[600] uppercase w-full whitespace-nowrap tracking-wide ${activeTab === 'stacksettings' ? 'text-black border-b-2 border-[var(--secondary)]' : 'text-black hover:text-[var(--secondary)]'}`}
+                                    onClick={() => handleTabChange('stacksettings')}
+                                >
+                                    stack settings
+                                </button>
+                                <button
+                                    className={`px-4 py-2 sm:text-[13px] text-xs font-[600] uppercase w-full whitespace-nowrap tracking-wide ${activeTab === 'changepassword' ? 'text-black border-b-2 border-[var(--secondary)]' : 'text-black hover:text-[var(--secondary)]'}`}
+                                    onClick={() => handleTabChange('changepassword')}
+                                >
+                                    CHANGE PASSWORD
+                                </button>
+                            </div>
+                            <>
+                                {activeTab === 'profile' && (
+                                    <>
+                                        <Overview />
+                                    </>
+                                )}
+
+                                {activeTab === 'stacksettings' && (
+                                    <>
+                                        <StakeSettings />
+                                    </>
+                                )}
+
+
+                                {activeTab === 'changepassword' && (
+                                    <>
+                                        <ChangePassword />
+                                    </>
+                                )}
+                            </>
+                        </div>
                     </div>
                 </div>
-            </div>
+            <AppFooter/>
         </>
     );
 };
