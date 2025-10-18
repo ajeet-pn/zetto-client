@@ -53,14 +53,19 @@ const AppRightSIdebar = () => {
                 <ul className="p-0">
                     <li>
                     <Link>
-                        <img className="rounded-[4px] w-full h-auto" src="/images/zetto/why.webp" alt="" srcset="" />
+                        <img className="rounded-[4px] w-full h-auto" src="/images/zetto/why.webp" alt=""/>
                     </Link>
                     </li>
-                    <li>
-                    <Link>
-                        <img className="rounded-[4px] w-full h-auto mt-2" src="/images/zetto/wpbanner.png" alt="" />
-                    </Link>
-                    </li> 
+                    { !token ? 
+                        <>
+                            <li>
+                            <Link>
+                                <img className="rounded-[4px] w-full h-auto mt-2" src="/images/zetto/wpbanner.png" alt="" />
+                            </Link>
+                            </li> 
+                        </>
+                        : null
+                    }
                 </ul>
                 </div>
             </div>

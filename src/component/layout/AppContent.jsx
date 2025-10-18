@@ -17,6 +17,9 @@ import ViewMatchRacing from '../../pages/viewMatch/ViewMatchRacing'
 import BonusList from '../../pages/bonusList/BonusList'
 import ChangePassword from '../profile/ChangePassword'
 import Wallet from '../../pages/Wallet/Wallet'
+import { Faq } from '../../pages/Faq/Faq'
+import { ReferAFriend } from '../../pages/ReferAFriend/ReferAFriend'
+import Refferal from '../../pages/Refferal/Refferal'
 
 
 
@@ -31,6 +34,8 @@ const AppContent = () => {
       <Route path="/profile/:tab?" element={<Profile />} />
       <Route path='/ac-statement' element={<AccountSatement />} />
       <Route path='/changepassword' element={<ChangePassword />} />
+      <Route path='/faq' element={<Faq />} />
+      <Route path='/referAFriend' element={<ReferAFriend />} />
       <Route path="/wallet" element={<Wallet />} />
       <Route path='/all-casino' element={<AllCasino />} />
       <Route path='/sports-book' element={<SportsBook />} />
@@ -40,6 +45,7 @@ const AppContent = () => {
       <Route path='/in-play/:gameId?' element={<InPlayMatch />} />
       <Route path='/sports_book' element={<InplaySport />} />
       <Route path='/unsettled-bets' element={<UnsettledBets />} />
+      <Route path='/refferal' element={<Refferal />} />
       <Route path='/profit-loss' element={<ProfitLoss />} />
       <Route path='/sport-view/:marketId?/:eventId?/:sportId?' element={<ViewMatches />} />
       <Route path='/sport-view-racing/:marketId?/:eventId?/:sportId?' element={<ViewMatchRacing />} />

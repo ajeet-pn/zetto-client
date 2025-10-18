@@ -62,7 +62,7 @@ const AppHeader = ({ setSidebarOpen }) => {
     return () => { clearInterval(sportInterval); }
   }, [])
 
-
+  console.log("isOpenisOpenisOpen", isOpen)
   const setModalTrue = () => {
     setRulesModalOpen(true);
   };
@@ -127,6 +127,7 @@ const AppHeader = ({ setSidebarOpen }) => {
   };
 
   const handleClose = ()=> {
+    console.log("fun chala")
     setIsOpen(false)
   }
 
@@ -373,6 +374,7 @@ const AppHeader = ({ setSidebarOpen }) => {
                                       }`}
                                       onClick={() => setIsOpen(false)}
                                     ></div>
+                                  </div>
                                     {isOpen && (
                                       <div
                                         className={`fixed top-0 right-0 !w-80 bg-[--primary] text-white shadow-2xl z-[10000] transform h-dvh overflow-y-auto transition-transform duration-300 ${
@@ -451,15 +453,19 @@ const AppHeader = ({ setSidebarOpen }) => {
                                             <img src="/images/jetto/savatar.webp" className="w-4 h-4" />
                                             <span className="text-[14px]">My Profile</span>
                                           </div> */}
-                                          <div
-                                            onClick={() => navigate("/profile")}
+                                          <div  onClick={() => {
+                                              navigate("/profile");
+                                              handleClose();
+                                            }}
                                             className="flex items-center gap-2 px-3 py-4 border-b border-white text-white cursor-pointer"
                                           >
                                             <img src="/images/zetto/savatar.webp" className="w-4 h-4" />
                                             <span className="text-[14px]">My Profile</span>
                                           </div>
-                                          <div
-                                            onClick={() => navigate("/profile")}
+                                          <div  onClick={() => {
+                                            navigate("/profile");
+                                            handleClose();
+                                          }}
                                             className="flex items-center gap-2 px-3 py-4 border-b border-white text-white cursor-pointer"
                                           >
                                             <img src="/images/zetto/refericon.webp" className="w-4 h-4" />
@@ -473,8 +479,10 @@ const AppHeader = ({ setSidebarOpen }) => {
                                             <span className="text-[14px]">My Message(1)</span>
                                           </div> */}
                                           
-                                          <div
-                                            onClick={() => navigate("/changepassword")}
+                                          <div onClick={() => {
+                                              navigate("/changepassword");
+                                              handleClose();
+                                            }}
                                             className="flex items-center gap-2 px-3 py-4 border-b border-white text-white cursor-pointer"
                                           >
                                             {/* <BiLockAlt /> */}
@@ -482,7 +490,10 @@ const AppHeader = ({ setSidebarOpen }) => {
                                             <span className="text-[14px]">Change Password</span>
                                           </div>
                                           <div
-                                            onClick={() => navigate("/ac-statement")}
+                                          onClick={() => {
+                                              navigate("/ac-statement");
+                                              handleClose();
+                                            }}
                                             className="flex items-center gap-2 px-3 py-4 border-b border-white text-white cursor-pointer"
                                           >
                                             {/* <BsBarChartSteps /> */}
@@ -498,7 +509,10 @@ const AppHeader = ({ setSidebarOpen }) => {
                                             <span className="text-[14px]">Current Bets</span>
                                           </div>
                                           <div
-                                            onClick={() => navigate("/profit-loss")}
+                                          onClick={() => {
+                                              navigate("/profit-loss");
+                                              handleClose();
+                                            }}
                                             className="flex items-center gap-2 px-3 py-4 border-b border-white text-white cursor-pointer"
                                           >
                                             {/* <BsBarChartSteps /> */}
@@ -539,7 +553,11 @@ const AppHeader = ({ setSidebarOpen }) => {
                                           </div> */}
 
                                           <div
-                                            onClick={() => navigate("/profile/changepassword")}
+                                          
+                                          onClick={() => {
+                                              navigate("/profile/changepassword");
+                                              handleClose();
+                                            }}
                                             className="flex items-center gap-2 p-3 border-white text-white cursor-pointer"
                                           >
                                             {/* <BiLockAlt /> */}
@@ -562,7 +580,6 @@ const AppHeader = ({ setSidebarOpen }) => {
                                         </div>
                                       </div>
                                     )}
-                                  </div>
                                 </li>
                               </ul>
                             </div>

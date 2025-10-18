@@ -7,7 +7,10 @@ const Deposit = () => {
         <>
             <AppHeader/>
                 <div>Deposit</div>
+                <div className="w-full  max-lg:pb-16">
+
             <AppFooter/>
+                </div>
         </>
     )
 }

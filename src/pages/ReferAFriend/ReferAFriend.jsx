@@ -1,0 +1,136 @@
+import React from 'react'
+import { Link } from 'react-router-dom'
+
+export const ReferAFriend = () => {
+    return (
+        <>
+            <div className='h-[31px] bg-[--secondary] text-[15px] text-[--primary] rounded-t-[4px] font-semibold flex items-center justify-start px-3'>Refer a Friend</div>
+            <div className='md:px-8 px-2'>
+                <img className='m-auto w-full md:w-[350px] mt-2 md:mt-4 rounded' src="/images/zetto/referpromo.webp" alt="" />
+            </div>
+            <div className="flex flex-col items-center justify-center pt-5 pb-10 px-4 md:px-20 bg-white text-gray-900">
+                <div className="w-full max-w-3xl">
+                    <img
+                    src="/images/zetto/refer-flow.png"
+                    alt="Refer a Friend"
+                    className="m-auto w-full md:w-[350px] px-5 md:px-0"
+                    />
+                </div>
+                <div className='flex m-auto rounded h-[39px] items-center justify-center py-1 w-full md:w-[240px] bg-gray-300 active:bg-skin-hover3 active:bg-skin-hover5 md:hover:bg-skin-hover5  hover:text-skin-primary-text2 mt-4'>
+                    <span className="text-[18px] font-medium w-full text-gray-800 text-center">
+                        zetto_ancy1401
+                        </span>
+                        <img className='w-8 h-8 mx-2' src="/images/zetto/copy-icon.png" alt="" srcset="" />
+                </div>
+                {/* Referral Code Box */}
+                    <div className="my-4">
+                    <div className="flex flex-col justify-center items-center gap-2">
+                        <div className='text-[16px]'>Invite friends</div>
+                        <div className='border items-center flex gap-3 px-3 py-2 border-gray-300 rounded-sm'>
+                            <button className="bg-[--secondary] text-white px-3 py-1 text-[18px] font-semibold hover:bg-[--primary] block transition">
+                            COPY LINK
+                            </button>
+                            <img className='!w-8 !h-8' src="/images/zetto/whatsapp.png" alt="" srcset="" />
+                            <img className='!w-7 !h-7' src="/images/zetto/telegram.png" alt="" srcset="" />
+                        </div>
+                    </div>
+                    </div>
+                <div className="w-full max-w-3xl text-center shadow-sm">
+                    <h2 className="mb-8 text-2xl font-[900] text-gray-800">
+                    Refer a Friend and Win Big!
+                    </h2>
+                    <p className="text-gray-600 mb-6 text-[18px] text-start">
+                    Invite your friends to join and play on Zetto, and enjoy a bonus of{" "}
+                    ₹1000! Refer
+                    now and claim your reward!
+                    </p>
+
+                    
+
+                    {/* How to Refer Section */}
+                    <div className="text-left">
+                    <h3 className="text-lg font-bold text-gray-800 mb-5">How to Refer?</h3>
+                    <p className="text-gray-700 text-[18px] mb-3">
+                        Simply follow these easy steps and get ₹1000 FREE REFERRAL BONUS:
+                    </p>
+                    <ol className="list-decimal list-inside space-y-2 text-[18px] text-gray-700">
+                        <li>Login to your Zetto account.</li>
+                        <li>Click on the Hamburger Menu and choose “Refer a Friend”.</li>
+                        <li>Share your Referral Code with your friends.</li>
+                        <li>
+                        Your friend needs to sign up using your referral code during
+                        registration.
+                        </li>
+                        <li>
+                        The bonus will be credited once the conditions are fulfilled.
+                        </li>
+                    </ol>
+                    </div>
+
+                    {/* Terms and Conditions */}
+                    <div className="mt-6 text-left">
+                    <h3 className="text-lg font-bold text-gray-800 mb-5">
+                        Terms and Conditions:
+                    </h3>
+                    <ul className="list-decimal list-inside space-y-2 text-[18px] text-gray-700">
+                        <li>Referrer can refer only up to 10 referees.</li>
+                        <li>This promotion is valid for new and existing players.</li>
+                        <li>
+                        Referee must play for at least ₹20,000 to unlock the referral
+                        bonus.
+                        </li>
+                        <li>
+                        A bonus of ₹1000 is added to your wallet and must be wagered 40
+                        <li>
+                        times.
+                        </li>
+                        <li>Turnover requirements must be met within 7 days.</li>
+                        Void or canceled bets are not considered for bonus turnover.
+                        </li>
+                        <li>
+                        One account per player. Duplicate accounts will be disqualified.
+                        </li>
+                        <li>
+                        Zetto reserves the right to amend or cancel the promotion anytime.
+                        </li>
+                        <li>Other General Terms & Conditions apply.</li>
+                    </ul>
+                    </div>
+                </div>
+                
+                                <div className='block lg:hidden'>
+                                    <div className='flex justify-center flex-col items-center my-10'>
+                                        <div className='text-[16px] uppercase font-semibold'>follow us on</div>
+                                        <div className='flex gap-2 mt-2'>
+                                            <Link><img className='!w-[26px] !h-[26px]' src="/images/zetto/fb.png" alt="" /></Link>
+                                            <Link><img className='!w-[26px] !h-[26px]' src="/images/zetto/insta.png" alt="" /></Link>
+                                            <Link><img className='!w-[26px] !h-[26px]' src="/images/zetto/youtube.png" alt="" /></Link>
+                                            <Link><img className='!w-[26px] !h-[26px]' src="/images/zetto/telegram.png" alt="" /></Link>
+                                        </div>
+                                    </div>
+                                    <div className='flex gap-4  my-5 md:my-10 px-12'>
+                                        <div><img className='!w-[100px] !h-auto' src="/images/zetto/gaming.webp" alt="" srcset="" /></div>
+                                        <div><img className='!w-[30px] !h-auto' src="/images/zetto/game-care1.webp" alt="" srcset="" /></div>
+                                        <div><img className='!w-[30px] !h-auto' src="/images/zetto/18plus1.png" alt="" srcset="" /></div>
+                                        <div><img className='!w-[30px] !h-auto' src="/images/zetto/gamble-aware.webp" alt="" srcset="" /></div>
+                                    </div>
+                                    <div className='text-center my-5 md:my-10 mx-5'>
+                                        <Link className='text-[14px]'>About us |</Link>
+                                        <Link className='text-[14px]'> Promotions |</Link>
+                                        <Link className='text-[14px]'> Contact Us |</Link>
+                                        <Link className='text-[14px]'> FAQs |</Link>
+                                        <Link className='text-[14px]'> Responsible Gambling |</Link>
+                                        <Link className='text-[14px]'> Terms and Conditions |</Link>
+                                        <Link className='text-[14px]'> Rules |</Link>
+                                        <Link className='text-[14px]'> Zetto Blog |</Link>
+                                        <Link className='text-[14px]'> Privacy Policy |</Link>
+                                        <Link className='text-[14px]'> Sitemap </Link>
+                                    </div>
+                                    <div className='mx-10 my-5 md:my-10'>
+                                        <img className='!w-[500px] !h-[90px] !md:h-[130px]' src="/images/zetto/affiliate1.png" alt="" srcset="" />
+                                    </div>
+                                </div>
+            </div>
+        </>
+    )
+}

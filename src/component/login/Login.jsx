@@ -257,7 +257,10 @@ function Login({ isOpen, closeModal, setIsLoginOpen }) {
             </form>
           </div>
         </div>
+        <div className="w-full  max-lg:pb-16">
+
       <AppFooter/>
+        </div>
       {/* {showForgotModal &&
         <ForgotModal isOpen={showForgotModal} closeModal={closeFModal} />
       } */}

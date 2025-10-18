@@ -219,7 +219,13 @@ const AppSidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
                         <div className="cursor-pointer flex gap-3 items-center border-b border-[#e5e7eb] justify-start h-[54px] text-sm font-[300] bg-gray-100 text-black text-[15px] group">
                           <div
                             className="font-semibold tracking-normal text-[15px] px-5 py-[10px] my-0 ml-0 w-full space-x-0.5 inline-flex justify-between items-center"
-                            onClick={(e) => navigate(`/in-play/${menuItem.count}`)}
+                            onClick={(e) =>
+                              {
+                                if(menuItem?.url){
+                                  navigate(menuItem?.url)
+                                }else{
+                                navigate(`/in-play/${menuItem.count}`)}}
+                                }
                           >
                             <div className="flex justify-start items-center space-x-4">
                               <span>

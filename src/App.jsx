@@ -12,6 +12,7 @@ import AccountSatement from './pages/accountstatement/AccountStatement'
 import ProfitLoss from './pages/profitloss/ProfitLoss'
 import Profile from './pages/profile/Profile'
 import Deposit from './pages/Deposit/Deposit'
+import Promotions from './pages/Promotions/Promotions'
 
 
 
@@ -119,6 +120,7 @@ function App() {
             <Route path='/profit-loss' element={<ProfitLoss />} /> */}
             <Route path="/profile" element={<Profile />} />
             <Route path="/deposit" element={<Deposit />} />
+            <Route path="/promotions" element={<Promotions />} />
             <Route path="*" element={<Layout />} />
           </Routes>
         </BrowserRouter>

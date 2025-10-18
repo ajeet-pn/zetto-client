@@ -39,11 +39,19 @@ export const SPORTSCONSTANT = [
     text: "Promotions",
     count: '4339',
     icon: "/images/zetto/promotions.png",
+    url: "/promotions" ,
+  },
+  {
+    text: "FAQ",
+    count: '4339',
+    icon: "/images/zetto/faq.png",
+    url: "/faq" ,
   },
   {
     text: "Refer A Friend",
     count: '4339',
-    icon: "/images/zetto/referfriend.png",
+    icon: "/images/zetto/referfriend.png", 
+    url: "/referAFriend" ,
   },
   // {
   //   text: "Binary",
