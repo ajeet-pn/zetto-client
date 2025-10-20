@@ -1,4 +1,9 @@
 export const SPORTSCONSTANT = [
+    {
+    text: 'Inplay',
+    count: "4",
+    icon: "/images/zetto/inplay-icon.png",
+  },
   {
     text: 'Cricket',
     count: "4",
@@ -30,7 +35,24 @@ export const SPORTSCONSTANT = [
     count: '4339',
     icon: "/subHeader/menu-4339.png",
   },
-
+  {
+    text: "Promotions",
+    count: '4339',
+    icon: "/images/zetto/promotions.png",
+    url: "/promotions" ,
+  },
+  {
+    text: "FAQ",
+    count: '4339',
+    icon: "/images/zetto/faq.png",
+    url: "/faq" ,
+  },
+  {
+    text: "Refer A Friend",
+    count: '4339',
+    icon: "/images/zetto/referfriend.png", 
+    url: "/referAFriend" ,
+  },
   // {
   //   text: "Binary",
   //   count: 0,

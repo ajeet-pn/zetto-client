@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { message } from 'antd';
 import settings from "../../domainConfig";
 import { FaTimes } from "react-icons/fa";
@@ -8,6 +8,8 @@ import CasinoSlider from "../casinoSlider/CasinoSlider";
 import { ImAndroid } from "react-icons/im";
 import { login } from "../../redux/reducers/auth.reducer";
 import ForgotModal from "../forgotModal/ForgotModal";
+import AppHeader from "../layout/AppHeader";
+import AppFooter from "../layout/AppFooter";
 
 const sliderData = [
   {
@@ -56,14 +58,18 @@ function Login({ isOpen, closeModal, setIsLoginOpen }) {
 
     dispatch(login(reqData))
       .then((data) => {
-        if (!data.error) {
-          closeModal();
-          if (data?.payload?.userinfo?.data?.isPasswordChanged === false) {
-            window.location.href = "/dashboard"
+        // console.log(data,'llllllllllll')
+        if (!data?.payload?.userinfo?.data?.error) {
+          // closeModal();
+          // if (data?.payload?.userinfo?.data?.isPasswordChanged === false) {
+          // if (data?.payload?.userinfo?.data?.error === false) {
+            // alert('lll')
+            // window.location.href = "/dashboard"
+            navigate("/dashboard")
             localStorage.setItem("isRedirected", false)
-          } else {
-            window.location.href = "/dashboard"
-          }
+          // } else {
+          //   window.location.href = "/dashboard"
+          // }
         } else {
           console.error("Login failed:", data.error);
         }
@@ -86,7 +92,8 @@ function Login({ isOpen, closeModal, setIsLoginOpen }) {
       .then((data) => {
         if (!data.error) {
           closeModal();
-          window.location.href = "/dashboard"
+          navigate("/dashboard");
+          // window.location.href = "/dashboard"
           // navigate("/dashboard");
         } else {
           console.error("Demo Login failed:", data.error);
@@ -100,12 +107,11 @@ function Login({ isOpen, closeModal, setIsLoginOpen }) {
 
   return (
     <>
-      
-        <div className="max-w-2xl mx-auto">
+      <AppHeader/>
+        {/* <div className="max-w-2xl mx-auto">
           <div className="bg-[#005098] text-white  shadow-[0_0_25px_2px_#222] relative lg:-top-2 mx-2">
 
             <div className="md:flex w-full">
-              {/* Form */}
               <form onSubmit={handleSubmit} className="lg:w-[50%] w-full lg:py-[50px] py-[25px] px-[25px]">
                 <div className="flex justify-center items-center">
                   <div className="py-5">
@@ -116,14 +122,12 @@ function Login({ isOpen, closeModal, setIsLoginOpen }) {
                   </div>
                  
                 </div>
-                {/* Input Fields */}
                 <div className="mb-4">
                   <label className=" text-[10px] mb-1 font-[600] text-gray-200">
                     USERNAME / MOBILE NUMBER
                   </label>
                   <input
                     type="text"
-                    // placeholder="Username"
                     className="bg-[#00427C] w-full flex-grow p-2 rounded-md focus:bg-[var(--primary)] focus:border-white text-white placeholder-gray-400 focus:border-button focus:border outline-none text-center"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
@@ -137,7 +141,6 @@ function Login({ isOpen, closeModal, setIsLoginOpen }) {
                   </label>
                   <input
                     type={showPassword ? "text" : "password"}
-                    // placeholder="Password"
                     className="bg-[#00427C] w-full flex-grow p-2 rounded-md focus:bg-[var(--primary)] focus:border-white text-white placeholder-gray-400 focus:border-button focus:border outline-none text-center"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -195,8 +198,69 @@ function Login({ isOpen, closeModal, setIsLoginOpen }) {
             </div>
 
           </div>
-        </div>
+        </div> */}
 
+        <div className="flex items-start justify-center h-full bg-[#E9ECF0] overflow-y-auto">
+          <div className="w-full md:max-w-[448px] max-w-[100%] shadow-md rounded-[4px] bg-white text-white md:!my-4">
+            <form className="!px-6 !py-8 flex flex-col  max-h-[500px] " onSubmit={(e) => {
+                e.preventDefault(); 
+                handleSubmit(e);
+              }}>
+                <div className="mx-auto">
+                  <img className="!w-full !h-auto" src="/images/zetto/login.png" alt="" />
+                </div>
+                
+                <div className="text-[20px] my-3 text-center font-bold text-black dark:text-white">Login to your account</div>
+                {/* <div className="text-[14px] text-black mb-3 dark:text-white">Welcome back! Please signin to continue.</div> */}
+              <div className="flex flex-col mb-4">
+                {/* <label className="text-[14px] font-[400] text-black dark:text-white !mb-[5px]">Mobile Number</label> */}
+                <div className="relative">
+                  <input
+                    type="text"
+                    placeholder="usename"
+                    className="bg-[#EFEFEF] h-[43px] w-full rounded-[5px] border border-[#c0ccda] placeholder:text-[#9da3bd] placeholder:text-[16px] text-black px-2"
+                    name="username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    onKeyDown={(e) => e.key === "Enter" && handleSubmit(e)}
+                    // value={formData.username}
+                    // onChange={handleChange}
+                  />
+                  
+                  <Link className="text-[12px] font-semibold !text-black dark:!text-white" to=''>Forgot username?</Link>
+                </div>
+                {/* {errors.username && <p className="text-red-500 text-sm mt-1">{errors.username}</p>} */}
+              </div>
+              <div className="flex flex-col mb-4 relative">
+                <input
+                  placeholder="Password"
+                  type="password"
+                  className="bg-[#EFEFEF] h-[43px] rounded-[5px] text-black border border-[#c0ccda] placeholder:text-[#9da3bd] placeholder:text-[16px] px-2"
+                  name="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    onKeyDown={(e) => e.key === "Enter" && handleSubmit(e)}
+                  // value={formData.password}
+                  // onChange={handleChange}
+                />
+                <img className="!w-[20px] !h-[20px] absolute top-[19%] dark:brightness-100 brightness-0 right-[15px]" src="/images/zetto/passwordhide.png" alt="" />
+                <Link className="text-[12px] font-semibold !text-black dark:!text-white" to=''>Forgot password?</Link>
+                {/* {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password}</p>} */}
+              </div>
+
+              <div className="flex flex-col gap-2">
+                  <button type="submit" className="h-[50px] rounded-[3px] border border-[#c2c7c3] text-[#c2c7c3] text-[16x]">
+                  LOGIN
+                </button>
+                <div className="text-[#767f99] text-center mb-2 text-[12px]">New here ? <Link className="text-center text-[12px] !text-black dark:!text-white">Sign Up</Link></div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div className="w-full  max-lg:pb-16">
+
+      <AppFooter/>
+        </div>
       {/* {showForgotModal &&
         <ForgotModal isOpen={showForgotModal} closeModal={closeFModal} />
       } */}

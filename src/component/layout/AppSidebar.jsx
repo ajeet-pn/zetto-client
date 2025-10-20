@@ -215,20 +215,26 @@ const AppSidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
                           : "max-h-0 bg-[#fffff]"
                           }`}
                       >
-                        <div className="cursor-pointer border-b-[1px] border-[#eceaea]">
+                        <div className="cursor-pointer flex gap-3 items-center border-b border-[#e5e7eb] justify-start h-[54px] text-sm font-[300] bg-gray-100 text-black text-[15px] group">
                           <div
-                            className="hover:bg-[#FFF6EE] hover:text-[var(--primary)] text-[var(--secondary)] font-[600] tracking-normal text-[12px] px-3 py-[10px] my-0 ml-0 w-full space-x-0.5 inline-flex justify-between bg-white items-center"
-                            onClick={(e) => navigate(`/in-play/${menuItem.count}`)}
+                            className="font-semibold tracking-normal text-[15px] px-5 py-[10px] my-0 ml-0 w-full space-x-0.5 inline-flex justify-between items-center"
+                            onClick={(e) =>
+                              {
+                                if(menuItem?.url){
+                                  navigate(menuItem?.url)
+                                }else{
+                                navigate(`/in-play/${menuItem.count}`)}}
+                                }
                           >
                             <div className="flex justify-start items-center space-x-4">
                               <span>
                                 <img
                                   src={menuItem.icon}
                                   alt={menuItem.text}
-                                  className="w-[18px] h-[18px]"
+                                  className="!w-[20px] !h-[20px]"
                                 />
                               </span>
-                              <span className="">{menuItem.text}</span>
+                              <span className="text-[15px] -tracking-wide font-[400] scale-105 group-hover:scale-110">{menuItem.text}</span>
                             </div>
                           </div>
                         </div>
@@ -237,14 +243,14 @@ const AppSidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
                   })}
                 </div>
               </div>
-            </div>
           </div>
           
+            </div>
         </div>
       </div>
 
-      <div className="block lg:hidden shadow-[0_0_20px_rgba(1,41,112,0.1)]">
-        <div className="flex justify-between items-center border-b-[1px] border-[#eceaea] py-1 px-2">
+      <div className="block lg:hidden bg-[--primary] shadow-[0_0_20px_rgba(1,41,112,0.1)]">
+        <div className="flex justify-between items-center py-3 px-2">
           <div></div>
           <div>
             <img src={settings.logo} className="w-[70px] h-[24px]" />
@@ -258,7 +264,7 @@ const AppSidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
             </button>
           </div>
         </div>
-        <div className="relative flex flex-col w-full ">
+        <div className="relative flex flex-col w-full h-dvh p-4 ">
           <div className="flex flex-col flex-1 overflow-x-hidden overflow-y-auto h-full">
             <div className="text-white md:relative ">
               <div className="">
@@ -271,7 +277,7 @@ const AppSidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
                         localStorage.setItem("unauthorized", true);
                       }
                     }}
-                  className="border-b-[1px] border-[#eceaea] hover:bg-[#FFF6EE] hover:text-[var(--primary)] text-[var(--secondary)] font-[600] tracking-normal text-[12px] px-3 py-[10px] my-0 ml-0 w-full space-x-4 inline-flex justify-start bg-white items-center cursor-pointer "
+                  className="border-b-[1px] border-[#eceaea] hover:bg-[#FFF6EE] hover:text-[var(--primary)] text-white font-[600] tracking-normal text-[12px] px-3 py-[18px] my-0 ml-0 w-full space-x-4 inline-flex justify-start items-center cursor-pointer "
                 >
                   <p>
                     <img
@@ -300,7 +306,7 @@ const AppSidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
                       <div className="cursor-pointer">
                         {/* Sport Header */}
                         <div
-                          className="hover:bg-[#FFF6EE] hover:text-[var(--primary)] text-[var(--secondary)] font-[600] tracking-normal text-[12px] px-3 py-[10px] my-0 ml-0 w-full space-x-0.5 inline-flex justify-between bg-white items-center border-b-[1px] border-[#eceaea]"
+                          className="hover:bg-[#FFF6EE] hover:text-[var(--primary)] text-white font-[600] tracking-normal text-[12px] px-3 py-[18px] my-0 ml-0 w-full space-x-0.5 inline-flex justify-between items-center border-b-[1px] border-[#eceaea]"
                           onClick={(e) => {
                             if (isRacingCategory) {
                               // If racing, just toggle
@@ -363,7 +369,7 @@ const AppSidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
                                     className="cursor-pointer border-b-[1px] border-[#eceaea]"
                                   >
                                     <div
-                                      className="hover:bg-[#FFF6EE] hover:text-[var(--primary)] text-[var(--secondary)] font-[600] tracking-normal text-[12px] px-3 py-[10px] my-0 ml-0 w-full space-x-0.5 inline-flex justify-between bg-white items-center"
+                                      className="hover:bg-[#FFF6EE] hover:text-[var(--primary)] text-white font-[600] tracking-normal text-[12px] px-3 py-[10px] my-0 ml-0 w-full space-x-0.5 inline-flex justify-between bg-white items-center"
                                       // onClick={(e) =>
                                       //   handleClick1(index, seriesIndex, e)
                                       // }

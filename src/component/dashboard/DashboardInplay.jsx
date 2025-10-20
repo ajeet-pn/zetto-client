@@ -21,7 +21,7 @@ function InplayMatches({ activeTab, matchlistItems, sportName }) {
     (element) => element.sportId == activeTab
   ).sort((a, b) => moment(a.matchDate, "DD-MM-YYYY HH:mm:ss").isBefore(moment(b.matchDate, "DD-MM-YYYY HH:mm:ss")) ? -1 : 1);
 
-  console.log(activeTab, "activeTabactiveTabactiveTab");
+  console.log(filteredMatches, "filteredMatches");
   
 
   const isInplayMatch = (match) => {
@@ -174,10 +174,10 @@ function InplayMatches({ activeTab, matchlistItems, sportName }) {
       );
     } else {
       content = (
-        <div className="overflow-y-auto">
-          <div className="flex justify-between items-center w-full bg-[#e9eff8] border-b border-t border-[#f8f8f8]">
-            <div className="lg:w-[50%] w-full sm:flex items-center lg:space-x-24 lg:justify-start justify-between">
-              <div className="relative text-sm bg-[var(--primary)] w-[180px] font-bold text-white py-1.5 px-2 flex justify-start items-center space-x-1">
+        <div className="overflow-yauto">
+          <div className="flex justify-between rounded-t-[8px] bg-[var(--primary)] mt-2 items-center w-full border-b border-t border-[#f8f8f8]">
+            <div className="lg:w-[50%] w-full sm:flex h-[36px] items-center lg:space-x-24 lg:justify-start justify-between">
+              <div className="relative text-[13px] w-[180px] font-bold text-[--secondary] py-1.5 px-2 flex justify-start items-center space-x-1">
                 {sportName === "Cricket" && <img src='/subHeader/menu-4.png' className="w-4 h-4" />}
                 {sportName === "Soccer" && <img src='/subHeader/menu-1.png' className="w-4 h-4" />}
                 {sportName === "Tennis" && <img src='/subHeader/menu-2.png' className="w-4 h-4" />}
@@ -186,7 +186,7 @@ function InplayMatches({ activeTab, matchlistItems, sportName }) {
               </div>
             
             </div>
-            <div className="w-[50%] lg:grid hidden grid-cols-3 text-center text-sm font-bold">
+            <div className="w-[50%] lg:grid hidden text-gray-100 grid-cols-3 text-center text-sm font-bold">
               <span>1</span>
               <span>X</span>
               <span>2</span>
@@ -197,68 +197,143 @@ function InplayMatches({ activeTab, matchlistItems, sportName }) {
             const isInplay = isInplayMatch(element);
             return (
               <div
-                className="divide-y divide-[#f8f8f8] border-b border-[#f8f8f8] md:pb-0 pb-1.5"
+                className="divide-y divide-[#f8f8f8] border border-gray-200 md:pb-0 h-[58px] lg:h-[44px]"
                 key={index}
               >
-                <div className="lg:flex w-full">
+                <div className="flex  w-full h-full">
                   <div className="lg:w-[50%] w-full flex justify-between items-center bg-white">
                     <div className="flex items-center justify-start w-full bg-white">
                       <a
                         href={`/sport-view/${element?.marketId}/${element?.eventId}/${element?.sportId}`}
                         className="flex items-center justify-start py-1 space-x-1 w-full"
                       >
-                        <div className="flex flex-col uppercase w-full sm:w-[32%] px-2">
-                          <span className="text-[12px] font-semibold text-gray-900 hover:underline">
-                            {element?.matchName}
-                          </span>
-                          <span className="text-[10px] font-[500] text-[#838383]">
+                        <div className="hidden lg:flex">
+                            {isInplay ? (
+                              <div className="bg-[--primary] text-[9px] ms-4 text-[--secondary] !w-[60px] flex items-center justify-center h-[22px] rounded-[3px] font-semibold">Inplay</div>
+                            ) :
+                            (
+                              <div className="bg-[--secondary] text-[9px] ms-4 text-[--primary] !w-[60px] flex items-center justify-center h-[22px] rounded-[3px] font-semibold">{moment(element.matchDate, "DD-MM-YYYY HH:mm:ss A").format("HH:mm")}</div>
+                            )
+                          }
+                        </div>
+                        <div className="flex flex-col uppercase w-full px-2">
+                          <span className="text-[7px] text-[--primary] capitalize font-bold lg:bg-[--secondary] w-fit px-1 rounded-[5px]">
                             ({element?.seriesName ? element?.seriesName : "No Series"})
                           </span>
-                        </div>
-
-                        {isInplay && (
-                          <span className="w-full sm:w-[15%] flex flex-col items-center justify-center text-[#03B37F] font-bold text-[13px] tracking-wide">
-                            <p className="pt-2">LIVE</p>
-                            <span className="block w-8 h-[2px] bg-[#03B37F] mt-[4px] animate-marquee-left-to-right"></span>
+                          <span className="text-[11px] font-bold capitalize text-gray-900 hover:underline">
+                            {element?.matchName}
                           </span>
-                        )}
-                        <div className="bg-[#E9EFF8] w-full sm:w-[10%] text-[#FF0000] text-xs font-normal px-2 py-1 rounded-sm text-center leading-tight">
-                          {element?.matchDate && (
-                            <>
-                              <div>{moment(element.matchDate, "DD-MM-YYYY HH:mm:ss A").format('DD MMM')}</div>
-                              <div className="text-[10px]">
-                                {moment(element.matchDate, "DD-MM-YYYY HH:mm:ss A").format('hh:mm A')}
-                              </div>
-                            </>
-                          )}
                         </div>
                       </a>
                     </div>
-
-                    <div className="flex items-center space-x-1.5 cursor-pointer pr-3">
-                      {element?.isTv && <LiaDesktopSolid size={16} />}
-                      {element?.isFancy && <img src='/dashbaord/f-icon.png' className="w-[12px] h-[12px]" />}
-                      {element?.isBookmaker && (<span className="font-bold bg-[var(--primary)] flex justify-center items-center text-white rounded-full text-center w-[19px] h-[19px] text-[9px] pt-[3px]">BM</span>)}
+                    <div className="flex flex-col gap-1 me-2">
+                      <div className="flex items-center justify-end space-x-1.5 cursor-pointer lg:pr-3">
+                        <span className="w-[14px] h-[16px]">{element?.isTv && <LiaDesktopSolid size={16} />}</span>
+                        <span className="w-[15px] h-[15px] bg-[--primary] rounded-[3px] text-white flex items-center justify-center">
+                        {element?.isFancy && 
+                        <span className="text-[9px]">F</span>
+                        // <img src='/dashbaord/f-icon.png' className="w-[12px] h-[12px]" />
+                        }
+                        </span>
+                        <span className="w-[15px] h-[15px] bg-[--primary] rounded-[3px] text-white flex items-center justify-center">
+                        {element?.isBookmaker && 
+                        <span className="text-[9px]">B</span>
+                        // <img src='/dashbaord/f-icon.png' className="w-[12px] h-[12px]" />
+                        }
+                        </span>
+                        {/* {element?.isBookmaker && (<span className="font-bold bg-[var(--primary)] flex justify-center items-center text-white rounded-full text-center w-[19px] h-[19px] text-[9px] pt-[3px]">BM</span>)} */}
+                      </div>
+                      <div className="
+                      ">
+                        {isInplay ? (
+                            <div className="bg-[--primary] flex lg:hidden text-[9px] ms-4 text-[--secondary] !w-[60px] items-center justify-center h-[22px] rounded-[3px] font-semibold">Inplay</div>
+                          ) :
+                          (
+                            <div className="bg-[--secondary] text-[9px] flex lg:hidden ms-4 text-[--primary] !w-[60px] items-center justify-center h-[22px] rounded-[3px] font-semibold">{moment(element.matchDate, "DD-MM-YYYY HH:mm:ss A").format("HH:mm")}</div>
+                          )
+                        }
+                      </div>
                     </div>
                   </div>
 
-                  <div className="lg:w-[50%] w-full grid grid-cols-6 ">
-                    {Array?.from({ length: 6 }).map((_, i) => {
+                  <div className="lg:w-[50%] hidden lg:flex w-full justify-center items-center gap-1 grid grid-cols-6 bg-white me-2">
+                    {/* {Array?.from({ length: 6 }).map((_, i) => {
                       const isLagai = i % 2 === 0;
                       return (
                         <div
                           key={i}
-                          className={`relative w-full h-full `}
+                          className={`relative w-full h-[33px] flex justify-center items-center`}
                         >
-                          <div className={`${isLagai ? "bg-[var(--matchLagai)]" : "bg-[var(--matchKhai)]"} p-1 flex border-[1px] border-white/40 flex-col justify-center items-center text-center w-full h-full text-sm font-semibold text-gray-900`}>
-                            <p> {(Math.random() * 100).toFixed()}</p>
-                            <p className="text-[10px] lg:block hidden text-gray-600">
+                          <div className={`${isLagai ? "bg-[var(--matchLagai)] !rounded-[4px]" : "!rounded-[4px] bg-[var(--matchKhai)]"} flex border-[1px] gap-3 h-[33px] border-white/40 flex-col justify-center items-center w-full text-sm font-semibold text-gray-900`}>
+                            <div className="text-[12px] font-bold leading-[1px]"> {(Math.random() * 100).toFixed()}</div>
+                            <div className="text-[9px] lg:block hidden leading-[1px] text-black">
                               {(Math.random() * 100).toFixed(2)}
-                            </p>
+                            </div>
                           </div>
                         </div>
                       );
-                    })}
+                      
+                    })} */}
+                    {Array.from({ length: 6 }).map((_, i) => {
+                        const isLagai = i % 2 === 0;
+                        const isMiddleBox = i === 2 || i === 3; 
+
+                        return (
+                          <div
+                            key={i}
+                            className="relative w-full h-[33px] flex justify-center items-center"
+                          >
+                            <div
+                              className={`${
+                                isMiddleBox
+                                  ? "bg-[#a3a3a3]" // 👈 custom color for middle boxes
+                                  : isLagai
+                                  ? "bg-[var(--matchLagai)]"
+                                  : "bg-[var(--matchKhai)]"
+                              } flex border-[1px] gap-3 h-[33px] border-white/40 flex-col justify-center items-center w-full text-sm font-semibold text-gray-900 rounded-[4px]`}
+                            >
+                              <div className="text-[12px] font-bold leading-[1px]">
+                                {(Math.random() * 100).toFixed()}
+                              </div>
+                              <div className="text-[9px] lg:block hidden leading-[1px] text-black">
+                                {(Math.random() * 100).toFixed(2)}
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+
+                  </div>
+                  <div className="w-[50%] flex lg:hidden justify-end items-center gap-1 grid grid-cols-3 bg-white me-2">
+                    {Array.from({ length: 3 }).map((_, i) => {
+                        const isLagai = i % 2 === 0;
+                        const isMiddleBox = i === 2 || i === 3; 
+
+                        return (
+                          <div
+                            key={i}
+                            className="relative w-full h-[33px] flex justify-center items-center"
+                          >
+                            <div
+                              className={`${
+                                isMiddleBox
+                                  ? "bg-[var(--matchLagai)]" 
+                                  : isLagai
+                                  ? "bg-[var(--matchLagai)]"
+                                  : " bg-[#a3a3a3]"
+                              } flex border-[1px] gap-3 h-[33px] border-white/40 flex-col justify-center items-center w-full text-sm font-semibold text-gray-900 rounded-[4px]`}
+                            >
+                              <div className="text-[12px] font-bold leading-[1px]">
+                                {(Math.random() * 100).toFixed()}
+                              </div>
+                              <div className="text-[9px] lg:block hidden leading-[1px] text-black">
+                                {(Math.random() * 100).toFixed(2)}
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+
                   </div>
                 </div>
               </div>
@@ -270,7 +345,7 @@ function InplayMatches({ activeTab, matchlistItems, sportName }) {
   }
 
   return (
-    <div className="h-full overflow-y-auto md:px-0 m-auto md:max-h-none md:overflow-auto">
+    <div className="h-full overflow-yauto md:px-0 m-auto md:max-h-none md:overflow-auto">
       {content}
     </div>
   );

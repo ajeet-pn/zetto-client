@@ -40,21 +40,21 @@ const Layout = () => {
 
             <div className="md:flex flex-1 md:overflow-hidden overflow-auto relative">
                 <div className={`${isSidebarOpen ? 'fixed' : 'hidden'} 
-                lg:relative lg:block inset-0 lg:inset-auto py-1 lg:w-[250px] w-[55%] h-screen lg:h-auto z-20 lg:z-auto bg-[var(--backgroundmain)] overflow-y-auto scrollbar-hide`}>
+                lg:relative lg:block inset-0 lg:inset-auto py-1 lg:w-[290px] w-[55%] h-screen lg:h-auto z-20 lg:z-auto bg-[var(--backgroundmain)] overflow-y-auto scrollbar-hide`}>
                     <AppSidebar
                         isSidebarOpen={isSidebarOpen}
                         setIsSidebarOpen={setIsSidebarOpen}
                     />
                 </div>
 
-                <div className={`flex-1 h-auto overflow-y-auto bg-[var(--backgroundmain)] ${isSidebarOpen ? 'lg:ml-[0px] fixed inset-0 lg:static' : ''}`}>
+                <div className={`flex-1 h-auto overflow-y-auto ${isSidebarOpen ? 'lg:ml-[0px] fixed inset-0 lg:static' : ''}`}>
                     <div className="p-1 h-full">
                         <AppContent />
                         
                     </div>
                 </div>
 
-                <div className={`lg:relative lg:block inset-0 lg:inset-auto py-1 lg:w-[250px] w-[55%] h-screen lg:h-auto z-20 lg:z-auto bg-[var(--backgroundmain)] overflow-y-auto scrollbar-hide`}>
+                <div className={`lg:relative lg:block inset-0 lg:inset-auto pb-1 lg:w-[350px] w-[55%] h-screen lg:h-auto z-20 lg:z-auto overflow-y-auto hidden  scrollbar-hide`}>
                    <AppRightSIdebar />
                 </div>
 
@@ -67,7 +67,7 @@ const Layout = () => {
             </div>
          
         </section>
-           <div className='w-full'>
+           <div className='w-full max-lg:pb-16'>
                     <AppFooter />
                 </div>
                 </>

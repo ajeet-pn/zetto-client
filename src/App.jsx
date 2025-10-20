@@ -7,6 +7,12 @@ import { useEffect } from 'react'
 import settings from './domainConfig'
 import { getDomainSettingData, getInternationalGroupCasinoList, getMatchList } from './redux/reducers/user_reducer'
 import Login from './component/login/Login'
+import Signup from './pages/signup/Signup'
+import AccountSatement from './pages/accountstatement/AccountStatement'
+import ProfitLoss from './pages/profitloss/ProfitLoss'
+import Profile from './pages/profile/Profile'
+import Deposit from './pages/Deposit/Deposit'
+import Promotions from './pages/Promotions/Promotions'
 
 
 
@@ -109,6 +115,12 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/login" element={<Login />} />
+            <Route path='/signup' element={<Signup />} />
+            {/* <Route path='/ac-statement' element={<AccountSatement />} />
+            <Route path='/profit-loss' element={<ProfitLoss />} /> */}
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/deposit" element={<Deposit />} />
+            <Route path="/promotions" element={<Promotions />} />
             <Route path="*" element={<Layout />} />
           </Routes>
         </BrowserRouter>

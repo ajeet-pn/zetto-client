@@ -54,22 +54,15 @@ const MatchDetailsHeaderSection = ({ children, marketType, minMax, cashOut }) =>
             )}
 
             {/* Header */}
-            <div className="cursor-pointer bg-slate-300">
-                <p className="flex items-center justify-between flex-wrap">
+            <div className="cursor-pointer bg-[--primary] h-[33px]">
+                <p className="flex items-center justify-between flex-wrap h-full px-3">
                     <div className="flex items-center">
-                        <span className="
-              h-10 inline-flex items-center px-[10px] mr-[10px] relative
-              text-white text-[13px] font-semibold uppercase bg-[var(--primary)]
-              leading-none mobile:text-[11px] mobile:px-[5px]
-              before:content-[''] before:absolute before:right-[-17px] before:top-0
-              before:w-[18px] before:h-full
-              before:bg-[linear-gradient(180deg,var(--primary)_0,var(--primary))]
-              before:[clip-path:polygon(0_-1px,100%_-1px,1px_100%,0_100%)]
-            ">
+                        <span className="text-[--secondary] uppercase text-[12px] font-bold flex justify-start items-center
+                            ">
                             {marketType}
                         </span>
 
-                        <button
+                        {/* <button
                             onClick={(e) => {
                                 e.stopPropagation();
                                 toggleBookmark();
@@ -82,11 +75,11 @@ const MatchDetailsHeaderSection = ({ children, marketType, minMax, cashOut }) =>
                             ) : (
                                 <FaRegBookmark size={16} className='text-[var(--primary)]' />
                             )}
-                        </button>
-                        {cashOut}
+                        </button> */}
+                        {/* {cashOut} */}
                     </div>
 
-                    <span className="h-10 flex items-center space-x-1 text-black text-[10px] font-semibold sm:text-[9px]">
+                    {/* <span className="h-10 flex items-center space-x-1 text-black text-[10px] font-semibold sm:text-[9px]">
                         <span className='flex items-center'>Min: {minMax.min} | Max: {minMax.max}</span>
                         <button onClick={() => { handleIButton() }} className="flex items-center bg-[#6D081D] p-0.5 w-3 h-3 ml-0.5 justify-center  text-white  text-[8px] font-semibold md:text-[10px]">
                             i
@@ -96,7 +89,7 @@ const MatchDetailsHeaderSection = ({ children, marketType, minMax, cashOut }) =>
                         ) : (
                             <MdOutlineKeyboardArrowDown onClick={toggleExpand} size={20} className='text-[var(--primary)] ml-2' />
                         )}
-                    </span>
+                    </span> */}
 
                 </p>
             </div>

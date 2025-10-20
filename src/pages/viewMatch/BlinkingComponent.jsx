@@ -19,10 +19,10 @@ const BlinkingComponent = ({ price, size, color, hoverColor }) => {
     }, [price, prevPrice, prevSize, color, hoverColor]);
     return (
 
-        <div className={`border-x h-12 border-gray-300 py-1 px-2 flex justify-center items-center ${blink ? `bg-[var(--blink-color)]` : `${color}`}`}>
-            <div className='text-center leading-4'>
-                <span className="text-[13px] text-gray-800 font-bold">{price ? price : "-"}</span><br />
-                <span className="lg:text-[10px] text-gray-900 text-xs">{size ? size : null}</span>
+        <div className={`border-x h-[40px] lg:h-[33px] rounded-[4px] border-gray-300 py-1 px-2 flex justify-center items-center ${blink ? `bg-[var(--blink-color)]` : `${color}`}`}>
+            <div className='text-center h-full flex flex-col justify-center items-center leading-tight'>
+                <span className="text-[15px] text-gray-800 font-bold">{price ? price : "-"}</span>
+                <span className="lg:text-[9px] text-gray-900 text-xs">{size ? size : null}</span>
             </div>
         </div>
     );

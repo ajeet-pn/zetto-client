@@ -14,7 +14,8 @@ const TiedOddsComponent = ({
   toggleRowVisibility,
   handleBackOpen,
   formatNumber,
-  betplaceSection
+  betplaceSection,
+  minMax,
 }) => {
 
   const {
@@ -70,24 +71,28 @@ const TiedOddsComponent = ({
                         )}
                       marketType={"Tied_Match"} minMax={{ min: 100, max: formatNumber(isMatchCoin?.max) }}>
                       <div className="flex whitespace-normal max-w-full border-b border-gray-200">
-                        <div className="lg:w-1/2 xl:w-[58%] w-[65%] flex px-2">
-
+                        <div className="lg:w-1/2 xl:w-[30%] w-[65%] flex items-center text-[12px] px-2">
+                          Min: {minMax} | Max: {minMax}
                         </div>
 
-                        <div className="lg:w-1/2 xl:w-[42%] w-[35%] grid grid-cols-6">
+                        <div className="lg:w-1/2 xl:w-[70%] w-[35%] grid grid-cols-6 gap-x-2">
                           <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"></span>
                           <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"></span>
-                          <span className="lg:col-span-1 col-span-3 rounded-md">
-                            <div className="py-1.5 flex justify-center items-center">
-                              <div className="text-center leading-3">
-                                <span className="text-xs uppercase text-gray-800 font-bold">Back</span>
+                            <span className="lg:col-span-1 col-span-3 rounded-md w-full">
+                              <div className="py-1.5 w-full flex justify-center items-center ">
+                                <div className="text-center leading-3 w-full">
+                                  <span className="text-xs uppercase w-full block  bg-[#8DD9FF] h-[20px] rounded-[4px] px-4 text-gray-800 font-bold">
+                                    Back
+                                  </span>
+                                </div>
                               </div>
-                            </div>
-                          </span>
+                            </span>
                           <span className="lg:col-span-1 col-span-3 rounded-md">
-                            <div className="py-1.5 flex justify-center items-center">
-                              <div className="text-center leading-3">
-                                <span className="text-xs uppercase text-gray-800 font-bold">Lay</span>
+                            <div className="py-1.5 w-full flex justify-center items-center">
+                              <div className="text-center leading-3 w-full">
+                                <span className="text-xs px-4 w-full  block rounded-[4px] h-[20px] bg-[#FF94BC] uppercase text-gray-800 font-bold">
+                                  Lay
+                                </span>
                               </div>
                             </div>
                           </span>
@@ -98,8 +103,8 @@ const TiedOddsComponent = ({
                       {element?.runners?.length > 0 && element.runners.map((elementtemp, index) => (
                         <>
 
-                          <div className="flex whitespace-normal max-w-full border-b border-gray-200" key={index}>
-                            <div className="lg:w-1/2 xl:w-[58%] w-[65%] flex px-2">
+                          <div className="flex whitespace-normal max-w-full border-b border-gray-200 py-1" key={index}>
+                            <div className="lg:w-1/2 xl:w-[30%] w-[65%] flex px-2">
                               <div className="w-full py-1 leading-3 flex items-center text-[#333333]">
                                 <span className="text-[13px] font-bold">
                                   <span>
@@ -123,7 +128,7 @@ const TiedOddsComponent = ({
                               </div>
                             </div>
 
-                            <div className="lg:w-1/2 xl:w-[42%] w-[35%] grid grid-cols-6">
+                            <div className="lg:w-1/2 xl:w-[70%] w-[35%] grid grid-cols-6 gap-x-2">
                               {/* Available to Back (non-clickable) */}
                               {elementtemp?.ex?.availableToBack?.length > 0 &&
                                 elementtemp.ex.availableToBack.slice(1).map((tempData, index) => (
@@ -131,7 +136,7 @@ const TiedOddsComponent = ({
                                     <BlinkingComponent
                                       price={tempData.price}
                                       size={tempData.size}
-                                      color={"bg-[#E6F2FC]"}
+                                      color={"bg-[#8DD9FF]"}
                                       blinkColor={"bg-[#00B2FF]"}
                                       hoverColor={"bg-sky-600"}
                                     />
@@ -168,7 +173,7 @@ const TiedOddsComponent = ({
                                       <BlinkingComponent
                                         price={tempData.price}
                                         size={tempData.size}
-                                        color={"bg-[#8DD2F0]"}
+                                        color={"bg-[#8DD9FF]"}
                                         blinkColor={"bg-[#00B2FF]"}
                                       />
                                     </span>
@@ -198,7 +203,7 @@ const TiedOddsComponent = ({
                                       <BlinkingComponent
                                         price={tempData.price}
                                         size={tempData.size}
-                                        color={"bg-[#8DD2F0]"}
+                                        color={"bg-[#8DD9FF]"}
                                         blinkColor={"bg-[#00B2FF]"}
                                       />
                                     </span>
@@ -238,7 +243,7 @@ const TiedOddsComponent = ({
                                           <BlinkingComponent
                                             price={tempData.price}
                                             size={tempData.size}
-                                            color={"bg-[#FEAFB2]"}
+                                            color={"bg-[#FF94BC]"}
                                             blinkColor={"bg-[#FE7A7F]"}
                                           />
                                         </span>
@@ -268,7 +273,7 @@ const TiedOddsComponent = ({
                                           <BlinkingComponent
                                             price={tempData.price}
                                             size={tempData.size}
-                                            color={"bg-[#F9C8D3]"}
+                                            color={"bg-[#FF94BC]"}
                                             blinkColor={"bg-[#FE7A7F]"}
                                           />
                                         </span>
@@ -278,7 +283,7 @@ const TiedOddsComponent = ({
                                         <BlinkingComponent
                                           price={tempData.price}
                                           size={tempData.size}
-                                          color={"bg-[#FCE3E4]"}
+                                          color={"bg-[#FF94BC]"}
                                           blinkColor={"bg-[#CDEBEB]"}
                                         />
                                       </span>

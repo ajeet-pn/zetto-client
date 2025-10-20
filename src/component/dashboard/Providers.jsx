@@ -54,18 +54,19 @@ function Providers({ filterSection, name, providersData }) {
 
   return (
     <div>
-      <div className="bg-[#e9eff8] rounded-md border border-secondary">
+      <div className="md:mx-20 mx-2 mb-8">
         <div>
-          <div className="relative uppercase tracking-wider text-sm bg-[var(--primary)] w-[200px] font-bold text-white py-1.5 px-3">
+          {/* <div className="relative uppercase tracking-wider text-sm bg-[var(--primary)] w-[200px] font-bold text-white py-1.5 px-3">
             <div className="flex space-x-2 items-center">
               <img src="/subHeader/menu-99998.png" className="w-[20px] h-[20px]" alt="menu" />
               <p>{name}</p>
             </div>
             <span className="absolute top-0 right-[-15px] w-0 h-0 border-t-[32px] border-t-[var(--primary)] border-r-[15px] border-r-transparent"></span>
-          </div>
+          </div> */}
+          <div className="text-[18px] font-bold my-3 text-[#001F3F] text-center">CASINO GAME PROVIDERS</div>
         </div>
 
-        <div className="grid lg:grid-cols-7 md:grid-cols-6 sm:grid-cols-5 grid-cols-4 gap-0.5 mt-0.5">
+        <div className="max-w-xl grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-3 grid-cols-2 gap-2 mt-0.5">
           {ProvidersList?.map((item, idx) => (
             <div key={idx} className="!w-auto">
               <a href={`/casino-list-by-providername/${item.name}`} className="block">
@@ -73,7 +74,7 @@ function Providers({ filterSection, name, providersData }) {
                   <img 
                     src={item.image} 
                     alt={item.name} 
-                    className="object-cover" 
+                    className="object-cover rounded-[5px]" 
                   />
                 </div>
               </a>
