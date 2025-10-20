@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import moment from "moment";
 import { useEffect, useRef, useState } from "react";
 import { CgClose } from "react-icons/cg";
