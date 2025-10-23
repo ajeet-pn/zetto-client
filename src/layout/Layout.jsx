@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react'
 import MarqueeNotification from '../component/marquee/MarqueeNotification'
 import AppRightSIdebar from '../component/layout/AppRightSidebar'
 import AppFooter from '../component/layout/AppFooter'
+import { useLocation } from 'react-router-dom';
+
 
 
 
@@ -13,6 +15,10 @@ const Layout = () => {
 
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [isStakeModalOpen, setIsStakeModalOpen] = useState(false);
+
+    const location = useLocation();
+const currentPath = location.pathname;
+
 
     const handleToggle = () => {
         document.body.classList.toggle("StakeModalOpen");
@@ -26,6 +32,13 @@ const Layout = () => {
         observer.observe(document.body, { attributes: true });
         return () => observer.disconnect();
     }, []);
+    const hideSidebarRoutes = ['/sport-view', "/sport-view-racing", '/deposit', "/wallet"];
+    const shouldHideSidebars = hideSidebarRoutes.some(route => currentPath.startsWith(route));
+
+
+    const hideLeftSidebarRoutes = ['/deposit', "/wallet"];
+    const shouldHideLeftSidebars = hideLeftSidebarRoutes.some(route => currentPath.startsWith(route));
+
 
 
     return (
@@ -39,13 +52,13 @@ const Layout = () => {
             </div>
 
             <div className="md:flex flex-1 md:overflow-hidden overflow-auto relative">
-                <div className={`${isSidebarOpen ? 'fixed' : 'hidden'} 
+               {( <div className={`${isSidebarOpen ? 'fixed' : 'hidden'} 
                 lg:relative lg:block inset-0 lg:inset-auto py-1 lg:w-[290px] w-[55%] h-screen lg:h-auto z-20 lg:z-auto bg-[var(--backgroundmain)] overflow-y-auto scrollbar-hide`}>
                     <AppSidebar
                         isSidebarOpen={isSidebarOpen}
                         setIsSidebarOpen={setIsSidebarOpen}
                     />
-                </div>
+                </div>)}
 
                 <div className={`flex-1 h-auto overflow-y-auto ${isSidebarOpen ? 'lg:ml-[0px] fixed inset-0 lg:static' : ''}`}>
                     <div className="p-1 h-full">
@@ -53,17 +66,17 @@ const Layout = () => {
                         
                     </div>
                 </div>
-
+{!shouldHideSidebars && (
                 <div className={`lg:relative lg:block inset-0 lg:inset-auto pb-1 lg:w-[350px] w-[55%] h-screen lg:h-auto z-20 lg:z-auto overflow-y-auto hidden  scrollbar-hide`}>
                    <AppRightSIdebar />
-                </div>
+                </div> )}
 
-                {isSidebarOpen && (
+                {/* {isSidebarOpen && (
                     <div
                         className="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-10"
                         onClick={() => setIsSidebarOpen(false)}
                     />
-                )}
+                )} */}
             </div>
          
         </section>

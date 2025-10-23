@@ -52,7 +52,7 @@ const AppRightSIdebar = () => {
                 <div className="w-full">
                 <ul className="p-0">
                     <li>
-                    <Link>
+                    <Link to={'/why-choose-us'}>
                         <img className="rounded-[4px] w-full h-auto" src="/images/zetto/why.webp" alt=""/>
                     </Link>
                     </li>

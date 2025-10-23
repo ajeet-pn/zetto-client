@@ -208,6 +208,7 @@ const AccountSatement = () => {
               <div className="max-w-full overflow-auto">
                 <div className="inline-block min-w-full">
                   <div className="overflow-hidden w-full">
+                   {finalData && finalData.length > 0 ? (
                     <table className="min-w-full border-collapse border overflow-x-auto border-gray-400">
                       <thead className="bg-gray-100">
                         <tr className="text-left text-[12px] lg:bg-transparent text-[#212529]  font-semibold border border-[#c7c8ca]/50">
@@ -221,8 +222,7 @@ const AccountSatement = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        {finalData && finalData.length > 0 ? (
-                          finalData?.map((element, index) => (
+                        {finalData?.map((element, index) => (
                             <tr
                               className={index % 2 === 0 ? "bg-white text-[12px]" : "bg-white text-[12px]"}
                               key={index}
@@ -259,61 +259,13 @@ const AccountSatement = () => {
                               <td className="px-3 py-2 border border-[#c7c8ca]/50 whitespace-nowrap">{element?.remark}</td>
                               <td className="px-3 py-2 border border-[#c7c8ca]/50 whitespace-nowrap">{element?.remark}</td>
                             </tr>
-                          ))
-                        ) : (
-                          <tr>
-                            <td colSpan={7} className=" text-[13px] p-2 border border-[#c7c8ca]/50 bg-white text-left">
-                              No Data Found
-                            </td>
-                          </tr>
-                        )}
+                          ))}
                       </tbody>
                     </table>
+                   ):( <div className="w-full text-center text-sm font-bold">No Data Found</div>)}
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="lg:flex lg:flex-row flex-col  justify-start items-center my-1 gap-4">
-              <div className="flex justify-start items-center ">
-                {/* <button
-                  onClick={() => {
-                    setPageNumber(1);
-                    setPaginationPage(1)
-                  }}
-                  className="px-3 py-1 border text-black text-sm"
-
-                >
-                  First
-                </button> */}
-                <button
-                  onClick={() => setPageNumber(pageNumber - 1)}
-                  className="px-3 py-1 border text-black text-sm"
-                  disabled={pageNumber === 1}
-                >
-                  Previous Page
-                </button>
-                <button
-                  className="px-3 py-1 border text-black text-sm"
-                  onClick={() => setPageNumber(pageNumber + 1)}
-                >
-                  Next Page
-                </button>
-                {/* <button
-                  className="px-3 py-1 border text-black text-sm"
-                  onClick={() => { setPageNumber(totalPages); setPaginationPage(totalPages) }}
-                >
-                  Last
-                </button> */}
-
-              </div>
-              {/* <div className='space-x-2 flex justify-center items-center gap-2 lg:mt-0 mt-2'>
-                <span>Page {pageNumber} of {totalPages}  </span>
-                <span>Go to Page</span>
-                <input
-                  onChange={(e) => { setPaginationPage(e.target.value) }}
-                  value={paginationPage}
-                  className='border p-2 w-32'></input>
-              </div> */}
             </div>
           </div>
         </div>

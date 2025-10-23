@@ -161,8 +161,8 @@ const tabList = [
   { id: 2, label: "TENNIS", icon: "🎾", tab: true  },
   { id: 7, label: "RACING", icon: "🏇", tab: false, link: '/in-play/7' },
   { id: 4339, label: "GREYHOUND", icon: "🐕", tab: false, link: '/in-play/4339' },
-  { id: "casino", label: "CASINO", icon: "🎰", tab: false, link: '' },
-  { id: "sportsbook", label: "SPORTSBOOK", icon: "📒", tab: false, link: '' },
+  { id: "casino", label: "CASINO", icon: "🎰", tab: false, link: '/all-casino' },
+  // { id: "sportsbook", label: "SPORTSBOOK", icon: "📒", tab: false, link: '' },
 ];
 
 
@@ -253,8 +253,7 @@ const getSportName = (sportId) => {
     />
   )}
 </div>
-        <Providers filterSection={"providers"} 
-        // name={"Casino Game Provider"} 
+        <Providers filterSection={"providers"}
         providersData={groupCasinoList?.providerList} />
 
         <SeeMoreLess />

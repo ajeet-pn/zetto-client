@@ -54,7 +54,7 @@ function Providers({ filterSection, name, providersData }) {
 
   return (
     <div>
-      <div className="md:mx-20 mx-2 mb-8">
+      <div className=" mx-2 mb-8">
         <div>
           {/* <div className="relative uppercase tracking-wider text-sm bg-[var(--primary)] w-[200px] font-bold text-white py-1.5 px-3">
             <div className="flex space-x-2 items-center">
@@ -66,7 +66,7 @@ function Providers({ filterSection, name, providersData }) {
           <div className="text-[18px] font-bold my-3 text-[#001F3F] text-center">CASINO GAME PROVIDERS</div>
         </div>
 
-        <div className="max-w-xl grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-3 grid-cols-2 gap-2 mt-0.5">
+        <div className="m grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-3 grid-cols-2 gap-2 mt-0.5">
           {ProvidersList?.map((item, idx) => (
             <div key={idx} className="!w-auto">
               <a href={`/casino-list-by-providername/${item.name}`} className="block">

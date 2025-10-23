@@ -1,7 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { domainName } from '../../config/Auth';
 
 export const ReferAFriend = () => {
+       const [copied, setCopied] = useState(false);
+
+    const user = JSON.parse(localStorage.getItem(`user_info_${domainName}`));
+
+
+
+    const copyToClipboard = () => {
+        const code = user?.data?.referralCode;
+        if (code) {
+            navigator.clipboard.writeText(code).then(() => {
+                setCopied(true);
+                setTimeout(() => setCopied(false), 2000); // copied text resets after 2 sec
+            });
+        }
+    };
     return (
         <>
             <div className='h-[31px] bg-[--secondary] text-[15px] text-[--primary] rounded-t-[4px] font-semibold flex items-center justify-start px-3'>Refer a Friend</div>
@@ -16,18 +32,23 @@ export const ReferAFriend = () => {
                     className="m-auto w-full md:w-[350px] px-5 md:px-0"
                     />
                 </div>
-                <div className='flex m-auto rounded h-[39px] items-center justify-center py-1 w-full md:w-[240px] bg-gray-300 active:bg-skin-hover3 active:bg-skin-hover5 md:hover:bg-skin-hover5  hover:text-skin-primary-text2 mt-4'>
+                <div onClick={copyToClipboard} className='flex cursor-pointer m-auto rounded hover:bg-[--secondary] px-2 h-[39px] items-center justify-center py-1 w-full md:w-[250px] bg-gray-300 active:bg-skin-hover3 active:bg-skin-hover5 md:hover:bg-skin-hover5  hover:text-skin-primary-text2 mt-4'>
                     <span className="text-[18px] font-medium w-full text-gray-800 text-center">
-                        zetto_ancy1401
+                        {user?.data?.referralCode}
                         </span>
                         <img className='w-8 h-8 mx-2' src="/images/zetto/copy-icon.png" alt="" srcset="" />
                 </div>
-                {/* Referral Code Box */}
+
+               {copied && (
+                 <div className='bg-gray-400 mt-3 rounded px-2'>
+                <span className="text-black ml-2">Text Copied!</span>
+            </div>)}
+
                     <div className="my-4">
                     <div className="flex flex-col justify-center items-center gap-2">
                         <div className='text-[16px]'>Invite friends</div>
                         <div className='border items-center flex gap-3 px-3 py-2 border-gray-300 rounded-sm'>
-                            <button className="bg-[--secondary] text-white px-3 py-1 text-[18px] font-semibold hover:bg-[--primary] block transition">
+                            <button className="bg-[--primary] text-white px-3 py-1 text-[12px] font-semibold hover:bg-[--primary] block transition">
                             COPY LINK
                             </button>
                             <img className='!w-8 !h-8' src="/images/zetto/whatsapp.png" alt="" srcset="" />

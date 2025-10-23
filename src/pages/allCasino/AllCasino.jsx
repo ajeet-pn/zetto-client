@@ -130,18 +130,7 @@ function AllCasino() {
                         <span className="absolute top-0 right-[-15px] w-0 h-0 border-t-[32px] border-t-[var(--primary)] border-r-[15px] border-r-transparent"></span>
                     </div>
                 </div>
-                <div className="flex items-center">
-                    <div className="flex w-[320px] rounded overflow-hidden border border-[var(--secondary)]">
-                        <input
-                            type="text"
-                            placeholder="Search Games..."
-                            className="flex-1 px-3 py-[2px] text-sm text-gray-700 placeholder-gray-400 focus:outline-none"
-                        />
-                        <button className="bg-[var(--secondary)] px-2 mr-2 flex items-center justify-center">
-                            <FaSearch className="text-white text-xs" />
-                        </button>
-                    </div>
-                </div>
+                
 
             </div>
 

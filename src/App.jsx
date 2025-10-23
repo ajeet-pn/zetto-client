@@ -8,11 +8,8 @@ import settings from './domainConfig'
 import { getDomainSettingData, getInternationalGroupCasinoList, getMatchList } from './redux/reducers/user_reducer'
 import Login from './component/login/Login'
 import Signup from './pages/signup/Signup'
-import AccountSatement from './pages/accountstatement/AccountStatement'
-import ProfitLoss from './pages/profitloss/ProfitLoss'
-import Profile from './pages/profile/Profile'
-import Deposit from './pages/Deposit/Deposit'
 import Promotions from './pages/Promotions/Promotions'
+import TrmCondtion from './pages/TrmCondtion/TrmCondtion'
 
 
 
@@ -60,16 +57,14 @@ function App() {
   
 
   useEffect(() => {
-    
     dispatch(getMatchList());
-    
-    
     const interval = setInterval(() => {
       dispatch(getMatchList());
     }, 180000);
     casinoGroupWise()
     return () => clearInterval(interval);
   }, [dispatch]);
+  
 
   const casinoGroupWise = () => {
     const ReqData = {
@@ -116,11 +111,8 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path='/signup' element={<Signup />} />
-            {/* <Route path='/ac-statement' element={<AccountSatement />} />
-            <Route path='/profit-loss' element={<ProfitLoss />} /> */}
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/deposit" element={<Deposit />} />
             <Route path="/promotions" element={<Promotions />} />
+            <Route path="/term-condition" element={<TrmCondtion />} />
             <Route path="*" element={<Layout />} />
           </Routes>
         </BrowserRouter>

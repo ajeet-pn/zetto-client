@@ -69,6 +69,9 @@ const BookmakerComponent = ({
                 <div className="lg:w-1/2 xl:w-[70%] w-[35%] grid grid-cols-6 gap-x-2">
                   <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"></span>
                   <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"></span>
+                  
+                  <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"></span>
+                  <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"></span>
                   <span className="lg:col-span-1 col-span-3 rounded-md w-full">
                       <div className="py-1.5 w-full flex justify-center items-center ">
                         <div className="text-center leading-3 w-full">
@@ -87,8 +90,6 @@ const BookmakerComponent = ({
                         </div>
                       </div>
                     </span>
-                  <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"></span>
-                  <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"></span>
                 </div>
               </div>
 
@@ -118,30 +119,9 @@ const BookmakerComponent = ({
                     </div>
 
                     <div className="lg:w-1/2 xl:w-[70%] w-[35%] grid grid-cols-6 gap-x-2">
-                      <span className="lg:block hidden">
-                        <BlinkingComponent
-                          price={0}
-                          size={0}
-                          color={"bg-[#8DD9FF]"}
-                          blinkColor={"bg-[#CDEBEB]"}
-                          textColors={"text-black"}
-                          boderColors={"border-black"}
-                          hoverColor={"hover:bg-[#80c2f1]"}
-                        />
-                      </span>
-                      <span className="lg:block hidden">
-                        <BlinkingComponent
-                          price={0}
-                          size={0}
-                          color={"bg-[#8DD9FF]"}
-                          blinkColor={"bg-[#CDEBEB]"}
-                          textColors={"text-black"}
-                          boderColors={"border-black"}
-                        />
-                      </span>
 
                       <span
-                        className="md:col-span-1 col-span-3 md:col-start-3 lg:block hidden cursor-pointer"
+                        className="col-span-1 col-start-5 lg:block hidden cursor-pointer"
                         onClick={() => {
                           toggleRowVisibility(commList.selectionid);
                           handleBackOpen({
@@ -174,7 +154,7 @@ const BookmakerComponent = ({
                       </span>
 
                       <span
-                        className="col-span-3 lg:hidden block cursor-pointer"
+                        className="col-span-3  lg:hidden block cursor-pointer"
                         onClick={() => {
                           toggleRowVisibility(commList.selectionid);
                           handleBackOpen({
@@ -206,63 +186,10 @@ const BookmakerComponent = ({
                         />
                       </span>
 
-                      <span
-                        className="md:col-span-1 col-span-3 md:col-start-4 lg:block hidden cursor-pointer"
-                        onClick={() => {
-                          toggleRowVisibility(commList.selectionid);
-                          handleBackOpen({
-                            data: commList,
-                            nameOther: matchScoreDetails.team_data,
-                            type: "No",
-                            odds: commList.khaai,
-                            name: commList.team_name,
-                            betFor: "odds",
-                            oddsType: "bookmaker",
-                            betType: "K",
-                            selectionId: commList.selectionid,
-                            teamData: commList.khaai,
-                            betfairMarketId: marketId,
-                            price: commList.lgaai * 100,
-                            size: "0",
-                            position: returnDataObject,
-                            newPosition: returnDataObject,
-                          });
-                        }}
-                      >
-                        <BlinkingComponent
-                          price={(commList.khaai * 100).toFixed(2)}
-                          size={(commList.lgaai * 100).toFixed(2)}
-                          color={"bg-[#FF94BC]"}
-                          blinkColor={"bg-[#FE7A7F]"}
-                          textColors={"text-black"}
-                          boderColors={"border-[#f996ab]"}
-                        />
-                      </span>
-
-                      <span className="lg:block hidden">
-                        <BlinkingComponent
-                          price={0}
-                          size={0}
-                          color={"bg-[#FF94BC]"}
-                          blinkColor={"bg-[#CDEBEB]"}
-                          textColors={"text-black"}
-                          boderColors={"border-black"}
-                        />
-                      </span>
-
-                      <span className="lg:block hidden">
-                        <BlinkingComponent
-                          price={0}
-                          size={0}
-                          color={"bg-[#FF94BC]"}
-                          blinkColor={"bg-[#CDEBEB]"}
-                          textColors={"text-black"}
-                          boderColors={"border-black"}
-                        />
-                      </span>
+                     
 
                       <span
-                        className="col-span-3 lg:hidden block cursor-pointer"
+                        className="md:col-span-1 col-span-3 md:col-start-6 cursor-pointer"
                         onClick={() => {
                           toggleRowVisibility(commList.selectionid);
                           handleBackOpen({
@@ -296,7 +223,7 @@ const BookmakerComponent = ({
                     </div>
 
                     {(commList.lgaai === "0.00" || commList.lgaai === "0.000") && (
-                      <div className="xl:w-[70%] h-[40px] lg:h-[33px] bg-black/60 rounded-[4px] lg:w-1/2 w-[35%] px-0.5 right-0 absolute flex justify-center items-center ">
+                      <div className=" h-[40px] lg:h-[33px] bg-black/60 rounded-[4px] md:w-[23%] w-[35%] px-0.5 right-0 absolute flex justify-center items-center ">
                         <div className="2xl:px-14 lg:px-14 py-2 px-2 text-nowrap rounded font-medium bg-transparent opacity-90">
                           <span className="text-white xl:text-[12px] text-sm font-normal uppercase">
                             SUSPENDED
@@ -329,7 +256,7 @@ const BookmakerComponent = ({
         )}
       </div>
 
-      {bookmaker2Fancy?.length > 0 && (
+      {/* {bookmaker2Fancy?.length > 0 && (
         <div className="w-[25%]">
           <>
             <MatchDetailsHeaderSection marketType={"Bookmaker 2"} minMax={{ min: 100, max: formatNumber(isMatchCoin?.max) }}>
@@ -545,7 +472,7 @@ const BookmakerComponent = ({
             </MatchDetailsHeaderSection>
           </>
         </div>
-      )}
+      )} */}
     </>
   );
 };

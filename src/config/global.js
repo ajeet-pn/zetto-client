@@ -3,6 +3,7 @@ export const SPORTSCONSTANT = [
     text: 'Inplay',
     count: "4",
     icon: "/images/zetto/inplay-icon.png",
+    url: "/dashboard" ,
   },
   {
     text: 'Cricket',
@@ -34,6 +35,12 @@ export const SPORTSCONSTANT = [
     text: "Greyhound Racing",
     count: '4339',
     icon: "/subHeader/menu-4339.png",
+  },
+  {
+    text: "Slot",
+    count: '90',
+    icon: "/images/zetto/promotions.png",
+    url: "/all-casino" ,
   },
   {
     text: "Promotions",
