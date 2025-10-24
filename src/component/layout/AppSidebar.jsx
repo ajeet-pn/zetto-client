@@ -234,7 +234,9 @@ const AppSidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
                                   className="!w-[20px] !h-[20px]"
                                 />
                               </span>
-                              <span className="text-[15px] -tracking-wide font-[400] scale-105 group-hover:scale-110">{menuItem.text}</span>
+                              <span className="text-[15px] -tracking-wide font-[400] scale-105 group-hover:scale-110">{menuItem.text}
+                                
+                              </span>
                             </div>
                           </div>
                         </div>
@@ -253,7 +255,7 @@ const AppSidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
         <div className="flex justify-between items-center py-3 px-2">
           <div></div>
           <div>
-            <img src={settings.logo} className="w-[70px] h-[24px]" />
+            <img src={settings.logo} className="w-[120px] h-[31px]" />
           </div>
           <div>
             <button
@@ -271,7 +273,7 @@ const AppSidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
                 <div
                  onClick={(e) => {
                       if (localStorage.getItem("token")) {
-                        navigate("/market-analysis");
+                        navigate("/dashboard");
                       } else {
                         openModal();
                         localStorage.setItem("unauthorized", true);
@@ -281,11 +283,11 @@ const AppSidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
                 >
                   <p>
                     <img
-                      src={"/subHeader/menu-market.png"}
-                      className="w-[18px] h-[18px]"
+                      src={"/images/zetto/homecolor.webp"}
+                      className="w-5 h-5"
                     />
                   </p>
-                  <span className="">Multi Market</span>
+                  <span className="text-[15px]">Home</span>
                 </div>
                 {SPORTSCONSTANT?.map((menuItem, index) => {
                   const sport = filteredData?.find(
@@ -321,12 +323,12 @@ const AppSidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
                               <img
                                 src={menuItem.icon}
                                 alt={menuItem.text}
-                                className="w-[18px] h-[18px]"
+                                className="w-5 h-5"
                               />
                             </span>
-                            <span className="">{menuItem.text}</span>
+                            <span className="text-[15px]">{menuItem.text}</span>
                           </div>
-                          <span>
+                          {/* <span>
                             {!(
                               menuItem.text === "Casino" ||
                               menuItem.text === "Sports Book"
@@ -336,7 +338,7 @@ const AppSidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
                               ) : (
                                 <BiDownArrow className="w-[10px] h-[10px]" />
                               ))}
-                          </span>
+                          </span> */}
                         </div>
 
                         {/* If this is racing, show horse & greyhound options */}

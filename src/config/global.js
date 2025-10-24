@@ -27,9 +27,9 @@ export const SPORTSCONSTANT = [
   },
 
   {
-    text: "Horse Racing",
+    text: "Horse Race",
     count: '7',
-    icon: "/subHeader/menu-7.png",
+    icon: "/images/zetto/horse-icon.png",
   },
   {
     text: "Greyhound Racing",
