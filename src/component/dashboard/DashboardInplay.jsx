@@ -14,15 +14,12 @@ function InplayMatches({ activeTab, matchlistItems, sportName }) {
   const [isPremium, setIsPremium] = useState(false);
   const { gameId } = useParams();
 
-  console.log(matchlistItems, "matchlistItems");
-  
+
 
   const filteredMatches = matchlistItems?.filter(
     (element) => element.sportId == activeTab
   ).sort((a, b) => moment(a.matchDate, "DD-MM-YYYY HH:mm:ss").isBefore(moment(b.matchDate, "DD-MM-YYYY HH:mm:ss")) ? -1 : 1);
 
-  console.log(filteredMatches, "filteredMatches");
-  
 
   const isInplayMatch = (match) => {
     const matchMoment = moment(match?.matchDate, "DD-MM-YYYY HH:mm:ss A");
@@ -197,7 +194,7 @@ function InplayMatches({ activeTab, matchlistItems, sportName }) {
             const isInplay = isInplayMatch(element);
             return (
               <div
-                className="divide-y divide-[#f8f8f8] border border-gray-200 md:pb-0 h-[58px] lg:h-[44px]"
+                className="divide-y divide-[#f8f8f8] border border-gray-400 md:pb-0 h-[58px] px-1 bg-white lg:h-[44px]"
                 key={index}
               >
                 <div className="flex  w-full h-full">
@@ -226,7 +223,7 @@ function InplayMatches({ activeTab, matchlistItems, sportName }) {
                         </div>
                       </a>
                     </div>
-                    <div className="flex flex-col gap-1 me-2">
+                    <div className="flex flex-col gap-1 px-1">
                       <div className="flex items-center justify-end space-x-1.5 cursor-pointer lg:pr-3">
                         <span className="w-[14px] h-[16px]">{element?.isTv && <LiaDesktopSolid size={16} />}</span>
                         <span className="w-[15px] h-[15px] bg-[--primary] rounded-[3px] text-white flex items-center justify-center">
@@ -256,7 +253,7 @@ function InplayMatches({ activeTab, matchlistItems, sportName }) {
                     </div>
                   </div>
 
-                  <div className="lg:w-[50%] hidden lg:flex w-full justify-center items-center gap-1 grid grid-cols-6 bg-white me-2">
+                  <div className="lg:w-[50%] hidden lg:flex w-full justify-center items-center gap-1 grid grid-cols-6 bg-white">
                     {/* {Array?.from({ length: 6 }).map((_, i) => {
                       const isLagai = i % 2 === 0;
                       return (
@@ -304,7 +301,7 @@ function InplayMatches({ activeTab, matchlistItems, sportName }) {
                       })}
 
                   </div>
-                  <div className="w-[50%] flex lg:hidden justify-end items-center gap-1 grid grid-cols-3 bg-white me-2">
+                  <div className="w-[50%] flex lg:hidden justify-end items-center gap-1 grid grid-cols-3 bg-white">
                     {Array.from({ length: 3 }).map((_, i) => {
                         const isLagai = i % 2 === 0;
                         const isMiddleBox = i === 2 || i === 3; 

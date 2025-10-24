@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { apiCall } from "../../config/HTTP";
+import { Link } from "react-router-dom";
 
 
 const Wallet = () => {
@@ -406,7 +407,7 @@ const Wallet = () => {
 
       {activeTab === "Add Account" && (
         <>
-          <form onSubmit={handleSubmit} className="p-4 rounded-lg max-w-6xl mx-auto">
+          <form onSubmit={handleSubmit} className="px-3 rounded-lg max-w-6xl mx-auto">
             <div className="grid grid-cols-4 gap-4">
               <div className="col-span-2">
                 <label className="block text-sm mb-1">Payment Option *</label>
@@ -551,7 +552,7 @@ const Wallet = () => {
           {accountDetails && (
             <div className="md:hidden block text-gray-100 uppercase bg-gray-50 py-2">
               <div className="flex items-center px-2 bg-secondary border-b  py-2  text-center text-sm font-bold">
-                <span className="flex-1 text-start border-r">Account Number</span>
+                <span className="flex-1 text-start border-r text-black">Account Number</span>
                 <span className="flex-1 text-left pl-4">
                   {accountDetails?.accountNumber || '-'}
                 </span>
@@ -565,14 +566,14 @@ const Wallet = () => {
               </div> */}
 
               <div className="flex items-center px-2 bg-secondary border-b py-2 text-center text-sm font-bold">
-                <span className="flex-1 text-start border-r">Name</span>
+                <span className="flex-1 text-start border-r text-black">Name</span>
                 <span className="flex-1 text-left pl-4">
                   {accountDetails?.accountHolder || '-'}
                 </span>
               </div>
 
               <div className="flex items-center px-2 bg-secondary border-b py-2 text-center text-sm font-bold">
-                <span className="flex-1 text-start border-r">Bank Name</span>
+                <span className="flex-1 text-start border-r text-black">Bank Name</span>
                 <span className="flex-1 text-left pl-4">
                   {accountDetails?.bankName || '-'}
                 </span>
@@ -587,8 +588,8 @@ const Wallet = () => {
             </div>
           )}
 
-          <form onSubmit={handleBankTransferSubmit} className="p-4 rounded-lg max-w-6xl mx-auto">
-            <div className="grid md:grid-cols-3 grid-cols-1 gap-4 max-w-6xl uppercase mt-4 mx-auto">
+          <form onSubmit={handleBankTransferSubmit} className="px-1 rounded-lg max-w-6xl mx-auto">
+            <div className="max-w-6xl uppercase mt-4 mx-auto">
               {/* <div>
                 <label className="block text-sm mb-1">A/C No.</label>
                 <input
@@ -611,38 +612,46 @@ const Wallet = () => {
                 />
               </div> */}
 
-              <div>
-                <label className="block text-sm mb-1">Amount *</label>
+
+                <label className="block text-sm mt-5 mb-1 capitalize text-[--primary] font-semibold">Select Your Amount </label>
+            <div className="grid grid-cols-4 md:grid-cols-6 justify-start gap-1 ">
+              {[300, 1000, 2000, 5000, 10000, 25000].map((presetAmount) => (
+                <button
+                  key={presetAmount}
+                  type="button"
+                  className="bg-white px-4 py-1 text-sm font-bold hover:bg-[--primary] hover:text-[--secondary] border border-gray-300 rounded-lg text-[--primary]"
+                  onClick={() => handleQuickAmountSelect(presetAmount, false)}
+                >
+                  ₹{presetAmount}
+                </button>
+              ))}
+            </div>
+
+              <div className="relative mt-3 mx-0 md:mx-5">
+                <div className="flex items-center  mb-3 justify-between">
+                  <label className="block text-sm capitalize text-[--primary] font-semibold">Type Your Amount </label>
+                  <Link className="underline text-[14px] font-semibold capitalize ">Reset</Link>
+                </div>
                 <input
                   type="number"
-                  className={`w-full p-1.5 border-secondary border-2 bg-white rounded-md text-black ${errors.amount ? "border-red-500" : ""
+                  className={`w-full ps-[28px] pe-1.5 py-2 border-black  border-2 bg-white rounded-md text-black ${errors.amount ? "border-red-500" : ""
                     }`}
                   placeholder="Amount"
                   value={bankAmount}
                   onChange={(e) => handleAmountChange(e, false)}
                 />
+                <div className="absolute top-[46%] left-[10px] text-gray-600">₹</div>
+                <div className="text-[13px] text-gray-400 capitalize font-semibold mt-1">Available to Withdraw ₹43</div>
                 {errors.amount && (
                   <span className="text-red-500 text-xs">{errors.amount}</span>
                 )}
               </div>
             </div>
 
-            <div className="flex flex-wrap justify-start gap-1 mt-5">
-              {[300, 1000, 2000, 5000, 10000, 25000].map((presetAmount) => (
-                <button
-                  key={presetAmount}
-                  type="button"
-                  className="bg-black px-4 py-1 text-sm font-bold rounded-full text-white"
-                  onClick={() => handleQuickAmountSelect(presetAmount, false)}
-                >
-                  {presetAmount}
-                </button>
-              ))}
-            </div>
 
             <button
               type="submit"
-              className="bg-button px-10 py-2 mt-6 text-sm rounded-md block"
+              className="mx-0 md:mx-5 bg-[--primary] md:bg-[white] text-[--secondary] md:text-gray-400 w-full font-semibold  px-10 py-3 mt-6 text-sm rounded-md block md:border mb-5 md:border-gray-200"
               disabled={isSubmitting}
             >
               {isSubmitting ? "Submitting..." : "Submit"}

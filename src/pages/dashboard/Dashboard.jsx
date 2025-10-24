@@ -20,6 +20,9 @@ import Banner from "../../component/banner/Banner";
 import SubHeader from "../../component/header/SubHeader";
 import SeeMoreLess from "../../component/seeMore/SeeMore";
 import GameSlider from "../../component/GameSlider/GameSlider";
+import LiveReports from "../LiveReports/LiveReports";
+import MobileFooter from "../../component/mobileFooter/MobileFooter";
+import { Link } from "react-router-dom";
 
 
 export const sportlistArray = [
@@ -173,6 +176,7 @@ const Dashboard = ({ }) => {
   const matchlistLocal = localStorage.getItem("matchList")
     ? JSON.parse(localStorage.getItem("matchList"))
     : [];
+    const token = localStorage.getItem('token');
 
   const [matchData, setMatchData] = useState([]);
   const [activeTab, setActiveTab] = useState("inplay");
@@ -204,7 +208,7 @@ const getSportName = (sportId) => {
   return (
     <>
       <div className=" ">
-        <div className='hidden md:block' >
+        <div className='' >
           <Banner/>
         </div>
         <GameSlider/>
@@ -253,10 +257,31 @@ const getSportName = (sportId) => {
     />
   )}
 </div>
+<LiveReports />
         <Providers filterSection={"providers"}
         providersData={groupCasinoList?.providerList} />
 
         <SeeMoreLess />
+
+<div className="block lg:hidden">
+        <Link to={'/why-choose-us'}>
+                                <img className="rounded-[4px] w-full h-auto" src="/images/zetto/why.webp" alt=""/>
+         </Link>
+         { !token ? 
+                        <>
+                            <li>
+                            <Link>
+                                <img className="rounded-[4px] w-full h-auto mt-2" src="/images/zetto/wpbanner.png" alt="" />
+                            </Link>
+                            </li> 
+                        </>
+                        : null
+                    }
+                    </div>
+        <MobileFooter />
+        <div className='w-full max-lg:pb-16'>
+        
+            </div>
       </div>
     </>
   )

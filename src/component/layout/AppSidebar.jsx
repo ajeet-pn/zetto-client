@@ -234,7 +234,9 @@ const AppSidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
                                   className="!w-[20px] !h-[20px]"
                                 />
                               </span>
-                              <span className="text-[15px] -tracking-wide font-[400] scale-105 group-hover:scale-110">{menuItem.text}</span>
+                              <span className="text-[15px] -tracking-wide font-[400] scale-105 group-hover:scale-110">{menuItem.text}
+                                
+                              </span>
                             </div>
                           </div>
                         </div>

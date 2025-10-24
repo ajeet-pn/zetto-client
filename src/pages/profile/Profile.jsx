@@ -6,6 +6,7 @@ import ChangePassword from '../../component/profile/ChangePassword';
 import { useLocation, useNavigate } from 'react-router-dom';
 import AppHeader from '../../component/layout/AppHeader';
 import AppFooter from '../../component/layout/AppFooter';
+import MobileFooter from '../../component/mobileFooter/MobileFooter';
 
 const Profile = () => {
     const user = JSON.parse(localStorage.getItem(`user_info_${domainName}`));
@@ -18,7 +19,7 @@ const Profile = () => {
 
     return (
         <>
-                <div className='w-full min-h-screen'>
+                <div className='w-full md:min-h-screen'>
 
                     <div className='bg-[var(--secondary)] rounded-t-[4px] uppercase text-black py-1 px-1.5'>
                         <h2 className='text-[13px] text-black'>PROFILE</h2>
@@ -62,6 +63,10 @@ const Profile = () => {
 
                     </div>
                 </div>
+                 <MobileFooter />
+                        <div className='w-full max-lg:pb-16'>
+                        
+                            </div>
         </>
     );
 };

@@ -29,6 +29,11 @@ import ActiveLogs from '../../pages/ActiveLog/ActiveLog'
 import CasinoListByProviderName from '../../pages/casinoListByProviderName/CasinoListByProviderName'
 import TrmCondtion from '../../pages/TrmCondtion/TrmCondtion'
 import Promotions from '../../pages/Promotions/Promotions'
+import PrivecyPolicy from '../../pages/privacyPolicy/PrivacyPolicy'
+import Rules from '../../pages/rules/Rules'
+import AboutsUs from '../../pages/aboutUs/AboutUs'
+import ContactUs from '../../pages/contact/ContactUs'
+
 
 
 
@@ -45,6 +50,12 @@ const AppContent = () => {
       <Route path='/ac-statement' element={<AccountSatement />} />
       <Route path='/why-choose-us' element={<WhyChooseUs />} />
       <Route path="/term-condition" element={<TrmCondtion />} />
+      <Route path="/privacy-policy" element={<PrivecyPolicy />} />
+      <Route path="/rules" element={<Rules />} />
+      <Route path="/about-us" element={<AboutsUs />} />
+      <Route path="/contact-us" element={<ContactUs />} />
+
+      
       <Route path="/promotions" element={<Promotions />} />
       <Route path='/refer-and-earn' element={<ReferAndEarn />} />
       <Route path="/deposit" element={<Deposit />} />

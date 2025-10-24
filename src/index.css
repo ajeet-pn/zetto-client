@@ -94,3 +94,38 @@ body {
 .invertimage {
   filter: invert(100%) brightness(100%);
 }
+
+/* put this in your global CSS file, like index.css or App.css */
+.banner-carousel .slick-dots {
+  position: absolute !important;
+  right: 20px !important; /* move dots to right */
+  bottom: 20px !important; /* adjust vertical placement */
+  left: auto !important;
+  width: auto !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+}
+
+@keyframes slidedownallrows {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+/* continuous top-to-bottom scroll */
+@keyframes autoScrollDown {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+/* animation class */
+.animate-slidedownallrows {
+  animation: autoScrollDown 20s linear infinite;
+}

@@ -7,21 +7,21 @@ function Banner() {
 
   return (
     <>
-      <div className={` text-black font-semibold w-full rounded-md`}>
+      <div className={` text-black font-semibold w-full rounded-md mb-2 md:mb-0 `}>
 
         <div className=" overflow-hidden">
           {domainSetting?.banner?.length > 1 ? (
-            <Carousel autoplay speed={200}>
+            <Carousel autoplay speed={200} className="banner-carousel">
               {domainSetting.banner
                 ?.sort((a, b) => a.priority - b.priority)
                 ?.map((req, index) => (
-                  <div key={index} className="border-0 rounded-lg h-60">
+                  <div key={index} className="border-0 rounded-[8px] h-[150px] md:h-60">
                     {req?.url ? (
                       <a href={req.url}>
                         <img
                           src={req.image}
                           alt={req.name}
-                          className="block h-60 w-full rounded-[3px] "
+                          className="block h-60 w-full rounded-[8px] "
                          
                         />
                       </a>
@@ -29,23 +29,23 @@ function Banner() {
                       <img
                         src={req.image}
                         alt={req.name}
-                        className="block h-60 w-full rounded-[3px]"
+                        className="block h-[150px] md:h-60 w-full rounded-[3px]"
                       />
                     )}
                   </div>
                 ))}
             </Carousel>
           ) : (
-            <Carousel autoplay speed={200}>
+            <Carousel autoplay speed={200} className="banner-carousel">
               <img
                 src="/images/zetto/banner1.webp"
                 alt=""
-                className="md:h-[300px] h-36 w-full "
+                className="md:h-[300px] rounded-[8px] h-36 w-full "
               />
               <img
                 src="/images/zetto/banner2.webp"
                 alt=""
-                className="md:h-[300px] h-36 w-full "
+                className="md:h-[300px] rounded-[8px] h-36 w-full "
               />
             </Carousel>
           )}

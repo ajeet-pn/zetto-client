@@ -80,8 +80,8 @@ const AppSidebarMobile = ({ isSidebarOpen, setIsSidebarOpen }) => {
   }, [sportMatchList]);
 
   useEffect(() => {
+    const organizedData = organizeData(matchData);
     if (matchData) {
-      const organizedData = organizeData(matchData);
       setFilteredData(organizedData);
     } else {
       let localStorageData =
@@ -173,7 +173,7 @@ const AppSidebarMobile = ({ isSidebarOpen, setIsSidebarOpen }) => {
         <div className="flex justify-between items-center py-3 px-2">
           <div></div>
           <div>
-            <img src={settings.logo} className="w-[70px] h-[24px]" />
+            <img src={settings.logo} className="w-[120px] h-[32px]" />
           </div>
           <div>
             <button
@@ -203,21 +203,41 @@ const AppSidebarMobile = ({ isSidebarOpen, setIsSidebarOpen }) => {
                         <div className="cursor-pointer flex gap-3 items-center border-b border-[#e5e7eb] justify-start h-[54px] text-sm font-[300] bg-[--primary] text-white text-[15px] group">
                           <div
                             className="font-semibold tracking-normal text-[15px] px-5 py-[10px] my-0 ml-0 w-full space-x-0.5 inline-flex justify-between items-center"
-                            onClick={(e) =>
-                              {
-                                if(menuItem?.url){
-                                  navigate(menuItem?.url)
-                                }else{
-                                navigate(`/in-play/${menuItem.count}`)}}
-                                }
+                            // onClick={(e) =>
+                            //   {
+                            //     if(menuItem?.url){
+                            //       navigate(menuItem?.url)
+                            //     }else{
+                            //     navigate(`/in-play/${menuItem.count}`)}}
+                            //     }
+                             onClick={() => {
+              if (menuItem?.url) {
+                navigate(menuItem?.url);
+              } else {
+                navigate(`/in-play/${menuItem.count}`);
+              }
+              setIsSidebarOpen(false);
+            }}
                           >
                             <div className="flex justify-start items-center space-x-4">
                               <span>
-                                <img
+                                {/* <img
                                   src={menuItem.icon}
                                   alt={menuItem.text}
                                   className="!w-[20px] !h-[20px]"
-                                />
+                                /> */}
+                                <img
+                                    src={menuItem.mobileicon}
+                                    alt=""
+                                    className="hidden sm:block w-4 h-4"
+                                  />
+
+                                  {/* Mobile icon (<576px) */}
+                                  <img
+                                    src={menuItem.mobileicon}
+                                    alt=""
+                                    className="block sm:hidden w-4 h-4"
+                                  />
                               </span>
                               <span className="text-[15px] -tracking-wide font-[400] scale-105 group-hover:scale-110">{menuItem.text}</span>
                             </div>

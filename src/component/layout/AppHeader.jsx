@@ -62,7 +62,7 @@ const AppHeader = ({ setSidebarOpen }) => {
     return () => { clearInterval(sportInterval); }
   }, [])
 
-  console.log("isOpenisOpenisOpen", isOpen)
+  
   const setModalTrue = () => {
     setRulesModalOpen(true);
   };

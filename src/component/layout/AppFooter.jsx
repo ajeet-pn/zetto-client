@@ -36,38 +36,38 @@ const navigate = useNavigate();
           <div className="bg-[--primary] grid grid-cols-5 text-white py-8 md:px-5 lg:px-28">
           <div className="">
               {/* Logo */}
-              <div className="flex flex-col gap-4 space-x-4">
+              <div className="flex flex-col gap-2 space-x-4">
                 <Link to='/dashboard'>
                   <img src="/images/zetto/logo.png" alt="Zetto Logo" className="w-32" />
                 </Link>
-                <div className='grid grid-cols-4 gap-4 !ms-0'>
-                  <div className='w-full'>
-                    <img src="/images/zetto/fb1.png" alt="" className='!w-5 !h-5'/>
+                <div className='flex gap-2 mt-2 !ms-0'>
+                  <div className='min-w-[30px] cursor-pointer'>
+                    <img src="/images/zetto/fb1.png" alt="" className='!w-[26px] !h-[26px]'/>
                   </div>
-                  <div className='w-full'>
-                    <img src="/images/zetto/insta1.png" alt="" className='!w-5 !h-5'/>
+                  <div className='min-w-[30px] cursor-pointer'>
+                    <img src="/images/zetto/insta1.png" alt="" className='!w-[26px] !h-[26px]'/>
                   </div>
-                  <div className='w-full'>
-                    <img src="/images/zetto/telegram1.png" alt="" className='!w-5 !h-5'/>
+                  <div className='min-w-[30px] cursor-pointer'>
+                    <img src="/images/zetto/telegram1.png" alt="" className='!w-[26px] !h-[26px]'/>
                   </div>
-                  <div className='w-full'>
-                    <img src="/images/zetto/youtube1.png" alt="" className='!w-5 !h-5'/>
+                  <div className='min-w-[30px] cursor-pointer'>
+                    <img src="/images/zetto/youtube1.png" alt="" className='!w-[26px] !h-[26px]'/>
                   </div>
                 </div>
               </div>
 
               {/* Social Media Links */}
               <div className="flex space-x-4">
-                <a href="https://facebook.com" className="hover:text-gray-400">
+                <a href="https://facebook.com" className="hover:text-[--secondary]">
                   <i className="fab fa-facebook-f"></i>
                 </a>
-                <a href="https://instagram.com" className="hover:text-gray-400">
+                <a href="https://instagram.com" className="hover:text-[--secondary]">
                   <i className="fab fa-instagram"></i>
                 </a>
-                <a href="https://youtube.com" className="hover:text-gray-400">
+                <a href="https://youtube.com" className="hover:text-[--secondary]">
                   <i className="fab fa-youtube"></i>
                 </a>
-                <a href="https://telegram.org" className="hover:text-gray-400">
+                <a href="https://telegram.org" className="hover:text-[--secondary]">
                   <i className="fab fa-telegram-plane"></i>
                 </a>
               </div>
@@ -78,10 +78,10 @@ const navigate = useNavigate();
             <div>
               <div className="text-[13px] font-bold mb-3">HELP</div>
               <ul className="">
-                <li><a href="/responsible-gambling" className="text-[12px] h-full hover:text-gray-400">Responsible Gambling</a></li>
-                <li><a href="/term-condition" className="text-[12px] h-full hover:text-gray-400">Terms and Conditions</a></li>
-                <li><a href="/join-affiliate" className="text-[12px] h-full hover:text-gray-400">Join as Affiliate</a></li>
-                <li><a href="/download-app" className="text-[12px] h-full hover:text-gray-400">Download App</a></li>
+                <li><a href="/responsible-gambling" className="text-[12px] h-full hover:text-[--secondary]">Responsible Gambling</a></li>
+                <li><a href="/term-condition" className="text-[12px] h-full hover:text-[--secondary]">Terms and Conditions</a></li>
+                <li><a href="/join-affiliate" className="text-[12px] h-full hover:text-[--secondary]">Join as Affiliate</a></li>
+                <li><a href="/download-app" className="text-[12px] h-full hover:text-[--secondary]">Download App</a></li>
               </ul>
             </div>
           </div>
@@ -89,10 +89,10 @@ const navigate = useNavigate();
             <div>
               <div className="text-[13px] mb-3 font-bold">INFORMATION</div>
               <ul className="">
-                <li><a href="/privacy-policy" className="text-[12px] h-full hover:text-gray-400">Privacy Policy</a></li>
-                <li><a href="/rules" className="text-[12px] h-full hover:text-gray-400">Rules</a></li>
-                <li><a href="/blog" className="text-[12px] h-full hover:text-gray-400">Zetto Blog</a></li>
-                <li><a href="/sitemap" className="text-[12px] h-full hover:text-gray-400">Sitemap</a></li>
+                <li><a href="/privacy-policy" className="text-[12px] h-full hover:text-[--secondary]">Privacy Policy</a></li>
+                <li><a href="/rules" className="text-[12px] h-full hover:text-[--secondary]">Rules</a></li>
+                <li><a href="/blog" className="text-[12px] h-full hover:text-[--secondary]">Zetto Blog</a></li>
+                <li><a href="/sitemap" className="text-[12px] h-full hover:text-[--secondary]">Sitemap</a></li>
               </ul>
             </div>
           </div>
@@ -100,18 +100,22 @@ const navigate = useNavigate();
             <div>
               <div className="text-[13px] mb-3 font-bold">ABOUT</div>
               <ul className="">
-                <li><a href="/about-us" className="text-[12px] h-full hover:text-gray-400">About us</a></li>
-                <li><a href="/promotions" className="text-[12px] h-full hover:text-gray-400">Promotions</a></li>
-                <li><a href="/contact-us" className="text-[12px] h-full hover:text-gray-400">Contact Us</a></li>
+                <li><a href="/about-us" className="text-[12px] h-full hover:text-[--secondary]">About us</a></li>
+                <li><a href="/promotions" className="text-[12px] h-full hover:text-[--secondary]">Promotions</a></li>
+                <li><a href="/contact-us" className="text-[12px] h-full hover:text-[--secondary]">Contact Us</a></li>
               </ul>
             </div>
           </div>
-          <div className="mt-5 pt-4 text-center text-xs">
-            <div className="flex flex-col justify-center gap-5">
+          <div className="mt-5 text-center text-xs">
+            <div className="flex gap-8">
               <img src="/images/zetto/gaming.webp" alt="Gaming Curacao" className="!w-[100px] h-auto" />
               <img src="/images/zetto/game-care.png" alt="GamCare" className="!w-[30px] !h-[30px]" />
-              {/* <span className="text-gray-400">Be Gamble Aware</span>
-              <span className="text-gray-400">18+</span> */}
+              {/* <span className="text-[--secondary]">Be Gamble Aware</span>
+              <span className="text-[--secondary]">18+</span> */}
+            </div>
+            <div className='flex items-center gap-2 mt-8'>
+              <img className='invert !w-[28px] !h-[28px]' src="/images/zetto/18plus1.png" alt="" srcset="" />
+              <img className='invert !w-[40px]' src="/images/zetto/gamble-aware.webp" alt="" srcset="" />
             </div>
           </div>
         </div>
@@ -128,26 +132,41 @@ const navigate = useNavigate();
             <li className='mx-auto h-full'
             // onClick={() => handleConditionalClick()}
             >
-            <a  className="mobile-btn flex flex-col items-center">
+            <Link to='/all-casino'  className="mobile-btn flex flex-col items-center">
               <img alt="casino-icon" src="/images/zetto/casino.png" className="!h-[20px] !w-[20px] !mt-[6px]"/>
               <p className="text-white text-[10px] mt-1">Casino</p>
-              </a>
+              </Link>
             </li>
-            <li className='mx-auto h-full'
-            // onClick={() => handleConditionalClick()}
-            >
-            <a  className="mobile-btn flex flex-col items-center">
-              <img alt="casino-icon" src="/images/zetto/star.png" className="!h-[20px] !w-[20px] !mt-[6px]"/>
-              <p className="text-white text-[10px] mt-1">Offers</p>
-              </a>
-            </li>
+            {
+              !token ? 
+              (
+                <li className='mx-auto h-full'
+                // onClick={() => handleConditionalClick()}
+                >
+                <Link to=''  className="mobile-btn flex flex-col items-center">
+                  <img alt="casino-icon" src="/images/zetto/star.png" className="!h-[20px] !w-[20px] !mt-[6px]"/>
+                  <p className="text-white text-[10px] mt-1">Offers</p>
+                  </Link>
+                </li>
+              ) :
+              (
+                <li className='mx-auto h-full'
+                // onClick={() => handleConditionalClick()}
+                >
+                <Link to='/wallet'  className="mobile-btn flex flex-col items-center">
+                  <img alt="casino-icon" src="/images/zetto/star.png" className="!h-[20px] !w-[20px] !mt-[6px]"/>
+                  <p className="text-white text-[10px] mt-1">Wallet</p>
+                  </Link>
+                </li>
+              )
+            }
             <li 
             // onClick={() => handleClick("/")} 
-            className=" mx-auto absolute z-50 bottom-[20px] left-1/2 -translate-x-1/2">
-              <div className="">
+            className=" mx-auto absolute z-50 bottom-[10px] left-1/2 -translate-x-1/2">
+              <Link to='/' className="">
                 {/* <i className="fa fa-home" aria-hidden="true"></i> */}
                 <img className="!w-[60px] !h-[60px]" src="/images/zetto/home_icon.png" alt="" />
-              </div>
+              </Link>
             </li>
             <li></li>
 
@@ -170,10 +189,10 @@ const navigate = useNavigate();
               <li className='mx-auto h-full'
               // onClick={()=>setLogin(true)}
               >
-                <a  className="mobile-btn flex flex-col items-center">
+                <Link to='/login'  className="mobile-btn flex flex-col items-center">
                 <img src="/images/zetto/avatar.png"className="!h-[20px] !w-[20px] !mt-[6px]"/>
                 <p className="text-white text-[10px] mt-1">Login</p>
-                </a>
+                </Link>
               </li>
            )} 
           </ul>
@@ -188,15 +207,15 @@ const navigate = useNavigate();
       </div>
 
       {isOpen && (
-    <div className="fixed inset-0 z-50">
+    <div className="fixed inset-0 z-[10000]">
       <div
         className="absolute inset-0 bg-white/75 bg-opacity-50"
         onClick={handleClose}
       ></div>
       <div
-        className={`absolute right-0 top-0 w-80 bg-[--primary] text-white shadow-2xl transform h-dvh overflow-y-auto transition-transform duration-300 ${
+        className={`absolute z-[10000] right-0 top-0 w-80 bg-[--primary] text-white shadow-2xl transform h-dvh overflow-y-auto transition-transform duration-300 ${
           isOpen ? "translate-x-0" : "translate-x-full"
-        } flex flex-col z-50`}
+        } flex flex-col z-[10000]`}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="!m-4 flex justify-center items-center hover:bg-white rounded-[4px] w-6 h-6">
