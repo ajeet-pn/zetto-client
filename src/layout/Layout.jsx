@@ -33,11 +33,11 @@ const currentPath = location.pathname;
         observer.observe(document.body, { attributes: true });
         return () => observer.disconnect();
     }, []);
-    const hideSidebarRoutes = ['/sport-view', "/sport-view-racing", '/deposit', "/wallet", "/all-casino", "/term-condition", "/promotions", "/casino-list-by-providername"];
+    const hideSidebarRoutes = ['/sport-view', "/sport-view-racing", '/deposit', "/wallet", "/all-casino", "/term-condition", "/promotions", "/casino-list-by-providername", "/privacy-policy", "/rules", "/about-us", "/contact-us"];
     const shouldHideSidebars = hideSidebarRoutes.some(route => currentPath.startsWith(route));
 
 
-    const hideLeftSidebarRoutes = ['/deposit', "/wallet", "/all-casino", "/term-condition", "/promotions", "/casino-list-by-providername"];
+    const hideLeftSidebarRoutes = ['/deposit', "/wallet", "/all-casino", "/term-condition", "/promotions", "/casino-list-by-providername", "/privacy-policy", "/rules", "/about-us", "/contact-us"];
     const shouldHideLeftSidebars = hideLeftSidebarRoutes.some(route => currentPath.startsWith(route));
 
 

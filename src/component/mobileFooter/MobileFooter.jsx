@@ -19,7 +19,7 @@ const MobileFooter = () => {
                         <div><img className='!w-[30px] !h-auto' src="/images/zetto/gamble-aware.webp" alt="" srcset="" /></div>
                     </div>
                     <div className='text-center my-5 md:my-10 mx-5'>
-                        <Link className='text-[14px]'>About us |</Link>
+                        <Link to={"/about-us"} className='text-[14px]'>About us |</Link>
                         <Link className='text-[14px]'> Promotions |</Link>
                         <Link className='text-[14px]'> Contact Us |</Link>
                         <Link className='text-[14px]'> FAQs |</Link>
@@ -27,7 +27,7 @@ const MobileFooter = () => {
                         <Link className='text-[14px]'> Terms and Conditions |</Link>
                         <Link className='text-[14px]'> Rules |</Link>
                         <Link className='text-[14px]'> Zetto Blog |</Link>
-                        <Link className='text-[14px]'> Privacy Policy |</Link>
+                        <Link to={"/privacy-policy"} className='text-[14px]'> Privacy Policy |</Link>
                         <Link className='text-[14px]'> Sitemap </Link>
                     </div>
                     <div className='mx-10 my-5 md:my-10'>
