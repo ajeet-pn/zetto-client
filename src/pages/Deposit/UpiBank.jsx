@@ -209,7 +209,7 @@ function Deposit() {
                     </div>
 
                     {/* Amount Selection Grid */}
-                    <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-9 gap-2 mb-8">
+                    <div className="grid grid-cols-4 md:grid-cols-5 lg:grid-cols-9 gap-2 mb-8">
                         {predefinedValues.map((value) => (
                             <button
                                 key={value}

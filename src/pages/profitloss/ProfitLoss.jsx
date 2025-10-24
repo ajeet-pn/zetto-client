@@ -6,6 +6,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { FaRegCalendar } from "react-icons/fa6";
 import AppHeader from "../../component/layout/AppHeader";
 import AppFooter from "../../component/layout/AppFooter";
+import { domainName } from "../../config/Auth";
 
 const ProfitLoss = () => {
  const [payloadData, setPayloadData] = useState({
@@ -36,7 +37,7 @@ const { userLegderList } = useSelector(state => state.user);
   // };
 
   const fetchUserLedger = () => {
-    const user = JSON.parse(localStorage.getItem('clientspuser'));
+    const user = JSON.parse(localStorage.getItem(`user_info_${domainName}`));
 
     const reqData = {
       isCreatorId: user.data.userId,
@@ -110,7 +111,7 @@ if (payloadData?.statementFor) {
       <div className="w-full min-h-screen flex">
         <div className="border w-full">
           <div className='bg-[var(--secondary)] uppercase rounded-t-[4px] text-black py-1 px-1.5'>
-            <h2 className='text-[13px] text-black font-semibold'>Profit Loss Total P/L : IR 0</h2>
+            <h2 className='text-[13px] text-black font-semibold'>Profit Loss Total</h2>
           </div>
           <div className="mt-1.5 border-1 border-gray-400 space-y-2">
             {/* desktop view */}
@@ -199,7 +200,8 @@ if (payloadData?.statementFor) {
               </div>
             </div>
 
-            <div className="overflow-hidden">
+            {finalData && finalData.length > 0 ? (
+                          <div className="overflow-hidden">
               <div className="max-w-full overflow-auto">
                 <div className="inline-block min-w-full">
                   <div className="overflow-hidden w-full">
@@ -217,8 +219,7 @@ if (payloadData?.statementFor) {
                         </tr>
                       </thead>
                       <tbody>
-                        {finalData && finalData.length > 0 ? (
-                          finalData?.map((element, index) => (
+                        {finalData?.map((element, index) => (
                             <tr
                               className={index % 2 === 0 ? "bg-white text-[12px]" : "bg-white text-[12px]"}
                               key={index}
@@ -255,31 +256,19 @@ if (payloadData?.statementFor) {
                               <td className="px-3 py-2 border border-[#c7c8ca]/50 whitespace-nowrap">{element?.eventName}</td>
                             </tr>
                           ))
-                        ) : (
-                          <tr>
-                            <td colSpan={10} className=" text-[13px] p-2 border border-[#c7c8ca]/50 bg-white text-left">
-                              No records found.
-                            </td>
-                          </tr>
-                        )}
+                        }
                       </tbody>
                     </table>
                   </div>
                 </div>
               </div>
-            </div>
+            </div> ) : (
+              <div className="text-center text-gray-500 py-10">No data available</div>
+            )}
+            {/* <div className="flex justify-between items-center mx-4 my-2">
             <div className="lg:flex lg:flex-row flex-col  justify-start items-center my-1 gap-4">
               <div className="flex justify-start items-center ">
-                {/* <button
-                  onClick={() => {
-                    setPageNumber(1);
-                    setPaginationPage(1)
-                  }}
-                  className="px-3 py-1 border text-black text-sm"
-
-                >
-                  First
-                </button> */}
+              
                 <button
                   onClick={() => setPageNumber(pageNumber - 1)}
                   className="px-3 py-1 border text-black text-sm"
@@ -293,25 +282,20 @@ if (payloadData?.statementFor) {
                 >
                   Next Page
                 </button>
-                {/* <button
-                  className="px-3 py-1 border text-black text-sm"
-                  onClick={() => { setPageNumber(totalPages); setPaginationPage(totalPages) }}
-                >
-                  Last
-                </button> */}
 
               </div>
-              {/* <div className='space-x-2 flex justify-center items-center gap-2 lg:mt-0 mt-2'>
+              <div className='space-x-2 flex justify-center items-center gap-2 lg:mt-0 mt-2'>
                 <span>Page {pageNumber} of {totalPages}  </span>
                 <span>Go to Page</span>
                 <input
                   onChange={(e) => { setPaginationPage(e.target.value) }}
                   value={paginationPage}
                   className='border p-2 w-32'></input>
-              </div> */}
+              </div>
             </div>
-          </div>
+          </div> */}
         </div>
+      </div>
       </div>
     </>
   );

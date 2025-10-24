@@ -41,7 +41,7 @@ export function BetPlaceDesktop(props) {
   const myArray = Object.values(betChipsData);
   const modalRef = useRef();
   const [positions, setPositionData] = useState(0);
-  console.log(editStake,'editStake');
+  
 
   useEffect(() => {
     if (

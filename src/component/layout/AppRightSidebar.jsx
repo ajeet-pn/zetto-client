@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import MobileFooter from "../mobileFooter/MobileFooter";
 
 const AppRightSIdebar = () => {
 
@@ -19,7 +20,7 @@ const AppRightSIdebar = () => {
         {
             token && 
             
-            <div className="w-full max-w-md mx-auto mb-2">
+            <div className="w-full  max-w-md mx-auto mb-2">
                 <div className="flex bg-[--secondary]  !text-[--primary]">
                     {tabs.map((tab) => (
                     <button
@@ -39,7 +40,7 @@ const AppRightSIdebar = () => {
 
                 <div className="bg-white border border-gray-200 border-t-0 rounded-b-lg shadow-sm">
                     {activeTab === "slip" && <div>
-                        <div className="bg-gray-300 text-black flex flex-col justify-center items-center dark:bg-zinc-900  rounded-b-[4px] resWidth h-[311px] svelte-1xp1v4d">
+                        <div className="bg-gray-300 text-black flex flex-col justify-center items-center bg-zinc-900  rounded-b-[4px] resWidth h-[311px] svelte-1xp1v4d">
                             <div><img className="w-[87px] h-[87px] mx-auto" src="/images/zetto/empty.png" alt="" srcset="" /></div>
                             <div className="text-[12px] text-black uppercase font-semibold">Your Bet Slip is Empty</div>
                         </div>

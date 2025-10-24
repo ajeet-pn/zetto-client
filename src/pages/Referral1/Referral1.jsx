@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { domainName } from '../../config/Auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import MobileFooter from '../../component/mobileFooter/MobileFooter';
 
 const Referral1 = () => {
     const user = JSON.parse(localStorage.getItem(`user_info_${domainName}`));
@@ -27,6 +28,10 @@ Referral Earnings</h2>
                             </div>
                     </div>
                 </div>
+                 <MobileFooter />
+        <div className='w-full max-lg:pb-16'>
+        
+            </div>
         </>
     );
 };

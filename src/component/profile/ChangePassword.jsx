@@ -3,6 +3,7 @@ import { updatePassword } from '../../redux/reducers/auth.reducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { message } from 'antd';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+import MobileFooter from '../mobileFooter/MobileFooter';
 
 const ChangePassword = () => {
     const dispatch = useDispatch();
@@ -117,12 +118,12 @@ const ChangePassword = () => {
         );
 
     return (
-        <>
+        <div className='bg-white'>
             <div className="bg-[--secondary] h-[31px] px-3 flex rounded-t-[5px] items-center justify-start font-semibold">
                 Change Password
             </div>
 
-            <div className="w-full">
+            <div className="w-full h-screen">
                 <div className="w-full lg:px-3 bg-white border-black">
                     <div className="w-full py-4 md:w-[450px] mx-auto">
                         <div className="flex justify-center my-8">
@@ -218,7 +219,11 @@ const ChangePassword = () => {
                     </div>
                 </div>
             </div>
-        </>
+             <MobileFooter />
+                    <div className='w-full max-lg:pb-16'>
+                    
+                        </div>
+        </div>
     );
 };
 

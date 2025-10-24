@@ -105,3 +105,27 @@ body {
   display: flex !important;
   justify-content: flex-end !important;
 }
+
+@keyframes slidedownallrows {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+/* continuous top-to-bottom scroll */
+@keyframes autoScrollDown {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+/* animation class */
+.animate-slidedownallrows {
+  animation: autoScrollDown 20s linear infinite;
+}
