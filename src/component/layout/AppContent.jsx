@@ -31,8 +31,9 @@ import TrmCondtion from '../../pages/TrmCondtion/TrmCondtion'
 import Promotions from '../../pages/Promotions/Promotions'
 import PrivecyPolicy from '../../pages/privacyPolicy/PrivacyPolicy'
 import Rules from '../../pages/rules/Rules'
-import AboutsUs from '../../pages/AboutUs/AboutUs'
+import AboutsUs from '../../pages/aboutUs/AboutUs'
 import ContactUs from '../../pages/contact/ContactUs'
+
 
 
 
