@@ -27,6 +27,8 @@ import BetHistory from '../../pages/BetHistory/BetHistory'
 import EditStack from '../../pages/Editstack/EditStack'
 import ActiveLogs from '../../pages/ActiveLog/ActiveLog'
 import CasinoListByProviderName from '../../pages/casinoListByProviderName/CasinoListByProviderName'
+import TrmCondtion from '../../pages/TrmCondtion/TrmCondtion'
+import Promotions from '../../pages/Promotions/Promotions'
 
 
 
@@ -42,6 +44,8 @@ const AppContent = () => {
       <Route path='/changepassword' element={<ChangePassword />} />
       <Route path='/ac-statement' element={<AccountSatement />} />
       <Route path='/why-choose-us' element={<WhyChooseUs />} />
+      <Route path="/term-condition" element={<TrmCondtion />} />
+      <Route path="/promotions" element={<Promotions />} />
       <Route path='/refer-and-earn' element={<ReferAndEarn />} />
       <Route path="/deposit" element={<Deposit />} />
       <Route path="/wallet" element={<Wallet />} />
@@ -50,18 +54,9 @@ const AppContent = () => {
       <Route path="/active-logs" element={<ActiveLogs />} />
       <Route path='/sport-view/:marketId?/:eventId?/:sportId?' element={<ViewMatches />} />
       <Route path='/sport-view-racing/:marketId?/:eventId?/:sportId?' element={<ViewMatchRacing />} />
-
-
-
-
-
-
-
       <Route path='/faq' element={<Faq />} />
       <Route path='/all-casino' element={<AllCasino />} />
       <Route path='/casino-list-by-providername/:providername?' element={<CasinoListByProviderName />} />
-
-      
       <Route path='/sports-book' element={<SportsBook />} />
       <Route path='/market-analysis' element={<MarketAnalysis />} />
       <Route path='/bonus-list' element={<BonusList />} />

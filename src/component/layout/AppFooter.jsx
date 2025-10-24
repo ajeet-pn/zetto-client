@@ -79,7 +79,7 @@ const navigate = useNavigate();
               <div className="text-[13px] font-bold mb-3">HELP</div>
               <ul className="">
                 <li><a href="/responsible-gambling" className="text-[12px] h-full hover:text-gray-400">Responsible Gambling</a></li>
-                <li><a href="/terms-and-conditions" className="text-[12px] h-full hover:text-gray-400">Terms and Conditions</a></li>
+                <li><a href="/term-condition" className="text-[12px] h-full hover:text-gray-400">Terms and Conditions</a></li>
                 <li><a href="/join-affiliate" className="text-[12px] h-full hover:text-gray-400">Join as Affiliate</a></li>
                 <li><a href="/download-app" className="text-[12px] h-full hover:text-gray-400">Download App</a></li>
               </ul>

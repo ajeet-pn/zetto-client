@@ -25,7 +25,7 @@ function AllCasino() {
     const handlProviderCasinoList = (value) => {
         setSelectedProvider(value);
         setIsCasinoModal(true);
-        if (value === "All") {
+        if (value == "All") {
             const firstProvider = groupCasinoList?.providerList?.[0];
             if (firstProvider) {
                 dispatch(getCasinoListByProviderName({ provider: firstProvider }));
@@ -89,7 +89,7 @@ function AllCasino() {
 
 
     useEffect(() => {
-        if (selectedCategory && selectedCategory !== "All") {
+        if (selectedCategory && selectedCategory != "All") {
             dispatch(getCasinoListByCateogeory({ category: selectedCategory }));
         }
     }, [selectedCategory, dispatch]);
@@ -119,20 +119,7 @@ function AllCasino() {
 
 
     return (
-        <div className="w-[100%]">
-            <div className='bg-[#e9eff8] flex justify-between items-center'>
-
-                <div>
-                    <div className="relative uppercase tracking-wider text-sm bg-[var(--primary)] w-[200px] font-bold text-white py-1.5 px-3">
-                        <div className="flex space-x-2">
-                            <img src={"/subHeader/menu-99998.png"} className="w-[20px] h-[20px]" />
-                            <p>CASINO</p></div>
-                        <span className="absolute top-0 right-[-15px] w-0 h-0 border-t-[32px] border-t-[var(--primary)] border-r-[15px] border-r-transparent"></span>
-                    </div>
-                </div>
-                
-
-            </div>
+        <div className="w-full max-w-5xl mx-auto">
 
             <div className="my-1  bg-[var(--darkcolor)]">
                 <div className="flex justify-start items-center overflow-x-auto ">

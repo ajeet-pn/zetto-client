@@ -2,11 +2,11 @@ import React from 'react'
 import AppHeader from '../../component/layout/AppHeader'
 import AppFooter from '../../component/layout/AppFooter'
 import { Link } from 'react-router-dom'
+import MobileFooter from '../../component/mobileFooter/MobileFooter'
 
 const Promotions = () => {
     return (
         <>
-            <AppHeader/>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:p-6 px-2 py-2 lg:px-28">
                     <div className=''>
                         <img className='!w-full rounded-t-lg' src="/images/zetto/p1.webp" alt="" />
@@ -141,41 +141,10 @@ const Promotions = () => {
                         Through the Refer & Earn program, users can enjoy a ₹1000 reward for each successful referral. Share the excitement with friends and earn lucrative rewards for introducing them to Zetto. 
                     </p>
                 </div>
-                <div className='block lg:hidden'>
-                    <div className='flex justify-center flex-col items-center my-10'>
-                        <div className='text-[16px] uppercase font-semibold'>follow us on</div>
-                        <div className='flex gap-2 mt-2'>
-                            <Link><img className='!w-[26px] !h-[26px]' src="/images/zetto/fb.png" alt="" /></Link>
-                            <Link><img className='!w-[26px] !h-[26px]' src="/images/zetto/insta.png" alt="" /></Link>
-                            <Link><img className='!w-[26px] !h-[26px]' src="/images/zetto/youtube.png" alt="" /></Link>
-                            <Link><img className='!w-[26px] !h-[26px]' src="/images/zetto/telegram.png" alt="" /></Link>
-                        </div>
-                    </div>
-                    <div className='flex gap-4  my-5 md:my-10 px-12'>
-                        <div><img className='!w-[100px] !h-auto' src="/images/zetto/gaming.webp" alt="" srcset="" /></div>
-                        <div><img className='!w-[30px] !h-auto' src="/images/zetto/game-care1.webp" alt="" srcset="" /></div>
-                        <div><img className='!w-[30px] !h-auto' src="/images/zetto/18plus1.png" alt="" srcset="" /></div>
-                        <div><img className='!w-[30px] !h-auto' src="/images/zetto/gamble-aware.webp" alt="" srcset="" /></div>
-                    </div>
-                    <div className='text-center my-5 md:my-10 mx-5'>
-                        <Link className='text-[14px]'>About us |</Link>
-                        <Link className='text-[14px]'> Promotions |</Link>
-                        <Link className='text-[14px]'> Contact Us |</Link>
-                        <Link className='text-[14px]'> FAQs |</Link>
-                        <Link className='text-[14px]'> Responsible Gambling |</Link>
-                        <Link className='text-[14px]'> Terms and Conditions |</Link>
-                        <Link className='text-[14px]'> Rules |</Link>
-                        <Link className='text-[14px]'> Zetto Blog |</Link>
-                        <Link className='text-[14px]'> Privacy Policy |</Link>
-                        <Link className='text-[14px]'> Sitemap </Link>
-                    </div>
-                    <div className='mx-10 my-5 md:my-10'>
-                        <img className='!w-[500px] !h-[90px] !md:h-[130px]' src="/images/zetto/affiliate1.png" alt="" srcset="" />
-                    </div>
-                </div>
+                <MobileFooter />
                 <div className="w-full  max-lg:pb-16">
 
-            <AppFooter/>
+           
                 </div>
         </>
     )
