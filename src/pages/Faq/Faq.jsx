@@ -271,7 +271,7 @@ In the event of a delay, kindly ensure that the deposit slip is shared with cust
                                         <Link className='text-[14px]'> Terms and Conditions |</Link>
                                         <Link className='text-[14px]'> Rules |</Link>
                                         <Link className='text-[14px]'> Zetto Blog |</Link>
-                                        <Link className='text-[14px]'> Privacy Policy |</Link>
+                                        <Link to={"/privacy-policy"} className='text-[14px]'> Privacy Policy |</Link>
                                         <Link className='text-[14px]'> Sitemap </Link>
                                     </div>
                                     <div className='mx-10 my-5 md:my-10'>
