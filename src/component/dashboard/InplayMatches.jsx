@@ -71,10 +71,13 @@ function InplayMatches({ activeTab, matchlistItems, sportName }) {
         {gameId === "7" && (
           <>
             <div>
-              <div className="relative uppercase tracking-wider text-sm bg-[var(--primary)] w-[200px] font-bold text-white py-1.5 px-3">
-                <div className="flex space-x-2 items-center">
-                  <img src="/subHeader/menu-7.png" className="w-[20px] h-[20px]" alt="menu" />
-                  <p>Horse Racing</p>
+              <div className="relative text-sm bg-[var(--secondary)] w-full rounded-t-[5px] font-bold text-[--primary] py-1.5 px-3">
+                <div className="flex space-x-3 items-center">
+                  
+              <img className='!w-[15px] !h-[15px]' src="/images/zetto/homeblack.png" alt="" srcset="" />
+              <img className='!w-[12px] !h-[12px] rotate-90 ' src="/images/zetto/arrowblack.png" alt="" srcset="" />
+                  {/* <img src="/subHeader/menu-7.png" className="w-[20px] h-[20px]" alt="menu" /> */}
+                  <p className="text-[15px] font-semibold">Horse Racing</p>
                 </div>
                 <span className="absolute top-0 right-[-15px] w-0 h-0 border-t-[32px] border-t-[var(--primary)] border-r-[15px] border-r-transparent"></span>
               </div>
@@ -85,12 +88,15 @@ function InplayMatches({ activeTab, matchlistItems, sportName }) {
         {gameId === "4339" && (
           <>
             <div>
-              <div className="relative uppercase tracking-wider text-sm bg-[var(--primary)] w-[200px] font-bold text-white py-1.5 px-3">
-                <div className="flex space-x-2 items-center">
-                  <img src="/subHeader/menu-4339.png" className="w-[20px] h-[20px]" alt="menu" />
-                  <p>Greyhound Racing</p>
+              <div className="relative text-sm bg-[var(--secondary)] w-full rounded-t-[5px] font-bold text-[--primary] py-1.5 px-3">
+                <div className="flex space-x-3 items-center">
+                  {/* <img src="/subHeader/menu-4339.png" className="w-[20px] h-[20px]" alt="menu" /> */}
+                  
+              <img className='!w-[15px] !h-[15px]' src="/images/zetto/homeblack.png" alt="" srcset="" />
+              <img className='!w-[12px] !h-[12px] rotate-90 ' src="/images/zetto/arrowblack.png" alt="" srcset="" />
+                  <p className="text-[15px] font-semibold">Greyhound Racing</p>
                 </div>
-                <span className="absolute top-0 right-[-15px] w-0 h-0 border-t-[32px] border-t-[var(--primary)] border-r-[15px] border-r-transparent"></span>
+                {/* <span className="absolute top-0 right-[-15px] w-0 h-0 border-t-[32px] border-t-[var(--primary)] border-r-[15px] border-r-transparent"></span> */}
               </div>
             </div>
           </>
@@ -151,10 +157,10 @@ function InplayMatches({ activeTab, matchlistItems, sportName }) {
     if (!filteredMatches || filteredMatches.length === 0) {
       content = (
         <>
-          <div className="flex items-center justify-between w-full bg-[#e9eff8] border-b border-t border-[#C6D2D8]">
-            <div className="relative text-sm bg-[var(--primary)] w-[180px] font-bold text-white py-1.5 px-2">
+          <div className="flex items-center justify-between w-full bg-[--secondary] border-b rounded-t-[8px]">
+            <div className="relative text-sm  w-[180px] font-bold text-[--primary] py-1.5 px-2">
               {sportName}
-              <span className="absolute top-0 right-[-15px] w-0 h-0 border-t-[32px] border-t-[var(--primary)] border-r-[15px] border-r-transparent"></span>
+              {/* <span className="absolute top-0 right-[-15px] w-0 h-0 border-t-[32px] border-t-[var(--primary)] border-r-[15px] border-r-transparent"></span> */}
             </div>
             <p className="w-[40%] grid grid-cols-3 text-center text-sm font-bold">
               <span>1</span>
@@ -170,24 +176,42 @@ function InplayMatches({ activeTab, matchlistItems, sportName }) {
     } else {
       content = (
         <div className="overflow-y-auto">
-          <div className="flex justify-between items-center w-full bg-[--primary]">
+          <div className="flex justify-between items-center w-full bg-[--secondary] rounded-t-[8px]">
             <div className="lg:w-[50%] w-full sm:flex items-center lg:space-x-24 lg:justify-start justify-between">
-              <div className="relative text-sm bg-[var(--primary)] font-bold text-white py-1.5 px-2 flex justify-start items-center space-x-1">
-                {sportName === "Cricket" && <img src='/subHeader/menu-4.png' className="w-4 h-4" />}
-                {sportName === "Soccer" && <img src='/subHeader/menu-1.png' className="w-4 h-4" />}
-                {sportName === "Tennis" && <img src='/subHeader/menu-2.png' className="w-4 h-4" />}
+              <div className="relative text-sm font-bold text-[--primary] py-1.5 px-2 flex justify-start items-center space-x-1">
+                {sportName === "Cricket" && 
+                // <img src='/subHeader/menu-4.png' className="w-4 h-4" />
+                  <div className="flex items-center gap-3">
+                    <img className='!w-[15px] !h-[15px]' src="/images/zetto/homeblack.png" alt=""/>
+                    <img className='!w-[12px] !h-[12px] rotate-90 ' src="/images/zetto/arrowblack.png" alt=""/>
+                  </div>
+                }
+                {sportName === "Soccer" && 
+                  // <img src='/subHeader/menu-1.png' className="w-4 h-4" />
+                  <div className="flex items-center gap-3">
+                    <img className='!w-[15px] !h-[15px]' src="/images/zetto/homeblack.png" alt=""/>
+                    <img className='!w-[12px] !h-[12px] rotate-90 ' src="/images/zetto/arrowblack.png" alt=""/>
+                  </div>
+                }
+                {sportName === "Tennis" && 
+                  // <img src='/subHeader/menu-2.png' className="w-4 h-4" />
+                    <div className="flex items-center gap-3">
+                    <img className='!w-[15px] !h-[15px]' src="/images/zetto/homeblack.png" alt=""/>
+                    <img className='!w-[12px] !h-[12px] rotate-90 ' src="/images/zetto/arrowblack.png" alt=""/>
+                  </div>
+                }
                 <p>{sportName}</p>
               </div>
               <div className="flex justify-end items-center gap-2 pr-1">
-                <div
+                {/* <div
                   onClick={() => setIsLive(!isLive)}
                   className={`rounded-xl text-xs font-[600] tracking-wide md:px-3 px-2.5 py-[3px] cursor-pointer transition-colors duration-300
                   ${isLive ? "bg-green-600 text-white" : "bg-transparent border border-[var(--primary)]  text-[var(--primary)]"}`}
                 >
                   {isLive ? "- LIVE" : "+ LIVE"}
-                </div>
+                </div> */}
 
-                <div
+                {/* <div
                   onClick={() => setIsVirtual(!isVirtual)}
                   className={`rounded-xl text-xs font-[600] tracking-wide md:px-3 px-2.5 py-[3px] cursor-pointer transition-colors duration-300
                   ${isVirtual ? "bg-green-600 text-white" : "bg-transparent border border-[var(--primary)]  text-[var(--primary)]"}`}
@@ -201,11 +225,11 @@ function InplayMatches({ activeTab, matchlistItems, sportName }) {
                   ${isPremium ? "bg-green-600 text-white" : "bg-transparent border border-[var(--primary)]  text-[var(--primary)]"}`}
                 >
                   {isPremium ? "- Premium" : "+ Premium"}
-                </div>
+                </div> */}
 
               </div>
             </div>
-            <div className="w-[50%] lg:grid hidden grid-cols-3 text-center text-gray-100 text-xs font-bold">
+            <div className="w-[50%] lg:grid hidden grid-cols-3 text-center text-[--primary] text-xs font-bold">
               <span>1</span>
               <span>X</span>
               <span>2</span>

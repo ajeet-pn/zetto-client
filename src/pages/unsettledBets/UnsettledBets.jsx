@@ -31,8 +31,8 @@ const UnsettledBets = ({ }) => {
     return (
         <div className="w-full min-h-screen flex">
             <div className="border w-full">
-                <div className='bg-[var(--darkcolor)] uppercase text-black py-1 px-1.5'>
-                    <h2 className='text-[13px] text-white'>Unsettled Bets</h2>
+                <div className='bg-[var(--secondary)] uppercase text-[--primary] h-[31px] flex items-center rounded-t-[5px] font-semibold py-1 px-1.5'>
+                    <h2 className='text-[13px] text-[--primary]'>Unsettled Bets</h2>
                 </div>
 
                 <div className="overflow-hidden mt-2">

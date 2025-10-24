@@ -36,22 +36,22 @@ const navigate = useNavigate();
           <div className="bg-[--primary] grid grid-cols-5 text-white py-8 md:px-5 lg:px-28">
           <div className="">
               {/* Logo */}
-              <div className="flex flex-col gap-4 space-x-4">
+              <div className="flex flex-col gap-2 space-x-4">
                 <Link to='/dashboard'>
                   <img src="/images/zetto/logo.png" alt="Zetto Logo" className="w-32" />
                 </Link>
-                <div className='grid grid-cols-4 gap-4 !ms-0'>
-                  <div className='w-full'>
-                    <img src="/images/zetto/fb1.png" alt="" className='!w-5 !h-5'/>
+                <div className='flex gap-2 mt-2 !ms-0'>
+                  <div className='min-w-[30px] cursor-pointer'>
+                    <img src="/images/zetto/fb1.png" alt="" className='!w-[26px] !h-[26px]'/>
                   </div>
-                  <div className='w-full'>
-                    <img src="/images/zetto/insta1.png" alt="" className='!w-5 !h-5'/>
+                  <div className='min-w-[30px] cursor-pointer'>
+                    <img src="/images/zetto/insta1.png" alt="" className='!w-[26px] !h-[26px]'/>
                   </div>
-                  <div className='w-full'>
-                    <img src="/images/zetto/telegram1.png" alt="" className='!w-5 !h-5'/>
+                  <div className='min-w-[30px] cursor-pointer'>
+                    <img src="/images/zetto/telegram1.png" alt="" className='!w-[26px] !h-[26px]'/>
                   </div>
-                  <div className='w-full'>
-                    <img src="/images/zetto/youtube1.png" alt="" className='!w-5 !h-5'/>
+                  <div className='min-w-[30px] cursor-pointer'>
+                    <img src="/images/zetto/youtube1.png" alt="" className='!w-[26px] !h-[26px]'/>
                   </div>
                 </div>
               </div>
@@ -106,12 +106,16 @@ const navigate = useNavigate();
               </ul>
             </div>
           </div>
-          <div className="mt-5 pt-4 text-center text-xs">
-            <div className="flex flex-col justify-center gap-5">
+          <div className="mt-5 text-center text-xs">
+            <div className="flex gap-8">
               <img src="/images/zetto/gaming.webp" alt="Gaming Curacao" className="!w-[100px] h-auto" />
               <img src="/images/zetto/game-care.png" alt="GamCare" className="!w-[30px] !h-[30px]" />
               {/* <span className="text-[--secondary]">Be Gamble Aware</span>
               <span className="text-[--secondary]">18+</span> */}
+            </div>
+            <div className='flex items-center gap-2 mt-8'>
+              <img className='invert !w-[28px] !h-[28px]' src="/images/zetto/18plus1.png" alt="" srcset="" />
+              <img className='invert !w-[40px]' src="/images/zetto/gamble-aware.webp" alt="" srcset="" />
             </div>
           </div>
         </div>
@@ -203,15 +207,15 @@ const navigate = useNavigate();
       </div>
 
       {isOpen && (
-    <div className="fixed inset-0 z-50">
+    <div className="fixed inset-0 z-[10000]">
       <div
         className="absolute inset-0 bg-white/75 bg-opacity-50"
         onClick={handleClose}
       ></div>
       <div
-        className={`absolute right-0 top-0 w-80 bg-[--primary] text-white shadow-2xl transform h-dvh overflow-y-auto transition-transform duration-300 ${
+        className={`absolute z-[10000] right-0 top-0 w-80 bg-[--primary] text-white shadow-2xl transform h-dvh overflow-y-auto transition-transform duration-300 ${
           isOpen ? "translate-x-0" : "translate-x-full"
-        } flex flex-col z-50`}
+        } flex flex-col z-[10000]`}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="!m-4 flex justify-center items-center hover:bg-white rounded-[4px] w-6 h-6">
