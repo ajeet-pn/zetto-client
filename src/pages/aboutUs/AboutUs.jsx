@@ -1,7 +1,11 @@
 const AboutsUs = () => {
   return (
-    <div><div class=" bg-white px-2 py-2 lg:px-28"><div class="mt-2 p-2 md:p-0 content"><h1 ><strong class="">WE ARE THE WORLD'S BIGGEST SPORTS BETTING EXCHANGE &amp; CASINO.</strong></h1>
-<h2 ><em>ZET. SET. GO</em></h2>
+    <div>
+      <div className="text-[15px] gap-3 rounded-t-[5px] text-black bg-[--secondary] px-5 h-[31px] flex items-center font-semibold" >
+              <img className='!w-4 !h-4' src="/images/zetto/homeblack.png" alt="" srcset="" />
+              <img className='!w-3 !h-3 rotate-90 ' src="/images/zetto/arrowblack.png" alt="" srcset="" />About Us</div>
+      <div class=" bg-white px-2 py-2 lg:px-28"><div class="mt-2 p-2 md:p-0 content"><h1 className="text-[25px] font-[900] text-center" ><strong class="">WE ARE THE WORLD'S BIGGEST SPORTS BETTING EXCHANGE &amp; CASINO.</strong></h1>
+<h2 className="text-[22px] text-center font-semibold mb-5 mt-2"><em>ZET. SET. GO</em></h2>
 <p class="" >&nbsp;</p>
 <p>Zetto is your Go-to destination for Online Sports Betting &amp; Casinos: Global technology with most lucrative rewards in the Market.&nbsp;</p>
 <p>&nbsp;</p>

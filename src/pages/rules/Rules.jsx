@@ -1,8 +1,12 @@
 const Rules = () => {
   return (
     <div className="rules-page">
-        <div class="text-black bg-white  flex flex-col px-2 py-2 lg:px-28"><div class="mt-2 content"><h1 >BETTING RULES AT ZETTO</h1>
-<p><span ><strong>1. Cricket General:</strong></span></p>
+          <div className="text-[15px] gap-3 rounded-t-[5px] text-black bg-[--secondary] px-5 h-[31px] flex items-center font-semibold" >
+              <img className='!w-5 !h-5' src="/images/zetto/homeblack.png" alt="" srcset="" />
+              <img className='!w-4 !h-4 rotate-90 ' src="/images/zetto/arrowblack.png" alt="" srcset="" />
+            BETTING RULES AT ZETTO</div>
+        <div className="text-black bg-white  flex flex-col px-2 py-2 lg:px-28"><div className="mt-2 content">
+<p><span className="" ><strong>1. Cricket General:</strong></span></p>
 <p>&nbsp;</p>
 <ul>
 <li ><span >If a ball is not bowled during a competition, series or match then all bets will be void except for those on any market that has been unconditionally determined (e.g. in the 'Completed Match' market).</span></li>
@@ -16,20 +20,20 @@ const Rules = () => {
 <li ><span >If a match starts but is later abandoned for any reason other than weather (which may include but is not limited to: dangerous or unplayable wicket or outfield; pitch vandalism; strike or boycott; crowd protests/violence; stadium damage; acts of terrorism; and acts of God), Betfair reserves the right to void all bets, except for those on markets that have been unconditionally determined</span></li>
 <li ><span >If the match is not scheduled to be completed within five days after the original scheduled completion date, then all bets on markets for this event will be void, except for bets on any markets that have been unconditionally determined.</span></li>
 <li >
-<p class="MsoNormal">Complete session valid in test.</p>
-<p class="MsoNormal">&nbsp;Middle session and Session is not completed due to Innings declared or all out so that particular over considered as completed and remaining over counted in next team Innings for ex:- In case of Innings declared or all out In 131.5th over Considered as 132 over completed remaining 1 over counted for 133 over middle session and 3 over counted for 135 over session from next team Innings and One over session and Only over session is not completed due to innings declared so that Particular over session bets will be deleted and all out considered as valid for ex:- In case of Innings declared In 131.5th over so 132 over will be deleted and if all out then 132 over and Only 132 over will be Valid.</p>
+<p className="MsoNormal">Complete session valid in test.</p>
+<p className="MsoNormal">&nbsp;Middle session and Session is not completed due to Innings declared or all out so that particular over considered as completed and remaining over counted in next team Innings for ex:- In case of Innings declared or all out In 131.5th over Considered as 132 over completed remaining 1 over counted for 133 over middle session and 3 over counted for 135 over session from next team Innings and One over session and Only over session is not completed due to innings declared so that Particular over session bets will be deleted and all out considered as valid for ex:- In case of Innings declared In 131.5th over so 132 over will be deleted and if all out then 132 over and Only 132 over will be Valid.</p>
 </li>
 <li >
-<p class="MsoNormal">1st day 1st session run minimum 25 over will be played then result is given otherwise 1st day 1st session will be deleted.</p>
+<p className="MsoNormal">1st day 1st session run minimum 25 over will be played then result is given otherwise 1st day 1st session will be deleted.</p>
 </li>
 <li >
-<p class="MsoNormal">1st day 2nd session run minimum 25 over will be played then result is given otherwise 1st day 2nd session will be deleted.</p>
+<p className="MsoNormal">1st day 2nd session run minimum 25 over will be played then result is given otherwise 1st day 2nd session will be deleted.</p>
 </li>
 <li >
-<p class="MsoNormal">1st day total run minimum 80 over will be played then result is given otherwise 1st day total run will be deleted. If a team get All Out before the day stumps, the other team's 1st day score will be added to 1st day total run event. (i.e. AUSTRALIA got all out at 251 before the day stumps, then ENGLAND hit 100 runs in the remaining overs of 1st day, so the result of 1st day total run event will be 351)</p>
+<p className="MsoNormal">1st day total run minimum 80 over will be played then result is given otherwise 1st day total run will be deleted. If a team get All Out before the day stumps, the other team's 1st day score will be added to 1st day total run event. (i.e. AUSTRALIA got all out at 251 before the day stumps, then ENGLAND hit 100 runs in the remaining overs of 1st day, so the result of 1st day total run event will be 351)</p>
 </li>
 <li >
-<p class="MsoNormal">Test match both advance session is valid.</p>
+<p className="MsoNormal">Test match both advance session is valid.</p>
 </li>
 </ul>
 <p>&nbsp;</p>

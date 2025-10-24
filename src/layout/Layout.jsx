@@ -44,7 +44,7 @@ const currentPath = location.pathname;
 
     return (
 <>
-        <section className="w-full h-screen flex flex-col overflow-hidden relative">
+        <section className="w-full h-dvh flex flex-col overflow-hidden relative">
             <div className="shrink-0 z-10 lg:bg-white bg-black">
                 <div className="">
                     <AppHeader setSidebarOpen={setIsSidebarOpen} />

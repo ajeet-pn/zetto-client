@@ -58,16 +58,16 @@ const navigate = useNavigate();
 
               {/* Social Media Links */}
               <div className="flex space-x-4">
-                <a href="https://facebook.com" className="hover:text-gray-400">
+                <a href="https://facebook.com" className="hover:text-[--secondary]">
                   <i className="fab fa-facebook-f"></i>
                 </a>
-                <a href="https://instagram.com" className="hover:text-gray-400">
+                <a href="https://instagram.com" className="hover:text-[--secondary]">
                   <i className="fab fa-instagram"></i>
                 </a>
-                <a href="https://youtube.com" className="hover:text-gray-400">
+                <a href="https://youtube.com" className="hover:text-[--secondary]">
                   <i className="fab fa-youtube"></i>
                 </a>
-                <a href="https://telegram.org" className="hover:text-gray-400">
+                <a href="https://telegram.org" className="hover:text-[--secondary]">
                   <i className="fab fa-telegram-plane"></i>
                 </a>
               </div>
@@ -78,10 +78,10 @@ const navigate = useNavigate();
             <div>
               <div className="text-[13px] font-bold mb-3">HELP</div>
               <ul className="">
-                <li><a href="/responsible-gambling" className="text-[12px] h-full hover:text-gray-400">Responsible Gambling</a></li>
-                <li><a href="/term-condition" className="text-[12px] h-full hover:text-gray-400">Terms and Conditions</a></li>
-                <li><a href="/join-affiliate" className="text-[12px] h-full hover:text-gray-400">Join as Affiliate</a></li>
-                <li><a href="/download-app" className="text-[12px] h-full hover:text-gray-400">Download App</a></li>
+                <li><a href="/responsible-gambling" className="text-[12px] h-full hover:text-[--secondary]">Responsible Gambling</a></li>
+                <li><a href="/term-condition" className="text-[12px] h-full hover:text-[--secondary]">Terms and Conditions</a></li>
+                <li><a href="/join-affiliate" className="text-[12px] h-full hover:text-[--secondary]">Join as Affiliate</a></li>
+                <li><a href="/download-app" className="text-[12px] h-full hover:text-[--secondary]">Download App</a></li>
               </ul>
             </div>
           </div>
@@ -89,10 +89,10 @@ const navigate = useNavigate();
             <div>
               <div className="text-[13px] mb-3 font-bold">INFORMATION</div>
               <ul className="">
-                <li><a href="/privacy-policy" className="text-[12px] h-full hover:text-gray-400">Privacy Policy</a></li>
-                <li><a href="/rules" className="text-[12px] h-full hover:text-gray-400">Rules</a></li>
-                <li><a href="/blog" className="text-[12px] h-full hover:text-gray-400">Zetto Blog</a></li>
-                <li><a href="/sitemap" className="text-[12px] h-full hover:text-gray-400">Sitemap</a></li>
+                <li><a href="/privacy-policy" className="text-[12px] h-full hover:text-[--secondary]">Privacy Policy</a></li>
+                <li><a href="/rules" className="text-[12px] h-full hover:text-[--secondary]">Rules</a></li>
+                <li><a href="/blog" className="text-[12px] h-full hover:text-[--secondary]">Zetto Blog</a></li>
+                <li><a href="/sitemap" className="text-[12px] h-full hover:text-[--secondary]">Sitemap</a></li>
               </ul>
             </div>
           </div>
@@ -100,9 +100,9 @@ const navigate = useNavigate();
             <div>
               <div className="text-[13px] mb-3 font-bold">ABOUT</div>
               <ul className="">
-                <li><a href="/about-us" className="text-[12px] h-full hover:text-gray-400">About us</a></li>
-                <li><a href="/promotions" className="text-[12px] h-full hover:text-gray-400">Promotions</a></li>
-                <li><a href="/contact-us" className="text-[12px] h-full hover:text-gray-400">Contact Us</a></li>
+                <li><a href="/about-us" className="text-[12px] h-full hover:text-[--secondary]">About us</a></li>
+                <li><a href="/promotions" className="text-[12px] h-full hover:text-[--secondary]">Promotions</a></li>
+                <li><a href="/contact-us" className="text-[12px] h-full hover:text-[--secondary]">Contact Us</a></li>
               </ul>
             </div>
           </div>
@@ -110,8 +110,8 @@ const navigate = useNavigate();
             <div className="flex flex-col justify-center gap-5">
               <img src="/images/zetto/gaming.webp" alt="Gaming Curacao" className="!w-[100px] h-auto" />
               <img src="/images/zetto/game-care.png" alt="GamCare" className="!w-[30px] !h-[30px]" />
-              {/* <span className="text-gray-400">Be Gamble Aware</span>
-              <span className="text-gray-400">18+</span> */}
+              {/* <span className="text-[--secondary]">Be Gamble Aware</span>
+              <span className="text-[--secondary]">18+</span> */}
             </div>
           </div>
         </div>

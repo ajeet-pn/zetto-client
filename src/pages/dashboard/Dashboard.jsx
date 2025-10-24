@@ -204,7 +204,7 @@ const getSportName = (sportId) => {
   return (
     <>
       <div className=" ">
-        <div className='hidden md:block' >
+        <div className='' >
           <Banner/>
         </div>
         <GameSlider/>
