@@ -3,6 +3,8 @@ import React, { useRef, useState, useEffect } from 'react'
 import { FaCircle, FaMinus, FaPlus } from 'react-icons/fa';
 import { IoCloseSharp } from 'react-icons/io5';
 import StakeSettings from '../profile/StakeSettings';
+import { FiMinus } from 'react-icons/fi';
+import { GoPlus } from 'react-icons/go';
 
 export const betChipsData = {
     "1000": 1000,
@@ -211,6 +213,12 @@ export default function PlaceBetMobile(props) {
                     <span className="loaderbetPlace"></span>
                 </div>
                 }
+                <div class="bg-neutral-700 relative h-7 rounded-[4px] flex justify-between items-center">
+                    <div class=" text-white text-[9px] font-bold mt-px px-1">{betSlipData?.teamname}</div>
+                    <div class="text-white text-[9px] mr-3 font-bold ml-auto flex flex-wrap px-1">
+                        <div class="px-1">Min: {isMatchCoin?.min}/</div> <div class="px-1">Max: {isMatchCoin?.max}</div>
+                    </div>
+                </div>
                 {/* <div className=" w-full  h-full flex justify-between bg-[var(--primary)] pt-1.5 pb-3 px-2 items-center">
                     <h2 className="text-white text-[16px] font-[700]" >
                         Placebet
@@ -232,15 +240,14 @@ export default function PlaceBetMobile(props) {
                 </div>
 
 
-                <div className="px-0 bg-[#ffffff45] grid grid-cols-2 justify-between items-center gap-2 mx-2 ">
+                <div className="px-0  grid grid-cols-2 justify-between items-center gap-2 mx-2 ">
                     <div className="flex flex-col">
-                        {/* <span className="text-center text-[12px]">Odds</span> */}
-                        <div className="flex items-center w-full overflow-hidden bg-white border border-gray-300 h-9">
-                            <button className="h-9 py-[5px] px-1.5 text-white font-bold cursor-pointer bg-[#024F99]" onClick={decreaseCount}>
+                        <div className="flex items-center w-full overflow-hidden h-9">
+                            <button className="text-black font-bold cursor-pointer bg-[var(--secondary)] w-[30px] h-[28px] pl-[7px] pr-1.5 pt-1.5 pb-[5.45px] rounded-[5px] border justify-center items-center inline-flex" onClick={decreaseCount}>
                                 <FaMinus size={13} />
                             </button>
-                            <div className=" flex justify-center items-center text-left py-[17px] text-sm w-full h-9">{count && count ? count : 0}</div>
-                            <button className="h-9 flex justify-center items-center px-1.5 font-bold text-white cursor-pointer bg-[#024F99]" onClick={increaseCount}>
+                            <div className="p-1 mx-1 bg-white text-[10px] !rounded text-black border border-white flex justify-center items-center text-left text-sm w-full">{count && count ? count : 0}</div>
+                            <button className="text-black font-bold cursor-pointer bg-[var(--secondary)] w-[30px] h-[28px] pl-[7px] pr-1.5 pt-1.5 pb-[5.45px] rounded-[5px] border justify-center items-center inline-flex" onClick={increaseCount}>
                                 <FaPlus size={13} />
                             </button>
                         </div>
@@ -248,7 +255,13 @@ export default function PlaceBetMobile(props) {
 
                     <div className="flex flex-col w-full">
                         {/* <span className="text-center text-[12px]">Amount</span> */}
-                        <input className="focus:outline-none text-sm w-full text-start px-2 py-4 bg-white h-8 border border-black" type="number" placeholder="0" value={betSlipData.stake} onChange={updateInputValue} />
+                        <input
+                            type="text"
+                            className="w-full py-[7px]  text-center bg-white text-black border border-black rounded"
+                            id="exampleFormControlInput1"
+                            value={betSlipData.stake ? betSlipData.stake : ""}
+                            onChange={updateInputValue}
+                        />
                     </div>
 
                 </div>
@@ -279,9 +292,9 @@ export default function PlaceBetMobile(props) {
                         ))} */}
 
                     {betchipdata && betchipdata.length > 0 && betchipdata.map((item, chip) => (
-                        <button key={chip} className="flex px-1.5 py-1 justify-center items-center bg-white text-black !border-0 "
+                        <button key={chip} className="flex py-1.5 justify-center items-center bg-gray-200 border border-black rounded "
                             onClick={() => updateStackOnclic(item)}>
-                            <span className='text-green-500 text-sm font-[700]'> + </span> <span className='text-black text-[12px] font-[500]'> {formatNumber(item)}</span>
+                            <span className='text-black text-[12px] font-[500]'> {(item)}</span>
                         </button>
                     ))}
                     {/* <button className="px-1.5 py-1 text-xs bg-[var(--secondary)] text-white font-bold" onClick={() => updateStackOnclic("500")}>500</button>
@@ -294,73 +307,58 @@ export default function PlaceBetMobile(props) {
                         <button className="px-1.5 py-1 text-xs bg-[var(--secondary)] text-white font-bold" onClick={() => updateStackOnclic("20000")}>20000</button> */}
                 </div>
 
-                <div className='grid grid-cols-4 gap-[3px] px-2'>
-
-                    <div className={` px-4 py-1 text-[13px] font-[400]  whitespace-nowrap btn bg-[#bd1828]  border-[1px] border-[#bd1828]  text-white text-center uppercase ld-over cursor-pointer `}
-                        onClick={() => {arrayData(isMatchCoin?.min) }}>Min Stake
-                        <div className="ld ld-ball ld-flip">
-                        </div>
+                <div className="grid grid-cols-4 gap-0.5 p-0.5">
+                    <div className="p-1 mx-1 bg-[var(--secondary)] text-[10px] rounded border border-black text-black flex justify-center items-center text-left text-sm cursor-pointer" onClick={() => { arrayData(1) }}>All In</div>
+                    <div
+                        className={`p-1 mx-1 bg-white text-[10px] rounded border border-black text-black flex justify-center items-center text-left text-sm cursor-pointer `}
+                        onClick={() => { arrayData(isMatchCoin?.min) }}
+                    >
+                        Min
                     </div>
-                    <div className={` px-4 py-1 text-[13px] font-[400]  whitespace-nowrap btn bg-[#6D081D]  border-[1px] border-[#bd1828]  text-white text-center uppercase ld-over cursor-pointer `}
-                        onClick={() => {arrayData(isMatchCoin?.max) }}>Max Stake
-                        <div className="ld ld-ball ld-flip">
-                        </div>
-                    </div>
-
-                    <div className={` px-4 py-1 text-[13px] font-[400]  whitespace-nowrap btn bg-[#008000] text-white text-center uppercase ld-over cursor-pointer `}
-                        onClick={() => { handleButtonValues(); setEditStake(true) }}>Edit Stake
-                        <div className="ld ld-ball ld-flip">
-                        </div>
+                    <div
+                        className={`p-1 mx-1 bg-white text-[10px] rounded border border-black text-black flex justify-center items-center text-left text-sm cursor-pointer`}
+                        onClick={() => { arrayData(isMatchCoin?.max) }}
+                    >
+                        Max
                     </div>
 
-                    <div className={` px-4 py-1 text-[13px] font-[400]  whitespace-nowrap btn bg-[#0b7d36] hover:bg-[#0b7d36]/90 border-[1px] border-[#0b7d36] hover:border-[#0b7d36]/90 text-white text-center uppercase ld-over cursor-pointer ${betLoading ? "opacity-50 border-2 border-green-900" : ""}`}
-                        onClick={() => { handleClear() }}>
-                        <b className='flex justify-center items-center'>
+                    <div
+                        className={`p-1 mx-1 bg-white text-[10px] rounded border border-black text-black flex justify-center items-center text-left text-sm cursor-pointer`}
+                        onClick={() => {
+                            handleClear();
+                        }}
+                    >
+                        <b className="flex justify-center items-center">
                             Clear
-
                         </b>
-                        <div className="ld ld-ball ld-flip">
-                        </div>
+                        <div className="ld ld-ball ld-flip"></div>
                     </div>
-
-
-
                 </div>
-
-                <div className="text-red-600 text-xs font-semibold  pl-2">
-                    min Bet :{isMatchCoin?.min} max Bet :{isMatchCoin?.max}
-                </div>
-
-                <div className='grid grid-cols-2 gap-1 p-1'>
+                <div className="grid grid-cols-2 gap-1 pt-4 p-1">
                     <div>
-                        <div className={` px-4 py-1.5 text-[13px] font-[500] btn bg-[#F96F72] text-center uppercase text-white ld-over cursor-pointer `}
-                            onClick={() => handleClose()}>Cancel
-                            <div className="ld ld-ball ld-flip">
-                            </div>
+                        <div
+                            className={`p-1 py-2 mx-1 bg-white text-[10px] rounded border border-black text-black flex justify-center items-center text-left text-sm cursor-pointer `}
+                            onClick={() => {
+                                openBets();
+                            }}
+                        >
+                            Cancel
+                            <div className="ld ld-ball ld-flip"></div>
                         </div>
                     </div>
                     <div>
-
-                        <div className={` px-4 py-1.5 text-[13px] font-[500] btn bg-[#249C59] text-center uppercase text-white ld-over cursor-pointer `}
-                            onClick={() => { placeBet() }}>Placer Bet
-                            <div className="ld ld-ball ld-flip">
-                            </div>
+                        <div
+                            className={` p-1 py-2 mx-1 bg-[#70889E] text-[10px] rounded border border-black text-[#00FFE6] flex justify-center items-center text-left text-sm cursor-pointer  `}
+                            onClick={() => {
+                                placeBet();
+                            }}
+                        >
+                            Placer Bet
+                            <div className="ld ld-ball ld-flip"></div>
                         </div>
                     </div>
-
                 </div>
-                {
-                    editStake && <div onClick={(e) => { setEditStake(false); e.stopPropagation() }} className='fixed px-2 inset-0 z-50 top-0 left-0 h-full w-full flex justify-center items-start bg-black/50 '>
-                        <div onClick={(e) => { e.stopPropagation() }} className='w-[450px]  mt-6 bg-white '>
-
-                            <div className='bg-black flex justify-between items-center text-white p-2 w-full' >Stacke  <span onClick={(e) => { setEditStake(false); e.stopPropagation() }}>X</span></div>
-
-                            <div className='p-2'>
-                                <StakeSettings />
-                            </div>
-                        </div>
-                    </div>
-                }
+                
             </div>
         </div>
 
