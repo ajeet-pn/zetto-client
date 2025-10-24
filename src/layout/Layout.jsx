@@ -18,7 +18,7 @@ const Layout = () => {
     const [isStakeModalOpen, setIsStakeModalOpen] = useState(false);
 
     const location = useLocation();
-const currentPath = location.pathname;
+    const currentPath = location.pathname;
 
 
     const handleToggle = () => {
@@ -43,57 +43,57 @@ const currentPath = location.pathname;
 
 
     return (
-<>
-        <section className="w-full h-screen flex flex-col overflow-hidden relative">
-            <div className="shrink-0 z-10 lg:bg-white bg-black">
-                <div className="">
-                    <AppHeader setSidebarOpen={setIsSidebarOpen} />
-                </div>
-                <div><MarqueeNotification /></div>
-            </div>
-
-            <div className="md:flex flex-1 md:overflow-hidden overflow-auto relative">
-               {!shouldHideLeftSidebars && ( <div className={`${isSidebarOpen ? 'fixed' : 'hidden'} 
-                lg:relative lg:block hidden inset-0 lg:inset-auto py-1 lg:w-[290px] w-[55%] h-screen lg:h-auto z-20 lg:z-auto bg-[var(--backgroundmain)] overflow-y-auto scrollbar-hide`}>
-                    <AppSidebar
-                        isSidebarOpen={isSidebarOpen}
-                        setIsSidebarOpen={setIsSidebarOpen}
-                    />
-                </div>)}
-
-                <div className={`${isSidebarOpen ? 'fixed' : 'hidden'} 
-                lg:relative lg:hidden block inset-0 lg:inset-auto  lg:w-[290px] w-[65%] h-screen lg:h-auto z-20 lg:z-auto bg-[var(--backgroundmain)] overflow-y-auto scrollbar-hide`}>
-                    <AppSidebarMobile
-                        isSidebarOpen={isSidebarOpen}
-                        setIsSidebarOpen={setIsSidebarOpen}
-                    />
-                </div>
-
-                <div className={`flex-1 h-auto overflow-y-auto ${isSidebarOpen ? 'lg:ml-[0px] fixed inset-0 lg:static' : ''}`}>
-                    <div className="p-1 h-full">
-                        <AppContent />
-                        
+        <>
+            <section className="w-full h-screen flex flex-col overflow-hidden relative bg-gray-200">
+                <div className="shrink-0 z-10 lg:bg-white bg-black">
+                    <div className="">
+                        <AppHeader setSidebarOpen={setIsSidebarOpen} />
                     </div>
+                    <div><MarqueeNotification /></div>
                 </div>
-{!shouldHideSidebars && (
-                <div className={`lg:relative lg:block inset-0 lg:inset-auto pb-1 lg:w-[350px] w-[55%] h-screen lg:h-auto z-20 lg:z-auto overflow-y-auto hidden  scrollbar-hide`}>
-                   <AppRightSIdebar />
-                </div> )}
 
-                {/* {isSidebarOpen && (
+                <div className="md:flex flex-1 md:overflow-hidden overflow-auto relative">
+                    {!shouldHideLeftSidebars && (<div className={`${isSidebarOpen ? 'fixed' : 'hidden'} 
+                lg:relative lg:block hidden inset-0 lg:inset-auto py-1 lg:w-[290px] w-[55%] h-screen lg:h-auto z-20 lg:z-auto bg-[var(--backgroundmain)] overflow-y-auto scrollbar-hide`}>
+                        <AppSidebar
+                            isSidebarOpen={isSidebarOpen}
+                            setIsSidebarOpen={setIsSidebarOpen}
+                        />
+                    </div>)}
+
+                    <div className={`${isSidebarOpen ? 'fixed' : 'hidden'} 
+                lg:relative lg:hidden block inset-0 lg:inset-auto  lg:w-[290px] w-[65%] h-screen lg:h-auto z-20 lg:z-auto bg-[var(--backgroundmain)] overflow-y-auto scrollbar-hide`}>
+                        <AppSidebarMobile
+                            isSidebarOpen={isSidebarOpen}
+                            setIsSidebarOpen={setIsSidebarOpen}
+                        />
+                    </div>
+
+                    <div className={`flex-1 h-auto overflow-y-auto ${isSidebarOpen ? 'lg:ml-[0px] fixed inset-0 lg:static' : ''}`}>
+                        <div className="p-1 h-full">
+                            <AppContent />
+
+                        </div>
+                    </div>
+                    {!shouldHideSidebars && (
+                        <div className={`lg:relative lg:block inset-0 lg:inset-auto pb-1 lg:w-[350px] w-[55%] h-screen lg:h-auto z-20 lg:z-auto overflow-y-auto hidden  scrollbar-hide`}>
+                            <AppRightSIdebar />
+                        </div>)}
+
+                    {/* {isSidebarOpen && (
                     <div
                         className="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-10"
                         onClick={() => setIsSidebarOpen(false)}
                     />
                 )} */}
-            </div>
-         
-        </section>
-        
-           <div className='w-full max-lg:pb-16'>
-                    <AppFooter />
                 </div>
-                </>
+
+            </section>
+
+            <div className='w-full max-lg:pb-16'>
+                <AppFooter />
+            </div>
+        </>
     )
 }
 
