@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 const TrmCondtion = () => {
     return (
         <>
-            <AppHeader/>
                <div class=" bg-white  flex flex-col px-2 py-2 lg:px-28">
                 <div class="mt-2 content py-6"><h1 className='w-full text-center font-bold text-xl'><strong>ZETTO TERMS AND CONDITIONS</strong></h1>
 <p>&nbsp;</p>

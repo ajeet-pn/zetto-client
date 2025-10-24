@@ -217,9 +217,9 @@ function InplayMatches({ activeTab, matchlistItems, sportName }) {
                           }
                         </div>
                         <div className="flex flex-col uppercase w-full px-2">
-                          <span className="text-[7px] text-[--primary] capitalize font-bold lg:bg-[--secondary] w-fit px-1 rounded-[5px]">
+                          {element?.seriesName && <span className="text-[7px] text-[--primary] capitalize font-bold lg:bg-[--secondary] w-fit px-1 rounded-[5px]">
                             ({element?.seriesName ? element?.seriesName : "No Series"})
-                          </span>
+                          </span>}
                           <span className="text-[11px] font-bold capitalize text-gray-900 hover:underline">
                             {element?.matchName}
                           </span>

@@ -10,6 +10,9 @@ import Login from './component/login/Login'
 import Signup from './pages/signup/Signup'
 import Promotions from './pages/Promotions/Promotions'
 import TrmCondtion from './pages/TrmCondtion/TrmCondtion'
+import IframeCasino from './pages/IframeCasino/IframeCasino'
+import IframeCasinonew from './pages/IframeCasino/IframeCasinonew'
+import IframeQtech from './pages/IframeCasino/IframeQtech'
 
 
 
@@ -111,8 +114,10 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path='/signup' element={<Signup />} />
-            <Route path="/promotions" element={<Promotions />} />
-            <Route path="/term-condition" element={<TrmCondtion />} />
+            
+            <Route path="/iframe-casino/:gameId?" element={<IframeCasino />} />
+            <Route path="/iframe-casino-new/:provider?/:gameId?"  element={<IframeCasinonew />} />
+            <Route path="/iframe-qtech-casino/:gameId?"  element={<IframeQtech />} />
             <Route path="*" element={<Layout />} />
           </Routes>
         </BrowserRouter>

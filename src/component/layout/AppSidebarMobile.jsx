@@ -39,7 +39,7 @@ const organizeData = (data) => {
   return organizedData;
 };
 
-const AppSidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
+const AppSidebarMobile = ({ isSidebarOpen, setIsSidebarOpen }) => {
   const navigate = useNavigate();
   const [sidebar, sidebartoggle] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -80,8 +80,8 @@ const AppSidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
   }, [sportMatchList]);
 
   useEffect(() => {
+    const organizedData = organizeData(matchData);
     if (matchData) {
-      const organizedData = organizeData(matchData);
       setFilteredData(organizedData);
     } else {
       let localStorageData =
@@ -96,28 +96,6 @@ const AppSidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
       setRacingData(matchData.filter((race) => race.sportId == Number(raceId)));
     }
   }, [matchData, raceId]);
-
-  // const handleClick = (index, e) => {
-  //   e.stopPropagation();
-
-  //   const clickedItem = SPORTSCONSTANT[index];
-
-  //   if (clickedItem?.text === "Casino") {
-  //     navigate("/all-casino");
-  //     return;
-  //   }
-  //   if (clickedItem?.text === "Sports Book") {
-  //     navigate("/sport-sbook");
-  //     return;
-  //   }
-
-  //   if (openKeys.includes(index)) {
-  //     setOpenKeys(openKeys.filter((key) => key !== index));
-  //   } else {
-  //     setOpenKeys([...openKeys, index]);
-  //   }
-  // };
-  // console.log("openKeys", openKeys);
 
   const handleClick = (index, e) => {
 
@@ -191,19 +169,26 @@ const AppSidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
   return (
     <>
       {/* <Login isOpen={isLoginOpen} closeModal={closeModal} setIsLoginOpen={setIsLoginOpen} /> */}
-
-      <div className="hidden lg:block">
-        <div>
-          <CgClose
-            onClick={() => sidebartoggle(!sidebar)}
-            className="absolute top-6 left-[250px] z-40 text-white text-[2rem] lg:hidden block"
-          />
-
-          <CasinoSlider data={sidebarData} />
-          <div className="relative flex flex-col w-full ">
-            <div className="flex flex-col flex-1 overflow-x-hidden overflow-y-auto h-full">
-              <div className="text-white md:relative ">
-                <div className="">
+      <div className="block lg:hidden bg-[--primary] shadow-[0_0_20px_rgba(1,41,112,0.1)]">
+        <div className="flex justify-between items-center py-3 px-2">
+          <div></div>
+          <div>
+            <img src={settings.logo} className="w-[120px] h-[32px]" />
+          </div>
+          <div>
+            <button
+              onClick={() => setIsSidebarOpen(false)}
+              className="block lg:hidden"
+            >
+              <FaTimes className="text-black/70" size={16} />
+            </button>
+          </div>
+        </div>
+        <div className="relative flex flex-col w-full h-dvh p-4 ">
+          <div className="flex flex-col flex-1 overflow-x-hidden overflow-y-auto h-full">
+            <div className="text-white md:relative ">
+              <div className="">
+                
 
                   {SPORTSCONSTANT?.map((menuItem, index) => {
                
@@ -211,54 +196,64 @@ const AppSidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
                       <div
                         key={index}
                         className={`text-[#343435]  py-0 my-0 transition-[max-height] duration-300 ease-in ${clickedOutside1 === true
-                          ? "max-h-auto bg-[#fffff]"
-                          : "max-h-0 bg-[#fffff]"
+                          ? "max-h-auto bg-[--primary]"
+                          : "max-h-0 bg-[--primary]"
                           }`}
                       >
-                        <div className="cursor-pointer flex gap-3 items-center border-b border-[#e5e7eb] justify-start h-[54px] text-sm font-[300] bg-gray-100 text-black text-[15px] group">
+                        <div className="cursor-pointer flex gap-3 items-center border-b border-[#e5e7eb] justify-start h-[54px] text-sm font-[300] bg-[--primary] text-white text-[15px] group">
                           <div
                             className="font-semibold tracking-normal text-[15px] px-5 py-[10px] my-0 ml-0 w-full space-x-0.5 inline-flex justify-between items-center"
-                            onClick={(e) =>
-                              {
-                                if(menuItem?.url){
-                                  navigate(menuItem?.url)
-                                }else{
-                                navigate(`/in-play/${menuItem.count}`)}}
-                                }
+                            // onClick={(e) =>
+                            //   {
+                            //     if(menuItem?.url){
+                            //       navigate(menuItem?.url)
+                            //     }else{
+                            //     navigate(`/in-play/${menuItem.count}`)}}
+                            //     }
+                             onClick={() => {
+              if (menuItem?.url) {
+                navigate(menuItem?.url);
+              } else {
+                navigate(`/in-play/${menuItem.count}`);
+              }
+              setIsSidebarOpen(false);
+            }}
                           >
                             <div className="flex justify-start items-center space-x-4">
                               <span>
-                                <img
+                                {/* <img
                                   src={menuItem.icon}
                                   alt={menuItem.text}
                                   className="!w-[20px] !h-[20px]"
-                                />
+                                /> */}
+                                <img
+                                    src={menuItem.mobileicon}
+                                    alt=""
+                                    className="hidden sm:block w-4 h-4"
+                                  />
+
+                                  {/* Mobile icon (<576px) */}
+                                  <img
+                                    src={menuItem.mobileicon}
+                                    alt=""
+                                    className="block sm:hidden w-4 h-4"
+                                  />
                               </span>
-                              <span className="text-[15px] -tracking-wide font-[400] scale-105 group-hover:scale-110">{menuItem.text}
-                                
-                              </span>
+                              <span className="text-[15px] -tracking-wide font-[400] scale-105 group-hover:scale-110">{menuItem.text}</span>
                             </div>
                           </div>
                         </div>
                       </div>
                     );
                   })}
-                </div>
               </div>
-          </div>
-          
             </div>
+          </div>
         </div>
       </div>
     </>
   );
 };
 
-export default AppSidebar;
+export default AppSidebarMobile;
 
-const sidebarData = [
-  { gameImg: "/login/ls_01.png" },
-  { gameImg: "/login/ls_02.png" },
-  { gameImg: "/login/ls_03.png" },
-  { gameImg: "/login/ls_04.png" },
-];

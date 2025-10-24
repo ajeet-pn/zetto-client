@@ -7,6 +7,7 @@ import MarqueeNotification from '../component/marquee/MarqueeNotification'
 import AppRightSIdebar from '../component/layout/AppRightSidebar'
 import AppFooter from '../component/layout/AppFooter'
 import { useLocation } from 'react-router-dom';
+import AppSidebarMobile from '../component/layout/AppSidebarMobile'
 
 
 
@@ -14,7 +15,7 @@ import { useLocation } from 'react-router-dom';
 const Layout = () => {
 
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-    const [isStakeModalOpen, setIsStakeModalOpen] = useState(false);
+    // const [isStakeModalOpen, setIsStakeModalOpen] = useState(false);
 
     const location = useLocation();
 const currentPath = location.pathname;
@@ -25,18 +26,18 @@ const currentPath = location.pathname;
     };
     useEffect(() => {
         const checkSidebarStatus = () => {
-            setIsStakeModalOpen(document.body.classList.contains("StakeModalOpen"));
+            // setIsStakeModalOpen(document.body.classList.contains("StakeModalOpen"));
         };
         checkSidebarStatus();
         const observer = new MutationObserver(checkSidebarStatus);
         observer.observe(document.body, { attributes: true });
         return () => observer.disconnect();
     }, []);
-    const hideSidebarRoutes = ['/sport-view', "/sport-view-racing", '/deposit', "/wallet"];
+    const hideSidebarRoutes = ['/sport-view', "/sport-view-racing", '/deposit', "/wallet", "/all-casino", "/term-condition", "/promotions", "/casino-list-by-providername"];
     const shouldHideSidebars = hideSidebarRoutes.some(route => currentPath.startsWith(route));
 
 
-    const hideLeftSidebarRoutes = ['/deposit', "/wallet"];
+    const hideLeftSidebarRoutes = ['/deposit', "/wallet", "/all-casino", "/term-condition", "/promotions", "/casino-list-by-providername"];
     const shouldHideLeftSidebars = hideLeftSidebarRoutes.some(route => currentPath.startsWith(route));
 
 
@@ -52,16 +53,24 @@ const currentPath = location.pathname;
             </div>
 
             <div className="md:flex flex-1 md:overflow-hidden overflow-auto relative">
-               {( <div className={`${isSidebarOpen ? 'fixed' : 'hidden'} 
-                lg:relative lg:block inset-0 lg:inset-auto py1 lg:w-[290px] w-[80vw] h-screen lg:h-auto z-20 lg:z-auto bg-[var(--backgroundmain)] overflow-y-auto scrollbar-hide`}>
+               {!shouldHideLeftSidebars && ( <div className={`${isSidebarOpen ? 'fixed' : 'hidden'} 
+                lg:relative lg:block hidden inset-0 lg:inset-auto lg:w-[290px] w-[55%] h-screen lg:h-auto z-20 lg:z-auto bg-[var(--backgroundmain)] overflow-y-auto scrollbar-hide`}>
                     <AppSidebar
                         isSidebarOpen={isSidebarOpen}
                         setIsSidebarOpen={setIsSidebarOpen}
                     />
                 </div>)}
 
+                <div className={`${isSidebarOpen ? 'fixed' : 'hidden'} 
+                lg:relative lg:hidden block inset-0 lg:inset-auto  lg:w-[290px] w-[80vw] h-screen lg:h-auto z-20 lg:z-auto bg-[var(--backgroundmain)] overflow-y-auto scrollbar-hide`}>
+                    <AppSidebarMobile
+                        isSidebarOpen={isSidebarOpen}
+                        setIsSidebarOpen={setIsSidebarOpen}
+                    />
+                </div>
+
                 <div className={`flex-1 h-auto overflow-y-auto ${isSidebarOpen ? 'lg:ml-[0px] fixed inset-0 lg:static' : ''}`}>
-                    <div className="p-1 h-full">
+                    <div className="px-1 rounded-t-[4px] h-full">
                         <AppContent />
                         
                     </div>
@@ -80,6 +89,7 @@ const currentPath = location.pathname;
             </div>
          
         </section>
+        
            <div className='w-full max-lg:pb-16'>
                     <AppFooter />
                 </div>

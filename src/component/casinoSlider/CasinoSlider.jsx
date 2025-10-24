@@ -83,12 +83,13 @@ const CasinoSlider = ({ data }) => {
     return (
         <>
             <section className="">
+                <div className='text-[13px] font-bold text-[--secondary] bg-[--primary] flex items-center px-2 uppercase rounded-t-[4px] h-[32px]'>Featured Games</div>
                 <Slider {...settings}>
                     {data?.map((item, index) => (
                         <div key={index} className="cursor-pointer">
                             <a
                                 className='flex gap-4'>
-                                <img src={item.gameImg} alt={item.gameName} className='px-0  h-44 w-full' />
+                                <img src={item.gameImg} alt={item.gameName} className='px-0 h-[141px] min-h-[141px] object-cover w-full' />
                             </a>
                         </div>
                     ))}

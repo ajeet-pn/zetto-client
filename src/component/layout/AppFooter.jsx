@@ -79,7 +79,7 @@ const navigate = useNavigate();
               <div className="text-[13px] font-bold mb-3">HELP</div>
               <ul className="">
                 <li><a href="/responsible-gambling" className="text-[12px] h-full hover:text-gray-400">Responsible Gambling</a></li>
-                <li><a href="/terms-and-conditions" className="text-[12px] h-full hover:text-gray-400">Terms and Conditions</a></li>
+                <li><a href="/term-condition" className="text-[12px] h-full hover:text-gray-400">Terms and Conditions</a></li>
                 <li><a href="/join-affiliate" className="text-[12px] h-full hover:text-gray-400">Join as Affiliate</a></li>
                 <li><a href="/download-app" className="text-[12px] h-full hover:text-gray-400">Download App</a></li>
               </ul>
@@ -128,26 +128,41 @@ const navigate = useNavigate();
             <li className='mx-auto h-full'
             // onClick={() => handleConditionalClick()}
             >
-            <a  className="mobile-btn flex flex-col items-center">
+            <Link to='/all-casino'  className="mobile-btn flex flex-col items-center">
               <img alt="casino-icon" src="/images/zetto/casino.png" className="!h-[20px] !w-[20px] !mt-[6px]"/>
               <p className="text-white text-[10px] mt-1">Casino</p>
-              </a>
+              </Link>
             </li>
-            <li className='mx-auto h-full'
-            // onClick={() => handleConditionalClick()}
-            >
-            <a  className="mobile-btn flex flex-col items-center">
-              <img alt="casino-icon" src="/images/zetto/star.png" className="!h-[20px] !w-[20px] !mt-[6px]"/>
-              <p className="text-white text-[10px] mt-1">Offers</p>
-              </a>
-            </li>
+            {
+              !token ? 
+              (
+                <li className='mx-auto h-full'
+                // onClick={() => handleConditionalClick()}
+                >
+                <Link to=''  className="mobile-btn flex flex-col items-center">
+                  <img alt="casino-icon" src="/images/zetto/star.png" className="!h-[20px] !w-[20px] !mt-[6px]"/>
+                  <p className="text-white text-[10px] mt-1">Offers</p>
+                  </Link>
+                </li>
+              ) :
+              (
+                <li className='mx-auto h-full'
+                // onClick={() => handleConditionalClick()}
+                >
+                <Link to='/wallet'  className="mobile-btn flex flex-col items-center">
+                  <img alt="casino-icon" src="/images/zetto/star.png" className="!h-[20px] !w-[20px] !mt-[6px]"/>
+                  <p className="text-white text-[10px] mt-1">Wallet</p>
+                  </Link>
+                </li>
+              )
+            }
             <li 
             // onClick={() => handleClick("/")} 
-            className=" mx-auto absolute z-50 bottom-[20px] left-1/2 -translate-x-1/2">
-              <div className="">
+            className=" mx-auto absolute z-50 bottom-[10px] left-1/2 -translate-x-1/2">
+              <Link to='/' className="">
                 {/* <i className="fa fa-home" aria-hidden="true"></i> */}
                 <img className="!w-[60px] !h-[60px]" src="/images/zetto/home_icon.png" alt="" />
-              </div>
+              </Link>
             </li>
             <li></li>
 
@@ -170,10 +185,10 @@ const navigate = useNavigate();
               <li className='mx-auto h-full'
               // onClick={()=>setLogin(true)}
               >
-                <a  className="mobile-btn flex flex-col items-center">
+                <Link to='/login'  className="mobile-btn flex flex-col items-center">
                 <img src="/images/zetto/avatar.png"className="!h-[20px] !w-[20px] !mt-[6px]"/>
                 <p className="text-white text-[10px] mt-1">Login</p>
-                </a>
+                </Link>
               </li>
            )} 
           </ul>
