@@ -227,7 +227,7 @@ useEffect(() => {
 
                 <div className="flex w-full lg:w-52 items-start border-2 border-secondary  rounded-sm my-2 transition-colors relative">
                   <div className="absolute mx-2 -top-[10px] space-x-2 text-[#7b7b7b] max-w-[85%] flex justify-satrt items-center bg-white px-2">
-                    <h2 className="text-xs font-semibold">From</h2>
+                    {/* <h2 className="text-xs font-semibold">From</h2> */}
                   </div>
                   <input
                     type="date"
@@ -235,12 +235,12 @@ useEffect(() => {
                     id="fromDate"
                     value={fromDate}
                     onChange={handleChange}
-                    className="block w-full  mt-1 border-white rounded-sm bg-white text-[#7b7b7b] py-3 px-3 shadow-sm focus:outline-none "
+                    className="block w-full h-[43px] mt-1 bg-transparent border border-black rounded-sm text-[#7b7b7b] py-3 px-3 shadow-sm focus:outline-none "
                   />
                 </div>
                 <div className="flex w-full lg:w-52 items-start border-2 border-secondary  rounded-sm my-2 transition-colors relative">
                   <div className="absolute mx-2 -top-[10px] space-x-2 text-[#7b7b7b] max-w-[85%] flex justify-satrt items-center bg-white px-2">
-                    <h2 className="text-xs font-semibold">To</h2>
+                    {/* <h2 className="text-xs font-semibold">To</h2> */}
                   </div>
                   <input
                     type="date"
@@ -248,7 +248,7 @@ useEffect(() => {
                     id="toDate"
                     value={toDate}
                     onChange={handleChange}
-                    className="block w-full  mt-1 border-white rounded-sm bg-white text-[#7b7b7b] py-3 px-3 shadow-sm focus:outline-none "
+                    className="block w-full h-[43px] mt-1 bg-transparent border border-black rounded-sm text-[#7b7b7b] py-3 px-3 shadow-sm focus:outline-none "
                   />
                 </div>
 
@@ -256,7 +256,7 @@ useEffect(() => {
                 <div className="my-2">
                   <button
                     type="submit"
-                    className="bg-black mt-1 text-white text-sm font-bold px-4 py-4 lg:w-52 w-full   rounded-sm"
+                    className="bg-black mt-1 h-[43px] text-white text-sm font-bold px-4 py-4 lg:w-52 w-full   rounded-sm"
                     onClick={getBetLists}
                   >
                     Load Report

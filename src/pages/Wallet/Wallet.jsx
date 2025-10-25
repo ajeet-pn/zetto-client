@@ -25,6 +25,7 @@ const Wallet = () => {
   const [errors, setErrors] = useState({});
   const [eWalletErrors, setEWalletErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [activeAmount, setActiveAmount] = useState(null);
 
   useEffect(() => {
     getBankDetails();
@@ -223,6 +224,8 @@ const Wallet = () => {
       setEWalletErrors((prev) => ({ ...prev, amount: "" }));
     } else {
       setBankAmount(selectedAmount.toString());
+      setActiveAmount(Number(selectedAmount));
+
       setErrors((prev) => ({ ...prev, amount: "" }));
     }
   };
@@ -235,8 +238,18 @@ const Wallet = () => {
     } else {
       setBankAmount(value);
       setErrors((prev) => ({ ...prev, amount: "" }));
+    setActiveAmount(null);
     }
   };
+
+  
+  const handleReset = () => {
+    setBankAmount("");
+    setActiveAmount(null);
+    setErrors({});
+  };
+
+
   return (
     <div className="bg-white text-black p-2  md:max-w-5xl w-full mx-auto mb-28">
       <div className="flex text-xs font-semibold justify-center mb-4">
@@ -619,7 +632,13 @@ const Wallet = () => {
                 <button
                   key={presetAmount}
                   type="button"
-                  className="bg-white px-4 py-1 text-sm font-bold hover:bg-[--primary] hover:text-[--secondary] border border-gray-300 rounded-lg text-[--primary]"
+                  className={`px-4 py-1 text-sm font-bold border border-gray-300 rounded-lg 
+                  ${
+                    activeAmount === presetAmount
+                      ? "bg-[--primary] text-[--secondary]"
+                      : "bg-white text-[--primary] hover:bg-[--primary] hover:text-[--secondary]"
+                  }`}
+                  // className="bg-white px-4 py-1 text-sm font-bold hover:bg-[--primary] hover:text-[--secondary] border border-gray-300 rounded-lg text-[--primary]"
                   onClick={() => handleQuickAmountSelect(presetAmount, false)}
                 >
                   ₹{presetAmount}
@@ -630,7 +649,7 @@ const Wallet = () => {
               <div className="relative mt-3 mx-0 md:mx-5">
                 <div className="flex items-center  mb-3 justify-between">
                   <label className="block text-sm capitalize text-[--primary] font-semibold">Type Your Amount </label>
-                  <Link className="underline text-[14px] font-semibold capitalize ">Reset</Link>
+                  <Link onClick={handleReset} className="underline text-[14px] font-semibold capitalize ">Reset</Link>
                 </div>
                 <input
                   type="number"
