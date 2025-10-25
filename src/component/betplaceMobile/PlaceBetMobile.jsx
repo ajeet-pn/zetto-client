@@ -18,7 +18,7 @@ export const betChipsData = {
 };
 
 export default function PlaceBetMobile(props) {
-    const { decreaseCount, count, setBetSlipData, handleButtonValues, increaseCount, placeBet, handleClose, betSlipData, betLoading, inputChange, isFetch, isMatchCoin } = props;
+    const { decreaseCount, count, setBetSlipData, handleButtonValues, increaseCount, placeBet, handleClose, betSlipData, betLoading, inputChange, isFetch, isMatchCoin, openBets } = props;
     const updateStackOnclic = (input) => {
         const numericInput = parseFloat(input);
         if (!isNaN(numericInput)) {

@@ -73,16 +73,10 @@ const KhadoFancyComponent = ({
               </div>
             )}
             <header className="mt-1">
-              <div className="bg-slate-300 items-center flex justify-between relative z-0 ">
-                <div className="flex text-white align-items-center h-100 uppercase text-[14px] font-semibold bg-slate-300">
+              <div className="bg-[var(--primary)] items-center flex justify-between relative z-0 ">
+                <div className="flex text-white align-items-center h-100 uppercase text-[14px] font-semibold ">
                   <span className="
-              h-10 inline-flex items-center px-[10px] mr-[10px] relative 
-              text-white text-[13px] font-semibold uppercase bg-[var(--primary)] 
-              leading-none mobile:text-[11px] mobile:px-[5px] 
-              before:content-[''] before:absolute before:right-[-17px] before:top-0 
-              before:w-[18px] before:h-full 
-              before:bg-[linear-gradient(180deg,var(--primary)_0,var(--primary))] 
-              before:[clip-path:polygon(0_-1px,100%_-1px,1px_100%,0_100%)]
+              py-1 inline-flex items-center px-[10px] mr-[10px] relative 
             ">
                     Khedo
                   </span>
@@ -107,7 +101,7 @@ const KhadoFancyComponent = ({
                 <div className="xl:w-[30%] w-[35%] grid md:grid-cols-2 grid-cols-1">
                   <span className="lg:block hidden">
                     <div className="py-1.5 flex justify-center items-center ">
-                      <div className="text-center leading-3">
+                      <div className="text-center bg-[#8DD9FF] w-full rounded leading-3">
                         <span className="text-xs uppercase text-gray-800 font-bold">yes</span>
                       </div>
                     </div>
@@ -136,7 +130,7 @@ const KhadoFancyComponent = ({
                             className="text-black flex items-center justify-center cursor-pointer"
                           ></span>
                         </span>
-                         <button
+                         {/* <button
                       onClick={(e) => {
                         e.stopPropagation();
                         // toggleBookmark();
@@ -149,7 +143,7 @@ const KhadoFancyComponent = ({
                       ) : (
                         <FaRegBookmark size={12} className='text-[var(--primary)]' />
                       )}
-                    </button>
+                    </button> */}
                         <span className="text-xs truncate">
                           <span className="text-[13px] truncate text-[#333333]">
                             {commList.session_name} - {commList.runsNo}

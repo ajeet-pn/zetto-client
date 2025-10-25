@@ -35,7 +35,7 @@ const TossDataComponent = ({
 
 
   return (
-    inplayMatch?.isToss && (activeTab === "other" || activeTab === "all") ? (
+    inplayMatch?.isToss && (activeTab === "toss" || activeTab === "all") ? (
       <>
         <div className='bg-white'>
           {matchScoreDetails &&

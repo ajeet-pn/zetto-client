@@ -74,7 +74,7 @@ const OddEvenFancyComponent = ({
             )}
             <div className="grid xl:grid-cols-1 grid-cols-1">
               <div className={`border-b border-gray-200 bg-white relative flex decoration-none whitespace-normal max-w-full`}>
-                <div className="xl:w-[70%] w-[65%] flex px-2">
+                <div className="xl:w-[65%] w-[65%] flex px-2">
                   <div className="w-full bg-white leading-3 flex items-center">
                     <span className="lg:hidden flex z-20 pr-1">
                       <span className="text-black flex items-center justify-center"></span>
@@ -86,31 +86,31 @@ const OddEvenFancyComponent = ({
                     </span>
                   </div>
                 </div>
-                <div className="xl:w-[30%] w-[35%] grid grid-cols-2 xl:grid-cols-4">
+                <div className="xl:w-[35%] w-[35%] grid grid-cols-2 xl:grid-cols-4">
                   <span className="lg:block hidden bg-white">
-                    <div className={`py-1.5 flex justify-center items-center bg-white`}>
-                      <div className='text-center leading-3'>
-                        <span className="text-xs uppercase text-gray-800 font-bold">No</span>
+                    <div className={`py-1.5  flex justify-center items-center bg-white`}>
+                      <div className='text-center bg-[#FF94BC] w-full rounded  leading-3'>
+                        <span className="text-xs  uppercase text-gray-800 font-bold">No</span>
                       </div>
                     </div>
                   </span>
                   <span className="lg:hidden block">
                     <div className={`py-1.5 flex justify-center items-center bg-white`}>
-                      <div className='text-center leading-3'>
-                        <span className="text-xs uppercase text-gray-800 font-bold">No</span>
+                      <div className='text-center bg-[#FF94BC] w-full rounded leading-3'>
+                        <span className="text-xs  uppercase text-gray-800 font-bold">No</span>
                       </div>
                     </div>
                   </span>
                   <span className="lg:block hidden bg-white">
                     <div className={`py-1.5 flex justify-center items-center bg-white`}>
-                      <div className='text-center leading-3'>
+                      <div className='text-center bg-[#8DD9FF] w-full rounded leading-3'>
                         <span className="text-xs uppercase text-gray-800 font-bold">yes</span>
                       </div>
                     </div>
                   </span>
                   <span className="lg:hidden block">
                     <div className={`py-1.5 flex justify-center items-center bg-white`}>
-                      <div className='text-center leading-3'>
+                      <div className='text-center bg-[#8DD9FF] w-full rounded leading-3'>
                         <span className="text-xs uppercase text-gray-800 font-bold">yes</span>
                       </div>
                     </div>
@@ -124,7 +124,7 @@ const OddEvenFancyComponent = ({
               {OddEvenFancy?.map((commList, index) => (
                 <div key={index}>
                   <div className="border-b border-gray-200 relative flex decoration-none whitespace-normal bg-white max-w-full">
-                    <div className="xl:w-[70%] bg-white w-[65%] flex px-2">
+                    <div className="xl:w-[65%] bg-white w-[65%] flex px-2">
                       <div className="w-full leading-3 flex items-center space-x-1">
                         <span className="lg:hidden flex z-20 pr-1">
                           <span
@@ -132,7 +132,7 @@ const OddEvenFancyComponent = ({
                             className="text-black flex items-center justify-center cursor-pointer"
                           ></span>
                         </span>
-                        <button
+                        {/* <button
                           onClick={(e) => {
                             e.stopPropagation();
                             // toggleBookmark();
@@ -145,7 +145,7 @@ const OddEvenFancyComponent = ({
                           ) : (
                             <FaRegBookmark size={12} className='text-[var(--primary)]' />
                           )}
-                        </button>
+                        </button> */}
                         <span className="text-xs truncate">
                           <span className="text-[13px] truncate text-[#333333]">
                             {commList.session_name}
@@ -169,7 +169,7 @@ const OddEvenFancyComponent = ({
                         </span>
                       </div>
                     </div>
-                    <div className="xl:w-[30%] w-[35%] grid grid-cols-2 xl:grid-cols-4">
+                    <div className="xl:w-[35%] w-[35%] grid grid-cols-2 xl:grid-cols-4">
                       <span
                         className="lg:block hidden cursor-pointer"
                         onClick={() => {
@@ -194,7 +194,7 @@ const OddEvenFancyComponent = ({
                         <BlinkingComponent
                           price={commList.runsNo}
                           size={(commList.oddsNo * 100).toFixed(2).replace(/\.00$/, "")}
-                          color={"bg-[#FEAFB2]"}
+                          color={"bg-[#FF94BC]"}
                           blinkColor={"bg-[#FE7A7F]"}
                           textColors={"text-black"}
                           boderColors={"border-[#f996ab]"}
@@ -224,7 +224,7 @@ const OddEvenFancyComponent = ({
                         <BlinkingComponent
                           price={commList.runsNo}
                           size={(commList.oddsNo * 100).toFixed(2).replace(/\.00$/, "")}
-                          color={"bg-[#FEAFB2]"}
+                          color={"bg-[#FF94BC]"}
                           blinkColor={"bg-[#FE7A7F]"}
                           textColors={"text-black"}
                           boderColors={"border-[#f996ab]"}

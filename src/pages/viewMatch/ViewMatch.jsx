@@ -111,6 +111,8 @@ const ViewMatches = () => {
     const { pathname } = useLocation();
     const gameDetailOtherPart = pathname.includes('viewMatchDetail');
     const handleTabClick = (tab) => {
+        console.log(tab, "lllllllllllll");
+        
         setActiveTab(tab);
     };
     document.title = `${inplayMatch?.matchName} | ReddyBook`;
@@ -1102,18 +1104,23 @@ const ViewMatches = () => {
                         )}
 
                         <div class="flex w-full md:w-full overflow-hidden py-2 md:py-1 md:px-0 my-1">
-                            <div class="w-full inline-flex overflow-x-scroll">
-                                <div class="flex-none relative space-x-2">
-                                    <button class=" bg-[var(--secondary)] text-black h-[21px] px-2 rounded-[2.83px] gap-2.5  font-bold uppercase text-[12px]  ">All</button>
-                                    <button class="bg-[#feffff] border-[1px]  text-zinc-900 h-[21px] px-2 rounded-[2.83px] place-content-center gap-2.5  font-bold uppercase text-[12px] ">Bookmaker</button>
+                            <div class="w-full inline-flex overflow-auto ">
+                                <div class="flex-none  relative space-x-2">
+                                    {console.log(inplayMatch, "inplayMatchinplayMatch")
+                                    }
+                                    <button class=" bg-[var(--secondary)] text-black h-[21px] px-2 rounded-[2.83px] gap-2.5  font-bold uppercase text-[12px]  " onClick={() => handleTabClick("all")}>All</button>
+                                    {inplayMatch?.isMatchOdds && <button class="bg-[#feffff] border-[1px]  text-zinc-900 h-[21px] px-2 rounded-[2.83px] place-content-center gap-2.5  font-bold uppercase text-[12px] " onClick={() => handleTabClick("MatchOdds")}>Match Odds</button>}
+                                    {inplayMatch?.isBookmaker && <button class="bg-[#feffff] border-[1px]  text-zinc-900 h-[21px] px-2 rounded-[2.83px] place-content-center gap-2.5  font-bold uppercase text-[12px] " onClick={() => handleTabClick("bookmaker")}>Bookmaker</button>}
+                                    {inplayMatch?.isTieOdds && <button class="bg-[#feffff] border-[1px]  text-zinc-900 h-[21px] px-2 rounded-[2.83px] place-content-center gap-2.5  font-bold uppercase text-[12px] " onClick={() => handleTabClick("tied")}>tied</button>}
+                                    {inplayMatch?.isToss && <button class="bg-[#feffff] border-[1px]  text-zinc-900 h-[21px] px-2 rounded-[2.83px] place-content-center gap-2.5  font-bold uppercase text-[12px] " onClick={() => handleTabClick("toss")}>Toss</button>}
+                                    {inplayMatch?.isFancy && <button class="bg-[#feffff] border-[1px]  text-zinc-900 h-[21px] px-2 rounded-[2.83px] place-content-center gap-2.5  font-bold uppercase text-[12px] " onClick={() => handleTabClick("fancy")}>Fancy</button>}
                                 </div>
                             </div>
                         </div>
                         {!open ? <>
 
-                            <MatchOddsComponent
+                            {(activeTab == "all" || activeTab == "MatchOdds") && (<MatchOddsComponent
                                 inplayMatch={inplayMatch}
-
                                 activeTab={activeTab}
                                 finalSocket={finalSocket}
                                 isMatchCoin={isMatchCoin}
@@ -1124,7 +1131,7 @@ const ViewMatches = () => {
                                 formatNumber={formatNumber}
                                 betplaceSection={betplaceDataThroughProps}
 
-                            />
+                            />)}
                             <OtherMarketsComponent
                                 activeTab={activeTab}
                                 otherFinalSocket={otherFinalSocket}
@@ -1138,7 +1145,7 @@ const ViewMatches = () => {
                             />
 
 
-                            <BookmakerComponent
+                            {(activeTab == "all" || activeTab == "bookmaker") && (<BookmakerComponent
                                 inplayMatch={inplayMatch}
                                 activeTab={activeTab}
                                 bookmaker2Fancy={bookmaker2Fancy}
@@ -1153,9 +1160,9 @@ const ViewMatches = () => {
                                 formatNumber={formatNumber}
                                 betplaceSection={betplaceDataThroughProps}
 
-                            />
+                            />)}
 
-                            <TossDataComponent
+                            {(activeTab == "all" || activeTab == "toss") && (<TossDataComponent
                                 inplayMatch={inplayMatch}
                                 activeTab={activeTab}
                                 matchScoreDetails={matchScoreDetails}
@@ -1168,9 +1175,9 @@ const ViewMatches = () => {
                                 formatNumber={formatNumber}
                                 betplaceSection={betplaceDataThroughProps}
                                 isMatchCoin={isMatchCoin}
-                            />
+                            />)}
 
-                            <TiedOddsComponent
+                           {(activeTab == "all" || activeTab == "tied") && ( <TiedOddsComponent
                                 inplayMatch={inplayMatch}
                                 activeTab={activeTab}
                                 finalSocket={finalSocket}
@@ -1182,13 +1189,13 @@ const ViewMatches = () => {
                                 formatNumber={formatNumber}
                                 betplaceSection={betplaceDataThroughProps}
 
-                            />
+                            />)}
 
-                            {sportId == "4" && <div className="fancy-premium-container mt-1">
+                            {(sportId == "4" && (activeTab == "all" || activeTab == "fancy"))  && <div className="fancy-premium-container mt-1">
 
                                 <div className="flex gap-2 w-full">
                                     <button
-                                        className={`px-3 py-1.5 w-1/2  rounded-[5px] text-[12px] font-[700] hover:shadow-[inset_0px_-10px_20px_0px_#9f0101] hover:bg-[linear-gradient(180deg,#fa7e29_0%,#F6682F_80%,#F6682F_100%)] border border-[var(--primary)] hover:text-white  ${mainTab === "fancy" ? "bg-[linear-gradient(180deg,#fa7e29_0%,#F6682F_80%,#F6682F_100%)] shadow-[inset_0px_-10px_20px_0px_#9f0101] text-white" : "bg-white text-red-500"
+                                        className={`px-3 py-1.5 w-1/2 text-[12px] font-[700] hover:bg-[var(--primary)] border border-[var(--primary)] hover:text-white  ${mainTab === "fancy" ? "bg-[--secondary]" : "bg-white text-red-500"
                                             }`}
                                         onClick={() => {
                                             setMainTab("fancy");
@@ -1200,24 +1207,12 @@ const ViewMatches = () => {
                                 </div>
 
                                 {/* Sub Tabs */}
-                                <div className="flex flex-nowrap gap-2 my-2 overflow-x-auto">
+                                <div className="flex flex-nowrap gap-1 my-2 overflow-x-auto">
                                     {mainTab === "fancy" &&
                                         fancyTabs.map((tab) => (
                                             <button
                                                 key={tab.key}
-                                                className={`mb-1 px-3 py-1.5 rounded-[5px] text-[12px] font-[700] hover:bg-[linear-gradient(180deg,#fa7e29_0%,#F6682F_80%,#F6682F_100%)] hover:shadow-[inset_0px_-10px_20px_0px_#9f0101]  min-w-[250px] max-w-[250px] border border-[var(--primary)] hover:text-white ${subTab === tab.key ? "bg-[linear-gradient(180deg,#fa7e29_0%,#F6682F_80%,#F6682F_100%)] shadow-[inset_0px_-10px_20px_0px_#9f0101] text-white" : "bg-white text-red-500"
-                                                    }`}
-                                                onClick={() => setSubTab(tab.key)}
-                                            >
-                                                {tab.label}
-                                            </button>
-                                        ))}
-
-                                    {mainTab === "premium" &&
-                                        premiumTabs.map((tab) => (
-                                            <button
-                                                key={tab.key}
-                                                className={`px-5 py-1 border ${subTab === tab.key ? "bg-black text-white" : "bg-[var(--darkcolor)] text-white"
+                                                className={`mb-1 px-3 py-1.5 rounded text-[12px] font-[700] hover:bg-[var(--primary)] hover:text-white ${subTab === tab.key ? "bg-[--secondary] text-[--primary]" : "bg-white text-[--primary]"
                                                     }`}
                                                 onClick={() => setSubTab(tab.key)}
                                             >
@@ -1228,10 +1223,8 @@ const ViewMatches = () => {
 
                                 {/* Content */}
                                 <div className="mb-2">
-                                    {mainTab === "fancy" && renderFancyComponent()}
-                                    {mainTab === "premium" && (
-                                        <div className="p-4 bg-gray-100">No Premium market found.</div>
-                                    )}
+                                    {renderFancyComponent()}
+                                    
                                 </div>
                             </div>}
 

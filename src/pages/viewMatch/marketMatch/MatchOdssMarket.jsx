@@ -17,7 +17,7 @@ const MatchOddsComponent = ({
   betplaceSection,
   minMax
 }) => {
-  if (!inplayMatch?.isMatchOdds || activeTab !== "all") {
+  if (!inplayMatch?.isMatchOdds || !(activeTab === "MatchOdds" || activeTab === "all")) {
     return null;
   }
 

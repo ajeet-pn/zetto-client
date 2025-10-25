@@ -33,7 +33,7 @@ const TiedOddsComponent = ({
     handleButtonValues
   } = betplaceSection;
 
-  if (!inplayMatch?.isTieOdds && (activeTab === "all" || activeTab === "other")) {
+  if (!inplayMatch?.isTieOdds && (activeTab === "all" || activeTab === "tied")) {
     return null;
   }
 
