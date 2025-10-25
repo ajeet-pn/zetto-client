@@ -194,9 +194,9 @@ function Deposit() {
     const paymentImage = [
         { imgs: "/deposit/bank2.png", title: "bank", method: "bank" },
         { imgs: "/deposit/bhim.png", title: "bhimUpi", method: "upi" },
-        { imgs: "/deposit/paytm.png", title: "paytm", method: "upi" },
-        { imgs: "/deposit/googlepay.png", title: "googlePay", method: "upi" },
-        { imgs: "/deposit/phonepe.svg", title: "phonePay", method: "upi" },
+        { imgs: "/images/zetto/paytm-pay.png", title: "paytm", method: "upi" },
+        { imgs: "/images/zetto/gpay.png", title: "googlePay", method: "upi" },
+        { imgs: "/images/zetto/phonepe-pay.png", title: "phonePay", method: "upi" },
     ];
 
     return (
@@ -391,8 +391,7 @@ function Deposit() {
                                         <div
                                             key={method}
                                             onClick={() => handleMethodClick(method)}
-                                            className="flex flex-row justify-center items-center h-[84px] rounded-md"
-                                            style={{ boxShadow: '2px 2px 2px 0px #00000040' }}
+                                            className="flex flex-row justify-center items-center mt-4 rounded-md border border-gray-300 p-2 w-[66px] h-auto"
                                         >
                                             {paymentImage
                                                 .filter(item => item.method === selectedMethod)
