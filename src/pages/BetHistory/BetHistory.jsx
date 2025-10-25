@@ -235,7 +235,7 @@ useEffect(() => {
                     id="fromDate"
                     value={fromDate}
                     onChange={handleChange}
-                    className="block w-full h-[43px] mt-1 bg-transparent border border-black rounded-sm text-[#7b7b7b] py-3 px-3 shadow-sm focus:outline-none "
+                    className="block w-full h-[43px] mt-1 bg-transparent border border-black rounded-[5px] text-black py-3 px-3 shadow-sm focus:outline-none "
                   />
                 </div>
                 <div className="flex w-full lg:w-52 items-start border-2 border-secondary  rounded-sm my-2 transition-colors relative">
@@ -248,7 +248,7 @@ useEffect(() => {
                     id="toDate"
                     value={toDate}
                     onChange={handleChange}
-                    className="block w-full h-[43px] mt-1 bg-transparent border border-black rounded-sm text-[#7b7b7b] py-3 px-3 shadow-sm focus:outline-none "
+                    className="block w-full h-[43px] mt-1 bg-transparent border border-black rounded-[5px] text-black py-3 px-3 shadow-sm focus:outline-none "
                   />
                 </div>
 
@@ -256,7 +256,7 @@ useEffect(() => {
                 <div className="my-2">
                   <button
                     type="submit"
-                    className="bg-black mt-1 h-[43px] text-white text-sm font-bold px-4 py-4 lg:w-52 w-full   rounded-sm"
+                    className="bg-black flex rounded-[5px] justify-center items-center mt-1 h-[43px] text-white text-sm font-bold px-4 py-4 lg:w-52 w-full"
                     onClick={getBetLists}
                   >
                     Load Report

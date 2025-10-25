@@ -54,7 +54,7 @@ const Layout = () => {
 
                 <div className="md:flex flex-1 md:overflow-hidden overflow-auto relative">
                     {!shouldHideLeftSidebars && (<div className={`${isSidebarOpen ? 'fixed' : 'hidden'} 
-                lg:relative lg:block hidden inset-0 lg:inset-auto py-1 lg:w-[290px] w-[55%] h-screen lg:h-auto z-20 lg:z-auto bg-[var(--backgroundmain)] overflow-y-auto scrollbar-hide`}>
+                lg:relative lg:block hidden inset-0 lg:inset-auto lg:w-[290px] w-[55%] h-screen lg:h-auto z-20 lg:z-auto bg-[var(--backgroundmain)] overflow-y-auto scrollbar-hide`}>
                         <AppSidebar
                             isSidebarOpen={isSidebarOpen}
                             setIsSidebarOpen={setIsSidebarOpen}
