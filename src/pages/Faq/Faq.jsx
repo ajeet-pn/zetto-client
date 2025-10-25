@@ -8,13 +8,13 @@ export const Faq = () => {
             <div className='md:px-8 px-2'>
                 <div className='text-[25px] font-[900] text-center my-4'>FREQUENTLY ASKED QUESTIONS</div>
                 <p className='text-[18px] font-bold my-10'>A. General Information </p>
-                <p className='text-[18px] font-bold my-10'>1. What is Zetto.in?  </p>
+                <p className='text-[18px] font-bold my-10'>1. What is Bhimexch.com?  </p>
                 <p className='text-[18px] mb-10'>
-                    Zetto.in is India’s biggest sports betting exchange, with more than 10,000 sports events covered and 100+ Casino options, we keep our users at the center of all we have to offer. 
+                    Bhimexch.com is India’s biggest sports betting exchange, with more than 10,000 sports events covered and 100+ Casino options, we keep our users at the center of all we have to offer. 
                 </p> 
                 <p className='text-[18px] font-bold my-10'>2. Can I change or update my personal information?   </p>
                 <p className='text-[18px] mb-10'>
-                    You have the option to modify your account password and update personal information, including your linked bank account details within your Zetto account.
+                    You have the option to modify your account password and update personal information, including your linked bank account details within your Bhimexch account.
                 </p>
                 <p className='text-[18px] font-bold my-10'>
                     3. Can I change mobile numbers once the account is created?   </p>
@@ -32,7 +32,7 @@ export const Faq = () => {
                 <p className='text-[18px] font-bold my-10'>
                     6. What should I do if I have forgotten my username?      </p>
                 <p className='text-[18px] mb-10'>
-                    To initiate the username recovery process, kindly contact our customer support team through LIVE Chat or Phone by clicking on the 'Helpline' button available on the zetto.in website. 
+                    To initiate the username recovery process, kindly contact our customer support team through LIVE Chat or Phone by clicking on the 'Helpline' button available on the Bhimexch.com website. 
                 </p>
                 <p className='text-[18px] font-bold my-10'>
                     7. How can I change my password?    </p>
@@ -44,7 +44,7 @@ export const Faq = () => {
                 <p className='text-[18px] mb-10'>
                     To reset your password, please follow these steps:
 
-                    Click on the 'Login' button available on the zetto.in website.
+                    Click on the 'Login' button available on the Bhimexch.com website.
                     Utilize the 'Forgot Password' option
                     The mobile number registered with your account with get auto-filled
                     Enter the OTP (One-Time Password) received to create a new password
@@ -52,7 +52,7 @@ export const Faq = () => {
                 <p className='text-[18px] font-bold my-10'>
                     9. How can I contact customer support?     </p>
                 <p className='text-[18px] mb-10'>
-                    For assistance, our 24/7 customer support is readily available through LIVE Chat and Voice. Simply access the 'Helpline' button provided on the zetto.in website to reach our support team. You can also email us at support@zetto.in
+                    For assistance, our 24/7 customer support is readily available through LIVE Chat and Voice. Simply access the 'Helpline' button provided on the Bhimexch.com website to reach our support team. You can also email us at support@Bhimexch.com
                 </p>
                 <p className='text-[18px] font-bold my-10'>
                     10. Can I delete my Account   </p>
@@ -163,7 +163,7 @@ In the event of a delay, kindly ensure that the deposit slip is shared with cust
                                         <p className='text-[18px] font-bold my-10'>
                         1. What games are available on the platform?  </p>
                                         <p className='text-[18px] mb-10'>
-                        zetto.in offers portfolio of Sports exchange where you can explore Cricket, Tennis, Soccer, Horse Race and Basketball along with Casino and Slots i.e., Roulette, Teen Patti, Andar Bahar, Dragon Tiger, Baccarat, 32 Cards, Lucky 7, Heads and Tails, Evolution, Ezugi, TVBET and more
+                        Bhimexch.com offers portfolio of Sports exchange where you can explore Cricket, Tennis, Soccer, Horse Race and Basketball along with Casino and Slots i.e., Roulette, Teen Patti, Andar Bahar, Dragon Tiger, Baccarat, 32 Cards, Lucky 7, Heads and Tails, Evolution, Ezugi, TVBET and more
                                         </p>  
                                         <p className='text-[18px] font-bold my-10'>
                         2. What are the minimum and maximum amounts that I can bet?  </p>
@@ -179,7 +179,7 @@ In the event of a delay, kindly ensure that the deposit slip is shared with cust
                         If a sporting event or match is suspended or terminated, the entire match will be considered void, and stakes will be returned.
                                         </p>
                                         <p className='text-[18px] mb-10'>
-                        Zetto reserves the right to resettle or void any market due to reasons such as technical delays or suspensions from the provider.
+                        Bhimexch reserves the right to resettle or void any market due to reasons such as technical delays or suspensions from the provider.
                                         </p><p className='text-[18px] font-bold my-10'>
                         5. How do I check all my bet transactions?   </p>
                                         <p className='text-[18px] mb-10'>
@@ -198,13 +198,13 @@ In the event of a delay, kindly ensure that the deposit slip is shared with cust
                 <p className='text-[18px] font-bold my-10'>
                     F. Security and Privacy  </p>
                 <p className='text-[18px] font-bold my-10'>
-                    1. Is Zetto legal and licensed?  </p>
-                <p className='text-[18px] mb-10'>Website www.zetto.in is owned and operated by Never Ending Gaming N.V a Never Ending Gaming N.V.. registered in accordance with Curaçao Law, registration No 162816 - it is genuine/true website, and we follow all the required protocols to meet the industry requirements. 
+                    1. Is Bhimexch legal and licensed?  </p>
+                <p className='text-[18px] mb-10'>Website www.Bhimexch.com is owned and operated by Never Ending Gaming N.V a Never Ending Gaming N.V.. registered in accordance with Curaçao Law, registration No 162816 - it is genuine/true website, and we follow all the required protocols to meet the industry requirements. 
                 </p>  
                 <p className='text-[18px] font-bold my-10'>
-                    2. Is my personal information secure with Zetto?  </p>
+                    2. Is my personal information secure with Bhimexch?  </p>
                 <p className='text-[18px] mb-10'>
-                    Rest assured that your personal information is kept confidential with Zetto. We maintain strict privacy standards and will not share your personal data with any external company, individual, or third party unless you have explicitly granted us permission to do so. 
+                    Rest assured that your personal information is kept confidential with Bhimexch. We maintain strict privacy standards and will not share your personal data with any external company, individual, or third party unless you have explicitly granted us permission to do so. 
                 </p>  
                 <p className='text-[18px] font-bold my-10'>
                     3. Is my identity information kept confidential?  </p>
@@ -234,11 +234,11 @@ In the event of a delay, kindly ensure that the deposit slip is shared with cust
                 <p className='text-[18px] font-bold my-10'>
                     2. What should I do if I believe I have an addiction problem?</p>
                 <p className='text-[18px] mb-10'>
-                    If you believe you may be facing addiction related issues, we take your concerns seriously. We have policies in place to prohibit individuals with gaming addiction from further participating in our games. Additionally, we encourage you to seek advice and support by reaching out to us at customerservice@zetto.in.           
+                    If you believe you may be facing addiction related issues, we take your concerns seriously. We have policies in place to prohibit individuals with gaming addiction from further participating in our games. Additionally, we encourage you to seek advice and support by reaching out to us at customerservice@Bhimexch.com.           
                 </p>
                 <p className='text-[18px] font-bold my-10'>
                     3. Can I self-exclude myself? </p>
-                <p className='text-[18px] mb-10'>“Self-Exclusion” means that you exclude yourself, out of your own choice, from all gaming services. This exclusion cannot be undone for a set amount of time. Please keep in mind that Self Exclusion is permanent for the set time span and will not be undone for your own protection. If you wish to self-exclude yourself from gaming, please message our support at customerservice@zetto.in.          
+                <p className='text-[18px] mb-10'>“Self-Exclusion” means that you exclude yourself, out of your own choice, from all gaming services. This exclusion cannot be undone for a set amount of time. Please keep in mind that Self Exclusion is permanent for the set time span and will not be undone for your own protection. If you wish to self-exclude yourself from gaming, please message our support at customerservice@Bhimexch.com.          
                 </p>
                 <p className='text-[18px] font-bold my-10'>H. Technical Issues </p>
                 <p className='text-[18px] font-bold my-10'>
@@ -270,7 +270,7 @@ In the event of a delay, kindly ensure that the deposit slip is shared with cust
                                         <Link className='text-[14px]'> Responsible Gambling |</Link>
                                         <Link className='text-[14px]'> Terms and Conditions |</Link>
                                         <Link className='text-[14px]'> Rules |</Link>
-                                        <Link className='text-[14px]'> Zetto Blog |</Link>
+                                        <Link className='text-[14px]'> Bhimexch Blog |</Link>
                                         <Link to={"/privacy-policy"} className='text-[14px]'> Privacy Policy |</Link>
                                         <Link className='text-[14px]'> Sitemap </Link>
                                     </div>

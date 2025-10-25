@@ -554,7 +554,7 @@ function Deposit() {
                             "After Deposit, Upload Slip and Enter your deposit amount.",
                             "Copy and Enter 12 Digit UTR number.",
                             "Click on Submit button and receive Points and Bonus instantly.",
-                            "zetto is not responsible for money deposited to old inactive or closed accounts.",
+                            "Bhimexch is not responsible for money deposited to old inactive or closed accounts.",
                             "NEFT receiving times vary from 40 mins to 2 hours.",
                             "Only UTR and RRN Number will be accepted.",
                             "Prior to initiating the deposit, kindly check the active payment details as the deposit details will be changed from time to time.",

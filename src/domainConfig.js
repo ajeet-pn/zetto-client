@@ -1,11 +1,11 @@
-const ReddyBookSettings = {
-  title: "ReddyBook | India’s Most Trusted Online Cricket Betting Id Provider",
+const BhimexchSettings = {
+  title: "Bhimexch | India’s Most Trusted Online Cricket Betting Id Provider",
   favicon: "/favicon/favicon.ico",
   logo: "/logo/zetto-logo.png",
   logo1: "/logo/silver-reddyBook.png",
   SOCKET_URL: "https://socket.trovetown.co/",
   apiurl: 'https://api.10xbpexch.com/v1/',
-  domainName: "reddybook",
+  domainName: "Bhimexch",
   colors: {
     "--primary": "rgb(0, 31, 63)",
     "--secondary": "rgb(2, 255, 230)",
@@ -62,9 +62,9 @@ const SaffronExchSettings = {
 
 
 const domainSettings = {
-  "grandexchange.com": ReddyBookSettings,
+  "bhimexch.com": BhimexchSettings,
   "safffronexchange.com": SaffronExchSettings,
-  "localhost:3000": ReddyBookSettings,
+  "localhost:3000": BhimexchSettings,
 
 };
 

@@ -52,12 +52,12 @@ const Promotions = () => {
                     </div>
                 </div>
                 <div className=' px-2 py-2 lg:px-28'>
-                    <div className='text-[18px] font-bold text-center'>Fantastic betting offers and promotions waiting for you at Zetto’s online sports and casino games platform.</div>
+                    <div className='text-[18px] font-bold text-center'>Fantastic betting offers and promotions waiting for you at Bhimexchs online sports and casino games platform.</div>
                     <p className='text-[18px] my-3'>
                         Get the highest Welcome bonus on sports – that's what we offer to our newly registered players. Our sportsbook bonuses are not just numbers but the key to unlocking a tailor-made gaming experience for thrill-seekers like you. Join the thousands who have already benefited from our special betting promotions. 
                     </p>
                     <p className='text-[18px] my-10'>
-                        We've got amazing betting sign up offers and promotions on sports like cricket, football, tennis, horse racing, and many more online casino games. You could be the next big winner – sign up on Zetto to avail yourself of our unbeatable sportsbook, casino bonus, and promotion offers.
+                        We've got amazing betting sign up offers and promotions on sports like cricket, football, tennis, horse racing, and many more online casino games. You could be the next big winner – sign up on bhimexch to avail yourself of our unbeatable sportsbook, casino bonus, and promotion offers.
                     </p>
                     <p className='text-[18px] my-10'>
                         The turnover requirement for Sports & Casino betting promotions will be the same: a minimum ₹500 must be deposited first, and then the Bonus amount will be added to your Main Wallet.
@@ -74,10 +74,10 @@ const Promotions = () => {
                     <p className='text-[18px] text-center font-bold my-4'>
                         Refer & Earn
                     </p>
-                    <p className='text-[18px] my-10'>Refer a friend, and pocket a cool ₹1,000. Spread the word about the unmatched excitement awaiting them at Zetto, and watch your earnings soar.
+                    <p className='text-[18px] my-10'>Refer a friend, and pocket a cool ₹1,000. Spread the word about the unmatched excitement awaiting them at bhimexch, and watch your earnings soar.
                     </p>
                     <p className='text-[18px] text-start font-bold my-4'>
-                        How to Claim Betting Sign Up Offers on Zetto
+                        How to Claim Betting Sign Up Offers on bhimexch
                     </p>
                     <p className='text-[18px] text-start my-4'>
                         Make your first-time deposit with the minimum amount.
@@ -89,21 +89,21 @@ const Promotions = () => {
                     </p>
                     <p className='text-[18px] text-start my-4'>Always read all the terms and conditions relevant to you from the offers listed above. Click on the “Know more” button placed on each promotional banner. 
                     </p>
-                    <p className='text-[18px] text-start my-4'>Ready to turn every bet into a victory and every game into an adventure? Join us at Zetto, claim your sports and casino bonus, and let the games begin! Zet. Set. Go!
+                    <p className='text-[18px] text-start my-4'>Ready to turn every bet into a victory and every game into an adventure? Join us at bhimexch, claim your sports and casino bonus, and let the games begin! Zet. Set. Go!
                     </p>
-                    <p className='text-[18px] text-center font-bold my-10'>Amazing Betting App Signup Bonus on Zetto!
-                    </p>
-                    <p className='text-[18px] text-start my-4'>
-                        Get ready for an easy and exciting online betting experience with Zetto's betting app!                                           
+                    <p className='text-[18px] text-center font-bold my-10'>Amazing Betting App Signup Bonus on bhimexch!
                     </p>
                     <p className='text-[18px] text-start my-4'>
-                        With over 100+ casino games and several options for sports betting, the Zetto App is your perfect companion for live sports betting action. Bet on the go with our fast and reliable betting app.      
+                        Get ready for an easy and exciting online betting experience with bhimexch's betting app!                                           
+                    </p>
+                    <p className='text-[18px] text-start my-4'>
+                        With over 100+ casino games and several options for sports betting, the bhimexch App is your perfect companion for live sports betting action. Bet on the go with our fast and reliable betting app.      
                     </p>
                     <p className='text-[18px] text-start my-4'>
                         To download, simply scan the QR code from your mobile or click on the Android app download link <Link>here</Link>       
                     </p>
                     <p className='text-[18px] text-start my-4'>
-                        <Link>Download</Link> the Zetto App now and enjoy exciting betting offers and promotions!      
+                        <Link>Download</Link> the bhimexch App now and enjoy exciting betting offers and promotions!      
                     </p>
                     <p className='text-[18px] text-start my-4'>
                         Get a betting app signup bonus when you download our app!     
@@ -123,10 +123,10 @@ const Promotions = () => {
                     <p className='text-[18px] text-start my-4'>No, the casino bonus amount is locked in the Bonus wallet and cannot be used for bets or withdrawals until the turnover requirements are fulfilled.
                     </p>
                     <p className='text-[18px] text-start font-bold mt-5 mb-2'>
-                        3. How does the Zetto’s Re-Deposit Bonus work?
+                        3. How does the Bhimexchs Re-Deposit Bonus work?
                     </p>
                     <p className='text-[18px] text-start my-4'>
-                        The Re-Deposit Bonus grants an extra 3% bonus, up to ₹1,500 on subsequent deposits once every day. This exclusive bonus from Zetto rewards loyal users, adding an extra incentive for continued engagement on the platform.
+                        The Re-Deposit Bonus grants an extra 3% bonus, up to ₹1,500 on subsequent deposits once every day. This exclusive bonus from bhimexch rewards loyal users, adding an extra incentive for continued engagement on the platform.
                     </p>
                     <p className='text-[18px] text-start font-bold mt-5 mb-2'>
                         4. When will the bonus amount be released into my wallet?
@@ -135,10 +135,10 @@ const Promotions = () => {
                         The bonus amount will be released into your wallet once the turnover requirement is successfully completed.
                     </p>
                     <p className='text-[18px] text-start font-bold mt-5 mb-2'>
-                        5. What rewards can I earn through the Refer & Earn program on Zetto?
+                        5. What rewards can I earn through the Refer & Earn program on bhimexch?
                     </p>
                     <p className='text-[18px] text-start my-4'>
-                        Through the Refer & Earn program, users can enjoy a ₹1000 reward for each successful referral. Share the excitement with friends and earn lucrative rewards for introducing them to Zetto. 
+                        Through the Refer & Earn program, users can enjoy a ₹1000 reward for each successful referral. Share the excitement with friends and earn lucrative rewards for introducing them to bhimexch. 
                     </p>
                 </div>
                 <MobileFooter />
