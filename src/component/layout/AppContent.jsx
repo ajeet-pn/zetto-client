@@ -33,6 +33,7 @@ import PrivecyPolicy from '../../pages/privacyPolicy/PrivacyPolicy'
 import Rules from '../../pages/rules/Rules'
 import AboutsUs from '../../pages/aboutUs/AboutUs'
 import ContactUs from '../../pages/contact/ContactUs'
+import Mfa from '../../pages/Mfa/Mfa'
 
 
 
@@ -62,6 +63,7 @@ const AppContent = () => {
       <Route path="/wallet" element={<Wallet />} />
       <Route path="/bet-list" element={<BetHistory />} />
       <Route path="/setting" element={<EditStack />} />
+      <Route path="/mfa" element={<Mfa />} />
       <Route path="/active-logs" element={<ActiveLogs />} />
       <Route path='/sport-view/:marketId?/:eventId?/:sportId?' element={<ViewMatches />} />
       <Route path='/sport-view-racing/:marketId?/:eventId?/:sportId?' element={<ViewMatchRacing />} />
