@@ -115,7 +115,7 @@ const ViewMatches = () => {
         
         setActiveTab(tab);
     };
-    document.title = `${inplayMatch?.matchName} | ReddyBook`;
+    document.title = `${inplayMatch?.matchName} | ${settings.title}`;
 
 
     useEffect(() => {

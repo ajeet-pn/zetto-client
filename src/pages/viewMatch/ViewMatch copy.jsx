@@ -19,6 +19,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import ButtonValues from "../buttonvalues/ButtonValues";
 import { FaTimes, FaTv } from "react-icons/fa";
 import { message } from "antd";
+import settings from "../../domainConfig";
 
 
 
@@ -99,7 +100,7 @@ const ViewMatches = () => {
     const handleTabClick = (tab) => {
         setActiveTab(tab);
     };
-    document.title = `${inplayMatch?.matchName} | ReddyBook`;
+    document.title = `${inplayMatch?.matchName} | ${settings.title}`;
 
 
     useEffect(() => {

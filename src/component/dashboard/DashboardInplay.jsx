@@ -153,18 +153,18 @@ function InplayMatches({ activeTab, matchlistItems, sportName }) {
     if (!filteredMatches || filteredMatches.length === 0) {
       content = (
         <>
-          <div className="lg:flex hidden justify-between px-1.5 py-1 w-full border-b border-t border-[#f8f8f8]">
+          <div className="lg:flex bg-[var(--primary)] hidden justify-between px-1.5 py-1 w-full border-b border-t border-[#f8f8f8]">
             <div className="relative text-sm bg-[var(--primary)] w-[180px] font-bold text-white py-1.5 px-2">
               {sportName}
               <span className="absolute top-0 right-[-15px] w-0 h-0 border-t-[32px] border-t-[var(--primary)] border-r-[15px] border-r-transparent"></span>
             </div>
-            <p className="w-[40%] grid grid-cols-3 text-center text-sm font-bold">
+            <p className="w-[40%] grid text-white grid-cols-3 text-center text-sm font-bold">
               <span>1</span>
               <span>X</span>
               <span>2</span>
             </p>
           </div>
-          <div className="border-b  px-3 py-1 text-[13px]">
+          <div className="border-b text-center w-full  px-3 py-1 text-[13px]">
             No Records found!
           </div>
         </>
