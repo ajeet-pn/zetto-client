@@ -147,7 +147,7 @@ export default function CasinoSlider() {
     };
 
     return (
-        <div className="bg-[#00263A] text-white rounded-sm w-full relative">
+        <div className="bg-[--primary] text-white rounded-sm w-full relative">
         <div className="flex justify-between items-center h-[32px] px-3">
             <h3 className="text-[14px] font-semibold uppercase text-[--secondary]">
             Featured Games

@@ -7,8 +7,8 @@ const BhimexchSettings = {
   apiurl: 'https://api.10xbpexch.com/v1/',
   domainName: "Bhimexch",
   colors: {
-    "--primary": "rgb(0, 31, 63)",
-    // "--primary": "#ffa200",
+    // "--primary": "rgb(0, 31, 63)",
+    "--primary": "#D92513",
     "--secondary": "rgb(2, 255, 230)",
     "--white": "#fff",
     "--black": "#000",

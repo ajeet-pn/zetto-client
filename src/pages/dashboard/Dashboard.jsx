@@ -232,7 +232,7 @@ const getSportName = (sportId) => {
         }
       }}
             className={`flex flex-col justify-center items-center min-w-[67px] h-[60px] rounded-md ${
-              activeTab === tab.id ? "bg-[--secondary] text-black" : "bg-[#03254c] text-white"
+              activeTab === tab.id ? "bg-[--secondary] text-black" : "bg-[--primary] text-white"
             }`}
           >
             <div className="text-lg">{tab.icon}</div>
