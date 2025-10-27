@@ -23,6 +23,8 @@ import GameSlider from "../../component/GameSlider/GameSlider";
 import LiveReports from "../LiveReports/LiveReports";
 import MobileFooter from "../../component/mobileFooter/MobileFooter";
 import { Link } from "react-router-dom";
+import LoginPopUp from "../../component/LoginPopUp/LoginPopUp";
+import ChatPopUp from "../../component/ChatPopUp/ChatPopUp";
 
 
 export const sportlistArray = [
@@ -207,6 +209,7 @@ const getSportName = (sportId) => {
 
   return (
     <>
+    <ChatPopUp/>
       <div className=" ">
         <div className='' >
           <Banner/>

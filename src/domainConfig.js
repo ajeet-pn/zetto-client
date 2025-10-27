@@ -8,6 +8,7 @@ const BhimexchSettings = {
   domainName: "Bhimexch",
   colors: {
     "--primary": "rgb(0, 31, 63)",
+    // "--primary": "#ffa200",
     "--secondary": "rgb(2, 255, 230)",
     "--white": "#fff",
     "--black": "#000",

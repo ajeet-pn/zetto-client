@@ -7,6 +7,11 @@ import MobileFooter from '../../component/mobileFooter/MobileFooter'
 const Promotions = () => {
     return (
         <>
+        
+            <div className="text-[15px] gap-3 rounded-t-[5px] text-black bg-[--secondary] px-5 h-[31px] flex items-center font-semibold">
+              <img className='!w-[15px] !h-[15px]' src="/images/zetto/homeblack.png" alt="" srcset="" />
+              <img className='!w-[13px] !h-[13px] rotate-90 ' src="/images/zetto/arrowblack.png" alt="" srcset="" />
+              Promotions</div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:p-6 px-2 py-2 lg:px-28">
                     <div className=''>
                         <img className='!w-full rounded-t-lg' src="/images/zetto/p1.webp" alt="" />

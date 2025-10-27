@@ -20,7 +20,10 @@ export const ReferAFriend = () => {
     };
     return (
         <>
-            <div className='h-[31px] bg-[--secondary] text-[15px] text-[--primary] rounded-t-[4px] font-semibold flex items-center justify-start px-3'>Refer a Friend</div>
+            <div className="text-[15px] gap-3 rounded-t-[5px] text-black bg-[--secondary] px-5 h-[31px] flex items-center font-semibold">
+              <img className='!w-[15px] !h-[15px]' src="/images/zetto/homeblack.png" alt="" srcset="" />
+              <img className='!w-[13px] !h-[13px] rotate-90 ' src="/images/zetto/arrowblack.png" alt="" srcset="" />
+              Refer A Friend</div>
             <div className='md:px-8 px-2'>
                 <img className='m-auto w-full md:w-[350px] mt-2 md:mt-4 rounded' src="/images/zetto/referpromo.webp" alt="" />
             </div>
@@ -123,9 +126,9 @@ export const ReferAFriend = () => {
                                     <div className='flex justify-center flex-col items-center my-10'>
                                         <div className='text-[16px] uppercase font-semibold'>follow us on</div>
                                         <div className='flex gap-2 mt-2'>
-                                            <Link><img className='!w-[26px] !h-[26px]' src="/images/zetto/fb.png" alt="" /></Link>
+                                            {/* <Link><img className='!w-[26px] !h-[26px]' src="/images/zetto/fb.png" alt="" /></Link> */}
                                             <Link><img className='!w-[26px] !h-[26px]' src="/images/zetto/insta.png" alt="" /></Link>
-                                            <Link><img className='!w-[26px] !h-[26px]' src="/images/zetto/youtube.png" alt="" /></Link>
+                                            {/* <Link><img className='!w-[26px] !h-[26px]' src="/images/zetto/youtube.png" alt="" /></Link> */}
                                             <Link><img className='!w-[26px] !h-[26px]' src="/images/zetto/telegram.png" alt="" /></Link>
                                         </div>
                                     </div>

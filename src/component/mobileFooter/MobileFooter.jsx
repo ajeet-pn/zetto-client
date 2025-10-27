@@ -30,9 +30,9 @@ const MobileFooter = () => {
                         <Link to={"/privacy-policy"} className='text-[14px]'> Privacy Policy |</Link>
                         <Link className='text-[14px]'> Sitemap </Link>
                     </div>
-                    <div className='mx-14 my-5 md:my-10'>
+                    {/* <div className='mx-14 my-5 md:my-10'>
                         <img className='!w-[250px] !h-[60px] !md:h-[130px]' src="/images/zetto/affiliate1.png" alt="" srcset="" />
-                    </div>
+                    </div> */}
                 </div></div>
     )
 }

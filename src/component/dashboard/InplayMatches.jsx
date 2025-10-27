@@ -158,7 +158,10 @@ function InplayMatches({ activeTab, matchlistItems, sportName }) {
       content = (
         <>
           <div className="flex items-center justify-between w-full bg-[--secondary] border-b rounded-t-[8px]">
-            <div className="relative text-sm  w-[180px] font-bold text-[--primary] py-1.5 px-2">
+            <div className="relative text-sm flex items-center gap-3  w-[180px] font-bold text-[--primary] py-1.5 px-2">
+              
+              <img className='!w-[15px] !h-[15px]' src="/images/zetto/homeblack.png" alt="" srcset="" />
+              <img className='!w-[13px] !h-[13px] rotate-90 ' src="/images/zetto/arrowblack.png" alt="" srcset="" />
               {sportName}
               {/* <span className="absolute top-0 right-[-15px] w-0 h-0 border-t-[32px] border-t-[var(--primary)] border-r-[15px] border-r-transparent"></span> */}
             </div>

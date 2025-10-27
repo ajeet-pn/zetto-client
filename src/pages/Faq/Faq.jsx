@@ -4,7 +4,11 @@ import { Link } from 'react-router-dom'
 export const Faq = () => {
     return (
         <>
-            <div className='h-[31px] bg-[--secondary] text-[15px] text-[--primary] rounded-t-[4px] font-semibold flex items-center justify-start px-3'>FAQS</div>
+        
+            <div className="text-[15px] gap-3 rounded-t-[5px] text-black bg-[--secondary] px-5 h-[31px] flex items-center font-semibold">
+              <img className='!w-[15px] !h-[15px]' src="/images/zetto/homeblack.png" alt="" srcset="" />
+              <img className='!w-[13px] !h-[13px] rotate-90 ' src="/images/zetto/arrowblack.png" alt="" srcset="" />
+              FAQS</div>
             <div className='md:px-8 px-2'>
                 <div className='text-[25px] font-[900] text-center my-4'>FREQUENTLY ASKED QUESTIONS</div>
                 <p className='text-[18px] font-bold my-10'>A. General Information </p>
