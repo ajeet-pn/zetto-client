@@ -369,7 +369,7 @@ function InplayMatches({ activeTab, matchlistItems, sportName }) {
                                   </div>
                                 </div>
               
-                                <div className="lg:w-[50%] hidden lg:flex w-full justify-center items-center gap-1 grid grid-cols-6 bg-white me-2">
+                                <div className="lg:w-[50%] hidden lg:flex w-full justify-center items-center gap-1 grid grid-cols-6 bg-white pe-2">
                                   {/* {Array?.from({ length: 6 }).map((_, i) => {
                                     const isLagai = i % 2 === 0;
                                     return (
@@ -417,7 +417,7 @@ function InplayMatches({ activeTab, matchlistItems, sportName }) {
                                     })}
               
                                 </div>
-                                <div className="w-[50%] flex lg:hidden justify-end items-center gap-1 grid grid-cols-3 bg-white me-2">
+                                <div className="w-[50%] flex lg:hidden justify-end items-center gap-1 grid grid-cols-3 bg-white pe-2">
                                   {Array.from({ length: 3 }).map((_, i) => {
                                       const isLagai = i % 2 === 0;
                                       const isMiddleBox = i === 2 || i === 3; 

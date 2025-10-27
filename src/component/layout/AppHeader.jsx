@@ -133,7 +133,7 @@ const AppHeader = ({ setSidebarOpen }) => {
   return (
     <>
         <div
-          className={`border-b border-[#00FFE6] !px-2 lg:!px-10 h-[64px] flex items-center sticky top-0 w-full bg-[var(--primary)]`}
+          className={`border-b border-[#00FFE6] !px-2 lg:!px-10 h-[64px] flex items-center w-full bg-[var(--primary)]`}
         >
           <div className="w-full">
             <div className="flex justify-between items-center mx-auto w-full py-0">

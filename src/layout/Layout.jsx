@@ -44,17 +44,17 @@ const Layout = () => {
 
     return (
         <>
-            <section className="w-full h-screen flex flex-col overflow-hidden relative bg-gray-200">
-                <div className="shrink-0 z-10 lg:bg-white bg-black">
+            <section className="w-full flex flex-col overflowhidden relative bg-gray-200">
+                <div className="shrink-0 z-10 lg:bg-white bg-black fixed top-0 w-full left-0">
                     <div className="">
                         <AppHeader setSidebarOpen={setIsSidebarOpen} />
                     </div>
                     <div><MarqueeNotification /></div>
                 </div>
 
-                <div className="md:flex flex-1 md:overflow-hidden overflow-auto relative">
+                <div className="md:flex flex-1  max-md:overflow-auto relative">
                     {!shouldHideLeftSidebars && (<div className={`${isSidebarOpen ? 'fixed' : 'hidden'} 
-                lg:relative lg:block hidden inset-0 lg:inset-auto lg:w-[290px] w-[55%] h-screen lg:h-auto z-20 lg:z-auto bg-[var(--backgroundmain)] overflow-y-auto scrollbar-hide`}>
+                lg:sticky lg:block hidden max-lg:inset-0 lg:top-[94px]  lg:w-[290px] w-[55%] h-screen lg:h-[calc(100dvh_-_94px)] z-20 lg:z-auto bg-[var(--backgroundmain)] overflow-y-auto scrollbar-hide`}>
                         <AppSidebar
                             isSidebarOpen={isSidebarOpen}
                             setIsSidebarOpen={setIsSidebarOpen}
@@ -69,14 +69,14 @@ const Layout = () => {
                         />
                     </div>
 
-                    <div className={`flex-1 h-auto overflow-y-auto ${isSidebarOpen ? 'lg:ml-[0px] fixed inset-0 lg:static' : ''}`}>
-                        <div className="p-1 h-full">
+                    <div className={`flex-1 h-full lg:h-auto w-full  ${shouldHideSidebars && shouldHideLeftSidebars ? "w-full" : "lg:max-w-[calc(100dvw_-_658px)]"} ${isSidebarOpen ? 'lg:ml-[0px] fixed inset-0 lg:static' : ''}`}>
+                        <div className="p-1 h-full overflauto">
                             <AppContent />
 
                         </div>
                     </div>
                     {!shouldHideSidebars && (
-                        <div className={`lg:relative lg:block inset-0 lg:inset-auto pb-1 lg:w-[350px] w-[55%] h-screen lg:h-auto z-20 lg:z-auto overflow-y-auto hidden  scrollbar-hide`}>
+                        <div className={`lg:sticky lg:top-[94px] lg:block inset-0 lg:inset-auto pb-1 lg:w-[350px] w-[55%] h-screen lg:lg:h-[calc(100dvh_-_94px)] z-20 lg:z-auto overflow-y-auto hidden  scrollbar-hide`}>
                             <AppRightSIdebar />
                         </div>)}
 
