@@ -128,6 +128,7 @@ const AppHeader = ({ setSidebarOpen }) => {
 
   const handleClose = ()=> {
     setIsOpen(false)
+    document.body.classList.remove("!overflow-hidden")
   }
 
   return (
@@ -176,178 +177,180 @@ const AppHeader = ({ setSidebarOpen }) => {
                                 <li className="relative hidden lg:block cursor-pointer">
                                   <div 
                                     ref={myRef}
-                                    onClick={() => setIsOpen(true)}
+                                    onClick={() => {
+                                      document.body.classList.add("!overflow-hidden")
+                                      setIsOpen(true)
+                                    }}
                                     >
                                     <img className="!w-[28px] !h-[28px]" src="/images/zetto/profile.png" alt="" />
                                     <img className="absolute top-0 -right-[8px] !w-[17px] !h-[30px]" src="/images/zetto/flash.png" alt=""/>
                                     
                                   </div>
                                     {isOpen && (
-  <div className="fixed inset-0 z-50">
-    <div
-      className="absolute inset-0 bg-white/75 bg-opacity-50"
-      onClick={handleClose}
-    ></div>
-    <div
-      className={`absolute py-2 right-0 top-0 w-80 bg-[--primary] text-white shadow-2xl transform h-dvh overflow-y-auto transition-transform duration-300 ${
-        isOpen ? "translate-x-0" : "translate-x-full"
-      } flex flex-col z-50`}
-      onClick={(e) => e.stopPropagation()}
-    >
-      <div className="flex items-center capitlize justify-center gap-2">
-        <img src="/images/zetto/profile.webp" alt="" className="!w-[30px] !h-[30px]" />
-        {user?.data?.username || "User"}
-      </div>
+                                        <div className="fixed inset-0 z-50">
+                                          <div
+                                            className="absolute inset-0 bg-white/75 bg-opacity-50"
+                                            onClick={handleClose}
+                                          ></div>
+                                          <div
+                                            className={`absolute py-2 right-0 top-0 w-80 bg-[--primary] text-white shadow-2xl transform h-dvh overflow-y-auto transition-transform duration-300 ${
+                                              isOpen ? "translate-x-0" : "translate-x-full"
+                                            } flex flex-col z-50`}
+                                            onClick={(e) => e.stopPropagation()}
+                                          >
+                                            <div className="flex items-center capitlize justify-center gap-2">
+                                              <img src="/images/zetto/profile.webp" alt="" className="!w-[30px] !h-[30px]" />
+                                              {user?.data?.username || "User"}
+                                            </div>
 
-      <div className="text-[15px] text-white my-2 text-center font-normal">
-        Balance Information
-      </div>
+                                            <div className="text-[15px] text-white my-2 text-center font-normal">
+                                              Balance Information
+                                            </div>
 
-      <div className="p-4 border-b border-black text-sm space-y-2">
-        <div className="flex justify-between border-b border-white pb-4">
-          <span className="text-[15px] font-[400]">Available Credit</span>
-          <span className="font-bold">
-            {balance?.coins ? Number(balance.coins).toFixed(2) : "0.00"}
-          </span>
-        </div>
-        <div className="flex justify-between border-b border-white pb-4">
-          <span className="text-[15px] font-[400]">Net Exposure</span>
-          <span className="font-bold">
-            {balance?.exposure ? Number(balance.exposure).toFixed(2) : "0"}
-          </span>
-        </div>
-        <div className="flex gap-2 !mt-5">
-          <div
-          onClick={() => {
-            navigate("/wallet");
-            handleClose();
-          }}
-            className="w-[50%] text-[12px] font-semibold rounded-[3px] h-[35px] border border-[--secondary] flex items-center justify-center text-[--secondary] hover:bg-[--secondary] hover:text-white"
-          >
-            WALLET
-          </div>
-          <div
-          onClick={() => {
-            navigate("/deposit");
-            handleClose();
-          }}
-            className="flex justify-center items-center w-[50%] text-[12px] font-semibold text-black rounded-[3px] h-[35px] border border-[--secondary] hover:opacity-[0.8] bg-[--secondary]"
-          >
-            DEPOSIT
-          </div>
-        </div>
-      </div>
-      <div className="flex-1 capitalize text-sm text-[#212529] px-4">
-        <div
-          onClick={() => {
-            navigate("/profile");
-            handleClose();
-          }}
-          className="flex items-center gap-2 px-3 py-4 border-b border-white text-white cursor-pointer"
-        >
-          <img src="/images/zetto/savatar.webp" className="w-4 h-4" />
-          <span className="text-[14px]">My Profile</span>
-        </div>
-        <div
-          onClick={() => {
-            navigate("/referral");
-            handleClose();
-          }}
-          className="flex items-center gap-2 px-3 py-4 border-b border-white text-white cursor-pointer"
-        >
-          <img src="/images/zetto/refericon.webp" className="w-4 h-4" />
-          <span className="text-[14px]">Referral Earnings</span>
-        </div>
-        <div
-          onClick={() => {
-            navigate("/changepassword");
-            handleClose();
-          }}
-          className="flex items-center gap-2 px-3 py-4 border-b border-white text-white cursor-pointer"
-        >
-          <img src="/images/zetto/editpassword.webp" className="w-4 h-4" />
-          <span className="text-[14px]">Change Password</span>
-        </div>
-        <div
-          onClick={() => {
-            navigate("/ac-statement");
-            handleClose();
-          }}
-          className="flex items-center gap-2 px-3 py-4 border-b border-white text-white cursor-pointer"
-        >
-          <img src="/images/zetto/accstatement.webp" className="w-4 h-4" />
-          <span className="text-[14px]">Account Statement</span>
-        </div>
-        <div
-          onClick={() => {
-            navigate("/unsettled-bets");
-            handleClose();
-          }}
-          className="flex items-center gap-2 px-3 py-4 border-b border-white text-white cursor-pointer"
-        >
-          <img src="/images/zetto/bethistory.webp" className="w-4 h-4" />
-          <span className="text-[14px]">Current Bets</span>
-        </div>
-        <div
-          onClick={() => {
-            navigate("/profit-loss");
-            handleClose();
-          }}
-          className="flex items-center gap-2 px-3 py-4 border-b border-white text-white cursor-pointer"
-        >
-          <img src="/images/zetto/profloss.webp" className="w-4 h-4" />
-          <span className="text-[14px]">Profit/Loss</span>
-        </div>
-        <div
-          onClick={() => {
-            navigate("/bet-list");
-            handleClose();
-          }}
-          className="flex items-center gap-2 px-3 py-4 border-b border-white text-white cursor-pointer"
-        >
-          <img src="/images/zetto/bethistory.webp" className="w-4 h-4" />
-          <span className="text-[14px]">Bet History</span>
-        </div>
-        <div
-          onClick={() => {
-            navigate("/active-logs");
-            handleClose();
-          }}
-          className="flex items-center gap-2 px-3 py-4 border-b border-white text-white cursor-pointer"
-        >
-          <img src="/images/zetto/passhistory.webp" className="w-4 h-4" />
-          <span className="text-[14px]">Activity Log</span>
-        </div>
-        <div
-          onClick={() => {
-            navigate("/setting");
-            handleClose();
-          }}
-          className="flex items-center gap-2 p-3 border-white text-white cursor-pointer"
-        >
-          <img src="/images/zetto/setting.webp" className="w-4 h-4" />
-          <span className="text-[14px]">Setting</span>
-        </div>
-      </div>
+                                            <div className="p-4 border-b border-black text-sm space-y-2">
+                                              <div className="flex justify-between border-b border-white pb-4">
+                                                <span className="text-[15px] font-[400]">Available Credit</span>
+                                                <span className="font-bold">
+                                                  {balance?.coins ? Number(balance.coins).toFixed(2) : "0.00"}
+                                                </span>
+                                              </div>
+                                              <div className="flex justify-between border-b border-white pb-4">
+                                                <span className="text-[15px] font-[400]">Net Exposure</span>
+                                                <span className="font-bold">
+                                                  {balance?.exposure ? Number(balance.exposure).toFixed(2) : "0"}
+                                                </span>
+                                              </div>
+                                              <div className="flex gap-2 !mt-5">
+                                                <div
+                                                onClick={() => {
+                                                  navigate("/wallet");
+                                                  handleClose();
+                                                }}
+                                                  className="w-[50%] text-[12px] font-semibold rounded-[3px] h-[35px] border border-[--secondary] flex items-center justify-center text-[--secondary] hover:bg-[--secondary] hover:text-white"
+                                                >
+                                                  WALLET
+                                                </div>
+                                                <div
+                                                onClick={() => {
+                                                  navigate("/deposit");
+                                                  handleClose();
+                                                }}
+                                                  className="flex justify-center items-center w-[50%] text-[12px] font-semibold text-black rounded-[3px] h-[35px] border border-[--secondary] hover:opacity-[0.8] bg-[--secondary]"
+                                                >
+                                                  DEPOSIT
+                                                </div>
+                                              </div>
+                                            </div>
+                                            <div className="flex-1 capitalize text-sm text-[#212529] px-4">
+                                              <div
+                                                onClick={() => {
+                                                  navigate("/profile");
+                                                  handleClose();
+                                                }}
+                                                className="flex items-center gap-2 px-3 py-4 border-b border-white text-white cursor-pointer"
+                                              >
+                                                <img src="/images/zetto/savatar.webp" className="w-4 h-4" />
+                                                <span className="text-[14px]">My Profile</span>
+                                              </div>
+                                              <div
+                                                onClick={() => {
+                                                  navigate("/referral");
+                                                  handleClose();
+                                                }}
+                                                className="flex items-center gap-2 px-3 py-4 border-b border-white text-white cursor-pointer"
+                                              >
+                                                <img src="/images/zetto/refericon.webp" className="w-4 h-4" />
+                                                <span className="text-[14px]">Referral Earnings</span>
+                                              </div>
+                                              <div
+                                                onClick={() => {
+                                                  navigate("/changepassword");
+                                                  handleClose();
+                                                }}
+                                                className="flex items-center gap-2 px-3 py-4 border-b border-white text-white cursor-pointer"
+                                              >
+                                                <img src="/images/zetto/editpassword.webp" className="w-4 h-4" />
+                                                <span className="text-[14px]">Change Password</span>
+                                              </div>
+                                              <div
+                                                onClick={() => {
+                                                  navigate("/ac-statement");
+                                                  handleClose();
+                                                }}
+                                                className="flex items-center gap-2 px-3 py-4 border-b border-white text-white cursor-pointer"
+                                              >
+                                                <img src="/images/zetto/accstatement.webp" className="w-4 h-4" />
+                                                <span className="text-[14px]">Account Statement</span>
+                                              </div>
+                                              <div
+                                                onClick={() => {
+                                                  navigate("/unsettled-bets");
+                                                  handleClose();
+                                                }}
+                                                className="flex items-center gap-2 px-3 py-4 border-b border-white text-white cursor-pointer"
+                                              >
+                                                <img src="/images/zetto/bethistory.webp" className="w-4 h-4" />
+                                                <span className="text-[14px]">Current Bets</span>
+                                              </div>
+                                              <div
+                                                onClick={() => {
+                                                  navigate("/profit-loss");
+                                                  handleClose();
+                                                }}
+                                                className="flex items-center gap-2 px-3 py-4 border-b border-white text-white cursor-pointer"
+                                              >
+                                                <img src="/images/zetto/profloss.webp" className="w-4 h-4" />
+                                                <span className="text-[14px]">Profit/Loss</span>
+                                              </div>
+                                              <div
+                                                onClick={() => {
+                                                  navigate("/bet-list");
+                                                  handleClose();
+                                                }}
+                                                className="flex items-center gap-2 px-3 py-4 border-b border-white text-white cursor-pointer"
+                                              >
+                                                <img src="/images/zetto/bethistory.webp" className="w-4 h-4" />
+                                                <span className="text-[14px]">Bet History</span>
+                                              </div>
+                                              <div
+                                                onClick={() => {
+                                                  navigate("/active-logs");
+                                                  handleClose();
+                                                }}
+                                                className="flex items-center gap-2 px-3 py-4 border-b border-white text-white cursor-pointer"
+                                              >
+                                                <img src="/images/zetto/passhistory.webp" className="w-4 h-4" />
+                                                <span className="text-[14px]">Activity Log</span>
+                                              </div>
+                                              <div
+                                                onClick={() => {
+                                                  navigate("/setting");
+                                                  handleClose();
+                                                }}
+                                                className="flex items-center gap-2 p-3 border-white text-white cursor-pointer"
+                                              >
+                                                <img src="/images/zetto/setting.webp" className="w-4 h-4" />
+                                                <span className="text-[14px]">Setting</span>
+                                              </div>
+                                            </div>
 
-      {/* LOGOUT */}
-      <div
-        onClick={() => {
-          localStorage.clear();
-          navigate("");
-        }}
-        className="flex bg-[--secondary] text-[14px] h-[55px] rounded-[4px] p-3 m-4 justify-center items-center gap-2 text-black font-semibold uppercase"
-      >
-        <span>Logout</span>
-      </div>
+                                            {/* LOGOUT */}
+                                            <div
+                                              onClick={() => {
+                                                localStorage.clear();
+                                                navigate("");
+                                              }}
+                                              className="flex bg-[--secondary] text-[14px] h-[55px] rounded-[4px] p-3 m-4 justify-center items-center gap-2 text-black font-semibold uppercase"
+                                            >
+                                              <span>Logout</span>
+                                            </div>
 
-      <div className="bg-[--secondary]  flex mx-auto  w-6 h-6">
-        <IoClose onClick={handleClose} className="w-6 h-6   text-[--primary]" />
-      </div>
-    </div>
-  </div>
-)}
-
+                                            <div className="bg-[--secondary]  flex mx-auto  w-6 h-6">
+                                              <IoClose onClick={handleClose} className="w-6 h-6   text-[--primary]" />
+                                            </div>
+                                          </div>
+                                        </div>
+                                      )}
                                 </li>
                               </ul>
                             </div>

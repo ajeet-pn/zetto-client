@@ -8,6 +8,7 @@ import AppRightSIdebar from '../component/layout/AppRightSidebar'
 import AppFooter from '../component/layout/AppFooter'
 import { useLocation } from 'react-router-dom';
 import AppSidebarMobile from '../component/layout/AppSidebarMobile'
+import ChatPopUp from '../component/ChatPopUp/ChatPopUp'
 
 
 
@@ -44,6 +45,8 @@ const Layout = () => {
 
     return (
         <>
+        
+            <ChatPopUp/>
             <section className="w-full flex flex-col overflowhidden relative bg-gray-200">
                 <div className="shrink-0 z-10 lg:bg-white bg-black fixed top-0 w-full left-0">
                     <div className="">
