@@ -175,9 +175,9 @@ function InplayMatches({ activeTab, matchlistItems, sportName }) {
           <div className="flex justify-between rounded-t-[8px] bg-[var(--primary)] mt-2 items-center w-full border-b border-t border-[#f8f8f8]">
             <div className="lg:w-[50%] w-full sm:flex h-[36px] items-center lg:space-x-24 lg:justify-start justify-between">
               <div className="relative text-[13px] w-[180px] font-bold text-[--secondary] py-1.5 px-2 flex justify-start items-center space-x-1">
-                {sportName === "Cricket" && <img src='/subHeader/menu-4.png' className="w-4 h-4" />}
-                {sportName === "Soccer" && <img src='/subHeader/menu-1.png' className="w-4 h-4" />}
-                {sportName === "Tennis" && <img src='/subHeader/menu-2.png' className="w-4 h-4" />}
+                {sportName === "CRICKET" && <img src='/subHeader/menu-4.png' className="w-4 h-4" />}
+                {sportName === "SOCCER" && <img src='/subHeader/menu-1.png' className="w-4 h-4" />}
+                {sportName === "TENNIS" && <img src='/subHeader/menu-2.png' className="w-4 h-4" />}
                 <p>{sportName}</p>
                 <span className="absolute top-0 right-[-15px] w-0 h-0 border-t-[32px] border-t-[var(--primary)] border-r-[15px] border-r-transparent"></span>
               </div>

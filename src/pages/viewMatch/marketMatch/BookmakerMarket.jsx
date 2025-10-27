@@ -189,7 +189,7 @@ const BookmakerComponent = ({
                      
 
                       <span
-                        className="md:col-span-1 col-span-3 md:col-start-6 cursor-pointer"
+                        className="col-span-3 lg:col-span-1 w-full cursor-pointer"
                         onClick={() => {
                           toggleRowVisibility(commList.selectionid);
                           handleBackOpen({
@@ -223,7 +223,7 @@ const BookmakerComponent = ({
                     </div>
 
                     {(commList.lgaai === "0.00" || commList.lgaai === "0.000") && (
-                      <div className=" h-[40px] lg:h-[33px] bg-black/60 rounded-[4px] md:w-[23%] w-[35%] px-0.5 right-0 absolute flex justify-center items-center ">
+                      <div className=" h-[40px] lg:h-[33px] bg-black/60 rounded-[4px] w-[35%] lg:w-[16%] xl:w-[23%] px-0.5 right-0 absolute flex justify-center items-center ">
                         <div className="2xl:px-14 lg:px-14 py-2 px-2 text-nowrap rounded font-medium bg-transparent opacity-90">
                           <span className="text-white xl:text-[12px] text-sm font-normal uppercase">
                             SUSPENDED

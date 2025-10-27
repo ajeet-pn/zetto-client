@@ -126,9 +126,9 @@ export const ReferAFriend = () => {
                                     <div className='flex justify-center flex-col items-center my-10'>
                                         <div className='text-[16px] uppercase font-semibold'>follow us on</div>
                                         <div className='flex gap-2 mt-2'>
-                                            <Link><img className='!w-[26px] !h-[26px]' src="/images/zetto/fb.png" alt="" /></Link>
+                                            {/* <Link><img className='!w-[26px] !h-[26px]' src="/images/zetto/fb.png" alt="" /></Link> */}
                                             <Link><img className='!w-[26px] !h-[26px]' src="/images/zetto/insta.png" alt="" /></Link>
-                                            <Link><img className='!w-[26px] !h-[26px]' src="/images/zetto/youtube.png" alt="" /></Link>
+                                            {/* <Link><img className='!w-[26px] !h-[26px]' src="/images/zetto/youtube.png" alt="" /></Link> */}
                                             <Link><img className='!w-[26px] !h-[26px]' src="/images/zetto/telegram.png" alt="" /></Link>
                                         </div>
                                     </div>

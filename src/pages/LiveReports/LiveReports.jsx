@@ -4,7 +4,7 @@ return (
   <div class="md:w-full rounded my-4">
     <div class="w-full mx-auto bg-gray-200 rounded">
       <div class="flex bg-[var(--primary)] text-[--secondary] rounded-t text-[--secondary] text-[12px] font-bold px-2">
-        <div class="flex-1 text-left p-2.5">Recent Wins</div>
+        <div class="flex-1 text-left p-2.5">Daily Wins</div>
         <div class="flex-1 text-left p-2.5">Winner</div>
         <div class="flex-1 text-right p-2.5">Winnings</div>
       </div>

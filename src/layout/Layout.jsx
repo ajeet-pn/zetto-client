@@ -93,6 +93,9 @@ const Layout = () => {
             <div className='w-full max-lg:pb-16'>
                 <AppFooter />
             </div>
+            {/* <div className='fixed bottom-[50px] right-[25px] cursor-pointer w-[71px] h-[71px] bg-white rounded-full flex items-center justify-center'>
+                <img className='!w-[40px] !h-[40px]' src="/images/zetto/chat.png" alt="" srcset="" />
+            </div> */}
         </>
     )
 }

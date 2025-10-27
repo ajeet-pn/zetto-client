@@ -175,7 +175,8 @@ const navigate = useNavigate();
             >
               <a className="mobile-btn flex flex-col items-center">
                 <img alt="footballSport_icon" src="/images/zetto/whatsapp-icon.png" className="!h-[20px] !w-[20px] !mt-[6px]"/>
-                <p className="text-white text-[10px] mt-1">Helpline</p>
+                {/* <p className="text-white text-[10px] mt-1">Helpline</p> */}
+                <p className="text-white text-[10px] mt-1">Support</p>
               </a>
             </li>
             {token ? (
