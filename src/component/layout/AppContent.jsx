@@ -34,6 +34,7 @@ import Rules from '../../pages/rules/Rules'
 import AboutsUs from '../../pages/aboutUs/AboutUs'
 import ContactUs from '../../pages/contact/ContactUs'
 import Mfa from '../../pages/Mfa/Mfa'
+import Login from '../login/Login'
 
 
 
@@ -55,7 +56,7 @@ const AppContent = () => {
       <Route path="/rules" element={<Rules />} />
       <Route path="/about-us" element={<AboutsUs />} />
       <Route path="/contact-us" element={<ContactUs />} />
-
+<Route path="/login" element={<Login />} />
       
       <Route path="/promotions" element={<Promotions />} />
       <Route path='/refer-and-earn' element={<ReferAndEarn />} />

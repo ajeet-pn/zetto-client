@@ -34,13 +34,15 @@ const Layout = () => {
         observer.observe(document.body, { attributes: true });
         return () => observer.disconnect();
     }, []);
-    const hideSidebarRoutes = ['/sport-view', "/sport-view-racing", '/deposit', "/wallet", "/all-casino", "/term-condition", "/promotions", "/casino-list-by-providername", "/privacy-policy", "/rules", "/about-us", "/contact-us", "/why-choose-us"];
+    const hideSidebarRoutes = ['/sport-view', "/login", "/sport-view-racing", '/deposit', "/wallet", "/all-casino", "/term-condition", "/promotions", "/casino-list-by-providername", "/privacy-policy", "/rules", "/about-us", "/contact-us", "/why-choose-us"];
     const shouldHideSidebars = hideSidebarRoutes.some(route => currentPath.startsWith(route));
 
 
-    const hideLeftSidebarRoutes = ['/deposit', "/wallet", "/all-casino", "/term-condition", "/promotions", "/casino-list-by-providername", "/privacy-policy", "/rules", "/about-us", "/contact-us","/why-choose-us"];
+    const hideLeftSidebarRoutes = ['/deposit', "/login", "/wallet", "/all-casino", "/term-condition", "/promotions", "/casino-list-by-providername", "/privacy-policy", "/rules", "/about-us", "/contact-us","/why-choose-us"];
     const shouldHideLeftSidebars = hideLeftSidebarRoutes.some(route => currentPath.startsWith(route));
 
+const hideFooterRoutes = ["/login",];
+    const shouldHideFooter = hideFooterRoutes.some(route => currentPath.startsWith(route));
 
 
     return (
@@ -93,9 +95,9 @@ const Layout = () => {
 
             </section>
 
-            <div className='w-full max-lg:pb-16'>
+            {!shouldHideFooter && <div className='w-full max-lg:pb-16'>
                 <AppFooter />
-            </div>
+            </div>}
             {/* <div className='fixed bottom-[50px] right-[25px] cursor-pointer w-[71px] h-[71px] bg-white rounded-full flex items-center justify-center'>
                 <img className='!w-[40px] !h-[40px]' src="/images/zetto/chat.png" alt="" srcset="" />
             </div> */}

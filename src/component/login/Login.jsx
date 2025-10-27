@@ -55,8 +55,7 @@ function Login({setIsLoginOpen }) {
 
   return (
     <div className="min-h-screen bg-[#E9ECF0] ">
-      <AppHeader/>
-        <MarqueeNotification />
+       
         <div className="flex items-start justify-center overflow-y-auto">
           <div className="w-full md:max-w-[448px] max-w-[100%] shadow-md rounded-[4px] bg-white text-white md:!my-4">
             <form className="!px-6 !py-8 flex flex-col  min-h-[500px] " onSubmit={(e) => {
