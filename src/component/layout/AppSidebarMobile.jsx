@@ -178,7 +178,7 @@ const AppSidebarMobile = ({ isSidebarOpen, setIsSidebarOpen }) => {
           <div>
             <button
               onClick={() => setIsSidebarOpen(false)}
-              className="block lg:hidden"
+              className="block lg:hidden bg-[var(--secondary)] p-1"
             >
               <FaTimes className="text-black/70" size={16} />
             </button>

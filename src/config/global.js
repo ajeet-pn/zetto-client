@@ -10,7 +10,7 @@ export const SPORTSCONSTANT = [
     text: 'Upcoming',
     count: "4",
     icon: "/images/zetto/upcoming-icon.png",
-    mobileicon: "/images/zetto/inplay-icon.png",
+    mobileicon: "/images/zetto/upcoming-icon.png",
     url: "/dashboard" ,
   },
   {
@@ -35,6 +35,7 @@ export const SPORTSCONSTANT = [
     text: "Kabaddi",
     count: 0,
     icon: "/subHeader/menu-99994.png",
+    mobileicon: "/subHeader/menu-99994.png",
   },
   {
     text: "Sports Book",
