@@ -2,7 +2,7 @@ import { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 
 export default function ChatPopUp() {
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
 
     return (
          <>
@@ -21,10 +21,10 @@ export default function ChatPopUp() {
         >
             <div className="bg-[#20e2ec] text-white h-[120px] flex gap-8 items-center px-4 py-3 rounded-t-xl">
                 <div>
-                    <img className="!w-[50px] !h-[50px] rounded-full" src="/images/zetto/chatlogo.png" alt="" srcset="" />
+                    {/* <img className="!w-[50px] !h-[50px] rounded-full" src="/images/zetto/chatlogo.png" alt="" srcset="" /> */}
                 </div>
             <div>
-                <h2 className="text-[22px] font-bold">Zetto</h2>
+                <h2 className="text-[22px] font-bold">Bhimexch</h2>
                 <p className="text-[15px] leading-none">ZET SET GO!</p>
             </div>
             {/* <button
@@ -36,8 +36,8 @@ export default function ChatPopUp() {
             </div>
 
             <div className="px-4 py-10 bg-gray-50 rounded-t-[16px] text-gray-800 text-sm">
-            <p className="font-semibold mb-2">Zetto</p>
-            <p className="rounded-[16px] rounded-bl-0 p-2 bg-[#f8f8f8] max-w-[310px] w-full">Hi, Welcome to Zetto. How may I help you?</p>
+            <p className="font-semibold mb-2">Bhimexch</p>
+            <p className="rounded-[16px] rounded-bl-0 p-2 bg-[#f8f8f8] max-w-[310px] w-full">Hi, Welcome to Bhimexch. How may I help you?</p>
 
             <div className="mt-4">
                 <p className="font-medium">Please confirm your username</p>

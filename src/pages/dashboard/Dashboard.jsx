@@ -154,20 +154,22 @@ export const AllSportsArray = [
   },
   {
     sportName: "Kabaddi",
-    sportId: 75677686721,
+    sportId: 11,
     icons: <FaFootballBall />
   }
 ];
 
 const tabList = [
   { id: "inplay", label: "IN-PLAY", icon: "▶️", tab: true },
+  { id: "upcoming", label: "UPCOMING", icon: "⏰", tab: true },
   { id: 4, label: "CRICKET", icon: "🏏", tab: true  },
   { id: 1, label: "FOOTBALL", icon: "⚽", tab: true  },
   { id: 2, label: "TENNIS", icon: "🎾", tab: true  },
+  { id: 11, label: "Kabaddi", icon: "🤼‍♂️", tab: true  },
   { id: 7, label: "RACING", icon: "🏇", tab: false, link: '/in-play/7' },
   { id: 4339, label: "GREYHOUND", icon: "🐕", tab: false, link: '/in-play/4339' },
   { id: "casino", label: "CASINO", icon: "🎰", tab: false, link: '/all-casino' },
-  // { id: "sportsbook", label: "SPORTSBOOK", icon: "📒", tab: false, link: '' },
+  { id: "sportsbook", label: "SPORTSBOOK", icon: "📒", tab: true, link: '' },
 ];
 
 

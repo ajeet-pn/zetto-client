@@ -264,7 +264,7 @@ const Wallet = () => {
             Account
           </button>
           
-          <button
+          {/* <button
             onClick={() => handleTabChange("E-Wallet Transfer")}
             className={`px-4 sm:px-8 py-3 rounded-r-md ${activeTab === "E-Wallet Transfer"
               ? "bg-blue-700 rounded-lg text-black"
@@ -272,7 +272,7 @@ const Wallet = () => {
               }`}
           >
             E-Wallet Transfer
-          </button>
+          </button> */}
         </div>
       </div>
 
@@ -519,7 +519,7 @@ const Wallet = () => {
 
             <button
               type="submit"
-              className="bg-button px-8 py-2 mt-6 text-sm rounded-md block"
+              className="bg-[var(--primary)] text-[var(--secondary)] px-8 py-2 mt-6 text-sm rounded-md block"
             >
               {accountDetails ? "UPDATE" : "ADD"}
             </button>
@@ -529,7 +529,7 @@ const Wallet = () => {
             {accountDetails ? (
               <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead className="text-xs text-gray-100  uppercase bg-gray-50 dark:bg-secondary dark:text-gray-100">
-                  <tr className="bg-secondary ">
+                  <tr className="bg-[var(--primary)] text-[var(--secondary)]">
                     <th scope="col" className="px-6 lg:py-3 py-1.5">
                       Account Number
                     </th>
@@ -660,7 +660,7 @@ const Wallet = () => {
                   onChange={(e) => handleAmountChange(e, false)}
                 />
                 <div className="absolute top-[46%] left-[10px] text-gray-600">₹</div>
-                <div className="text-[13px] text-gray-400 capitalize font-semibold mt-1">Available to Withdraw ₹43</div>
+                {/* <div className="text-[13px] text-gray-400 capitalize font-semibold mt-1">Available to Withdraw </div> */}
                 {errors.amount && (
                   <span className="text-red-500 text-xs">{errors.amount}</span>
                 )}
@@ -670,7 +670,7 @@ const Wallet = () => {
 
             <button
               type="submit"
-              className="mx-0 md:mx-5 bg-[--primary] md:bg-[white] text-[--secondary] md:text-gray-400 w-full font-semibold  px-10 py-3 mt-6 text-sm rounded-md block md:border mb-5 md:border-gray-200"
+              className="mx-0  bg-[--primary] md:bg-[white] text-[--secondary] md:text-gray-400 w-full font-semibold py-3 mt-6 text-sm rounded-md block md:border mb-5 md:border-gray-200"
               disabled={isSubmitting}
             >
               {isSubmitting ? "Submitting..." : "Submit"}

@@ -3,6 +3,7 @@ import { FaUser } from 'react-icons/fa';
 import { IoClose } from 'react-icons/io5';
 import { Link, useNavigate } from 'react-router-dom';
 import { domainName } from '../../config/Auth';
+import settings from '../../domainConfig';
 
 const AppFooter = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,21 +39,21 @@ const navigate = useNavigate();
               {/* Logo */}
               <div className="flex flex-col gap-2 space-x-4">
                 <Link to='/dashboard'>
-                  <img src="/images/zetto/logo.png" alt="Zetto Logo" className="w-32" />
+                  <img src={settings.logo} alt="Zetto Logo" className="w-32" />
                 </Link>
                 <div className='flex gap-2 mt-2 !ms-0'>
-                  <div className='min-w-[30px] cursor-pointer'>
+                  {/* <div className='min-w-[30px] cursor-pointer'>
                     <img src="/images/zetto/fb1.png" alt="" className='!w-[26px] !h-[26px]'/>
-                  </div>
+                  </div> */}
                   <div className='min-w-[30px] cursor-pointer'>
                     <img src="/images/zetto/insta1.png" alt="" className='!w-[26px] !h-[26px]'/>
                   </div>
                   <div className='min-w-[30px] cursor-pointer'>
                     <img src="/images/zetto/telegram1.png" alt="" className='!w-[26px] !h-[26px]'/>
                   </div>
-                  <div className='min-w-[30px] cursor-pointer'>
+                  {/* <div className='min-w-[30px] cursor-pointer'>
                     <img src="/images/zetto/youtube1.png" alt="" className='!w-[26px] !h-[26px]'/>
-                  </div>
+                  </div> */}
                 </div>
               </div>
 
@@ -80,8 +81,8 @@ const navigate = useNavigate();
               <ul className="">
                 <li><a href="/responsible-gambling" className="text-[12px] h-full hover:text-[--secondary]">Responsible Gambling</a></li>
                 <li><a href="/term-condition" className="text-[12px] h-full hover:text-[--secondary]">Terms and Conditions</a></li>
-                <li><a href="/join-affiliate" className="text-[12px] h-full hover:text-[--secondary]">Join as Affiliate</a></li>
-                <li><a href="/download-app" className="text-[12px] h-full hover:text-[--secondary]">Download App</a></li>
+                {/* <li><a href="/join-affiliate" className="text-[12px] h-full hover:text-[--secondary]">Join as Affiliate</a></li>
+                <li><a href="/download-app" className="text-[12px] h-full hover:text-[--secondary]">Download App</a></li> */}
               </ul>
             </div>
           </div>
@@ -91,8 +92,8 @@ const navigate = useNavigate();
               <ul className="">
                 <li><a href="/privacy-policy" className="text-[12px] h-full hover:text-[--secondary]">Privacy Policy</a></li>
                 <li><a href="/rules" className="text-[12px] h-full hover:text-[--secondary]">Rules</a></li>
-                <li><a href="/blog" className="text-[12px] h-full hover:text-[--secondary]">Zetto Blog</a></li>
-                <li><a href="/sitemap" className="text-[12px] h-full hover:text-[--secondary]">Sitemap</a></li>
+                {/* <li><a href="/blog" className="text-[12px] h-full hover:text-[--secondary]">Zetto Blog</a></li>
+                <li><a href="/sitemap" className="text-[12px] h-full hover:text-[--secondary]">Sitemap</a></li> */}
               </ul>
             </div>
           </div>
@@ -219,9 +220,9 @@ const navigate = useNavigate();
         } flex flex-col z-[10000]`}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="!m-4 flex justify-center items-center hover:bg-white rounded-[4px] w-6 h-6">
+        {/* <div className="!m-4 flex justify-center items-center hover:bg-white rounded-[4px] w-6 h-6">
           <IoClose onClick={handleClose} className="w-5 h-5 text-[--secondary]" />
-        </div>
+        </div> */}
         <div className="flex items-center justify-center gap-2">
           <img src="/images/zetto/profile.webp" alt="" className="!w-[30px] !h-[30px]" />
           {user?.data?.username || "User"}
@@ -368,6 +369,9 @@ const navigate = useNavigate();
         >
           <span>Logout</span>
         </div>
+        <div className="bg-[--secondary]  flex mx-auto  w-6 h-6">
+                <IoClose onClick={handleClose} className="w-6 h-6   text-[--primary]" />
+              </div>
       </div>
     </div>
  ) }

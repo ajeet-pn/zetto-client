@@ -115,7 +115,7 @@ const ViewMatches = () => {
         
         setActiveTab(tab);
     };
-    document.title = `${inplayMatch?.matchName} | ReddyBook`;
+    document.title = `${inplayMatch?.matchName} | ${settings.title}`;
 
 
     useEffect(() => {
@@ -1106,8 +1106,7 @@ const ViewMatches = () => {
                         <div class="flex w-full md:w-full overflow-hidden py-2 md:py-1 md:px-0 my-1">
                             <div class="w-full inline-flex overflow-auto ">
                                 <div class="flex-none  relative space-x-2">
-                                    {console.log(inplayMatch, "inplayMatchinplayMatch")
-                                    }
+                                   
                                     <button class=" bg-[var(--secondary)] text-black h-[21px] px-2 rounded-[2.83px] gap-2.5  font-bold uppercase text-[12px]  " onClick={() => handleTabClick("all")}>All</button>
                                     {inplayMatch?.isMatchOdds && <button class="bg-[#feffff] border-[1px]  text-zinc-900 h-[21px] px-2 rounded-[2.83px] place-content-center gap-2.5  font-bold uppercase text-[12px] " onClick={() => handleTabClick("MatchOdds")}>Match Odds</button>}
                                     {inplayMatch?.isBookmaker && <button class="bg-[#feffff] border-[1px]  text-zinc-900 h-[21px] px-2 rounded-[2.83px] place-content-center gap-2.5  font-bold uppercase text-[12px] " onClick={() => handleTabClick("bookmaker")}>Bookmaker</button>}

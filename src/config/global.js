@@ -7,6 +7,13 @@ export const SPORTSCONSTANT = [
     url: "/dashboard" ,
   },
   {
+    text: 'Upcoming',
+    count: "4",
+    icon: "/images/zetto/upcoming-icon.png",
+    mobileicon: "/images/zetto/inplay-icon.png",
+    url: "/dashboard" ,
+  },
+  {
     text: 'Cricket',
     count: "4",
     icon: "/subHeader/menu-4.png",
@@ -25,12 +32,17 @@ export const SPORTSCONSTANT = [
     mobileicon: "/subHeader/menu-2.png",
   },
   {
+    text: "Kabaddi",
+    count: 0,
+    icon: "/subHeader/menu-99994.png",
+  },
+  {
     text: "Sports Book",
     count: 0,
     icon: "/subHeader/menu-99991.png",
     mobileicon: "/subHeader/menu-99991.png",
   },
-
+ 
   {
     text: "Horse Race",
     count: '7',
