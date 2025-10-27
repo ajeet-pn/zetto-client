@@ -189,15 +189,12 @@ const AppHeader = ({ setSidebarOpen }) => {
       onClick={handleClose}
     ></div>
     <div
-      className={`absolute right-0 top-0 w-80 bg-[--primary] text-white shadow-2xl transform h-dvh overflow-y-auto transition-transform duration-300 ${
+      className={`absolute py-2 right-0 top-0 w-80 bg-[--primary] text-white shadow-2xl transform h-dvh overflow-y-auto transition-transform duration-300 ${
         isOpen ? "translate-x-0" : "translate-x-full"
       } flex flex-col z-50`}
       onClick={(e) => e.stopPropagation()}
     >
-      <div className="!m-4 flex justify-center items-center hover:bg-white rounded-[4px] w-6 h-6">
-        <IoClose onClick={handleClose} className="w-5 h-5 text-[--secondary]" />
-      </div>
-      <div className="flex items-center justify-center gap-2">
+      <div className="flex items-center capitlize justify-center gap-2">
         <img src="/images/zetto/profile.webp" alt="" className="!w-[30px] !h-[30px]" />
         {user?.data?.username || "User"}
       </div>
@@ -342,6 +339,10 @@ const AppHeader = ({ setSidebarOpen }) => {
         className="flex bg-[--secondary] text-[14px] h-[55px] rounded-[4px] p-3 m-4 justify-center items-center gap-2 text-black font-semibold uppercase"
       >
         <span>Logout</span>
+      </div>
+
+      <div className="bg-[--secondary]  flex mx-auto  w-6 h-6">
+        <IoClose onClick={handleClose} className="w-6 h-6   text-[--primary]" />
       </div>
     </div>
   </div>

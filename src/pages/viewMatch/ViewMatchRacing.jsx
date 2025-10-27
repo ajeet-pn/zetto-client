@@ -4,17 +4,31 @@ import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { io } from "socket.io-client";
-import BlinkingComponent from "./BlinkingComponent";
 import moment from "moment";
 import { apiCall } from "../../config/HTTP";
+import 'react-toastify/dist/ReactToastify.css';
+import { FaAngleRight, FaTimes, FaTv } from "react-icons/fa";
+import { message } from "antd";
+import NormalFancyComponent from "./marketMatch/NormalFancy";
+import OverByOverFancyComponent from "./marketMatch/OverByOverFancy";
+import Fancy1FancyComponent from "./marketMatch/Fancy1Fancy";
+import KhadoFancyComponent from "./marketMatch/KhadoFancy";
+import MeterFancyComponent from "./marketMatch/MeterFancy";
+import OddEvenFancyComponent from "./marketMatch/OddEvenFancy";
+import GroupedFancyComponent from "./marketMatch/FancyGroupMarket";
+import TossDataComponent from "./marketMatch/TossMarket";
+import BookmakerComponent from "./marketMatch/BookmakerMarket";
+import MatchOddsComponent from "./marketMatch/MatchOdssMarket";
+import OtherMarketsComponent from "./marketMatch/OtherLineMarket";
+import TiedOddsComponent from "./marketMatch/TiedOdssMarket ";
+import CashOutSystemTesting from "./CashoutTesting copy";
 import { BetPlaceDesktop } from "../../component/betPlaceDesktop/BetPlaceDesktop";
 import PlaceBetMobile from "../../component/betplaceMobile/PlaceBetMobile";
-import { message } from "antd";
-import { FaTimes, FaTv } from "react-icons/fa";
-import MatchDetailsHeaderSection from "../../component/matchDetailsHeaderSection/MatchDetailsHeaderSection";
-import CashOutSystem from "./CashoutTesting";
-
-
+import { MdScore } from "react-icons/md";
+import { fancyTabs, premiumTabs } from "./matchconstants";
+import { IoHome } from "react-icons/io5";
+import { IoMdTv } from "react-icons/io";
+import RacingMatchOddsMarket from "./marketMatch/RacingMatchOddsMarket";
 
 
 
@@ -24,6 +38,7 @@ const ViewMatchRacing = () => {
     const [inplayMatch, setInplayMatch] = useState({});
     const [scoreShow, setScoreShow] = useState(true);
     const [tvShow, setTvShow] = useState(false);
+    const [scoreModal, setScoreModal] = useState(true);
     const [betShow, setBetShow] = useState(true);
     const [betShowM, setBetShowM] = useState(true);
     const [betShowMobile, setBetShowMobile] = useState(false);
@@ -31,14 +46,23 @@ const ViewMatchRacing = () => {
     const [matchDetailsForSocketNew, setMatchDetailsForSocketNew] = useState({});
     const [finalSocket, setFinalSocketDetails] = useState({});
     const [otherFinalSocket, setOtherFinalSocketDetails] = useState({});
-    const [isOpenRightSidebar, setIsOpenRightSidebar] = useState(false);
     const [hiddenRows, setHiddenRows] = useState([]);
     const [active, setActive] = useState(false);
     const [isFixed, setIsFixed] = useState(false);
-    const [betSlipData, setBetSlipData] = useState({ stake: '0', count: 0, teamname: '', teamData: null });
-    const [timeLeft, setTimeLeft] = useState('');
+    const [buttonValue, setbuttonValue] = useState(false);
+    const [selectedType, setSelectedType] = useState("score");
+    const [betSlipData, setBetSlipData] = useState({
+        stake: '0',
+        count: 0,
+        teamname: '',
+        teamData: null
+    });
+
+
     const [fancyBetData, setFancyBetData] = useState([])
     const [oddsBetData, setOddsBetData] = useState([])
+
+
     const [returnDataObject, setReturnDataObject] = useState({})
     const [returnDataFancyObject, setReturnDataFancyObject] = useState({})
     const [fancypositionModal, setFancypositionModal] = useState(false);
@@ -47,10 +71,13 @@ const ViewMatchRacing = () => {
     const scrollRef = useRef(null);
     const [isConnected, setIsConnected] = useState(false);
     const [socketState, setSocketState] = useState(null);
+
     const [positionObj, setPositionObj] = useState({});
     const [positioBetData, setPositionBetData] = useState({});
+
     const [fancyPositionObj, setFancyPositionObj] = useState({});
     const [fancybetData, setFancybetData] = useState({});
+
     const [minMaxCoins, setminMaxCoins] = useState({ max: null, min: null });
     const [sessionCoin, setSessionCoin] = useState({ max: null, min: null });
     const [isTieCoin, setIsTieCoin] = useState({ max: null, min: null });
@@ -59,15 +86,25 @@ const ViewMatchRacing = () => {
     const [activeTab, setActiveTab] = useState("all");
     const [errorMessage, setErrorMessage] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
+    const [activeBets, setActiveBets] = useState("oddsBetData");
     const [isRulesOpen, setIsRulesOpen] = useState(false);
     const openRulesModal = () => setIsRulesOpen(true);
     const closeRulesModal = () => setIsRulesOpen(false);
     const [isScorecardOpen, setIsScorecardOpen] = useState(true);
     const [fullscreen, setFullScreen] = useState(false);
-    const [matchOddsSelected, setMatchOddsSelected] = useState([])
 
+    const [open, setOpen] = useState(false);
+
+    const handleBets = () => {
+        setOpen(true);
+        setIsScorecardOpen(false);
+    };
+
+    const closeModal = () => {
+        setOpen(false);
+    };
+    // let { marketId, eventId } = useParams();
     const { marketId, eventId, sportId } = useParams();
-    const [activeBets, setActiveBets] = useState("oddsBetData");
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -75,20 +112,11 @@ const ViewMatchRacing = () => {
     const { pathname } = useLocation();
     const gameDetailOtherPart = pathname.includes('viewMatchDetail');
     const handleTabClick = (tab) => {
+        console.log(tab, "lllllllllllll");
+        
         setActiveTab(tab);
     };
     document.title = `${inplayMatch?.matchName} | ReddyBook`;
-
-
-    const [open, setOpen] = useState(false);
-
-    const handleBets = () => {
-        setOpen(true);
-    };
-
-    const closeModal = () => {
-        setOpen(false);
-    };
 
 
     useEffect(() => {
@@ -210,6 +238,7 @@ const ViewMatchRacing = () => {
 
 
 
+
             let finalPositionInfoFancy = {};
 
             filteredFancyBetData.forEach(item => {
@@ -242,6 +271,10 @@ const ViewMatchRacing = () => {
         }
     }, [positioBetData]);
 
+
+
+
+
     useEffect(() => {
         if (fancypositionModal) {
             document.body.classList.add("overflow-hidden");
@@ -272,7 +305,9 @@ const ViewMatchRacing = () => {
         }
     };
 
-
+    const handleWatchButtonClick = (type) => {
+        setSelectedType(type);
+    };
 
     const getMatchDataByMarketID = async (marketId) => {
         try {
@@ -360,8 +395,8 @@ const ViewMatchRacing = () => {
                 reconnectionAttempts: 99,
             });
 
-            socket.emit(`marketByEvent`, marketId);
-            socket.on(marketId, (data) => {
+            socket.emit(`marketByEvent`, eventId);
+            socket.on(eventId, (data) => {
                 localStorage.setItem(`${eventId}_MatchOddsData`, data)
                 setMatchDetailsForSocketNew(JSON.parse(data));
                 setIsConnected(true);
@@ -413,6 +448,8 @@ const ViewMatchRacing = () => {
             const response = await axios.get(cacheUrl);
             localStorage.setItem(`${marketId}_BookmakerData`, JSON.stringify(response.data))
             setMatchScoreDetails(response.data.result);
+
+
         } catch (error) {
             console.error("Error fetching cache data:", error);
         }
@@ -487,6 +524,10 @@ const ViewMatchRacing = () => {
 
     };
 
+    const handelScoreModalComplete = () => {
+        setScoreModal(!scoreModal);
+    };
+
     const handelAllClossModal = () => {
         setTvShow(false);
         setScoreShow(!scoreShow);
@@ -526,13 +567,15 @@ const ViewMatchRacing = () => {
     // bets Palce Modal write 
 
     const handleBackOpen = (data) => {
+        console.log(data, "cashout system design");
+        if (data?.odds === 0) return;
         // setBetPlaceModalMobile(true)
         if (data) {
             setBetShow(false);
             setBetShowM(false);
             setBetSlipData({
                 ...data,
-                stake: '0',
+                stake: data.stake != null ? data.stake : '0',
                 count: data.odds,
                 teamname: data.name,
                 teamData: data.teamData
@@ -540,9 +583,6 @@ const ViewMatchRacing = () => {
         }
     };
     const handleBackclose = () => {
-
-
-
         setBetSlipData({
             stake: '0',
             count: 0,
@@ -562,54 +602,13 @@ const ViewMatchRacing = () => {
     };
 
 
-
-    const userPositionByMarketId = async () => {
-
-        const positionByMarketId = {
-            marketId: marketId,
-        };
-        try {
-            const userPositionData = await apiCall("POST", 'sports/userPositionByMarketId', positionByMarketId);
-            if (userPositionData) {
-                const getUserPositionItem = userPositionData.data;
-                let oddsPos = [];
-                let sessPos = [];
-                let returnDataObject = {};
-                let returnDataFancyObject = {};
-
-                if (getUserPositionItem?.oddsPosition) {
-                    oddsPos = getUserPositionItem.oddsPosition;
-                    oddsPos.forEach(data => {
-                        const hasKey = returnDataObject.hasOwnProperty(data._id);
-                        if (!hasKey) {
-                            returnDataObject[data._id] = data.totalPosition.toFixed(2);
-                            setReturnDataObject(returnDataObject);
-
-                        }
-                    });
-                }
-
-                if (getUserPositionItem?.sessionPosition) {
-                    sessPos = getUserPositionItem.sessionPosition;
-                    sessPos.forEach(data => {
-                        const hasKey = returnDataFancyObject.hasOwnProperty(data._id);
-                        if (!hasKey) {
-                            returnDataFancyObject[data._id] = data.position;
-                            setReturnDataFancyObject(returnDataFancyObject);
-                        }
-                    });
-                }
-            }
-        } catch (error) {
-            console.error('Error fetching user position:', error);
-            throw error;
-        }
-    };
-
     const placeBet = async () => {
         if (betSlipData.stake <= 0) {
             return;
         }
+
+
+
         try {
             const betObject = {
                 "odds": betSlipData.count + "",
@@ -622,12 +621,24 @@ const ViewMatchRacing = () => {
                 "oddsType": betSlipData.oddsType === "Match Odds" ? "matchOdds" : betSlipData.oddsType === "Tied Match" ? "tiedMatch" : betSlipData.oddsType + "",
                 "type": betSlipData.betType + "",
             };
+            if (betSlipData.oddsType === "fancy") {
+                const allowedFancyTypes = ['khado', 'fancy1', 'oddeven', 'meter', 'Over By Over'];
+                betObject["fancyType"] = allowedFancyTypes.includes(betSlipData.fancyType)
+                    ? betSlipData.fancyType + ""
+                    : "Normal";
+            } else if (betSlipData.oddsType === "bookmaker") {
+                console.log("::--");
 
-            if (betSlipData.oddsType === "bookmaker" || betSlipData.oddsType === "fancy") {
-                // Do something if needed
             } else {
                 betObject["betfairMarketId"] = betSlipData.betfairMarketId + "";
             }
+
+            // if (betSlipData.oddsType === "bookmaker" || betSlipData.oddsType === "fancy") {
+            //     // Do something if needed
+            //     console.log(betSlipData?.data?.fancyType, "betSlipData");
+            // } else {
+            //     betObject["betfairMarketId"] = betSlipData.betfairMarketId + "";
+            // }
             setBetLoading(true)
 
             if (betSlipData.oddsType === "fancy") {
@@ -720,9 +731,30 @@ const ViewMatchRacing = () => {
             localStorage.setItem('matchOddsRunningPos', JSON.stringify(matchOddsPos.data));
         }
     }
+
+
+
+    const handleFancyPositionModal = (data) => {
+
+        try {
+            setFancypositionModal(!fancypositionModal);
+            setPositionData(data);
+        } catch (error) {
+            console.error('Error handling fancy position modal:', error);
+        }
+    };
+
+    const handleClose = () => {
+        setFancypositionModal(false)
+    };
+
+
     const closeRow = (id) => {
         setHiddenRows(hiddenRows.filter(rowId => rowId !== id));
     }
+
+
+
     const increaseCount = () => {
         try {
             setBetSlipData(prevData => {
@@ -736,6 +768,11 @@ const ViewMatchRacing = () => {
             console.error('Error increasing count:', error);
         }
     };
+    const openBetInMobile = () => {
+        setBetShowMobile(!betShowMobile)
+        setTvShow(false);
+        setScoreShow(false);
+    }
     const decreaseCount = () => {
         try {
             setBetSlipData(prevData => {
@@ -750,55 +787,99 @@ const ViewMatchRacing = () => {
         }
     };
 
-    const [buttonValue, setbuttonValue] = useState(false);
+
+    let domainSetting = JSON.parse(localStorage.getItem("clientdomainSetting"));
+
+    function getMatchStatus(matchDate) {
+        if (!matchDate) return '';
+        const currentTime = moment();
+        const matchTime = moment(matchDate, 'DD-MM-YYYY HH:mm:ss');
+
+        if (!matchTime.isValid()) {
+            console.error("Invalid match date format.");
+            return 'Invalid Date';
+        }
+
+        if (currentTime.isBefore(matchTime)) {
+            return 'OPEN';
+        } else {
+            return 'INPLAY';
+        }
+    }
+
+
 
     const handleButtonValues = (e) => {
         setbuttonValue((prev) => !prev);
-        // e.stopPropagation();
+
+        document.body.classList.toggle("StakeModalOpen");
+
     };
 
+
+
     const [matchTab, setMatchTab] = useState(1);
+
 
     const handleMatchClick = (tabNumber) => {
         setMatchTab(tabNumber);
     };
 
 
-    useEffect(() => {
-        const targetTime = moment(inplayMatch?.matchDate, 'YYYY-MM-DD HH:mm:ss');
+    const formatNumber = (number) => {
+        if (!number) return;
+        const digit = Number(number);
 
-        const interval = setInterval(() => {
-            const now = moment();
-            const duration = moment.duration(targetTime.diff(now));
-            if (duration.asSeconds() <= 0) {
-                clearInterval(interval);
-                setTimeLeft('');
-            } else {
-                const hours = String(duration.hours()).padStart(2, '0');
-                const minutes = String(duration.minutes()).padStart(2, '0');
-                const seconds = String(duration.seconds()).padStart(2, '0');
-                if (hours == '00') {
-                    setTimeLeft(<> <span className="text-yellow-400 !text-[20px] !sm-text-[12px]"> {minutes} </span> <span className="text-white !text-[12px]">minutes</span> <span className="text-yellow-400 !text-[20px] !sm-text-[12px]">{seconds}</span>  <span className="text-white !text-[12px]">Seconds Remaining</span> </>);
-                    return
-                } if (hours) {
-                    setTimeLeft(`${hours} hours ${minutes} minutes Remaining`);
-                    return
-                }
-            }
-        }, 1000);
-
-        return () => clearInterval(interval);
-    }, [inplayMatch]);
-    const handleCheckboxClick = (itemId) => {
-        setMatchOddsSelected((prev) => {
-            if (prev.includes(itemId)) {
-                return prev.filter((id) => id !== itemId);
-            } else {
-                if (matchOddsSelected?.length >= 5) return [...prev]
-                return [...prev, itemId];
-            }
-        });
+        if (digit >= 1000000) {
+            return (digit / 1000000).toFixed(digit % 1000000 === 0 ? 0 : 1) + 'M';
+        } else if (digit >= 100000) {
+            return (digit / 100000).toFixed(digit % 100000 === 0 ? 0 : 1) + 'L';
+        } else if (digit >= 1000) {
+            return (digit / 1000).toFixed(digit % 1000 === 0 ? 0 : 1) + 'K';
+        } else {
+            return digit.toString();
+        }
     };
+
+    const NormalFancy = matchScoreDetails?.session?.filter(item => item?.fancyType === 'Normal')
+    const KhadoFancy = matchScoreDetails?.meterKhadoSession?.filter(item => item?.fancyType === 'khado')
+    const Fancy1Fancy = matchScoreDetails?.session?.filter(item => item?.fancyType === 'fancy1')
+    const OddEvenFancy = matchScoreDetails?.meterKhadoSession?.filter(item => item?.fancyType === 'oddeven')
+    const bookmaker2Fancy = matchScoreDetails?.meterKhadoSession?.filter(item => item?.fancyType === 'Bookmaker 2')
+    const MeterFancy = matchScoreDetails?.meterKhadoSession?.filter(item => item?.fancyType === 'meter')
+    const OverByOverFancy = matchScoreDetails?.session?.filter(item => item?.fancyType === 'Over By Over')
+    const cCFilterData = matchScoreDetails?.meterKhadoSession?.filter(item => item.gtype === "cricketcasino");
+
+    const groupedData = cCFilterData?.reduce((acc, item) => {
+        const key = item.fancyType;
+        if (!acc[key]) {
+            acc[key] = [];
+        }
+        acc[key].push(item);
+        return acc;
+    }, {});
+
+
+
+    const [mainTab, setMainTab] = useState("fancy");
+    const [subTab, setSubTab] = useState(fancyTabs[0].key);
+
+
+    const betplaceDataThroughProps = {
+
+        betSlipData,
+        openBets,
+        closeRow,
+        placeBet,
+        errorMessage,
+        successMessage,
+        betLoading,
+        increaseCount,
+        decreaseCount,
+        handleBackclose,
+        setBetSlipData,
+        handleButtonValues
+    }
 
 
     return (isLoading ? <span className="animate-spin h-5 w-5"></span> :
@@ -809,561 +890,324 @@ const ViewMatchRacing = () => {
                     <marquee className="">{inplayMatch?.notification}</marquee>
                 </span>
             )}
-           
-
-            {/* {buttonValue && (
-                <div
-                    onClick={(e) => {
-                        handleButtonValues();
-                        e.stopPropagation();
-                    }}
-                    className="fixed top-0  bg-black bg-opacity-55 left-0 w-full h-full flex items-start justify-center z-50"
-                >
-                    <div
-                        onClick={(e) => e.stopPropagation()}
-                        className="lg:w-[28%] md:w-[50%] w-full lg:p-2   "
-                    >
-                        <ButtonValues />
-                    </div>
-                </div>
-            )} */}
-
-            {/* <div className="xl:hidden block">
-                {inplayMatch &&
-                    inplayMatch?.matchName ? (
-                    <div className="bg-[var(--secondary)] item-center px-2 py-1 flex justify-between">
-                        <span className="text-white text-[12px] font-semibold">{inplayMatch?.matchName}</span>
-                        <span className="text-white text-[12px] font-semibold"> {inplayMatch?.matchDate}</span>
-                    </div>
-                ) : null}
-            </div> */}
-
-            <div className="xl:hidden block">
-                {inplayMatch &&
-                    inplayMatch?.matchName ? (
-                    <div className="bg-[var(--secondary)] item-center px-2 py-1 flex w-full  items-center">
-                                        <div className="w-1/2 truncate" onClick={closeModal}>{inplayMatch?.matchName}</div> |
-                                        <div className="flex justify-between w-1/2">
-                                            <div className="text-start px-1"  onClick={() => handleBets()}>
-                                            my Bet
-                                             </div>
-                                            <div className="text-end px-1" onClick={() => handleScore()}>
-                                                tv
-                                            </div>
-                                            </div>
-                                        </div>
-                ) : null}
-
-                          <div className="flex ">
-
-                                        <div
-                                            onClick={() => setFullScreen((state) => !state)}
-                                            className="text-black w-1/2 bg-button rounded-sm py-1 text-xs font-bold cursor-pointer"
-                                        >
-                                            {fullscreen ? "HS" : "FS"}
-                                        </div>
-
-                                                                            <div onClick={() => {
-                                            handelTvModal();
-                                        }} className='text-black w-1/2'><img src={"/dashbaord/score-tv-icon.svg"} className="w-[18px] h-[18px] invertimage" /></div>
-                                        
-                                    </div>
-                <div className="xl:hidden block">
-                    {inplayMatch?.isTv ? <>
-                        {tvShow && <div className="bg-white w-full h-48">
-                            <div className="details">
-                                <div className={`w-full relative md:text-sm text-[10px]`}>
-                                    <iframe src={inplayMatch && inplayMatch.tvUrl ? inplayMatch.tvUrl : ""} title=" " loading='lazy' className="w-[100%] h-[200px]" />
-                                </div>
-                            </div>
-                        </div>}
-                    </>
-                        : null}
-                </div>
-            </div>
-            <div className="md:flex justify-center text-black h-screen w-100 gap-x-2">
-                {/* {(matchTab === 1) && ( */}
-                <div className="xl:w-[calc(100%-402px)] 2xl:w-[calc(100%-452px)] w-full">
-                    {!open  ? <> <div className="">
-
-                        {/* <div className="horse-banner"><img src="https://versionobj.ecoassetsservice.com/v38/static/front/img/10.png" className="img-fluid" /><div className="horse-banner-detail"><div className="text-success">{finalSocket['Match Odds']?.status ?? ""}</div><div className="horse-timer"><span>{timeLeft}&nbsp;</span></div><div className="time-detail"><p>{inplayMatch?.countryCode}  &gt;  {inplayMatch?.matchName}</p><h5><span>{inplayMatch?.matchDate}</span><span> </span></h5></div></div></div> */}
-
-                        {/* ---------------------------------------------------------match odds counts starts------------------------------------------------------------- */}
-                        {matchOddsSelected?.length > 1 &&
-                            <>
-                                <header className="mt-1">
-                                    <div className=" bg-[var(--secondary)] items-center flex justify-between relative z-0 py-1 px-2">
-                                        <div className="flex text-white align-items-center h-100 uppercase text-[14px] font-semibold ">
-                                            Combined
-                                        </div>
-                                        <button disabled className="bg-[var(--success-color)] opacity-35  text-sm text-white px-3 py-1">Cashout</button>
-
-                                    </div>
-                                </header>
-                                <div className={`  flex whitespace-normal max-w-full border-b border-gray-300 `}>
-                                    <div className="lg:w-1/2 xl:w-[58%] w-[65%] flex px-2">
-                                        <div className="w-full py-1 leading-3 flex items-center text-xs text-[#097c93]">
-                                        </div>
-                                    </div>
-                                    <div className="lg:w-1/2 xl:w-[42%] w-[35%] grid grid-cols-6">
-                                        <span className="lg:col-span-1 col-span-2 rounded-md  lg:block hidden">
-                                        </span>
-                                        <span className="lg:col-span-1 col-span-2 rounded-md  lg:block hidden">
-                                        </span>
-                                        <span className="lg:col-span-1 col-span-3 rounded-md  ">
-                                            <div className={`py-1 flex justify-center items-center ${`bg-[#8DD2F0]`}`}>
-                                                <div className='text-center leading-3'>
-                                                    <span className="2xl:text-[16px] lg:text-[16px] text-xs text-gray-800 font-bold">Back</span><br />
-                                                </div>
-                                            </div>
-                                        </span>
-                                        <span className="lg:col-span-1 col-span-3 rounded-md  ">
-                                            <div className={`py-1 flex justify-center items-center ${`bg-[#FEAFB2]`}`}>
-                                                <div className='text-center leading-3'>
-                                                    <span className="2xl:text-[16px] lg:text-[16px] text-xs text-gray-800 font-bold">Lay</span><br />
-                                                </div>
-                                            </div>
-                                        </span>
-                                        <span className="lg:col-span-1 col-span-2 rounded-md  lg:block hidden">
-                                        </span>
-                                        <span className="lg:col-span-1 col-span-2 rounded-md  lg:block hidden">
-
-                                        </span>
 
 
-                                    </div>
-                                </div>
-                                <div className={`  flex whitespace-normal max-w-full border-b border-gray-300`}>
-                                    <div className="lg:w-1/2 xl:w-[58%] w-[65%] flex px-2">
-                                        <div className="w-full py-1 leading-3 flex items-center text-[#333333]">
-                                            <span class="text-[13px] font-bold flex items-center gap-2">
-                                                <span> {matchOddsSelected?.join('+')}<br />
-                                                </span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div className="lg:w-1/2 xl:w-[42%] w-[35%] grid grid-cols-6 ">
-                                        <span className="lg:col-span-1 col-span-3 rounded-md  lg:block hidden">
-                                            <BlinkingComponent
-                                                color={"bg-[#E6F2FC]"}
-                                                blinkColor={"bg-[#00B2FF]"}
-                                                hoverColor={"bg-sky-600"}
-                                            />
-                                        </span>
-                                        <span className="lg:col-span-1 col-span-3 rounded-md  lg:block hidden">
-                                            <BlinkingComponent
-                                                color={"bg-[#E6F2FC]"}
-                                                blinkColor={"bg-[#00B2FF]"}
-                                                hoverColor={"bg-sky-600"}
-                                            />
-                                        </span>
-                                        <span className="md:col-span-3 sm:col-span-3 rounded-md col-span-3 lg:hidden block cursor-pointer">
-                                            <BlinkingComponent
-                                                color={"bg-[#8DD2F0]"}
-                                                blinkColor={"bg-[#00B2FF]"}
-                                            />
-                                        </span>
-                                        <span className="lg:col-span-1 col-span-3 rounded-md lg:block hidden cursor-pointer">
-                                            <BlinkingComponent
-                                                color={"bg-[#8DD2F0]"}
-                                                blinkColor={"bg-[#00B2FF]"}
-                                            />
-                                        </span>
-                                        <span className="lg:col-span-1 col-span-3 rounded-md lg:hidden  cursor-pointer">
-                                            <BlinkingComponent
-                                                color={"bg-[#FEAFB2]"}
-                                                blinkColor={"bg-[#FE7A7F]"}
-                                            />
-                                        </span>
-                                        <span className="lg:col-span-1 col-span-3 rounded-md lg:block hidden cursor-pointer">
-                                            <BlinkingComponent
-                                                color={"bg-[#FEAFB2]"}
-                                                blinkColor={"bg-[#FE7A7F]"}
-                                            />
-                                        </span>
-                                        <span className="lg:col-span-1 col-span-2 rounded-md  lg:block hidden">
-                                            <BlinkingComponent
-                                                color={"bg-[#FCE3E4]"}
-                                                blinkColor={"bg-[#CDEBEB]"}
-                                            />
-                                        </span>
-                                        <span className="lg:col-span-1 col-span-2 rounded-md  lg:block hidden">
-                                            <BlinkingComponent
-                                                color={"bg-[#FCE3E4]"}
-                                                blinkColor={"bg-[#CDEBEB]"}
-                                            />
-                                        </span>
-                                    </div>
-                                </div>
-                            </>
-                        }
-                        {/* ---------------------------------------------------------match odds counts end ------------------------------------------------------------- */}
+            <div className="flex flex-col xl:flex-row text-black h-full w-100 gap-x-2">
+                <div className="w-full overflow-y-auto xl:pb-[60px]">
+                    <div className="">
                         <div className="xl:block hidden">
                             {inplayMatch &&
                                 inplayMatch?.matchName ? (
-                                <div className="bg-[var(--darkcolor)] item-center px-2 py-1.5 flex justify-between">
-                                    <span className="text-white text-[14px] font-semibold">{inplayMatch?.matchName}</span>
-                                    <span onClick={() => handelTvModal()}>Tv</span>
-                                    
+                                <div className="bg-[var(--secondary)] tem-center px-2 py-1.5 flex justify-between">
+                                    <span className="text-black text-[14px] font-semibold flex justify-start items-center"><IoHome /> {" "} <FaAngleRight /> {" "}{inplayMatch?.sportType} {" "} <FaAngleRight /> {" "} {inplayMatch?.matchName}</span>
+                                    <div onClick={() => handelScoreModalComplete()} className="cursor-pointer px-1"><IoMdTv size={25} /></div>
+
                                 </div>
                             ) : null}
 
-                            <div>
-                                <div className="flex space-x-1 justify-end items-center">
-                                        <div
-                                            onClick={() => setFullScreen((state) => !state)}
-                                            className="text-black bg-button rounded-sm px-2 py-1 text-xs font-semibold cursor-pointer"
-                                        >
-                                            {fullscreen ? "HS" : "FS"}
-                                        </div>
-                                        <span
-                                            onClick={() => handleScore()}
-                                            className="text-black font-semibold cursor-pointer">
-                                            <img src={"/scorecard-icon.webp"} className="w-[25px] h-[25px] bg-red-600 invertimage" />
-                                        </span>
-                                    </div>
+                            <div className="bg-[var(--primary)] flex justify-between px-2">
+                                <div className="text-xs font-light text-white flex items-center py-1">{inplayMatch?.matchName} / {inplayMatch?.marketName || ""}</div>
                             </div>
                         </div>
 
-                        {inplayMatch?.isMatchOdds && (activeTab === "all") ? (
-                            <>
-
-                                <MatchDetailsHeaderSection
-                                    marketType={inplayMatch?.marketName}
-                                    minMax={{ min: 100, max: (isMatchCoin?.max) }}
-                                
-                                >
-
-
-                                    {Object.values(finalSocket).map((element, index) => element.marketType === "Match Odds" && (
-                                        <>
-
-                                            <div className="" key={index}>
-                                                {/* <header className="mt-1">
-                                                <div className=" bg-[var(--secondary)] items-center flex justify-between relative z-0 py-1 px-2">
-                                                    <div className="flex text-white align-items-center h-100 uppercase text-[14px] font-semibold ">
-                                                        Match_Odds
-                                                    </div>
-
-                                                </div>
-                                            </header> */}
-                                                <div className={`  flex whitespace-normal max-w-full border-b border-gray-300 `}>
-                                                    <div className="lg:w-1/2 xl:w-[58%] w-[65%] flex ">
-
-                                                        <div className="w-full py-1 bg-white leading-3 flex items-center text-xs text-[#097c93]">
-                                                            <span className="text-[12px] font-bold">
-                                                                {/* Max: {isMatchCoin?.max} */}
-                                                            </span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="lg:w-1/2 xl:w-[42%] w-[35%] grid grid-cols-6">
-                                                        <span className="lg:col-span-1 bg-white col-span-2   lg:block hidden">
-
-                                                        </span>
-                                                        <span className="lg:col-span-1 bg-white col-span-2   lg:block hidden">
-                                                        </span>
-                                                        <span className="lg:col-span-1 col-span-3 rounded-md  ">
-                                                            <div className={`py-1 flex justify-center items-center ${`bg-white`}`}>
-                                                                <div className='text-center leading-3'>
-                                                                    <span className="2xl:text-[16px] lg:text-[12px] text-xs text-gray-800 ">Back</span><br />
-
-                                                                </div>
-                                                            </div>
-                                                        </span>
-                                                        <span className="lg:col-span-1 col-span-3 rounded-md  ">
-                                                            <div className={`py-1 flex justify-center items-center ${`bg-white`}`}>
-                                                                <div className='text-center leading-3'>
-                                                                    <span className="2xl:text-[16px] lg:text-[12px] text-xs text-gray-800 ">Lay</span><br />
-
-                                                                </div>
-                                                            </div>
-                                                        </span>
-                                                        <span className="lg:col-span-1 col-span-2 bg-white lg:block hidden">
-
-                                                        </span>
-                                                        <span className="lg:col-span-1 col-span-2 bg-white lg:block hidden">
-
-                                                        </span>
-
-
-                                                    </div>
-                                                </div>
-
-
-                                                {element && element.runners && element.runners.length > 0 ? element.runners.map((elementtemp, index) => (
-                                                    <>
-
-
-                                                        <div
-                                                            className={`relative  flex whitespace-normal bg-white max-w-full border-b border-gray-300 relative`}
-                                                            key={index}
-                                                        >
-                                                            <div className="lg:w-1/2 xl:w-[58%] w-[65%] flex px-2">
-                                                                {/* w-11/12  */}
-                                                                <div className="w-full py-1 flex flex-col leading-3 justify-center items-start text-[#333333]">
-                                                                    <div className="text-[13px] font-bold flex  items-center gap-2">
-                                                                        {sportId == 7 &&
-                                                                            <>
-                                                                                <div><input checked={matchOddsSelected.includes(index + 1)} onClick={() => { handleCheckboxClick(index + 1) }} type="checkbox" className="!bg-white h-4 w-4" /></div>
-                                                                                <span>({index + 1}) </span>
-                                                                            </>
-                                                                        }
-                                                                        <span> {elementtemp.selectionName} <br />
-
-                                                                            <div key={index} className={positionObj[elementtemp.selectionId] > 0 ? 'text-green-500 !mt-2' : positionObj[elementtemp.selectionId] < 0 ? 'text-red-500 !mt-2' : 'black'} >
-                                                                                {/* {returnDataObject[elementtemp.selectionId] !== 0 ? returnDataObject[elementtemp.selectionId] : "-"} */}
-
-                                                                                {positionObj[elementtemp.selectionId] ? (Math.floor(Number(positionObj[elementtemp.selectionId]) * 100) / 100).toFixed(2) : ''}
-
-                                                                            </div>
-                                                                        </span>
-
-
-
-                                                                    </div>
-                                                                    <div className="text-[13px]  flex  items-center gap-1  ">   <div className="text-[13px]  flex  items-center gap-2 bg-gray-100 px-2 py-1.5 rounded-md"> <span className="text-[13px] font-bold flex  items-center gap-2">Jockey:</span> {elementtemp?.jockeyName}</div> <div className="text-[13px]  flex  items-center gap-2 bg-gray-100 px-2 py-1.5 rounded-md"><span className="text-[13px] font-bold flex  items-center gap-2">Age:</span> {elementtemp?.age}</div></div>
-                                                                </div>
-
-
-                                                            </div>
-
-                                                            <div className="lg:w-1/2 xl:w-[42%] w-[35%] grid grid-cols-6 relative">
-
-                                                                {(elementtemp?.status === "REMOVED" || finalSocket["Match Odds"]?.status === "SUSPENDED" || finalSocket["Match Odds"]?.status === "CLOSED") && <div
-                                                                    className={`w-full h-full  absolute bg-white/50 border-l-red-500 border-[0.5px] border-r-red-500 lg:flex     hidden justify-center items-center `}
-                                                                >
-                                                                    <div className="2xl:px-14 lg:px-14 py-2 px-2 text-nowrap  rounded font-bold bg-transparent  opacity-90 ">
-                                                                        <span className="text-red-500 xl:text-lg  text-sm font-bold  uppercase ">
-                                                                            {elementtemp?.status === "REMOVED" ? "REMOVED" : "SUSPENDED"}
-                                                                        </span>
-                                                                    </div>
-                                                                </div>}
-                                                                {elementtemp && elementtemp.ex && elementtemp.ex.availableToBack && elementtemp.ex.availableToBack.length > 0 ? (
-                                                                    <>
-                                                                        {elementtemp.ex.availableToBack.slice(1).map((tempData, index) => (
-                                                                            <span className="lg:col-span-1 col-span-3 rounded-md  lg:block hidden">
-                                                                                <BlinkingComponent
-                                                                                    price={tempData.price}
-                                                                                    size={tempData.size}
-                                                                                    color={"bg-[#E6F2FC]"}
-                                                                                    blinkColor={"bg-[#00B2FF]"}
-                                                                                    hoverColor={"bg-sky-600"}
-                                                                                />
-                                                                            </span>
-
-                                                                        ))}
-                                                                    </>
-                                                                ) : null}
-
-                                                                {elementtemp && elementtemp.ex && elementtemp.ex.availableToBack && elementtemp.ex.availableToBack.length > 0 ? (
-                                                                    <>
-                                                                        {elementtemp.ex.availableToBack.slice(0, 1).map((tempData, index) => (
-                                                                            <>
-
-                                                                                <span className="md:col-span-3 sm:col-span-3 rounded-md col-span-3 lg:hidden block cursor-pointer"
-                                                                                    onClick={() => {
-                                                                                        handleBackOpen({
-                                                                                            data: tempData,
-                                                                                            type: "Yes",
-                                                                                            odds: tempData.price,
-                                                                                            name: elementtemp.selectionName,
-                                                                                            nameOther: element.runners,
-                                                                                            betFor: "matchOdds",
-                                                                                            oddsType: element.marketType,
-                                                                                            betType: "L",
-                                                                                            selectionId: elementtemp.selectionId,
-                                                                                            teamData: tempData.price,
-                                                                                            betfairMarketId: element.marketId,
-                                                                                            price: elementtemp.ex.availableToLay[0].price,
-                                                                                            size: elementtemp.ex.availableToLay[0].size,
-                                                                                            position: returnDataObject,
-                                                                                            newPosition: returnDataObject
-                                                                                        });
-
-                                                                                    }}
-                                                                                >
-                                                                                    <BlinkingComponent
-                                                                                        price={tempData.price}
-                                                                                        size={tempData.size}
-                                                                                        color={"bg-[#8DD2F0]"}
-                                                                                        blinkColor={"bg-[#00B2FF]"}
-                                                                                    />
-                                                                                </span>
-                                                                                <span className="lg:col-span-1 col-span-3 rounded-md lg:block hidden cursor-pointer"
-                                                                                    onClick={() => {
-
-                                                                                        handleBackOpen({
-                                                                                            data: tempData,
-                                                                                            type: "Yes",
-                                                                                            odds: tempData.price,
-                                                                                            name: elementtemp.selectionName,
-                                                                                            nameOther: element.runners,
-                                                                                            betFor: "matchOdds",
-                                                                                            oddsType: element.marketType,
-                                                                                            betType: "L",
-                                                                                            selectionId: elementtemp.selectionId,
-                                                                                            teamData: tempData.price,
-                                                                                            betfairMarketId: element.marketId,
-                                                                                            price: elementtemp.ex.availableToLay[0].price,
-                                                                                            size: elementtemp.ex.availableToLay[0].size,
-                                                                                            position: returnDataObject,
-                                                                                            newPosition: returnDataObject
-                                                                                        })
-                                                                                    }}
-                                                                                >
-                                                                                    <BlinkingComponent
-                                                                                        price={tempData.price}
-                                                                                        size={tempData.size}
-                                                                                        color={"bg-[#8DD2F0]"}
-                                                                                        blinkColor={"bg-[#00B2FF]"}
-                                                                                    />
-                                                                                </span>
-                                                                            </>
-
-                                                                        ))}
-                                                                    </>
-                                                                ) : null}
-
-                                                                {elementtemp &&
-                                                                    elementtemp.ex &&
-                                                                    elementtemp.ex.availableToLay &&
-                                                                    elementtemp.ex.availableToLay.length >
-                                                                    0 ? (
-                                                                    elementtemp.ex.availableToLay.map(
-                                                                        (tempData, index) => (
-                                                                            <>
-                                                                                {index === 0 ? (
-                                                                                    <>
-                                                                                        <span className="lg:col-span-1 col-span-3 rounded-md lg:hidden  cursor-pointer"
-                                                                                            onClick={() => {
-                                                                                                toggleRowVisibility(elementtemp.selectionId);
-                                                                                                handleBackOpen({
-                                                                                                    data: tempData,
-                                                                                                    type: "No",
-                                                                                                    odds: tempData.price,
-                                                                                                    name: elementtemp.selectionName,
-                                                                                                    nameOther: element.runners,
-                                                                                                    betFor: "matchOdds", oddsType: element.marketType,
-                                                                                                    betType: "K",
-                                                                                                    selectionId: elementtemp.selectionId,
-                                                                                                    teamData: tempData.price,
-                                                                                                    betfairMarketId: element.marketId,
-                                                                                                    price: elementtemp.ex.availableToBack[0].price,
-                                                                                                    size: elementtemp.ex.availableToBack[0].size,
-                                                                                                    position: returnDataObject,
-                                                                                                    newPosition: returnDataObject
-                                                                                                })
-                                                                                            }}
-                                                                                        >
-                                                                                            <BlinkingComponent
-                                                                                                price={tempData.price}
-                                                                                                size={tempData.size}
-                                                                                                color={"bg-[#FEAFB2]"}
-                                                                                                blinkColor={"bg-[#FE7A7F]"}
-                                                                                            />
-                                                                                        </span>
-
-                                                                                        <span className="lg:col-span-1 col-span-3 rounded-md lg:block hidden cursor-pointer"
-                                                                                            onClick={() => {
-
-                                                                                                handleBackOpen({
-
-                                                                                                    data: tempData,
-                                                                                                    type: "No",
-                                                                                                    odds: tempData.price,
-                                                                                                    name: elementtemp.selectionName,
-                                                                                                    nameOther: element.runners,
-                                                                                                    betFor: "matchOdds", oddsType: element.marketType,
-                                                                                                    betType: "K",
-                                                                                                    selectionId: elementtemp.selectionId,
-                                                                                                    teamData: tempData.price,
-                                                                                                    betfairMarketId: element.marketId,
-                                                                                                    price: elementtemp.ex.availableToBack[0].price,
-                                                                                                    size: elementtemp.ex.availableToBack[0].size,
-                                                                                                    position: returnDataObject,
-                                                                                                    newPosition: returnDataObject
-                                                                                                })
-                                                                                            }}
-                                                                                        >
-                                                                                            <BlinkingComponent
-                                                                                                price={tempData.price}
-                                                                                                size={tempData.size}
-                                                                                                color={"bg-[#FEAFB2]"}
-                                                                                                blinkColor={"bg-[#FE7A7F]"}
-                                                                                            />
-                                                                                        </span>
-                                                                                    </>
-                                                                                ) : (
-                                                                                    <>
-                                                                                        <span className="lg:col-span-1 col-span-2 rounded-md  lg:block hidden"
-
-                                                                                        >
-                                                                                            <BlinkingComponent
-                                                                                                price={tempData.price}
-                                                                                                size={tempData.size}
-                                                                                                color={"bg-[#FCE3E4]"}
-                                                                                                blinkColor={"bg-[#CDEBEB]"}
-                                                                                            />
-                                                                                        </span>
-                                                                                    </>
-
-                                                                                )}
-                                                                            </>
-                                                                        )
-                                                                    )) : null}
-                                                            </div>
-
-                                                            {(elementtemp?.status === "REMOVED" || finalSocket["Match Odds"]?.status === "SUSPENDED" || finalSocket["Match Odds"]?.status === "CLOSED") && <div
-                                                                className={`w-full h-full  absolute  flex  bg-[var(--suspended-color)]    lg:hidden justify-center items-center `}
-                                                            >
-                                                                <div className="2xl:px-14 lg:px-14 py-2 px-2 text-nowrap  rounded font-bold bg-transparent  opacity-90 ">
-                                                                    <span className="text-red-500 xl:text-lg  text-sm font-bold  uppercase ">
-                                                                        {elementtemp?.status === "REMOVED" ? "REMOVED" : "SUSPENDED"}
-                                                                    </span>
-                                                                </div>
-                                                            </div>}
-                                                        </div>
-
-
-                                                        {elementtemp?.selectionId == betSlipData?.selectionId && <PlaceBetMobile
-                openBets={openBets}
-                closeRow={closeRow}
-                matchName={inplayMatch?.matchName}
-                betSlipData={betSlipData}
-                placeBet={placeBet}
-                errorMessage={errorMessage}
-                successMessage={successMessage}
-                count={betSlipData.count}
-                betLoading={betLoading}
-                increaseCount={increaseCount}
-                decreaseCount={decreaseCount}
-                handleClose={handleBackclose}
-                setBetSlipData={setBetSlipData}
-                handleButtonValues={handleButtonValues}
-                isMatchCoin={isMatchCoin}
-            />}
-                                                    </>
-                                                )) : null}
-
-
-                                                 
-
-                                                
-
-                                            </div>
-                                        </>))}
-                                </MatchDetailsHeaderSection>
-                            </>
-                        ) : null}
-                    </div></> : <div className="bg-black/70 flex justify-center items-start z-50">
-                        <div className="bg-white w-full max-w-3xl rounded-md shadow-lg md:m-4 m-3 p-0">
-                            <div className="rounded-t-md py-4 px-4 font-normal text-black/90 text-sm border-b border-[#dee2e6] flex justify-between items-center">
-                                <span className="text-[20px]">Open Bets</span>
-                                <button onClick={closeModal} className="text-black/90 text-md">
-                                    <FaTimes />
-                                </button>
+                        <div className="xl:hidden block">
+                            {inplayMatch &&
+                                inplayMatch?.matchName ? (
+                                <div className="bg-[var(--secondary)] item-center px-2 py-1.5 flex justify-start">
+                                    <div className="text-black text-[14px] font-semibold flex justify-start items-center truncate w-1/2" onClick={closeModal}>{inplayMatch?.matchName}</div> |
+                                    <div className="flex justify-between w-full">
+                                        <div className="text-start px-1 text-black text-[14px] font-semibold flex justify-start items-center" onClick={() => handleBets() || handelScoreModalComplete()}>
+                                            MY BETS
+                                        </div>
+                                        <div onClick={() => handelScoreModalComplete()} className="cursor-pointer px-1"><IoMdTv size={25} /></div>
+                                    </div>
+                                </div>
+                            ) : null}
+                            <div className="bg-[var(--primary)] flex justify-between px-2">
+                                <div className="text-xs font-light text-white flex items-center py-1">{inplayMatch?.matchName}</div>
                             </div>
+
+                        </div>
+                        {scoreModal && (
+                            <div className=" pt-1">
+                                <ul class="flex-wrap space-x-2 rtl:space-x-reverse flex rounded-t-[5px] w-full bg-[var(--secondary)] text-center">
+                                    <li role="presentation" class="group">
+                                        <button type="button" role="tab" class={`inline-block text-center text-[10px] font-bold uppercase w-[130px]  h-[30px]  rounded ${selectedType === "score" ? "bg-[var(--primary)] text-white border-b-2" : ""}`} onClick={() => handleWatchButtonClick("score")}>
+                                            <span slot="title">Score</span>
+                                        </button>
+                                    </li>
+                                    <li role="presentation" class="group">
+                                        <button type="button" role="tab" class={`inline-block text-center text-[10px] font-bold uppercase w-[130px]  h-[30px]  rounded ${selectedType === "tv" ? "bg-[var(--primary)] text-white border-b-2" : ""}`}>
+                                            <span slot="title" class="flex gap-2"><span class="m-auto flex gap-1 items-center" onClick={() => handleWatchButtonClick("tv")} >Live TV <div class="w-1.5 h-1.5 bg-red-600 rounded-full"></div>
+                                            </span></span>
+                                        </button>
+                                    </li>
+                                </ul>
+
+
+                                {inplayMatch.isScore && (
+                                    <div className="border-2 border-secondary rounded-lg">
+                                        {selectedType === "score" && (
+                                            <div
+                                                className={`bg-white w-full ${fullscreen ? "h-[220px]" : "h-[110px]"
+                                                    }`}
+                                            >
+                                                <div className="details">
+                                                    <div
+                                                        className={`w-full relative md:text-sm text-[10px]`}
+                                                    >
+                                                        <iframe
+                                                            src={inplayMatch && inplayMatch.scoreIframe ? inplayMatch.scoreIframe : ""}
+                                                            title=" "
+                                                            loading="lazy"
+                                                            className={`w-[100%] ${fullscreen ? "h-[220px]" : "h-[110px]"
+                                                                }`}
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>)}
+                                    </div>
+                                )}
+                                <div>
+                                    {inplayMatch.isTv ? <>
+                                        {selectedType === "tv" && <div className="bg-white w-full h-48">
+                                            <div className="details">
+                                                <div className={`w-full relative md:text-sm text-[10px]`}>
+                                                    <iframe src={inplayMatch && inplayMatch.tvUrl ? inplayMatch.tvUrl : ""} title=" " loading='lazy' className="w-[100%] h-[200px]" />
+                                                </div>
+                                            </div>
+                                        </div>}
+                                    </>
+                                        : null}
+                                </div>
+                            </div>
+                        )}
+
+                        <div class="flex w-full md:w-full overflow-hidden py-2 md:py-1 md:px-0 my-1">
+                            <div class="w-full inline-flex overflow-auto ">
+                                <div class="flex-none  relative space-x-2">
+                                    
+                                    <button class=" bg-[var(--secondary)] text-black h-[21px] px-2 rounded-[2.83px] gap-2.5  font-bold uppercase text-[12px]  " onClick={() => handleTabClick("all")}>All</button>
+                                </div>
+                            </div>
+                        </div>
+                        {!open ? <>
+
+                            {(activeTab == "all" || activeTab == "MatchOdds") && (<RacingMatchOddsMarket
+                                inplayMatch={inplayMatch}
+                                activeTab={activeTab}
+                                finalSocket={finalSocket}
+                                isMatchCoin={isMatchCoin}
+                                positionObj={positionObj}
+                                returnDataObject={returnDataObject}
+                                toggleRowVisibility={toggleRowVisibility}
+                                handleBackOpen={handleBackOpen}
+                                formatNumber={formatNumber}
+                                betplaceSection={betplaceDataThroughProps}
+
+                            />)}
+
+                        </> : <div className="bg-black/70 flex justify-center items-start z-50">
+                            <div className="bg-white w-full max-w-3xl rounded-md shadow-lg md:m-4 m-3 p-0">
+                                <div className="rounded-t-md py-4 px-4 font-normal text-black/90 text-sm border-b border-[#dee2e6] flex justify-between items-center">
+                                    <span className="text-[20px]">Open Bets</span>
+                                    <button onClick={closeModal} className="text-black/90 text-md">
+                                        <FaTimes />
+                                    </button>
+                                </div>
+                                <div className="flex justify-between items-center border-x border-t border-[#C6D2D8] bg-white w-full">
+                                    {["oddsBetData", "UnsettleBets", "fancyBetData"]?.map((tab) => (
+                                        <button
+                                            key={tab}
+                                            onClick={() => setActiveBets(tab)}
+                                            className={`px-4 py-2 uppercase text-[12px] font-[600] w-full ${activeBets === tab
+                                                ? " text-[var(--secondary)] border-b-2 border-b-[var(--secondary)] bg-gray-50"
+                                                : "hover:text-[var(--secondary)] text-black"
+                                                }`}
+                                        >
+                                            {tab === "oddsBetData"
+                                                ? "MATCHED"
+                                                : tab === "UnsettleBets"
+                                                    ? "Unsettle"
+                                                    : tab === "fancyBetData"
+                                                        ? "Fancy"
+                                                        : "-"}
+                                        </button>
+                                    ))}
+                                </div>
+                                <div className="overflow-hidden w-full p-0 !m-0">
+                                    <div className="max-w-full overflow-auto ">
+                                        <div className="min-w-full ">
+                                            <div className="overflow-hidden w-full ">
+                                                <table className="min-w-full capitalize border border-[#f8f8f8]">
+                                                    <thead>
+                                                        <tr className="w-full text-black/80 text-[14px] font-[400] bg-[#ffffff] text-left border border-[#f8f8f8]">
+                                                            <th className="px-[6px] py-1 border border-[#f8f8f8] whitespace-nowrap">Selname</th>
+                                                            <th className="px-[6px] py-1 border border-[#f8f8f8] whitespace-nowrap">Odds</th>
+                                                            <th className="px-[6px] py-1 border border-[#f8f8f8] whitespace-nowrap">Stake</th>
+                                                            <th className="px-[6px] py-1 border border-[#f8f8f8] whitespace-nowrap">
+                                                                Date/Time
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {/* Odds Bets */}
+                                                        {activeBets === "oddsBetData" &&
+                                                            (oddsBetData?.length > 0 ? (
+                                                                oddsBetData.map((element, index) => (
+                                                                    <tr
+                                                                        key={index}
+                                                                        className={`w-full text-[#333333] text-[0.8125rem] border-b border-t divide-x divide-white text-left ${element?.type === "K"
+                                                                            ? "bg-[var(--matchKhai)]"
+                                                                            : "bg-[var(--matchLagai)]"
+                                                                            }`}
+                                                                    >
+                                                                        <td className="px-[6px] border border-[#f8f8f8] py-1 whitespace-nowrap">
+                                                                            <div>
+                                                                                {element?.teamName} <br />
+                                                                                <span className="font-bold">
+                                                                                    {element?.marketName}
+                                                                                </span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td className="px-[6px] border border-[#f8f8f8] py-1 whitespace-nowrap">
+                                                                            {element?.odds}
+                                                                        </td>
+                                                                        <td className="px-[6px] border border-[#f8f8f8] py-1 whitespace-nowrap">
+                                                                            {element?.amount}
+                                                                        </td>
+                                                                        <td className="px-[6px] border border-[#f8f8f8] py-1 whitespace-nowrap">
+                                                                            {element?.date}
+                                                                        </td>
+                                                                    </tr>
+                                                                ))
+                                                            ) : (
+                                                                <tr>
+                                                                    <td colSpan={4} className="text-center py-2 text-sm">
+                                                                        No Odds Bet found!
+                                                                    </td>
+                                                                </tr>
+                                                            ))}
+
+                                                        {/* Fancy Bets */}
+                                                        {activeBets === "fancyBetData" &&
+                                                            (fancyBetData?.length > 0 ? (
+                                                                fancyBetData.map((element, index) => (
+                                                                    <tr
+                                                                        key={index}
+                                                                        className={`w-full text-[#333333] text-[0.8125rem] border-b border-t text-left divide-x divide-white ${element?.type === "N"
+                                                                            ? "bg-[var(--matchKhai)]"
+                                                                            : "bg-[var(--matchLagai)]"
+                                                                            }`}
+                                                                    >
+                                                                        <td className="px-[6px] border border-[#f8f8f8] py-1 whitespace-nowrap">
+                                                                            <span className="font-medium text-xs">
+                                                                                {element?.sessionName}
+                                                                            </span>
+                                                                        </td>
+                                                                        <td className="px-[6px] border border-[#f8f8f8] py-1 whitespace-nowrap">
+                                                                            {element?.odds}
+                                                                        </td>
+                                                                        <td className="px-[6px] border border-[#f8f8f8] py-1 whitespace-nowrap">
+                                                                            {element?.amount}
+                                                                        </td>
+                                                                        <td className="px-[6px] border border-[#f8f8f8] py-1 whitespace-nowrap">
+                                                                            {element?.date}
+                                                                        </td>
+                                                                    </tr>
+                                                                ))
+                                                            ) : (
+                                                                <tr>
+                                                                    <td colSpan={4} className="text-center py-2 text-sm">
+                                                                        No Fancy Bets found!
+                                                                    </td>
+                                                                </tr>
+                                                            ))}
+
+                                                        {/* Unsettle Bets */}
+                                                        <div className="bg-[var(--primary)] flex justify-between px-2">
+                                                            <div className="text-xs font-light text-white flex items-center py-1">{inplayMatch?.matchName}</div>
+                                                        </div> {activeBets === "UnsettleBets" &&
+                                                            (fancyBetData?.length > 0 ? (
+                                                                fancyBetData.map((element, index) => (
+                                                                    <tr
+                                                                        key={index}
+                                                                        className="w-full text-[#333333] text-[0.8125rem] border-b border-t text-left"
+                                                                    >
+                                                                        <td className="px-[6px] border border-[#f8f8f8] py-1 whitespace-nowrap">
+                                                                            {element?.name}
+                                                                        </td>
+                                                                        <td className="px-[6px] border border-[#f8f8f8] py-1 whitespace-nowrap">
+                                                                            {element?.odds}
+                                                                        </td>
+                                                                        <td className="px-[6px] border border-[#f8f8f8] py-1 whitespace-nowrap">
+                                                                            {element?.amount}
+                                                                        </td>
+                                                                        <td className="px-[6px] border border-[#f8f8f8] py-1 whitespace-nowrap">
+                                                                            {element?.date}
+                                                                        </td>
+                                                                    </tr>
+                                                                ))
+                                                            ) : (
+                                                                <tr>
+                                                                    <td colSpan={4} className="text-center py-2 text-sm">
+                                                                        No Unsettle Bets found!
+                                                                    </td>
+                                                                </tr>
+                                                            ))}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>}
+                    </div>
+                </div>
+                {/* // )} */}
+                <div className="w-full xl:w-[65%] xl:block hidden ">
+
+                    <div className="">
+                        <div className="flex w-full">
+                            <div
+                                className={`rounded-t-md py-1.5 px-4 w-1/2 font-bold text-sm cursor-pointer ${!betShow
+                                    ? 'bg-[var(--secondary)] text-black'
+                                    : 'bg-[var(--primary)] text-white'
+                                    }`}>
+                                Bet Slip
+                            </div>
+
+                            <div
+                                className={`rounded-t-md py-1.5 w-1/2 px-4 font-bold text-sm cursor-pointer ${betShow
+                                    ? 'bg-[var(--secondary)] text-black'
+                                    : 'bg-[var(--primary)] text-white'
+                                    }`}
+                                onClick={() => setBetShow(true)}
+                            >
+                                My Bet
+                            </div>
+                        </div>
+                        {!betShow ? (
+                            <>
+                                <BetPlaceDesktop
+                                    openBets={openBets}
+                                    closeRow={closeRow}
+                                    matchData={inplayMatch}
+                                    betSlipData={betSlipData}
+                                    placeBet={placeBet}
+                                    errorMessage={errorMessage}
+                                    successMessage={successMessage}
+                                    count={betSlipData.count}
+                                    betLoading={betLoading}
+                                    increaseCount={increaseCount}
+                                    decreaseCount={decreaseCount}
+                                    handleButtonValues={handleButtonValues}
+                                    isMatchCoin={isMatchCoin}
+                                />
+                            </>
+                        ) : (<div className="">
+
                             <div className="flex justify-between items-center border-x border-t border-[#C6D2D8] bg-white w-full">
                                 {["oddsBetData", "UnsettleBets", "fancyBetData"]?.map((tab) => (
                                     <button
@@ -1384,10 +1228,10 @@ const ViewMatchRacing = () => {
                                     </button>
                                 ))}
                             </div>
-                            <div className="overflow-hidden w-full p-0 !m-0">
-                                <div className="max-w-full overflow-auto ">
-                                    <div className="min-w-full ">
-                                        <div className="overflow-hidden w-full ">
+                            <div className="overflow-hidden w-full border border-[#C6D2D8] border-t-0">
+                                <div className="max-w-full overflow-auto">
+                                    <div className="min-w-full">
+                                        <div className="overflow-hidden w-full">
                                             <table className="min-w-full capitalize border border-[#f8f8f8]">
                                                 <thead>
                                                     <tr className="w-full text-black/80 text-[14px] font-[400] bg-[#ffffff] text-left border border-[#f8f8f8]">
@@ -1400,7 +1244,6 @@ const ViewMatchRacing = () => {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {/* Odds Bets */}
                                                     {activeBets === "oddsBetData" &&
                                                         (oddsBetData?.length > 0 ? (
                                                             oddsBetData.map((element, index) => (
@@ -1438,7 +1281,6 @@ const ViewMatchRacing = () => {
                                                             </tr>
                                                         ))}
 
-                                                    {/* Fancy Bets */}
                                                     {activeBets === "fancyBetData" &&
                                                         (fancyBetData?.length > 0 ? (
                                                             fancyBetData.map((element, index) => (
@@ -1473,7 +1315,6 @@ const ViewMatchRacing = () => {
                                                             </tr>
                                                         ))}
 
-                                                    {/* Unsettle Bets */}
                                                     {activeBets === "UnsettleBets" &&
                                                         (fancyBetData?.length > 0 ? (
                                                             fancyBetData.map((element, index) => (
@@ -1508,232 +1349,16 @@ const ViewMatchRacing = () => {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>}
-                </div>
-                {/* )} */}
-                <div className=" xl:w-[402px]  2xl:w-[452px] sticky top-0  lg:h-[calc(100vh-400px)] xl:block hidden">
-                    <div>
-                        {inplayMatch.isTv ? <>
-                            {tvShow && <div className="bg-white w-full h-48">
-                                <div className="details">
-                                    <div className={`w-full relative md:text-sm text-[10px]`}>
-                                        <iframe src={inplayMatch && inplayMatch.tvUrl ? inplayMatch.tvUrl : ""} title=" " loading='lazy' className="w-[100%] h-[200px]" />
-                                    </div>
-                                </div>
-                            </div>}
-                        </>
-                            : null}
+                        </div>)}
                     </div>
-                    <div className="">
-
-                        <div className="flex w-full">
-  <div
-    className={`rounded-t-md py-1.5 px-4 w-1/2 font-bold text-sm cursor-pointer ${
-      !betShow
-        ? 'bg-gray-200 text-black'
-        : 'bg-[var(--darkcolor)] text-white'
-    }`}
-     onClick={() => setBetShow(true)}
-  >
-    Bet Slip
-  </div>
-
-  <div
-    className={`rounded-t-md py-1.5 w-1/2 px-4 font-bold text-sm cursor-pointer ${
-      betShow
-        ? 'bg-gray-200 text-black'
-        : 'bg-[var(--darkcolor)] text-white'
-    }`}
-   
-  >
-    My Bet
-  </div>
-</div>
-
-                        {!betShow ? (
-                            <>                               
-                                <BetPlaceDesktop
-                                    openBets={openBets}
-                                    closeRow={closeRow}
-                                    matchName={inplayMatch?.matchName}
-                                    betSlipData={betSlipData}
-                                    placeBet={placeBet}
-                                    errorMessage={errorMessage}
-                                    successMessage={successMessage}
-                                    count={betSlipData.count}
-                                    betLoading={betLoading}
-                                    increaseCount={increaseCount}
-                                    decreaseCount={decreaseCount}
-                                    handleButtonValues={handleButtonValues}
-                                    isMatchCoin={minMaxCoins}
-                                />
-                            </>
-                        ) : <div className="">
-                       
-                        <div className="flex justify-between items-center border-x border-t border-[#C6D2D8] bg-white w-full">
-                            {["oddsBetData", "UnsettleBets", "fancyBetData"]?.map((tab) => (
-                                <button
-                                    key={tab}
-                                    onClick={() => setActiveBets(tab)}
-                                    className={`px-4 py-2 uppercase text-[12px] font-[600] w-full ${activeBets === tab
-                                        ? " text-[var(--secondary)] border-b-2 border-b-[var(--secondary)] bg-gray-50"
-                                        : "hover:text-[var(--secondary)] text-black"
-                                        }`}
-                                >
-                                    {tab === "oddsBetData"
-                                        ? "MATCHED"
-                                        : tab === "UnsettleBets"
-                                            ? "Unsettle"
-                                            : tab === "fancyBetData"
-                                                ? "Fancy"
-                                                : "-"}
-                                </button>
-                            ))}
-                        </div>
-                        <div className="overflow-hidden w-full border border-[#C6D2D8] border-t-0">
-                            <div className="max-w-full overflow-auto">
-                                <div className="min-w-full">
-                                    <div className="overflow-hidden w-full">
-                                        <table className="min-w-full capitalize border border-[#f8f8f8]">
-                                            <thead>
-                                                <tr className="w-full text-black/80 text-[14px] font-[400] bg-[#ffffff] text-left border border-[#f8f8f8]">
-                                                    <th className="px-[6px] py-1 border border-[#f8f8f8] whitespace-nowrap">Selname</th>
-                                                    <th className="px-[6px] py-1 border border-[#f8f8f8] whitespace-nowrap">Odds</th>
-                                                    <th className="px-[6px] py-1 border border-[#f8f8f8] whitespace-nowrap">Stake</th>
-                                                    <th className="px-[6px] py-1 border border-[#f8f8f8] whitespace-nowrap">
-                                                        Date/Time
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {/* Odds Bets */}
-                                                {activeBets === "oddsBetData" &&
-                                                    (oddsBetData?.length > 0 ? (
-                                                        oddsBetData.map((element, index) => (
-                                                            <tr
-                                                                key={index}
-                                                                className={`w-full text-[#333333] text-[0.8125rem] border-b border-t divide-x divide-white text-left ${element?.type === "K"
-                                                                    ? "bg-[var(--matchKhai)]"
-                                                                    : "bg-[var(--matchLagai)]"
-                                                                    }`}
-                                                            >
-                                                                <td className="px-[6px] border border-[#f8f8f8] py-1 whitespace-nowrap">
-                                                                    <div>
-                                                                        {element?.teamName} <br />
-                                                                        <span className="font-bold">
-                                                                            {element?.marketName}
-                                                                        </span>
-                                                                    </div>
-                                                                </td>
-                                                                <td className="px-[6px] border border-[#f8f8f8] py-1 whitespace-nowrap">
-                                                                    {element?.odds}
-                                                                </td>
-                                                                <td className="px-[6px] border border-[#f8f8f8] py-1 whitespace-nowrap">
-                                                                    {element?.amount}
-                                                                </td>
-                                                                <td className="px-[6px] border border-[#f8f8f8] py-1 whitespace-nowrap">
-                                                                    {element?.date}
-                                                                </td>
-                                                            </tr>
-                                                        ))
-                                                    ) : (
-                                                        <tr>
-                                                            <td colSpan={4} className="text-center py-2 text-sm">
-                                                                No Odds Bet found!
-                                                            </td>
-                                                        </tr>
-                                                    ))}
-
-                                                {/* Fancy Bets */}
-                                                {activeBets === "fancyBetData" &&
-                                                    (fancyBetData?.length > 0 ? (
-                                                        fancyBetData.map((element, index) => (
-                                                            <tr
-                                                                key={index}
-                                                                className={`w-full text-[#333333] text-[0.8125rem] border-b border-t text-left divide-x divide-white ${element?.type === "N"
-                                                                    ? "bg-[var(--matchKhai)]"
-                                                                    : "bg-[var(--matchLagai)]"
-                                                                    }`}
-                                                            >
-                                                                <td className="px-[6px] border border-[#f8f8f8] py-1 whitespace-nowrap">
-                                                                    <span className="font-medium text-xs">
-                                                                        {element?.sessionName}
-                                                                    </span>
-                                                                </td>
-                                                                <td className="px-[6px] border border-[#f8f8f8] py-1 whitespace-nowrap">
-                                                                    {element?.odds}
-                                                                </td>
-                                                                <td className="px-[6px] border border-[#f8f8f8] py-1 whitespace-nowrap">
-                                                                    {element?.amount}
-                                                                </td>
-                                                                <td className="px-[6px] border border-[#f8f8f8] py-1 whitespace-nowrap">
-                                                                    {element?.date}
-                                                                </td>
-                                                            </tr>
-                                                        ))
-                                                    ) : (
-                                                        <tr>
-                                                            <td colSpan={4} className="text-center py-2 text-sm">
-                                                                No Fancy Bets found!
-                                                            </td>
-                                                        </tr>
-                                                    ))}
-
-                                                {/* Unsettle Bets */}
-                                                {activeBets === "UnsettleBets" &&
-                                                    (fancyBetData?.length > 0 ? (
-                                                        fancyBetData.map((element, index) => (
-                                                            <tr
-                                                                key={index}
-                                                                className="w-full text-[#333333] text-[0.8125rem] border-b border-t text-left"
-                                                            >
-                                                                <td className="px-[6px] border border-[#f8f8f8] py-1 whitespace-nowrap">
-                                                                    {element?.name}
-                                                                </td>
-                                                                <td className="px-[6px] border border-[#f8f8f8] py-1 whitespace-nowrap">
-                                                                    {element?.odds}
-                                                                </td>
-                                                                <td className="px-[6px] border border-[#f8f8f8] py-1 whitespace-nowrap">
-                                                                    {element?.amount}
-                                                                </td>
-                                                                <td className="px-[6px] border border-[#f8f8f8] py-1 whitespace-nowrap">
-                                                                    {element?.date}
-                                                                </td>
-                                                            </tr>
-                                                        ))
-                                                    ) : (
-                                                        <tr>
-                                                            <td colSpan={4} className="text-center py-2 text-sm">
-                                                                No Unsettle Bets found!
-                                                            </td>
-                                                        </tr>
-                                                    ))}
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>}
-                        <div className="py-1">
-                                                <Link to={'/why-choose-us'}>
-                                                     <img className="rounded-[4px] w-full h-auto" src="/images/zetto/why.webp" alt=""/>
-                                                </Link>
-                                            </div>
+                    <div className="py-1">
+                        <Link to={'/why-choose-us'}>
+                            <img className="rounded-[4px] w-full h-auto" src="/images/zetto/why.webp" alt="" />
+                        </Link>
                     </div>
-
-                    
                 </div>
-               
-
-
             </div>
-
-            <>
-                {/* */}
-            </>
-
+            
         </div >
     );
 };
