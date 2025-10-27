@@ -7,27 +7,18 @@ export default function ChatPopUp() {
     return (
          <>
         <div className="fixed bottom-4 right-4 z-50">
-        {/* Floating Chat Button */}
         {!isOpen && (
-            // <button
-            // onClick={() => setIsOpen(true)}
-            // className="bg-cyan-500 text-white font-semibold px-4 py-2 rounded-full shadow-lg hover:bg-cyan-600 transition"
-            // >
-            // Chat with us 💬
-            // </button>
                         <div onClick={() => setIsOpen(true)} className='fixed bottom-[50px] right-[25px] cursor-pointer w-[71px] h-[71px] bg-white rounded-full flex items-center justify-center z-50'>
                 <img className='!w-[40px] !h-[40px]' src="/images/zetto/chat.png" alt="" srcset="" />
             </div>
         )}
 
-        {/* Popup Box */}
         <div className="relative">  
             <div
             className={` bottom-[25px] right-[25px] w-[320px] md:w-[370px] bg-white rounded-[18px] shadow-2xl transition-all duration-500 ease-in-out overflow-hidden ${
             isOpen ? "translate-y-0 opacity-100" : "translate-y-[110%] opacity-0"
             }`}
         >
-            {/* Header */}
             <div className="bg-[#20e2ec] text-white h-[120px] flex gap-8 items-center px-4 py-3 rounded-t-xl">
                 <div>
                     {/* <img className="!w-[50px] !h-[50px] rounded-full" src="/images/zetto/chatlogo.png" alt="" srcset="" /> */}
@@ -44,7 +35,6 @@ export default function ChatPopUp() {
             </button> */}
             </div>
 
-            {/* Chat Content */}
             <div className="px-4 py-10 bg-gray-50 rounded-t-[16px] text-gray-800 text-sm">
             <p className="font-semibold mb-2">Bhimexch</p>
             <p className="rounded-[16px] rounded-bl-0 p-2 bg-[#f8f8f8] max-w-[310px] w-full">Hi, Welcome to Bhimexch. How may I help you?</p>
