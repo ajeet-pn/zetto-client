@@ -34,14 +34,15 @@ const navigate = useNavigate();
   return (
     <>
       <footer className="bg-[--primary] hidden lg:block w-full text-white">
-          <div className="bg-[--primary] grid grid-cols-5 text-white py-8 md:px-5 lg:px-28">
+          <div className="bg-[--primary] grid grid-cols-5 text-white py-8 md:px-5 lg:ps-28 lg:pe-52">
           <div className="">
               {/* Logo */}
               <div className="flex flex-col gap-2 space-x-4">
                 <Link to='/dashboard'>
                   <img src={settings.logo} alt="Zetto Logo" className="w-32" />
                 </Link>
-                <div className='flex gap-2 mt-2 !ms-0'>
+                <div className='text-[12px] font-semibold !ms-0'>FOLLOW US ON</div>
+                <div className='flex gap-2 !ms-0'>
                   {/* <div className='min-w-[30px] cursor-pointer'>
                     <img src="/images/zetto/fb1.png" alt="" className='!w-[26px] !h-[26px]'/>
                   </div> */}
