@@ -80,11 +80,6 @@ const hideFooterRoutes = ["/login",];
                         />
                     </div>
 
-<<<<<<< HEAD
-                    <div 
-                    className={`flex-1 h-full lg:h-auto w-full  ${shouldHideSidebars && shouldHideLeftSidebars ? "w-full" : "lg:max-w-[calc(100dvw_-_658px)]"} ${isSidebarOpen ? 'lg:ml-[0px] fixed inset-0 lg:static' : ''}`}
-                    >
-=======
                     <div className={`flex-1 h-full lg:h-auto w-full  
   ${
     (currentPath.startsWith("/sport-view") || currentPath.startsWith("/sport-view-racing"))
@@ -95,7 +90,6 @@ const hideFooterRoutes = ["/login",];
   }
   ${isSidebarOpen ? 'lg:ml-[0px] fixed inset-0 lg:static' : ''}`}>
 
->>>>>>> d2b23632b24b75dc53e27b03cb00a1de62054e8b
                         <div className="p-1 h-full overflauto">
                             <AppContent />
                         </div>
