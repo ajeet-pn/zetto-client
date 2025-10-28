@@ -28,6 +28,7 @@ import { MdScore } from "react-icons/md";
 import { fancyTabs, premiumTabs } from "./matchconstants";
 import { IoHome } from "react-icons/io5";
 import { IoMdTv } from "react-icons/io";
+import settings from "../../domainConfig";
 
 
 

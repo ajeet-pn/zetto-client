@@ -134,3 +134,14 @@ body {
 .animate-slidedownallrows {
   animation: autoScrollDown 20s linear infinite;
 }
+
+@keyframes slideUp {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); 
+  }
+}
+.animate-slideUp {
+  display: flex;
+  flex-direction: column;
+  animation: slideUp 20s linear infinite;
+}

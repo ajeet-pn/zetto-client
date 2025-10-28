@@ -21,6 +21,12 @@ const Layout = () => {
     const location = useLocation();
     const currentPath = location.pathname;
 
+  // ✨ Add routes where you don't want the condition to apply
+  const excludedRoutes = ["/login", "/register"]; // add your 2 routes here
+
+  // Check if the current route is excluded
+const isExcluded = excludedRoutes.includes(location.pathname);
+
 
     const handleToggle = () => {
         document.body.classList.toggle("StakeModalOpen");
@@ -74,7 +80,9 @@ const hideFooterRoutes = ["/login",];
                         />
                     </div>
 
-                    <div className={`flex-1 h-full lg:h-auto w-full  ${shouldHideSidebars && shouldHideLeftSidebars ? "w-full" : "lg:max-w-[calc(100dvw_-_658px)]"} ${isSidebarOpen ? 'lg:ml-[0px] fixed inset-0 lg:static' : ''}`}>
+                    <div 
+                    className={`flex-1 h-full lg:h-auto w-full  ${shouldHideSidebars && shouldHideLeftSidebars ? "w-full" : "lg:max-w-[calc(100dvw_-_658px)]"} ${isSidebarOpen ? 'lg:ml-[0px] fixed inset-0 lg:static' : ''}`}
+                    >
                         <div className="p-1 h-full overflauto">
                             <AppContent />
 
