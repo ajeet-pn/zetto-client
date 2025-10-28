@@ -72,9 +72,19 @@ const OddEvenFancyComponent = ({
                 {isBookmarked ? 'Added to bookmarks!' : 'Removed from bookmarks!'}
               </div>
             )}
+            <header className="mt-1">
+                  <div className="bg-[--primary] items-center flex justify-between relative z-0 ">
+                    <div className="flex text-[--secondary] align-items-center h-100 uppercase text-[14px] font-semibold bg-slate-300">
+                      <span className=" h-[33px] text-[12px] bg-[--primary] text-white flex items-center ps-3 font-bold
+            ">
+                        ODD/EVEN
+                      </span>
+                    </div>
+                  </div>
+                </header>
             <div className="grid xl:grid-cols-1 grid-cols-1">
-              <div className={`border-b border-gray-200 bg-white relative flex decoration-none whitespace-normal max-w-full`}>
-                <div className="xl:w-[65%] w-[65%] flex px-2">
+              <div className={`border-b bg-white border-gray-200 relative flex decoration-none whitespace-normal max-w-full`}>
+                <div className="xl:w-[70%] w-[65%] flex px-2">
                   <div className="w-full bg-white leading-3 flex items-center">
                     <span className="lg:hidden flex z-20 pr-1">
                       <span className="text-black flex items-center justify-center"></span>
@@ -86,7 +96,7 @@ const OddEvenFancyComponent = ({
                     </span>
                   </div>
                 </div>
-                <div className="xl:w-[35%] w-[35%] grid grid-cols-2 xl:grid-cols-4">
+                <div className="xl:w-[30%] w-[35%] grid grid-cols-2 xl:grid-cols-2 py-1 gap-x-2 pe-2">
                   <span className="lg:block hidden bg-white">
                     <div className={`py-1.5  flex justify-center items-center bg-white`}>
                       <div className='text-center bg-[#FF94BC] w-full rounded  leading-3'>
@@ -124,7 +134,7 @@ const OddEvenFancyComponent = ({
               {OddEvenFancy?.map((commList, index) => (
                 <div key={index}>
                   <div className="border-b border-gray-200 relative flex decoration-none whitespace-normal bg-white max-w-full">
-                    <div className="xl:w-[65%] bg-white w-[65%] flex px-2">
+                    <div className="xl:w-[70%] bg-white w-[65%] flex items-center px-2">
                       <div className="w-full leading-3 flex items-center space-x-1">
                         <span className="lg:hidden flex z-20 pr-1">
                           <span
@@ -168,8 +178,22 @@ const OddEvenFancyComponent = ({
                           </p>
                         </span>
                       </div>
+                      
+                              <div className='relative group'>
+                                <img className='!w-4 !h-4 rounded-full' src="/images/zetto/info.png" alt=""/>
+                                <div className="absolute min-w-[80px] right-8 top-1/2 -translate-y-1/2 hidden group-hover:block">
+                                  <div className="relative flex flex-col bg-[--secondary] text-black text-sm font-semibold rounded-lg px-3 py-1 shadow-md">
+                                    <div className='text-[9px] w-full leading-[15px] flex'>Min: 100</div>
+                                    <div className='text-[9px] w-full leading-[15px] flex'>
+                        Max:{formatNumber(commList?.max)}</div>
+
+                                    {/* Arrow */}
+                                    <div className="absolute top-1/2 -right-2 w-0 h-0 border-y-8 border-y-transparent border-l-8 border-l-[--secondary] -translate-y-1/2"></div>
+                                  </div>
+                                </div>
+                              </div>
                     </div>
-                    <div className="xl:w-[35%] w-[35%] grid grid-cols-2 xl:grid-cols-4">
+                    <div className="xl:w-[30%] w-[35%] grid grid-cols-2 xl:grid-cols-2 py-1 gap-x-2 pe-2">
                       <span
                         className="lg:block hidden cursor-pointer"
                         onClick={() => {
@@ -292,11 +316,11 @@ const OddEvenFancyComponent = ({
                           boderColors={"border-[#489bbd]"}
                         />
                       </span>
-                      <span className="col-span-2 xl:flex items-center bg-white text-end px-2 w-full justify-end hidden text-[#000000]/75 font-[400] text-[12px] overflow-hidden ">
+                      {/* <span className="col-span-2 xl:flex items-center bg-white text-end px-2 w-full justify-end hidden text-[#000000]/75 font-[400] text-[12px] overflow-hidden ">
                         Min:100
                         <br />
                         Max:{formatNumber(commList?.max)}
-                      </span>
+                      </span> */}
 
                       {commList && commList.running_status &&
                         (commList.running_status === "SUSPENDED" ||

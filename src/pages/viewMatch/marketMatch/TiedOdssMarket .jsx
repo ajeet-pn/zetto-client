@@ -218,7 +218,7 @@ const TiedOddsComponent = ({
                                     {index === 0 ? (
                                       <>
                                         <span
-                                          className="lg:col-span-1 col-span-3 rounded-md lg:hidden cursor-pointer"
+                                          className="lg:col-span-1 col-span-3 rounded-md lg:block hidden cursor-pointer"
                                           onClick={() => {
                                             toggleRowVisibility(elementtemp.selectionId);
                                             handleBackOpen({

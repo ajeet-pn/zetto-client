@@ -136,12 +136,15 @@ body {
 }
 
 @keyframes slideUp {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-50%); 
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0);
   }
 }
 .animate-slideUp {
   display: flex;
-  flex-direction: column;
+  flex-direction:column-reverse;
   animation: slideUp 20s linear infinite;
 }

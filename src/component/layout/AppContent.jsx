@@ -35,6 +35,7 @@ import AboutsUs from '../../pages/aboutUs/AboutUs'
 import ContactUs from '../../pages/contact/ContactUs'
 import Mfa from '../../pages/Mfa/Mfa'
 import Login from '../login/Login'
+import ResponsibleGaming from '../../pages/ResponsibleGaming/ResponsibleGaming'
 
 
 
@@ -53,6 +54,7 @@ const AppContent = () => {
       <Route path='/why-choose-us' element={<WhyChooseUs />} />
       <Route path="/term-condition" element={<TrmCondtion />} />
       <Route path="/privacy-policy" element={<PrivecyPolicy />} />
+      <Route path="/responsible-gambling" element={<ResponsibleGaming />} />
       <Route path="/rules" element={<Rules />} />
       <Route path="/about-us" element={<AboutsUs />} />
       <Route path="/contact-us" element={<ContactUs />} />

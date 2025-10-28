@@ -1,7 +1,48 @@
+import { useEffect, useState } from "react";
+
 const LiveReports = () => {
+  const data = [
+    { id: 1, name: "Bac Bo", user: "an****n*er", win: "₹2000" },
+    { id: 2, name: "Crazy777", user: "s*m*i**k*t", win: "₹1755" },
+    { id: 3, name: "Super Sic Bo", user: "su**j***2", win: "₹2180" },
+    { id: 4, name: "Aviator", user: "k**a**3", win: "₹1800" },
+    { id: 5, name: "Andar Bahar", user: "g*n*s**2*4", win: "₹1000" },
+    { id: 1, name: "Bac Bo", user: "an****n*er", win: "₹2000" },
+    { id: 2, name: "Crazy777", user: "s*m*i**k*t", win: "₹1755" },
+    { id: 3, name: "Super Sic Bo", user: "su**j***2", win: "₹2180" },
+    { id: 4, name: "Aviator", user: "k**a**3", win: "₹1800" },
+    { id: 5, name: "Andar Bahar", user: "g*n*s**2*4", win: "₹1000" },
+    { id: 5, name: "Andar Bahar", user: "g*n*s**2*4", win: "₹1000" },
+    { id: 1, name: "Bac Bo", user: "an****n*er", win: "₹2000" },
+    { id: 2, name: "Crazy777", user: "s*m*i**k*t", win: "₹1755" },
+    { id: 3, name: "Super Sic Bo", user: "su**j***2", win: "₹2180" },
+    { id: 2, name: "Crazy777", user: "s*m*i**k*t", win: "₹1755" },
+    { id: 3, name: "Super Sic Bo", user: "su**j***2", win: "₹2180" },
+    { id: 2, name: "Crazy777", user: "s*m*i**k*t", win: "₹1755" },
+    { id: 3, name: "Super Sic Bo", user: "su**j***2", win: "₹2180" },
+    { id: 2, name: "Crazy777", user: "s*m*i**k*t", win: "₹1755" },
+    { id: 3, name: "Super Sic Bo", user: "su**j***2", win: "₹2180" },
+    { id: 2, name: "Crazy777", user: "s*m*i**k*t", win: "₹1755" },
+    { id: 3, name: "Super Sic Bo", user: "su**j***2", win: "₹2180" },
+  ];
+
+  const duplicatedData = [...data, ...data];
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => {
+        // If we're at the first item, go to the last (for downward scroll)
+        if (prev <= 0) return data.length - 1;
+        return prev - 1;
+      });
+    }, 1500);
+    return () => clearInterval(interval);
+  }, [data.length]);
+
 return (
   <>
-    <div className="md:w-full rounded my-4">
+    {/* <div className="md:w-full rounded my-4">
       <div className="w-full mx-auto bg-gray-200 rounded">
         <div className="flex bg-[var(--primary)] text-[--secondary] rounded-t text-[12px] font-bold px-2">
           <div className="flex-1 text-left p-2.5">Daily Wins</div>
@@ -104,6 +145,42 @@ return (
               </div>
               
             </div>
+        </div>
+      </div>
+    </div> */}
+
+
+    
+      <div className="w-full bg-[#e5e7eb] rounded overflow-hidden">
+      <div className="flex bg-[var(--primary)] text-[--secondary] text-[12px] font-bold px-2 rounded-t">
+        <div className="flex-1 text-left p-2.5">Daily Wins</div>
+        <div className="flex-1 text-left p-2.5">Winner</div>
+        <div className="flex-1 text-right p-2.5">Winnings</div>
+      </div>
+
+      <div className="h-[450px] overflow-hidden relative">
+        <div
+          className="transition-transform duration-500 ease-in-out"
+          style={{
+            transform: `translateY(-${index * 40}px)`,
+          }}
+        >
+          {duplicatedData.map((item) => (
+            <div
+              key={item.id}
+              className="flex text-[12px] items-center bg-[#e5e7eb] border-b border-gray-300 py-2 px-2"
+            >
+              <div className="flex-1 font-semibold text-left">{item.name}</div>
+              <div className="flex-1 text-left">
+                <span className="bg-[var(--primary)] text-[--secondary] px-1.5 py-0.5 rounded">
+                  {item.user}
+                </span>
+              </div>
+              <div className="flex-1 text-right text-green-600 font-medium text-[14px]">
+                {item.win}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

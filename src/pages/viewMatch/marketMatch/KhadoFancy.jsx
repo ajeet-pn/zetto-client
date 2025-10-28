@@ -85,7 +85,7 @@ const KhadoFancyComponent = ({
             </header>
 
             <div className="grid xl:grid-cols-1 grid-cols-1">
-              <div className="xl:flex hidden bg-white relative decoration-none border-b border-gray-200 whitespace-normal max-w-full">
+              <div className="flex bg-white relative decoration-none border-b border-gray-200 whitespace-normal max-w-full">
                 <div className="xl:w-[70%] w-[65%] flex px-2">
                   <div className="w-full leading-3 flex items-center">
                     <span className="lg:hidden flex z-20 pr-1">
@@ -98,7 +98,7 @@ const KhadoFancyComponent = ({
                     </span>
                   </div>
                 </div>
-                <div className="xl:w-[30%] w-[35%] grid md:grid-cols-2 grid-cols-1">
+                <div className="xl:w-[30%] w-[35%] grid grid-cols-1 xl:grid-cols-1 pe-2 py-1 gap-x-2">
                   <span className="lg:block hidden">
                     <div className="py-1.5 flex justify-center items-center ">
                       <div className="text-center bg-[#8DD9FF] w-full rounded leading-3">
@@ -106,9 +106,9 @@ const KhadoFancyComponent = ({
                       </div>
                     </div>
                   </span>
-                  <span className="lg:hidden block">
+                  <span className="block lg:hidden">
                     <div className="py-1.5 flex justify-center items-center ">
-                      <div className="text-center leading-3">
+                      <div className="text-center bg-[#8DD9FF] w-full rounded leading-3">
                         <span className="text-xs uppercase text-gray-800 font-bold">yes</span>
                       </div>
                     </div>
@@ -122,7 +122,7 @@ const KhadoFancyComponent = ({
               {KhadoFancy?.map((commList, index) => (
                 <div key={index}>
                   <div className="border-b bg-white border-gray-200 relative flex decoration-none whitespace-normal max-w-full">
-                    <div className="xl:w-[70%] w-[65%] flex px-2">
+                    <div className="xl:w-[70%] w-[65%] flex items-center px-2">
                       <div className="w-full leading-3 flex items-center space-x-1">
                         <span className="lg:hidden flex z-20 pr-1">
                           <span
@@ -166,8 +166,21 @@ const KhadoFancyComponent = ({
                           </p>
                         </span>
                       </div>
+                              <div className='relative group'>
+                                <img className='!w-4 !h-4 rounded-full' src="/images/zetto/info.png" alt=""/>
+                                <div className="absolute min-w-[80px] right-8 top-1/2 -translate-y-1/2 hidden group-hover:block">
+                                  <div className="relative flex flex-col bg-[--secondary] text-black text-sm font-semibold rounded-lg px-3 py-1 shadow-md">
+                                    <div className='text-[9px] w-full leading-[15px] flex'>Min: 100</div>
+                                    <div className='text-[9px] w-full leading-[15px] flex'>
+                        Max:{formatNumber(commList?.max)}</div>
+
+                                    {/* Arrow */}
+                                    <div className="absolute top-1/2 -right-2 w-0 h-0 border-y-8 border-y-transparent border-l-8 border-l-[--secondary] -translate-y-1/2"></div>
+                                  </div>
+                                </div>
+                              </div>
                     </div>
-                    <div className="xl:w-[30%] w-[35%] grid md:grid-cols-2 grid-cols-1">
+                    <div className="xl:w-[30%] w-[35%] grid grid-cols-1 xl:grid-cols-1 py-1 pe-2 gap-x-2">
                       <span
                         className="lg:block hidden cursor-pointer"
                         onClick={() => {
@@ -230,11 +243,11 @@ const KhadoFancyComponent = ({
                           boderColors={"border-[#489bbd]"}
                         />
                       </span>
-                      <span className="xl:flex items-center text-end px-2 w-full justify-end hidden bg-white z-20 text-[#000000]/75 font-[400] text-[12px]  overflow-hidden">
+                      {/* <span className="xl:flex items-center text-end px-2 w-full justify-end hidden bg-white z-20 text-[#000000]/75 font-[400] text-[12px]  overflow-hidden">
                         Min:100
                         <br />
                         Max:{formatNumber(commList?.max)}
-                      </span>
+                      </span> */}
 
                       {commList && commList.running_status &&
                         (commList.running_status === "SUSPENDED" ||

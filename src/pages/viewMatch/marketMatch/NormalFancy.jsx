@@ -101,7 +101,7 @@ const NormalFancyComponent = ({
                         </span>
                       </div>
                     </div>
-                    <div className="xl:w-[30%] w-[35%] grid grid-cols-2 xl:grid-cols-2 py-1 gap-x-2">
+                    <div className="xl:w-[30%] w-[35%] grid grid-cols-2 xl:grid-cols-2 py-1 gap-x-2 pe-2">
                       <span className="lg:block flex justify-center items-center hidden bg-white">
                         <div className={`py-1.5 flex text-xs px-4 w-full  rounded-[4px] h-[20px] justify-center items-center bg-[#FF94BC]`}>
                           <div className='text-center leading-3'>
@@ -235,7 +235,7 @@ const NormalFancyComponent = ({
                               </div>
                             </div>
                           </div>
-                          <div className="xl:w-[30%] w-[35%] grid grid-cols-2 xl:grid-cols-2 py-1 gap-x-2">
+                          <div className="xl:w-[30%] w-[35%] grid grid-cols-2 xl:grid-cols-2 py-1 gap-x-2 pe-2">
                             <span
                               className="lg:block hidden cursor-pointer"
                               onClick={() => {

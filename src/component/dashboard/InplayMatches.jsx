@@ -88,7 +88,7 @@ function InplayMatches({ activeTab, matchlistItems, sportName }) {
                   {/* <img src="/subHeader/menu-7.png" className="w-[20px] h-[20px]" alt="menu" /> */}
                   <p className="text-[15px] font-semibold">Horse Racing</p>
                 </div>
-                <span className="absolute top-0 right-[-15px] w-0 h-0 border-t-[32px] border-t-[var(--primary)] border-r-[15px] border-r-transparent"></span>
+                {/* <span className="absolute top-0 right-[-15px] w-0 h-0 border-t-[32px] border-t-[var(--primary)] border-r-[15px] border-r-transparent"></span> */}
               </div>
             </div>
           </>
@@ -111,26 +111,26 @@ function InplayMatches({ activeTab, matchlistItems, sportName }) {
           </>
         )}
 
-        <div className="bg-[var(--darkcolor)] flex items-center p-0">
+        <div className="justify-center my-3 flex gap-2 items-center p-0">
           {Object.keys(groupedBySeries)?.map((el, index) => {
             return (
               <>
-                <div onClick={() => setSubTab(el)} className={`cursor-pointer text-[14px] hover:bg-[var(--secondary)] ${subTab === el ? "bg-[var(--secondary)] px-5 py-[4px] text-white" : "px-5 py-[4px] text-white"}`} key={index}>
+                <div onClick={() => setSubTab(el)} className={`cursor-pointer w-[70px] h-[50px] rounded-md flex items-center justify-center text-black text-[14px] hover:bg-[var(--secondary)] ${subTab === el ? "bg-[var(--secondary)] px-5 py-[4px]" : "px-5 py-[4px] bg-[#d1d5db]"}`} key={index}>
                   {el}
                 </div>
               </>
             )
           })}
         </div>
-        <div className="bg-[#F2F2F2]">
+        <div className="bg-[#F2F2F2] ">
           {groupedBySeries[subTab] && functiongroupbyRacingmatch(groupedBySeries[subTab])?.length > 0 ? (
             functiongroupbyRacingmatch(groupedBySeries[subTab])?.map((match, index) => (
-              <div key={index} className="flex xl:items-center p-1.5 xl:justify-start md:grid md:grid-cols-[0.5fr_1.5fr]  xl:flex-row flex-col items-start justify-between gap-1 border-b border-gray-300">
+              <div key={index} className="flex xl:items-center p-1.5 xl:justify-start md:grid md:grid-cols-[0.5fr_1.5fr]  xl:flex-row flex-col items-start justify-between gap-2 border py-3 border-gray-300">
                 <div className="flex flex-row justify-start items-center gap-2">
                   <FaTv className="text-black" />
-                  <div className="xl:min-w-[400px] text-[13px] min-w-full font-[600] uppercase">{match?.key}</div>
+                  <div className="text-[12px] min-w-full font-[600] capitalize">{match?.key}</div>
                 </div>
-                {<div className="xl:min-w-[400px]  min-w-full flex  flex-wrap justify-start items-center gap-1">
+                {<div className=" min-w-full items-end grid grid-cols-6 gap-1">
 
                   {match?.value?.map((allMatchTime, newindex) => (
                     <div onClick={() => {
@@ -140,7 +140,7 @@ function InplayMatches({ activeTab, matchlistItems, sportName }) {
       handleLoginModal();
     }
   }}
-                    key={newindex} className="bg-[var(--darkcolor)] rounded-[4px] text-white px-2.5 py-[4px] text-[13px] text-center cursor-pointer">
+                    key={newindex} className="bg-[#d1d5db] rounded-[4px] text-black px-2.5 py-[4px] font-semibold text-[12px] text-center cursor-pointer">
                       {moment(allMatchTime?.matchDate, 'YYYY-MM-DD HH:mm:ss', true).isValid() ? (
                         moment(allMatchTime.matchDate, 'YYYY-MM-DD HH:mm:ss').format("HH:mm")
                       ) : null}
