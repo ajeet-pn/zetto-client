@@ -112,7 +112,6 @@ const ViewMatches = () => {
     const { pathname } = useLocation();
     const gameDetailOtherPart = pathname.includes('viewMatchDetail');
     const handleTabClick = (tab) => {
-        console.log(tab, "lllllllllllll");
         
         setActiveTab(tab);
     };

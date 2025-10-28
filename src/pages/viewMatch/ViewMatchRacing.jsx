@@ -29,6 +29,7 @@ import { fancyTabs, premiumTabs } from "./matchconstants";
 import { IoHome } from "react-icons/io5";
 import { IoMdTv } from "react-icons/io";
 import RacingMatchOddsMarket from "./marketMatch/RacingMatchOddsMarket";
+import settings from "../../domainConfig";
 
 
 

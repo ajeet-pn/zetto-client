@@ -145,7 +145,7 @@ const navigate = useNavigate();
                 <li className='mx-auto h-full'
                 // onClick={() => handleConditionalClick()}
                 >
-                <Link to=''  className="mobile-btn flex flex-col items-center">
+                <Link to='/promotions'  className="mobile-btn flex flex-col items-center">
                   <img alt="casino-icon" src="/images/zetto/star.png" className="!h-[20px] !w-[20px] !mt-[6px]"/>
                   <p className="text-white text-[10px] mt-1">Offers</p>
                   </Link>
