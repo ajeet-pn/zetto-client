@@ -26,7 +26,7 @@ export default function LoginPopUp() {
                     </button>
                 </div>
                 <div className="text-xl font-semibold flex justify-center text-gray-800 mb-4">
-                    <img className="h-[35px]" src="/images/zetto/logo.png" alt="" srcset="" />
+                    <img className="h-[35px]" src="/images/zetto/zetto-logo.png" alt="" srcset="" />
                 </div>
                 <div className="text-[14px] font-semibold text-center">Please login before place a bet</div>
                 <div className="flex justify-center">

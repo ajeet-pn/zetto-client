@@ -5,11 +5,13 @@ import { useEffect, useState } from "react";
 import { TbDeviceTvOld } from "react-icons/tb";
 import { useParams } from "react-router-dom";
 import { FaTv } from "react-icons/fa";
+import LoginPopUp from "../LoginPopUp/LoginPopUp";
 
 function InplayMatches({ activeTab, matchlistItems, sportName }) {
 
   const [subTab, setSubTab] = useState('AU')
   const [isLive, setIsLive] = useState(false);
+  const [logniModal, setLogniModal] = useState(false);
   const [isVirtual, setIsVirtual] = useState(false);
   const [isPremium, setIsPremium] = useState(false);
   const { gameId } = useParams();
@@ -37,6 +39,11 @@ function InplayMatches({ activeTab, matchlistItems, sportName }) {
       groupedBySeries[series].push(match);
     });
   }
+const token = localStorage.getItem("token");
+
+const handleLoginModal = () => {
+  setLogniModal(true);
+}
 
   const functiongroupbyRacingmatch = (matchArray) => {
     const groupedByRacingMatch = {};
@@ -200,7 +207,7 @@ function InplayMatches({ activeTab, matchlistItems, sportName }) {
                 <div className="flex  w-full h-full">
                   <div className="lg:w-[50%] w-full flex justify-between items-center bg-white">
                     <div className="flex items-center justify-start w-full bg-white">
-                      <a
+                      {token ? <a
                         href={`/sport-view/${element?.marketId}/${element?.eventId}/${element?.sportId}`}
                         className="flex items-center justify-start py-1 space-x-1 w-full"
                       >
@@ -221,7 +228,28 @@ function InplayMatches({ activeTab, matchlistItems, sportName }) {
                             {element?.matchName}
                           </span>
                         </div>
-                      </a>
+                      </a> : <span
+                        onClick={()=>handleLoginModal()}
+                        className="flex items-center justify-start py-1 space-x-1 w-full"
+                      >
+                        <div className="hidden lg:flex">
+                            {isInplay ? (
+                              <div className="bg-[--primary] text-[9px] ms-4 text-[--secondary] !w-[60px] flex items-center justify-center h-[22px] rounded-[3px] font-semibold">Inplay</div>
+                            ) :
+                            (
+                              <div className="bg-[--secondary] text-[9px] ms-4 text-[--primary] !w-[60px] flex items-center justify-center h-[22px] rounded-[3px] font-semibold">{moment(element.matchDate, "DD-MM-YYYY HH:mm:ss A").format("HH:mm")}</div>
+                            )
+                          }
+                        </div>
+                        <div className="flex flex-col uppercase w-full px-2">
+                          {element?.seriesName && <span className="text-[7px] text-[--primary] capitalize font-bold lg:bg-[--secondary] w-fit px-1 rounded-[5px]">
+                            ({element?.seriesName ? element?.seriesName : "No Series"})
+                          </span>}
+                          <span className="text-[11px] font-bold capitalize text-gray-900 hover:underline">
+                            {element?.matchName}
+                          </span>
+                        </div>
+                      </span>}
                     </div>
                     <div className="flex flex-col gap-1 px-1">
                       <div className="flex items-center justify-end space-x-1.5 cursor-pointer lg:pr-3">
@@ -340,7 +368,7 @@ function InplayMatches({ activeTab, matchlistItems, sportName }) {
       );
     }
   }
-
+// if(logniModal) return <LoginPopUp />
   return (
     <div className="h-full overflow-yauto md:px-0 m-auto md:max-h-none md:overflow-auto">
       {content}
