@@ -74,10 +74,18 @@ const hideFooterRoutes = ["/login",];
                         />
                     </div>
 
-                    <div className={`flex-1 h-full lg:h-auto w-full  ${shouldHideSidebars && shouldHideLeftSidebars ? "w-full" : "lg:max-w-[calc(100dvw_-_658px)]"} ${isSidebarOpen ? 'lg:ml-[0px] fixed inset-0 lg:static' : ''}`}>
+                    <div className={`flex-1 h-full lg:h-auto w-full  
+  ${
+    (currentPath.startsWith("/sport-view") || currentPath.startsWith("/sport-view-racing"))
+      ? "w-full"
+      : shouldHideSidebars && shouldHideLeftSidebars
+      ? "w-full"
+      : "lg:max-w-[calc(100dvw_-_658px)]"
+  }
+  ${isSidebarOpen ? 'lg:ml-[0px] fixed inset-0 lg:static' : ''}`}>
+
                         <div className="p-1 h-full overflauto">
                             <AppContent />
-
                         </div>
                     </div>
                     {!shouldHideSidebars && (

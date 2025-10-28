@@ -1,6 +1,6 @@
 const ContactUs = () => {
   return (
-    <div>
+    <div className="min-h-screen">
       
             <div className="text-[15px] gap-3 rounded-t-[5px] text-black bg-[--secondary] px-5 h-[31px] flex items-center font-semibold">
               <img className='!w-5 !h-5' src="/images/zetto/homeblack.png" alt="" srcset="" />

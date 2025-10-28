@@ -41,9 +41,11 @@ function InplayMatches({ activeTab, matchlistItems, sportName }) {
   }
 const token = localStorage.getItem("token");
 
-const handleLoginModal = () => {
-  setLogniModal(true);
-}
+  const handleLoginModal = () => {
+    if (!localStorage.getItem("token")) {
+      setLogniModal(true);
+    }
+  };
 
   const functiongroupbyRacingmatch = (matchArray) => {
     const groupedByRacingMatch = {};
@@ -128,8 +130,12 @@ const handleLoginModal = () => {
 
                   {match?.value?.map((allMatchTime, newindex) => (
                     <div onClick={() => {
-                      window.location.href = `/sport-view-racing/${allMatchTime?.marketId}/${allMatchTime?.eventId}/${allMatchTime?.sportId}`
-                    }} key={newindex} className="bg-[#cccc] rounded-[4px] text-black px-3 py-1 text-center cursor-pointer">
+                      if (token) {
+      window.location.href = `/sport-view-racing/${allMatchTime?.marketId}/${allMatchTime?.eventId}/${allMatchTime?.sportId}`;
+    } else {
+      handleLoginModal();
+    }
+  }} key={newindex} className="bg-[#cccc] rounded-[4px] text-black px-3 py-1 text-center cursor-pointer">
                       {moment(allMatchTime?.matchDate, 'YYYY-MM-DD HH:mm:ss', true).isValid() ? (
                         moment(allMatchTime.matchDate, 'YYYY-MM-DD HH:mm:ss').format("HH:mm")
                       ) : null}
@@ -368,10 +374,15 @@ const handleLoginModal = () => {
       );
     }
   }
-// if(logniModal) return <LoginPopUp />
+
   return (
     <div className="h-full overflow-yauto md:px-0 m-auto md:max-h-none md:overflow-auto">
       {content}
+      {logniModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[99]" onClose={() => setLogniModal(false)}>
+          <LoginPopUp onClose={() => setLogniModal(false)} />
+        </div>
+      )}
     </div>
   );
 }
