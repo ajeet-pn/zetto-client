@@ -40,11 +40,11 @@ const isExcluded = excludedRoutes.includes(location.pathname);
         observer.observe(document.body, { attributes: true });
         return () => observer.disconnect();
     }, []);
-    const hideSidebarRoutes = ['/sport-view', "/login", "/sport-view-racing", '/deposit', "/wallet", "/all-casino", "/term-condition", "/promotions", "/casino-list-by-providername", "/privacy-policy", "/rules", "/about-us", "/contact-us", "/why-choose-us"];
+    const hideSidebarRoutes = ['/responsible-gambling','/sport-view', "/login", "/sport-view-racing", '/deposit', "/wallet", "/all-casino", "/term-condition", "/promotions", "/casino-list-by-providername", "/privacy-policy", "/rules", "/about-us", "/contact-us", "/why-choose-us"];
     const shouldHideSidebars = hideSidebarRoutes.some(route => currentPath.startsWith(route));
 
 
-    const hideLeftSidebarRoutes = ['/deposit', "/login", "/wallet", "/all-casino", "/term-condition", "/promotions", "/casino-list-by-providername", "/privacy-policy", "/rules", "/about-us", "/contact-us","/why-choose-us"];
+    const hideLeftSidebarRoutes = ['/responsible-gambling','/deposit', "/login", "/wallet", "/all-casino", "/term-condition", "/promotions", "/casino-list-by-providername", "/privacy-policy", "/rules", "/about-us", "/contact-us","/why-choose-us"];
     const shouldHideLeftSidebars = hideLeftSidebarRoutes.some(route => currentPath.startsWith(route));
 
 const hideFooterRoutes = ["/login",];

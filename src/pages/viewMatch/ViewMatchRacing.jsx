@@ -113,7 +113,6 @@ const ViewMatchRacing = () => {
     const { pathname } = useLocation();
     const gameDetailOtherPart = pathname.includes('viewMatchDetail');
     const handleTabClick = (tab) => {
-        console.log(tab, "lllllllllllll");
         
         setActiveTab(tab);
     };
@@ -984,7 +983,9 @@ const ViewMatchRacing = () => {
                             </div>
                         )}
 
-                        <div class="flex w-full md:w-full overflow-hidden py-2 md:py-1 md:px-0 my-1">
+                       
+                        {!open ? <>
+                         <div class="flex w-full md:w-full overflow-hidden py-2 md:py-1 md:px-0 my-1">
                             <div class="w-full inline-flex overflow-auto ">
                                 <div class="flex-none  relative space-x-2">
                                     
@@ -992,7 +993,6 @@ const ViewMatchRacing = () => {
                                 </div>
                             </div>
                         </div>
-                        {!open ? <>
 
                             {(activeTab == "all" || activeTab == "MatchOdds") && (<RacingMatchOddsMarket
                                 inplayMatch={inplayMatch}
@@ -1008,14 +1008,14 @@ const ViewMatchRacing = () => {
 
                             />)}
 
-                        </> : <div className="bg-black/70 flex justify-center items-start z-50">
-                            <div className="bg-white w-full max-w-3xl rounded-md shadow-lg md:m-4 m-3 p-0">
-                                <div className="rounded-t-md py-4 px-4 font-normal text-black/90 text-sm border-b border-[#dee2e6] flex justify-between items-center">
+                        </> : <div className=" flex justify-center items-start z-50">
+                            <div className="bg-white w-full max-w-3xl rounded-md shadow-lg md:m-4 m-1 p-0">
+                                {/* <div className="rounded-t-md py-4 px-4 font-normal text-black/90 text-sm border-b border-[#dee2e6] flex justify-between items-center">
                                     <span className="text-[20px]">Open Bets</span>
                                     <button onClick={closeModal} className="text-black/90 text-md">
                                         <FaTimes />
                                     </button>
-                                </div>
+                                </div> */}
                                 <div className="flex justify-between items-center border-x border-t border-[#C6D2D8] bg-white w-full">
                                     {["oddsBetData", "UnsettleBets", "fancyBetData"]?.map((tab) => (
                                         <button
@@ -1127,7 +1127,7 @@ const ViewMatchRacing = () => {
 
                                                         {/* Unsettle Bets */}
                                                         <div className="bg-[var(--primary)] flex justify-between px-2">
-                                                            <div className="text-xs font-light text-white flex items-center py-1">{inplayMatch?.matchName}</div>
+                                                            <div className="text-xs  font-light text-white md:flex hidden items-center py-1">{inplayMatch?.matchName}</div>
                                                         </div> {activeBets === "UnsettleBets" &&
                                                             (fancyBetData?.length > 0 ? (
                                                                 fancyBetData.map((element, index) => (

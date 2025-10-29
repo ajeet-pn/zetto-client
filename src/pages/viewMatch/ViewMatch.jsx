@@ -1034,7 +1034,7 @@ const ViewMatches = () => {
                             {inplayMatch &&
                                 inplayMatch?.matchName ? (
                                 <div className="bg-[var(--secondary)] item-center px-2 py-1.5 flex justify-start">
-                                    <div className="text-black text-[14px] font-semibold flex justify-start items-center truncate w-1/2" onClick={closeModal}>{inplayMatch?.matchName}</div> |
+                                    <div className="text-black text-[14px] px-1 font-semibold flex justify-start items-center truncate w-1/2" onClick={closeModal}>{inplayMatch?.matchName}</div> |
                                     <div className="flex justify-between w-full">
                                         <div className="text-start px-1 text-black text-[14px] font-semibold flex justify-start items-center" onClick={() => handleBets() || handelScoreModalComplete()}>
                                             MY BETS
@@ -1103,20 +1103,21 @@ const ViewMatches = () => {
                             </div>
                         )}
 
+                        
+                        {!open ? <>
                         <div class="flex w-full md:w-full overflow-hidden py-2 md:py-1 md:px-0 my-1">
                             <div class="w-full inline-flex overflow-auto ">
                                 <div class="flex-none  relative space-x-2">
                                    
                                     <button class=" bg-[var(--secondary)] text-black h-[21px] px-2 rounded-[2.83px] gap-2.5  font-bold uppercase text-[12px]  " onClick={() => handleTabClick("all")}>All</button>
-                                    {inplayMatch?.isMatchOdds && <button class="bg-[#feffff] border-[1px]  text-zinc-900 h-[21px] px-2 rounded-[2.83px] place-content-center gap-2.5  font-bold uppercase text-[12px] " onClick={() => handleTabClick("MatchOdds")}>Match Odds</button>}
-                                    {inplayMatch?.isBookmaker && <button class="bg-[#feffff] border-[1px]  text-zinc-900 h-[21px] px-2 rounded-[2.83px] place-content-center gap-2.5  font-bold uppercase text-[12px] " onClick={() => handleTabClick("bookmaker")}>Bookmaker</button>}
-                                    {inplayMatch?.isTieOdds && <button class="bg-[#feffff] border-[1px]  text-zinc-900 h-[21px] px-2 rounded-[2.83px] place-content-center gap-2.5  font-bold uppercase text-[12px] " onClick={() => handleTabClick("tied")}>tied</button>}
-                                    {inplayMatch?.isToss && <button class="bg-[#feffff] border-[1px]  text-zinc-900 h-[21px] px-2 rounded-[2.83px] place-content-center gap-2.5  font-bold uppercase text-[12px] " onClick={() => handleTabClick("toss")}>Toss</button>}
-                                    {inplayMatch?.isFancy && <button class="bg-[#feffff] border-[1px]  text-zinc-900 h-[21px] px-2 rounded-[2.83px] place-content-center gap-2.5  font-bold uppercase text-[12px] " onClick={() => handleTabClick("fancy")}>Fancy</button>}
+                                    {(inplayMatch?.isMatchOdds  && inplayMatch?.sportId == 4) && <button class="bg-[#feffff] border-[1px]  text-zinc-900 h-[21px] px-2 rounded-[2.83px] place-content-center gap-2.5  font-bold uppercase text-[12px] " onClick={() => handleTabClick("MatchOdds")}>Match Odds</button>}
+                                    {(inplayMatch?.isBookmaker && inplayMatch?.sportId == 4) && <button class="bg-[#feffff] border-[1px]  text-zinc-900 h-[21px] px-2 rounded-[2.83px] place-content-center gap-2.5  font-bold uppercase text-[12px] " onClick={() => handleTabClick("bookmaker")}>Bookmaker</button>}
+                                    {(inplayMatch?.isTieOdds && inplayMatch?.sportId == 4) && <button class="bg-[#feffff] border-[1px]  text-zinc-900 h-[21px] px-2 rounded-[2.83px] place-content-center gap-2.5  font-bold uppercase text-[12px] " onClick={() => handleTabClick("tied")}>tied</button>}
+                                    {(inplayMatch?.isToss && inplayMatch?.sportId == 4) && <button class="bg-[#feffff] border-[1px]  text-zinc-900 h-[21px] px-2 rounded-[2.83px] place-content-center gap-2.5  font-bold uppercase text-[12px] " onClick={() => handleTabClick("toss")}>Toss</button>}
+                                    {(inplayMatch?.isFancy && inplayMatch?.sportId == 4) && <button class="bg-[#feffff] border-[1px]  text-zinc-900 h-[21px] px-2 rounded-[2.83px] place-content-center gap-2.5  font-bold uppercase text-[12px] " onClick={() => handleTabClick("fancy")}>Fancy</button>}
                                 </div>
                             </div>
                         </div>
-                        {!open ? <>
 
                             {(activeTab == "all" || activeTab == "MatchOdds") && (<MatchOddsComponent
                                 inplayMatch={inplayMatch}
@@ -1227,14 +1228,14 @@ const ViewMatches = () => {
                                 </div>
                             </div>}
 
-                        </> : <div className="bg-black/70 flex justify-center items-start z-50">
-                            <div className="bg-white w-full max-w-3xl rounded-md shadow-lg md:m-4 m-3 p-0">
-                                <div className="rounded-t-md py-4 px-4 font-normal text-black/90 text-sm border-b border-[#dee2e6] flex justify-between items-center">
-                                    <span className="text-[20px]">Open Bets</span>
+                        </> : <div className="flex justify-center items-start z-50">
+                            <div className="bg-white w-full max-w-3xl rounded-md shadow-lg md:m-4 m-1 p-0">
+                                {/* <div className="rounded-t-md py-4 px-4 font-normal text-black/90 text-sm border-b border-[#dee2e6] flex justify-between items-center">
+                                    <span className="text-[20px]">Open hhBets</span>
                                     <button onClick={closeModal} className="text-black/90 text-md">
                                         <FaTimes />
                                     </button>
-                                </div>
+                                </div> */}
                                 <div className="flex justify-between items-center border-x border-t border-[#C6D2D8] bg-white w-full">
                                     {["oddsBetData", "UnsettleBets", "fancyBetData"]?.map((tab) => (
                                         <button
@@ -1346,7 +1347,7 @@ const ViewMatches = () => {
 
                                                         {/* Unsettle Bets */}
                                                         <div className="bg-[var(--primary)] flex justify-between px-2">
-                                                            <div className="text-xs font-light text-white flex items-center py-1">{inplayMatch?.matchName}</div>
+                                                            <div className="text-xs md:flex hidden font-light text-white items-center py-1">{inplayMatch?.matchName}</div>
                                                         </div> {activeBets === "UnsettleBets" &&
                                                             (fancyBetData?.length > 0 ? (
                                                                 fancyBetData.map((element, index) => (

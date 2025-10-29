@@ -29,20 +29,20 @@ const SeeMoreLess = () => {
         Make Your Move, Bet Now! Zet. Set. Go!
       </p>
       <p className='text-[16px] py-2 font-semibold '>
-        Why Choose Zetto as Your Online Sports Betting Exchange Platform
+        Why Choose Bhimexch as Your Online Sports Betting Exchange Platform
       </p>
       <p className='text-[12px] py-2 '>
-        With just one click, you can access live cricket, other sports, and casino betting on our user-friendly platform. Place Your Debut Bet with Zetto Exchange! 
+        With just one click, you can access live cricket, other sports, and casino betting on our user-friendly platform. Place Your Debut Bet with Bhimexch Exchange! 
       </p>
       <p className='text-[14px] py-2 font-semibold '>Unmatched Variety
       </p>
       <p className='text-[12px] py-2 '>
-        Explore a diverse selection of sports events and find the perfect match for your betting preferences, Zetto has it all.
+        Explore a diverse selection of sports events and find the perfect match for your betting preferences, Bhimexch has it all.
       </p>
       <p className='text-[14px] py-2 font-semibold '>
         Innovative Betting Exchange
       </p>
-      <p className='text-[12px] py-2 '>Zetto goes beyond traditional sports betting with our revolutionary betting exchange platform. Experience the power to set your odds, trade bets with fellow enthusiasts, and take control of your betting journey like never before.
+      <p className='text-[12px] py-2 '>Bhimexch goes beyond traditional sports betting with our revolutionary betting exchange platform. Experience the power to set your odds, trade bets with fellow enthusiasts, and take control of your betting journey like never before.
       </p>
       <p className='text-[14px] py-2 font-semibold '>Live Betting Experience
 
@@ -53,7 +53,7 @@ const SeeMoreLess = () => {
       <p className='text-[14px] py-2 font-semibold '>Secure and Transparent
       </p>
       <p className='text-[12px] py-2 '>
-      At Zetto, we prioritise the safety and security of our users. Our robust platform ensures that your transactions are secure, and your data is protected. With transparent processes and fair play, you can bet with confidence, knowing that your success is determined by skill and strategy.
+      At Bhimexch, we prioritise the safety and security of our users. Our robust platform ensures that your transactions are secure, and your data is protected. With transparent processes and fair play, you can bet with confidence, knowing that your success is determined by skill and strategy.
       </p>
       <p className='text-[14px] py-2 font-semibold '>Exclusive Bonuses/Promotions
       </p>
@@ -81,7 +81,7 @@ const SeeMoreLess = () => {
         <li className='list-disc text-[12px]'>We take pride in being one of the online betting companies accepting Indian rupees.</li>
         <li className='list-disc text-[12px]'>
           Our customer support is ready round the clock to help with any questions or worries.</li>
-        <li className='list-disc text-[12px]'>You can trust that Zetto is a fully licensed and legal online sports betting company that follows all the rules and regulations.</li>
+        <li className='list-disc text-[12px]'>You can trust that Bhimexch is a fully licensed and legal online sports betting company that follows all the rules and regulations.</li>
         <li className='list-disc text-[12px]'>Experience a high acceptance rate with our fastest matching bet feature, ensuring your odds are matched swiftly.</li>
         <p className='text-[14px] py-2'>
           Besides, we offer GUARANTEED WITHDRAWAL UNDER 45 MINUTES.
@@ -92,12 +92,12 @@ const SeeMoreLess = () => {
         How to Get Started with India’s Online Sports Betting Company
       </p>
       <p className='text-[14px]'>
-        Getting started on your betting adventure with an online sports betting company in India, Zetto is remarkably simple, and you can break it down into a few easy-to-follow steps. Let's explore the process in detail to ensure you have a clear understanding of how to kick off your journey on Zetto.
+        Getting started on your betting adventure with an online sports betting company in India, Bhimexch is remarkably simple, and you can break it down into a few easy-to-follow steps. Let's explore the process in detail to ensure you have a clear understanding of how to kick off your journey on Bhimexch.
       </p>
       <p className='text-[14px] py-2 font-semibold '>Step 1: Registration
       </p>
       <p className='text-[14px]'>
-          To begin, you'll need to create an account on the Zetto platform. This involves providing basic personal information, such as your name, email address, and preferred login details. Make sure to use accurate details to ensure a smooth and secure registration process.
+          To begin, you'll need to create an account on the Bhimexch platform. This involves providing basic personal information, such as your name, email address, and preferred login details. Make sure to use accurate details to ensure a smooth and secure registration process.
       </p>
       <p className='text-[14px] py-2 font-semibold '>Step 2: Verification
       </p>
@@ -107,7 +107,7 @@ const SeeMoreLess = () => {
       <p className='text-[14px] py-2 font-semibold '>Step 3: Deposit Funds
       </p>
       <p className='text-[14px]'>
-        Once your account is verified, it's time to add funds to your Zetto account. You can choose from a variety of payment methods, including UPI, GPay, PhonePe, Paytm, and bank transfers.   
+        Once your account is verified, it's time to add funds to your Bhimexch account. You can choose from a variety of payment methods, including UPI, GPay, PhonePe, Paytm, and bank transfers.   
       </p>
       <p className='text-[14px] py-2 font-semibold '>Step 4: Welcome Bonus
       </p>
@@ -117,22 +117,22 @@ const SeeMoreLess = () => {
       <p className='text-[14px] py-2 font-semibold '>Step 5: Explore Betting Markets
       </p>
       <p className='text-[14px]'>
-          With funds in your account, you can now explore the diverse range of betting markets offered by Zetto. From sports events to casino games, the platform provides a wide array of options for users to place their bets. Take some time to familiarise yourself with the available markets and choose the ones that align with your interests.  
+          With funds in your account, you can now explore the diverse range of betting markets offered by Bhimexch. From sports events to casino games, the platform provides a wide array of options for users to place their bets. Take some time to familiarise yourself with the available markets and choose the ones that align with your interests.  
       </p>
         <p className='text-[14px] py-2 font-semibold '>Step 6: Place Your Bets
         </p>
         <p className='text-[14px]'>
-          After selecting your preferred markets, you can start placing your bets. Zetto offers a user-friendly interface that makes the betting process straightforward. Simply choose the outcome you want to bet on, enter your stake, and confirm your bet.
+          After selecting your preferred markets, you can start placing your bets. Bhimexch offers a user-friendly interface that makes the betting process straightforward. Simply choose the outcome you want to bet on, enter your stake, and confirm your bet.
         </p>
         <p className='text-[14px] py-2 font-semibold '>Monitor and Manage Your Bets
         </p>
         <p className='text-[14px]'>
-          Once your bets are placed, you can monitor their progress in real-time. Zetto provides live updates and detailed statistics to help you stay informed.
+          Once your bets are placed, you can monitor their progress in real-time. Bhimexch provides live updates and detailed statistics to help you stay informed.
         </p>
         <p className='text-[16px] py-2 font-semibold '>Online Betting Exchange & Casino Platform Offerings
         </p>
         <p className='text-[14px]'>
-          Get into an unforgettable sports betting exchange experience with Zetto! You'll have many exciting options, ensuring that you'll keep coming back for more.
+          Get into an unforgettable sports betting exchange experience with Bhimexch! You'll have many exciting options, ensuring that you'll keep coming back for more.
         </p>
         <p className='text-[14px] py-2 font-semibold '>Sports Betting Exchange
         </p>
@@ -155,7 +155,7 @@ const SeeMoreLess = () => {
           <p className='text-[16px] py-2 font-semibold '>Sports Betting Exchange Markets
         </p>
         <p className='text-[14px]'>
-          Zetto’s online sports betting exchange platform provides a platform where users can bet against each other rather than against a traditional bookmaker. This creates several unique markets:
+          Bhimexch’s online sports betting exchange platform provides a platform where users can bet against each other rather than against a traditional bookmaker. This creates several unique markets:
         </p>
         <p className='text-[14px]'>Back and Lay Markets:
         </p>
@@ -177,7 +177,7 @@ const SeeMoreLess = () => {
         </p>
         <p className='text-[14px]'>Outright Markets: Betting on the overall outcome of a tournament or league, such as the winner of a championship
         </p>
-          <p className='text-[16px] py-2 font-semibold '>Casino Game Providers at Zetto.in
+          <p className='text-[16px] py-2 font-semibold '>Casino Game Providers at Bhimexch.in
         </p>
         <p className='text-[14px]'>As an online casino company, we take pride in partnering with top Casino Game Providers to offer our players a diverse and thrilling gaming experience.
         </p> 
@@ -200,9 +200,9 @@ const SeeMoreLess = () => {
         <p className='text-[14px]'>Known for their innovative approach, Spribe brings you an exciting and fast-paced game that combines elements of skill and chance. With exciting card and dice games, Aviator offers a refreshing break from traditional casino games, providing an exciting experience for players seeking something new and thrilling.
         </p> 
           <p className='text-[14px] py-2 font-semibold '>
-            Join Zetto: Your Place to Bet, Connect & Win Together
+            Join Bhimexch: Your Place to Bet, Connect & Win Together
         </p>
-        <p className='text-[14px]'>Be a part of the ultimate online sports betting exchange community at Zetto, where your winning odds are not just a statistic – they're your key to an exhilarating and rewarding betting experience! Join Zetto today!
+        <p className='text-[14px]'>Be a part of the ultimate online sports betting exchange community at Bhimexch, where your winning odds are not just a statistic – they're your key to an exhilarating and rewarding betting experience! Join Bhimexch today!
         </p>  
         <p className='text-[16px] py-2 font-semibold '>
             FAQs related to Online Sports Betting Exchange
@@ -213,7 +213,7 @@ const SeeMoreLess = () => {
         <p className='text-[14px]'>A sports betting exchange is a platform that allows users to bet against each other rather than against the bookmaker. Users can both back (bet for) and lay (bet against) outcomes, creating a marketplace for odds.
         </p>
         <p className='text-[14px] font-semibold'>
-          2. How does Zetto’s online betting exchange differ from a traditional sportsbook?
+          2. How does Bhimexch’s online betting exchange differ from a traditional sportsbook?
         </p>
         <p className='text-[14px]'>In a traditional sportsbook, users bet against the bookmaker, while in a betting exchange, users bet against each other. Exchanges offer more flexibility as users can set their own odds and either back or lay a particular outcome.
         </p>  

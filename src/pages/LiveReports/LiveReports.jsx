@@ -42,7 +42,49 @@ const LiveReports = () => {
 
 return (
   <>
-    {/* <div className="md:w-full rounded my-4">
+  
+      <div className="w-full bg-[#e5e7eb] rounded overflow-hidden">
+      <div className="flex bg-[var(--primary)] text-[--secondary] text-[12px] font-bold px-2 rounded-t">
+        <div className="flex-1 text-left p-2.5">Daily Wins</div>
+        <div className="flex-1 text-left p-2.5">Winner</div>
+        <div className="flex-1 text-right p-2.5">Winnings</div>
+      </div>
+
+      <div className="h-[450px] overflow-hidden relative">
+        <div
+          className="transition-transform duration-500 ease-in-out"
+          style={{
+            transform: `translateY(-${index * 40}px)`,
+          }}
+        >
+          {duplicatedData.map((item, index) => (
+            <div
+              key={index}
+              className="flex text-[12px] items-center bg-[#e5e7eb] border-b border-gray-300 py-2 px-2"
+            >
+              <div className="flex-1 font-semibold text-left">{item.name}</div>
+              <div className="flex-1 text-left">
+                <span className="bg-[var(--primary)] text-[--secondary] px-1.5 py-0.5 rounded">
+                  {item.user}
+                </span>
+              </div>
+              <div className="flex-1 text-right text-green-600 font-medium text-[14px]">
+                {item.win}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </>
+  )
+}
+
+export default LiveReports
+
+
+
+  {/* <div className="md:w-full rounded my-4">
       <div className="w-full mx-auto bg-gray-200 rounded">
         <div className="flex bg-[var(--primary)] text-[--secondary] rounded-t text-[12px] font-bold px-2">
           <div className="flex-1 text-left p-2.5">Daily Wins</div>
@@ -151,41 +193,3 @@ return (
 
 
     
-      <div className="w-full bg-[#e5e7eb] rounded overflow-hidden">
-      <div className="flex bg-[var(--primary)] text-[--secondary] text-[12px] font-bold px-2 rounded-t">
-        <div className="flex-1 text-left p-2.5">Daily Wins</div>
-        <div className="flex-1 text-left p-2.5">Winner</div>
-        <div className="flex-1 text-right p-2.5">Winnings</div>
-      </div>
-
-      <div className="h-[450px] overflow-hidden relative">
-        <div
-          className="transition-transform duration-500 ease-in-out"
-          style={{
-            transform: `translateY(-${index * 40}px)`,
-          }}
-        >
-          {duplicatedData.map((item) => (
-            <div
-              key={item.id}
-              className="flex text-[12px] items-center bg-[#e5e7eb] border-b border-gray-300 py-2 px-2"
-            >
-              <div className="flex-1 font-semibold text-left">{item.name}</div>
-              <div className="flex-1 text-left">
-                <span className="bg-[var(--primary)] text-[--secondary] px-1.5 py-0.5 rounded">
-                  {item.user}
-                </span>
-              </div>
-              <div className="flex-1 text-right text-green-600 font-medium text-[14px]">
-                {item.win}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  </>
-  )
-}
-
-export default LiveReports

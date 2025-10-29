@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import LoginPopUp from "../LoginPopUp/LoginPopUp";
 
 const providers = [
   {
@@ -51,9 +53,23 @@ function Providers({ filterSection, name, providersData }) {
   const navigate = useNavigate();
   
   const ProvidersList = providers || providersData;
+  const [logniModal, setLogniModal] = useState(false);
+
+  const token = localStorage.getItem("token");
+
+  const handleLoginModal = () => {
+    if (!localStorage.getItem("token")) {
+      setLogniModal(true);
+    }
+  };
 
   return (
     <div>
+      {logniModal && (
+              <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[99]" onClose={() => setLogniModal(false)}>
+                <LoginPopUp onClose={() => setLogniModal(false)} />
+              </div>
+            )}
       <div className=" mx-2 mb-8 ">
         <div>
           {/* <div className="relative uppercase tracking-wider text-sm bg-[var(--primary)] w-[200px] font-bold text-white py-1.5 px-3">
@@ -69,7 +85,7 @@ function Providers({ filterSection, name, providersData }) {
         <div className="max-w-3xl mx-auto grid lg:grid-cols-4 md:grid-cols-3  grid-cols-3 gap-2 mt-0.5">
           {ProvidersList?.map((item, idx) => (
             <div key={idx} className="!w-auto">
-              <a href={`/casino-list-by-providername/${item.name}`} className="block">
+              {token ? <a href={`/casino-list-by-providername/${item.name}`} className="block">
                 <div className="text-gray-300 font-bold text-xs">
                   <img 
                     src={item.image} 
@@ -77,7 +93,17 @@ function Providers({ filterSection, name, providersData }) {
                     className="object-cover rounded-[5px]" 
                   />
                 </div>
-              </a>
+              </a> : <div onClick={handleLoginModal} className="block cursor-pointer">
+                
+                <div className="text-gray-300 font-bold text-xs">
+                  <img 
+                    src={item.image} 
+                    alt={item.name} 
+                    className="object-cover rounded-[5px]" 
+                  />
+                </div>
+            
+            </div>}
             </div>
           ))}
         </div>

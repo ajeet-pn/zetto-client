@@ -338,9 +338,7 @@ export default function PlaceBetMobile(props) {
                     <div>
                         <div
                             className={`p-1 py-2 mx-1 bg-white text-[10px] rounded border border-black text-black flex justify-center items-center text-left text-sm cursor-pointer `}
-                            onClick={() => {
-                                openBets();
-                            }}
+                            onClick={() => handleClose()}
                         >
                             Cancel
                             <div className="ld ld-ball ld-flip"></div>

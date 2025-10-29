@@ -20,12 +20,12 @@ const MobileFooter = () => {
                     </div>
                     <div className='text-center my-5 md:my-10 mx-5'>
                         <Link to={"/about-us"} className='text-[14px]'>About us |</Link>
-                        <Link className='text-[14px]'> Promotions |</Link>
-                        <Link className='text-[14px]'> Contact Us |</Link>
-                        <Link className='text-[14px]'> FAQs |</Link>
-                        <Link className='text-[14px]'> Responsible Gambling |</Link>
-                        <Link className='text-[14px]'> Terms and Conditions |</Link>
-                        <Link className='text-[14px]'> Rules |</Link>
+                        <Link to={"/promotions"} className='text-[14px]'> Promotions |</Link>
+                        <Link to={"/contact-us"} className='text-[14px]'> Contact Us |</Link>
+                        <Link to={"/faq"} className='text-[14px]'> FAQs |</Link>
+                        <Link to={"/responsible-gambling"} className='text-[14px]'> Responsible Gambling |</Link>
+                        <Link to={"/term-condition"} className='text-[14px]'> Terms and Conditions |</Link>
+                        <Link to={"/rules"} className='text-[14px]'> Rules |</Link>
                         <Link className='text-[14px]'> Zetto Blog |</Link>
                         <Link to={"/privacy-policy"} className='text-[14px]'> Privacy Policy |</Link>
                         <Link className='text-[14px]'> Sitemap </Link>

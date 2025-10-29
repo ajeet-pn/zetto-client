@@ -72,8 +72,8 @@ const CasinoListByProviderName = () => {
         loading ? <Loader /> :
             <>
                 {/* Provider Title */}
-                <div className="w-full rounded">
-                    <div className="px-3  text-lg text-black font-bold">Provider: {providername}</div>
+                <div className="w-full py-2  rounded">
+                    <div className="px-3 bg-[--secondary]  text-lg text-black font-bold">Provider: {providername}</div>
                 </div>
 
                 {/* Category Tabs */}
@@ -82,7 +82,7 @@ const CasinoListByProviderName = () => {
                         <button
                             key={idx}
                             onClick={() => setSelectedCategory(category)}
-                            className={`px-4 py-2 h-16 text-sm font-bold capitalize rounded-lg ${selectedCategory === category ? 'bg-conic text-white' : 'bg-gray-200'}`}
+                            className={`px-4 py-2 h-16 text-sm font-bold capitalize rounded-lg ${selectedCategory === category ? 'bg-[--secondary] text-black' : 'bg-[--primary] text-white'}`}
                         >
                             {category}
                         </button>
@@ -91,7 +91,7 @@ const CasinoListByProviderName = () => {
 
 
                 {/* Provider-wise Casino Games */}
-                <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-7 gap-6 mb-20 py-3">
+                <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-7 gap-6  mb-20 py-3">
                     {uniqueList?.map((item, idx) => (
                         <div key={idx} className="flex flex-col items-center gap-3 border-2 border-orange-600 rounded-lg">
                             <img
