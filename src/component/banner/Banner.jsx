@@ -11,7 +11,7 @@ function Banner() {
 
         <div className=" overflow-hidden">
           {domainSetting?.banner?.length > 1 ? (
-            <Carousel autoplay speed={200} className="banner-carousel">
+            <Carousel autoplay speed={200} className="banner-carousel  z-[1]">
               {domainSetting.banner
                 ?.sort((a, b) => a.priority - b.priority)
                 ?.map((req, index) => (
@@ -36,7 +36,7 @@ function Banner() {
                 ))}
             </Carousel>
           ) : (
-            <Carousel autoplay speed={200} className="banner-carousel">
+            <Carousel autoplay speed={200} className="banner-carousel  z-[1]">
               <img
                 src="/images/zetto/banner1.webp"
                 alt=""

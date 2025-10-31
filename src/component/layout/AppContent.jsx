@@ -36,6 +36,9 @@ import ContactUs from '../../pages/contact/ContactUs'
 import Mfa from '../../pages/Mfa/Mfa'
 import Login from '../login/Login'
 import ResponsibleGaming from '../../pages/ResponsibleGaming/ResponsibleGaming'
+import IframeCasino from '../../pages/IframeCasino/IframeCasino'
+import IframeCasinonew from '../../pages/IframeCasino/IframeCasinonew'
+import IframeQtech from '../../pages/IframeCasino/IframeQtech'
 
 
 
@@ -58,7 +61,7 @@ const AppContent = () => {
       <Route path="/rules" element={<Rules />} />
       <Route path="/about-us" element={<AboutsUs />} />
       <Route path="/contact-us" element={<ContactUs />} />
-<Route path="/login" element={<Login />} />
+{/* <Route path="/login" element={<Login />} /> */}
       
       <Route path="/promotions" element={<Promotions />} />
       <Route path='/refer-and-earn' element={<ReferAndEarn />} />
@@ -81,6 +84,12 @@ const AppContent = () => {
       <Route path='/unsettled-bets' element={<UnsettledBets />} />
       <Route path='/refferal' element={<Refferal />} />
       <Route path='/profit-loss' element={<ProfitLoss />} />
+
+      
+            
+            <Route path="/iframe-casino/:gameId?" element={<IframeCasino />} />
+            <Route path="/iframe-casino-new/:provider?/:gameId?"  element={<IframeCasinonew />} />
+            <Route path="/iframe-qtech-casino/:gameId?"  element={<IframeQtech />} />
 
     </Routes>
 

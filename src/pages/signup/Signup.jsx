@@ -1,34 +1,48 @@
+
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { message } from "antd";
 import { useSelector } from "react-redux";
-import settings from "../../domainConfig";
-import { apiCall } from "../../config/HTTP";
-import { MdKeyboardArrowDown } from "react-icons/md";
-import AppHeader from "../../component/layout/AppHeader";
-import AppFooter from "../../component/layout/AppFooter";
-import MarqueeNotification from "../../component/marquee/MarqueeNotification";
+import { BsEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
+import { httpPost } from "../../config/HTTP";
+import { FaWhatsapp } from "react-icons/fa";
 
-function Signup({ setShowLogin }) {
-
+function SignUp({ isSignUpOpen, onClose }) {
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-  const [password, setPassword] = useState("password");
-  const [inputFocused, setInputFocused] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [otpEnabled, setOtpEnabled] = useState(false);
+  const [otpData, setOtpData] = useState("");
+   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+ const [countryCode, setCountryCode] = useState("91");
+ 
+ const handleSelectCode = (code) => {
+   setCountryCode(code);
+   setIsDropdownOpen(false);
+ };
+
   const [user, setUser] = useState({
     name: "",
     mobileNo: "",
     username: "",
     password: "",
-    referralCode: ""
+    confirmPassword: "",
+    referralCode: "",
+    otp: ""
   });
+
+  const domainSetting = JSON.parse(localStorage.getItem("clientdomainSetting"));
+  const isOtpEnabled = domainSetting?.isSignUpOtp === true;
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     let truncatedValue = value;
+
+    if (name === "username") {
+      truncatedValue = value.replace(/\s/g, "");
+    }
     if (name === "mobileNo") {
-      // Truncate value to 10 digits if it exceeds
       if (value.length > 10) {
         return setErrors({
           ...errors,
@@ -37,6 +51,7 @@ function Signup({ setShowLogin }) {
       }
       truncatedValue = value.slice(0, 10);
     }
+
     setUser({ ...user, [name]: truncatedValue });
     setErrors({ ...errors, [name]: "" });
   };
@@ -48,56 +63,70 @@ function Signup({ setShowLogin }) {
       setErrors({ ...errors, mobileNo: "Mobile number must be 10 digits" });
       return;
     }
+
     if (!user.name || user.name.length < 3) {
       setErrors({ ...errors, name: "Name must be at least 3 characters long" });
       return;
     }
 
-    // Validate password
     if (!user.password || user.password.length < 6) {
       setErrors({
         ...errors,
-        password:
-          "(Must be contained alphanumeric and more than 6 letters)",
+        password: "Password must be at least 6 characters long and must be in the format: Ab1234",
       });
       return;
     }
-    // Check for uppercase letters
-    if (!/[A-Z]/.test(user.password)) {
-      setErrors({ ...errors, password: "Password must contain at least one uppercase letter" });
-      return;
-    }
-    // Check for lowercase letters
+    if (!user.confirmPassword || user.confirmPassword.length < 6) {
+  setErrors({
+    ...errors,
+    confirmPassword: "Confirm password must be at least 6 characters long",
+  });
+  return;
+}
+
+if (user.password !== user.confirmPassword) {
+  setErrors({
+    ...errors,
+    confirmPassword: "Passwords do not match",
+  });
+  return;
+}
+
+    // if (!/[A-Z]/.test(user.password)) {
+    //   setErrors({ ...errors, password: "Password must contain at least one uppercase letter" });
+    //   return;
+    // }
+
     if (!/[a-z]/.test(user.password)) {
       setErrors({ ...errors, password: "Password must contain at least one lowercase letter" });
       return;
     }
-    // Check for numbers
+
     if (!/\d/.test(user.password)) {
       setErrors({ ...errors, password: "Password must contain at least one digit" });
       return;
     }
 
-    // Check for special characters
-    if (!/[!@#$%^&*(),.?":{}|<>]/.test(user.password)) {
-      setErrors({ ...errors, password: "Password must contain at least one special character" });
-      return;
-    }
-
     setLoading(true);
+
     try {
       const loginDetails = {
         domainUrl: window.location.origin,
         name: user.name,
         username: user.username,
-        mobileNo: user.mobileNo,
+        mobileNo: `${countryCode}${user.mobileNo}`,
         password: user.password,
       };
+
       if (user.referralCode) {
         loginDetails.referralCode = user.referralCode;
       }
 
-      const response = await apiCall("POST", "website/registerClient", loginDetails);
+      if (user.otp) {
+        loginDetails.otp = user.otp;
+      }
+
+      const response = await httpPost("website/registerClient", loginDetails);
 
       if (response) {
         setUser({
@@ -105,23 +134,48 @@ function Signup({ setShowLogin }) {
           username: "",
           mobileNo: "",
           password: "",
-          referralCode: ""
+          referralCode: "",
+          otp: ""
         });
-        message.success(response?.message || "Registration successful!");
-        navigate("/dashboard");
-
+        window.location.href = "/";
+        message.success(response?.message);
       } else {
-        message.error(response?.message || "Registration failed. Please check your details.");
+        message.error("Registration failed. Please check your details.");
       }
     } catch (error) {
       console.error("Error:", error);
-      message.error("An error occurred during registration. Please try again later.");
     } finally {
       setLoading(false);
     }
   };
 
-  let domainSetting = JSON.parse(localStorage.getItem("clientdomainSetting"));
+  const handleGetOtp = async () => {
+    if (!user.mobileNo || user.mobileNo.length !== 10) {
+      setErrors({ ...errors, mobileNo: "Mobile number must be 10 digits" });
+      return;
+    }
+
+    try {
+      const res = await httpPost("website/getWhatsAppOtp", {
+        phone: `${countryCode}${user.mobileNo}`,
+      });
+
+      if (res?.error === false) {
+        message.success(res?.message);
+        setOtpEnabled(true);
+        setOtpData(res?.data);
+      } else {
+        message.error(res?.message || "Failed to send OTP");
+      }
+    } catch (err) {
+      console.error(err);
+      message.error("Error sending OTP");
+    }
+  };
+
+  const toggleShowPassword = () => {
+    setShowPassword((prev) => !prev);
+  };
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
@@ -130,126 +184,247 @@ function Signup({ setShowLogin }) {
   };
 
   return (
-    <div className="min-h-screen bg-[#E9ECF0] ">
-     
-      <AppHeader/>
-      <MarqueeNotification />
-        <div className="flex w-full items-start justify-center h-full overflow-y-auto md:my-4 ">
-          <div className="w-full flex justify-center rounded-[4px] text-white bg-[]">
-            <div className="!max-w-[400px] hidden sm:block shadow-md max-h-[500px]">
-              <img className="!w-full !h-full rounded-[3px] " src="/images/zetto/signup.png" alt="" srcset="" />
-            </div>
-            <div className="!max-w-full w-full shadow-md sm:!max-w-[450px]">
-              <form className="!px-6 md:!py-4 bg-white w-full h-full !py-8 flex flex-col " onSubmit={(e) => {
-                  e.preventDefault(); 
-                  // handleSubmit(e);
-                }}>
-                  <div className="mx-auto block sm:hidden">
-                    <img className="!w-full !h-auto" src="/images/zetto/login.png" alt="" srcset="" />
-                  </div>
-                  <div className="text-[18px] text-center font-bold mb-3 text-black dark:text-white">Create Account</div>
-                  {/* <div className="text-[14px] text-black dark:text-white mb-3">Welcome to our Exchange! Please enter detail to continue.</div> */}
-                <div className="flex flex-col mb-4">
-                  {/* <label className="text-[14px] font-[400] text-black !mb-[5px] dark:text-white">Full Name</label> */}
-                  <div className="">
-                    <input
-                      type="text"
-                      placeholder="username"
-                      className="bg-[#EFEFEF] h-[43px] text-black w-full rounded-[5px] border border-[#c0ccda] placeholder:text-[#9da3bd] placeholder:text-[14px] font-normal px-2"
-                      name="username"
-                      // value={formData.username}
-                      // onChange={handleChange}
-                    />
-                  </div>
-                  {errors.username && <p className="text-red-500 text-sm mt-1">{errors.username}</p>}
-                </div>
-                <div className="flex flex-col mb-4">
-                  {/* <label className="text-[14px] font-[400] text-black dark:text-white !mb-[5px]">Mobile Number</label> */}
-                  <div className="relative">
-                    <input
-                      type="text"
-                      placeholder="Phone Number"
-                      className="bg-[#EFEFEF] h-[43px] w-full text-black rounded-[5px] border border-[#c0ccda] placeholder:text-[#9da3bd] placeholder:text-[14px] !pl-[70px]"
-                      // name="username"
-                      id="mobile"
-                      name="mobileNo"
-                      value={user.mobileNo}
-                      onChange={handleOnChange}
-                      // value={formData.username}
-                      // onChange={handleChange}
-                    />
-                    <label className="absolute !flex gap-1 text-[#9da3bd] text-[14px] top-1/2 -translate-y-1/2 left-[10px]" htmlFor="">+ 91 <MdKeyboardArrowDown /></label>
-                  </div>
-                  {errors.username && <p className="text-red-500 text-sm mt-1">{errors.username}</p>}
-                </div>
-
-                <div className="flex flex-col mb-4 relative">
-                  <div className="flex justify-between">
-                  </div>
-                  <input
-                    type="password"
-                    placeholder="Enter Password"
-                    className="bg-[#EFEFEF] h-[43px] rounded-[5px] text-black border border-[#c0ccda] placeholder:text-[#9da3bd] placeholder:text-[14px] !px-2"
-                    name="password"
-                    // value={formData.password}
-                    // onChange={handleChange}
-                  />
-                  
-                  <img className="!w-[20px] !h-[20px] absolute top-[22%] dark:brightness-100 brightness-0 right-[15px]" src="/images/zetto/passwordhide.png" alt="" srcset="" />
-                  {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password}</p>}
-                </div>
-
-                <div className="flex flex-col mb-4 relative">
-                  <div className="flex justify-between">
-                    {/* <label className="text-[14px] font-[400] text-black dark:text-white !mb-[5px]">Password</label> */}
-                    {/* <Link className="text-[14px]" to=''>Forgot Password?</Link> */}
-                  </div>
-                  <input
-                    type="password"
-                    placeholder="Confirm Password"
-                    className="bg-[#EFEFEF] h-[43px] rounded-[5px] text-black border border-[#c0ccda] placeholder:text-[#9da3bd] placeholder:text-[14px] !px-2"
-                    name="confirmpassword"
-                    // value={formData.password}
-                    // onChange={handleChange}
-                  />
-                  
-                  <img className="!w-[20px] !h-[20px] absolute top-[22%] dark:brightness-100 brightness-0 right-[15px]" src="/images/zetto/passwordhide.png" alt="" srcset="" />
-                  {/* {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password}</p>} */}
-                </div>
-
-                
-                <div className="flex flex-col mb-4">
-                  <div className="flex justify-between">
-                    {/* <label className="text-[14px] font-[400] text-black dark:text-white !mb-[5px]">Agent Code (Optional)</label> */}
-                  </div>
-                  <input
-                    type="password"
-                    placeholder="Enter Referral Id (Optional)"
-                    className="bg-[#EFEFEF] h-[43px] rounded-[5px] text-black border border-[#c0ccda] placeholder:text-[#9da3bd] placeholder:text-[14px] !px-2"
-                    name="password"
-                  />
-                  {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password}</p>}
-                </div>
-                <div className="flex flex-col">
-                  <button type="submit" className="h-[50px] mb-2 rounded-[3px] border border-[#c2c7c3] text-[#c2c7c3] text-[16x]">
-                    Sign Up
-                  </button>
-                  <div className="text-[10px] text-xs text-black  text-center">
-                    By Signing up, I agree to the  <Link to={'/term-condition'} className="!text-black font-bold">Terms and Conditions</Link>
-                  </div>
-                  <div className="text-[10px] text-xs text-black text-center">
-                    Already a member?  <Link to={'/login'} className="!text-black font-bold !underline">Login</Link>
-                  </div>
-                  <div className="text-[10px] text-sm text-black text-center">
-                    <div className="!text-black font-bold !underline">Watch how to Sign up </div>
-                  </div>
-                </div>
-              </form>
+    <div className="fixed inset-0 z-50 flex justify-center items-start  bg-black bg-opacity-50 overflow-auto">
+      <div className="w-full md:max-w-[448px] max-w-[100%] shadow-md rounded-[4px] bg-[#666] text-white md:!my-4">
+          <div className="flex justify-between bg-black p-2 px-4">
+            <h5 className="text-lg font-bold">Register</h5>
+            <img
+              src="https://wver.sprintstaticdata.com/v78/static/front/img/close.svg"
+              alt="close"
+              className="rounded-full border-2 p-1 border-red-700 cursor-pointer"
+              onClick={onClose}
+            />
+          </div>
+          <div className="p-1">
+        <div className="space-y-2 p-3 pb-6 bg-black">
+          <div className="bg-[#353434] mx-6 text-sm py-1">
+            <div className="text-white text-center">Register as New User</div>
+            <div className="text-white text-center">Get your instent ID From Whatsapp</div>
+            <div className="flex items-center uperrcase px-1">
+              <div className="p-3 bg-green-600"><FaWhatsapp /></div>
+              <div className="bg-green-600 h-6 flex-1 uppercase text-center font-bold">Click Here</div>
             </div>
           </div>
+          <div className="flex items-center">
+                <hr className="flex-grow border-t-2 border-[#767f99]" />
+                <span className="text-[#767f99] text-[12px] mx-2">or</span>
+                <hr className="flex-grow border-t-2 border-[#767f99]" />
+              </div>
+          <div className="text-[12px] font-semibold !text-white ">
+                  Name
+                </div>
+          <input
+            type="text"
+            name="name"
+            value={user.name}
+            onChange={handleOnChange}
+            placeholder="Enter Name"
+            className="w-full p-2 focus:border text-white focus:border-button bg-[#353434] outline-none rounded"
+          />
+          {errors.name && <div className="text-red-500">{errors.name}</div>}
+
+          <div className="text-[12px] font-semibold !text-white ">
+                  Username
+                </div>
+
+          <input
+            type="text"
+            name="username"
+            value={user.username}
+            onChange={handleOnChange}
+            placeholder="Enter Username"
+            className="w-full p-2 focus:border text-white focus:border-button bg-[#353434] outline-none rounded"
+          />
+          {errors.username && <div className="text-red-500">{errors.username}</div>}
+
+          <div className="relative flex items-center">
+            
+            <div className="relative w-[80px] px-1 text-white text-sm">
+              <div className="text-[12px] font-semibold !text-white ">
+                Mobile No.
+                </div>
+              
+  {/* Selected Code Display */}
+  <div
+    className="bg-[#222] border border-gray-600 p-2 rounded cursor-pointer flex justify-between items-center"
+    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+  >
+    +{countryCode}
+    <svg
+      className={`w-4 h-4 ml-1 transform transition-transform ${isDropdownOpen ? "rotate-180" : ""}`}
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+    </svg>
+  </div>
+
+  {/* Dropdown Menu */}
+  {isDropdownOpen && (
+    <ul className="absolute z-50 bg-[#222] border border-gray-600 mt-1 rounded w-full shadow-lg">
+      {["92", "91"].map((code) => (
+        <li
+          key={code}
+          onClick={() => handleSelectCode(code)}
+          className={`p-2 cursor-pointer hover:bg-[#333] ${
+            countryCode === code ? "bg-[#333]" : ""
+          }`}
+        >
+          +{code}
+        </li>
+      ))}
+    </ul>
+  )}
+</div>
+
+
+            <div className="w-full mt-5">
+              <input
+                type="tel"
+                name="mobileNo"
+                value={user.mobileNo}
+                onChange={handleOnChange}
+                placeholder="Enter Mobile No (10 digits)"
+                className="w-full p-2 text-start focus:border text-white focus:border-button bg-[#353434] outline-none rounded"
+              />
+              {errors.mobileNo && <div className="text-red-500">{errors.mobileNo}</div>}
+            </div>
+
+            {isOtpEnabled && (
+              <button
+                type="button"
+                onClick={handleGetOtp}
+                className="absolute right-1 p-2 top-1 text-xs bg-button text-black font-medium rounded"
+              >
+                GET OTP
+              </button>
+            )}
+          </div>
+
+          {isOtpEnabled && (
+            <div className="relative flex">
+              <input
+                type="text"
+                name="otp"
+                value={user.otp}
+                onChange={handleOnChange}
+                placeholder="Enter OTP"
+                disabled={!otpEnabled}
+                className="w-full p-2 focus:border text-white focus:border-button bg-[#353434] outline-none rounded"
+              />
+              {errors.otp && <div className="text-red-500">{errors.otp}</div>}
+            </div>
+          )}
+
+      <div className="flex gap-4">
+  {/* Password Field */}
+  <div className="relative w-1/2">
+  <div className="text-[12px] font-semibold !text-white ">
+                Password
+                </div>
+    <input
+      type={showPassword ? "text" : "password"}
+      name="password"
+      value={user.password}
+      disabled={isOtpEnabled && !otpEnabled}
+      onChange={handleOnChange}
+      placeholder="Password"
+      className="w-full p-2 focus:border text-white focus:border-button bg-[#353434] outline-none rounded"
+    />
+    <button
+      onClick={toggleShowPassword}
+      className="absolute text-white right-3 top-8 text-lg"
+    >
+      {showPassword ? <BsFillEyeSlashFill /> : <BsEyeFill />}
+    </button>
+    {errors.password && <div className="text-red-500 mt-1">{errors.password}</div>}
+  </div>
+
+  {/* Confirm Password Field */}
+  <div className="relative w-1/2">
+  <div className="text-[12px] font-semibold !text-white ">
+                Confirm Password
+                </div>
+    <input
+      type={showPassword ? "text" : "password"}
+      name="confirmPassword"
+      value={user.confirmPassword}
+      disabled={isOtpEnabled && !otpEnabled}
+      onChange={handleOnChange}
+      placeholder="Confirm Password"
+      className="w-full p-2 focus:border text-white focus:border-button bg-[#353434] outline-none rounded"
+    />
+    <button
+      onClick={toggleShowPassword}
+      className="absolute text-white right-3 top-8 text-lg"
+    >
+      {showPassword ? <BsFillEyeSlashFill /> : <BsEyeFill />}
+    </button>
+    {errors.confirmPassword && <div className="text-red-500 mt-1">{errors.confirmPassword}</div>}
+  </div>
+</div>
+
+ <div className="text-[12px] font-semibold !text-white ">
+                Referral Code
+                </div>
+          <input
+            type="text"
+            name="referralCode"
+            value={user.referralCode}
+            onChange={handleOnChange}
+            onKeyPress={handleKeyPress}
+            disabled={isOtpEnabled && !otpEnabled}
+            placeholder="Referral Code"
+            className="w-full p-2 focus:border text-white focus:border-button bg-[#353434] outline-none rounded"
+          />
+          {errors.referralCode && <div className="text-red-500">{errors.referralCode}</div>}
+
+          <div className="custom-control custom-checkbox d-inline-block py-1 mb-2">
+              <input
+                type="checkbox"
+                id="customCheck"
+                name="example1"
+                className="custom-control-input"
+                checked
+              />
+              &nbsp;
+              <label htmlFor="customCheck" className="text-sm">
+                I am at least&nbsp;
+                <a href="javascript:void(0)" className="text-red-500" role="button">
+                  18 years
+                </a>
+                &nbsp;of age and I have read, accept and agree to the&nbsp;
+                <a
+                  href="/term-condition"
+                  className="text-blue-500 underline"
+                  target="_blank"
+                >
+                  Terms and Conditions
+                </a>
+                ,&nbsp;
+                <a
+                  href="/responsible-gambling"
+                  className="text-blue-500 underline"
+                  target="_blank"
+                >
+                  Responsible Gaming
+                </a>
+              </label>
+            </div>
+
+          <button
+            onClick={handleOnSubmit}
+            className={`w-full py-2 bg-green-600 text-white rounded mt-4 ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
+            disabled={loading}
+          >
+            {loading ? "Loading..." : "Register"}
+          </button>
         </div>
+        </div>
+      </div>
     </div>
   );
 }
 
-export default Signup;
+export default SignUp;

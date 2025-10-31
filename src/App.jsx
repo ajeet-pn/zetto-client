@@ -113,11 +113,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             
-            <Route path='/signup' element={<Signup />} />
-            
-            <Route path="/iframe-casino/:gameId?" element={<IframeCasino />} />
-            <Route path="/iframe-casino-new/:provider?/:gameId?"  element={<IframeCasinonew />} />
-            <Route path="/iframe-qtech-casino/:gameId?"  element={<IframeQtech />} />
+            {/* <Route path='/signup' element={<Signup />} /> */}
             <Route path="*" element={<Layout />} />
           </Routes>
         </BrowserRouter>

@@ -14,11 +14,16 @@ import Login from "../login/Login";
 import { domainName } from "../../config/Auth";
 import { getClientExposure, getUserBalance } from "../../redux/reducers/user_reducer";
 import { IoMdArrowDropdown } from "react-icons/io";
+import Signup from "../../pages/signup/Signup";
 
 const AppHeader = ({ setSidebarOpen }) => {
   const dispatch = useDispatch()
   const [rulesModalOpen, setRulesModalOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [singupModalOpen, setSingupModalOpen] = useState(false);
+  const [loginModalOpen, setLoginModalOpen] = useState(false);
+
+  
   const [bonusModalOpen, setBonusModalOpen] = useState(false);
   const token = localStorage.getItem("token");
 
@@ -131,11 +136,30 @@ const AppHeader = ({ setSidebarOpen }) => {
     document.body.classList.remove("!overflow-hidden")
   }
 
+
+  useEffect(() => {
+  if (singupModalOpen || loginModalOpen) {
+    // Disable scroll
+    document.body.style.overflow = "hidden";
+  } else {
+    // Re-enable scroll
+    document.body.style.overflow = "";
+  }
+
+  // Cleanup when component unmounts
+  return () => {
+    document.body.style.overflow = "";
+  };
+}, [singupModalOpen, loginModalOpen]);
+
   return (
     <>
         <div
           className={`border-b border-[#00FFE6] !px-2 lg:!px-10 h-[64px] flex items-center w-full bg-[var(--primary)]`}
         >
+
+          {singupModalOpen && <Signup onClose={() => setSingupModalOpen(false)} />}
+          {loginModalOpen && <Login  onClose={() => setLoginModalOpen(false)}  />}
           <div className="w-full">
             <div className="flex justify-between items-center mx-auto w-full py-0">
               <div className="flex justify-start items-center py-3 gap-2">
@@ -146,11 +170,10 @@ const AppHeader = ({ setSidebarOpen }) => {
                 <img onClick={() => {
                   navigate("/dashboard");
                 }}
-                  src={settings.logo} className="h-16 md:h-[76px]  cursor-pointer" />
+                  src={settings.logo} className="h-[3rem] md:h-[65px]  cursor-pointer" />
               </div>
               {token ? (
                 <>
-                  
                   <div className="flex justify-end w-full items-center">
                     <div className="flex items-center">
                         <div className="">
@@ -362,13 +385,14 @@ const AppHeader = ({ setSidebarOpen }) => {
                 <>
                   <div className="flex space-x-1">
                     <div
-                      onClick={() => {
-                        navigate("/signup");
+                      onClick={() => { setSingupModalOpen(true);
                       }}
                       className="bg-[var(--secondary)] cursor-pointer hover:bg-[var(--secondary)] text-[var(--black)] bg-theme2  hover:opacity-[0.7] transition text-black !rounded-[3px] flex justify-center items-center !text-[10px] font-bold !px-[22px] h-[25px]">
                       SIGN UP
                     </div>
-                    <div onClick={() => { navigate("/login");}}
+                    
+                    <div onClick={() => { setLoginModalOpen(true);
+                      }}
                       className="hover:bg-[var(--secondary)] text-[var(--white)] text-xs uppercase py-1 cursor-pointer text-white hover:!text-black hover:!bg-white font-bold border !border-white !rounded-[3px] !text-[10px] !px-[25px] h-[25px] !bg-transparent">
                       Login
                     </div>

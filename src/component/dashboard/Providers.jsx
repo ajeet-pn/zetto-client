@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LoginPopUp from "../LoginPopUp/LoginPopUp";
+import Login from "../login/Login";
 
 const providers = [
   {
@@ -67,7 +68,7 @@ function Providers({ filterSection, name, providersData }) {
     <div>
       {logniModal && (
               <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[99]" onClose={() => setLogniModal(false)}>
-                <LoginPopUp onClose={() => setLogniModal(false)} />
+                <Login onClose={() => setLogniModal(false)} />
               </div>
             )}
       <div className=" mx-2 mb-8 ">

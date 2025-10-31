@@ -50,7 +50,7 @@ const SlotBanner = () => {
 
             {/* Mobile Image */}
             <div
-              className="flex md:hidden relative h-[250px] rounded-[10px] items-center justify-center text-center"
+              className="flex md:hidden relative h-[150px] rounded-[10px] items-center justify-center text-center"
               style={{
                 backgroundImage: `url(${item.imgMobile})`,
                 backgroundSize: "cover",

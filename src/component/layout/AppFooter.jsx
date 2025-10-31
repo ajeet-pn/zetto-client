@@ -4,9 +4,11 @@ import { IoClose } from 'react-icons/io5';
 import { Link, useNavigate } from 'react-router-dom';
 import { domainName } from '../../config/Auth';
 import settings from '../../domainConfig';
+import Login from '../login/Login';
 
 const AppFooter = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [balance, setBalance] = useState({
     coins: "",
     exposure: "",
@@ -31,15 +33,32 @@ const navigate = useNavigate();
     setIsOpen(false)
   }
 
+   useEffect(() => {
+  if (loginModalOpen) {
+    // Disable scroll
+    document.body.style.overflow = "hidden";
+  } else {
+    // Re-enable scroll
+    document.body.style.overflow = "";
+  }
+
+  // Cleanup when component unmounts
+  return () => {
+    document.body.style.overflow = "";
+  };
+}, [loginModalOpen]);
+
+
   return (
     <>
+    {loginModalOpen && <Login  onClose={() => setLoginModalOpen(false)}  />}
       <footer className="bg-[--primary] hidden lg:block w-full text-white">
           <div className="bg-[--primary] grid grid-cols-5 text-white py-8 md:px-5 lg:ps-28 lg:pe-52">
           <div className="">
               {/* Logo */}
               <div className="flex flex-col gap-2 space-x-4">
                 <Link to='/dashboard'>
-                  <img src={settings.logo} alt="Zetto Logo" className="w-32" />
+                  <img src={settings.logo} alt="Zetto Logo" className="h-[3rem] md:h-[65px]" />
                 </Link>
                 <div className='text-[12px] font-semibold !ms-0'>FOLLOW US ON</div>
                 <div className='flex gap-2 !ms-0'>
@@ -190,12 +209,12 @@ const navigate = useNavigate();
               </li>
             ) : (
               <li className='mx-auto h-full'
-              // onClick={()=>setLogin(true)}
+              onClick={() => { setLoginModalOpen(true);
+                      }}
               >
-                <Link to='/login'  className="mobile-btn flex flex-col items-center">
                 <img src="/images/zetto/avatar.png"className="!h-[20px] !w-[20px] !mt-[6px]"/>
                 <p className="text-white text-[10px] mt-1">Login</p>
-                </Link>
+               
               </li>
            )} 
           </ul>

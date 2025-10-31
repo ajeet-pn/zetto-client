@@ -6,6 +6,7 @@ import { TbDeviceTvOld } from "react-icons/tb";
 import { useParams } from "react-router-dom";
 import { FaTv } from "react-icons/fa";
 import LoginPopUp from "../LoginPopUp/LoginPopUp";
+import Login from "../login/Login";
 
 function InplayMatches({ activeTab, matchlistItems, sportName }) {
 
@@ -380,7 +381,7 @@ const token = localStorage.getItem("token");
       {content}
       {logniModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[99]" onClose={() => setLogniModal(false)}>
-          <LoginPopUp onClose={() => setLogniModal(false)} />
+          <Login onClose={() => setLogniModal(false)} />
         </div>
       )}
     </div>

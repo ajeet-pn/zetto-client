@@ -4,11 +4,11 @@ const BhimexchSettings = {
   logo: "/logo/zetto-logo.png",
   logo1: "/logo/silver-reddyBook.png",
   SOCKET_URL: "https://socket.trovetown.co/",
-  apiurl: 'https://api.bhimexch.com/v1/',
+  apiurl: 'https://api.10xbpexch.com/v1/',
   domainName: "Bhimexch",
   colors: {
     // "--primary": "rgb(0, 31, 63)",
-    "--primary": "#D92513",
+    "--primary": "#6b0000",
     "--secondary": "rgb(2, 255, 230)",
     "--white": "#fff",
     "--black": "#000",
