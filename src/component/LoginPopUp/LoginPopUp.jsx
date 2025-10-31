@@ -13,7 +13,7 @@ export default function LoginPopUp({ onClose }) {
         </button>
         <div className="text-xl font-semibold flex justify-center text-gray-800 mb-4">
           <img
-            className="h-[55px] w-[200px]"
+            className=" w-[100px]"
             src={settings.logo}
             alt="logo"
           />

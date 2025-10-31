@@ -173,7 +173,7 @@ const AppSidebarMobile = ({ isSidebarOpen, setIsSidebarOpen }) => {
         <div className="flex justify-between items-center py-3 px-2">
           <div></div>
           <div>
-            <img src={settings.logo} className="w-[120px] h-[32px]" />
+            <img src={settings.logo} className="w-[80px] h-[52px]" />
           </div>
           <div>
             <button

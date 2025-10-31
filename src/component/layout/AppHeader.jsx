@@ -146,7 +146,7 @@ const AppHeader = ({ setSidebarOpen }) => {
                 <img onClick={() => {
                   navigate("/dashboard");
                 }}
-                  src={settings.logo} className="h-8 md:h-[36px]  cursor-pointer" />
+                  src={settings.logo} className="h-16 md:h-[76px]  cursor-pointer" />
               </div>
               {token ? (
                 <>
