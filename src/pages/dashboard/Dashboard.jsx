@@ -191,19 +191,19 @@ const Dashboard = ({ }) => {
 
 
 const filteredData = matchData?.filter((match) => {
-  if (activeTab === "inplay") {
+  if (activeTab == "inplay") {
     return true;
   }
 
   if (!isNaN(activeTab)) {
-    return match.sportId === Number(activeTab);
+    return match.sportId == Number(activeTab);
   }
 
   return false;
 });
 
 const getSportName = (sportId) => {
-  const sport = AllSportsArray.find((item) => item.sportId === Number(sportId));
+  const sport = AllSportsArray.find((item) => item.sportId == Number(sportId));
   return sport ? sport.sportName : "";
 };
 
@@ -230,7 +230,7 @@ const getSportName = (sportId) => {
         }
       }}
             className={`flex flex-col justify-center items-center min-w-[67px] h-[60px] rounded-md ${
-              activeTab === tab.id ? "bg-[--secondary] text-black" : "bg-[--primary] text-white"
+              activeTab == tab.id ? "bg-[--secondary] border-2 border-[--primary] text-[--primary]" : "bg-[--primary] text-white"
             }`}
           >
             <div className="text-lg">{tab.icon}</div>
@@ -239,8 +239,11 @@ const getSportName = (sportId) => {
         ))}
       </div>
         <div className="space-y-0">
-      {activeTab === "inplay" ? (
-        [...new Set(filteredData.filter(item => [4, 2, 1].includes(item.sportId)).map(item => item.sportId))].map((sportId) => {
+      {activeTab == "inplay" ? (
+        [...new Set(filteredData.filter(item => [4, 2, 1].includes(item.sportId)).map(item => item.sportId))].sort((a, b) => {
+    const order = [4, 2, 1]; 
+    return order.indexOf(a) - order.indexOf(b);
+  }).map((sportId) => {
           const sportWiseMatches = filteredData.filter(item => item.sportId === sportId);
           const sportName = getSportName(sportId);
           return (

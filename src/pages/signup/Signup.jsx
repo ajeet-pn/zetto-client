@@ -415,7 +415,7 @@ if (user.password !== user.confirmPassword) {
 
           <button
             onClick={handleOnSubmit}
-            className={`w-full py-2 bg-green-600 text-white rounded mt-4 ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
+            className={`w-full py-2 bg-[--primary] text-white rounded mt-4 ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
             disabled={loading}
           >
             {loading ? "Loading..." : "Register"}

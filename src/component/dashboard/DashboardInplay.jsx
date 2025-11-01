@@ -220,15 +220,15 @@ const token = localStorage.getItem("token");
                       >
                         <div className="hidden lg:flex">
                             {isInplay ? (
-                              <div className="bg-[--primary] text-[9px] ms-4 text-[--secondary] !w-[60px] flex items-center justify-center h-[22px] rounded-[3px] font-semibold">Inplay</div>
+                              <div className="bg-[--primary] text-[9px] ms-4 text-white !w-[60px] flex items-center justify-center h-[22px] rounded-[3px] font-semibold">Inplay</div>
                             ) :
                             (
-                              <div className="bg-[--secondary] text-[9px] ms-4 text-[--primary] !w-[60px] flex items-center justify-center h-[22px] rounded-[3px] font-semibold">{moment(element.matchDate, "DD-MM-YYYY HH:mm:ss A").format("HH:mm")}</div>
+                              <div className="border-2 border-[--primary] text-[9px] ms-4 text-[--primary] !w-[60px] flex items-center justify-center h-[22px] rounded-[3px] font-semibold">{moment(element.matchDate, "DD-MM-YYYY HH:mm:ss A").format("HH:mm")}</div>
                             )
                           }
                         </div>
                         <div className="flex flex-col uppercase w-full px-2">
-                          {element?.seriesName && <span className="text-[7px] text-[--primary] capitalize font-bold lg:bg-[--secondary] w-fit px-1 rounded-[5px]">
+                          {element?.seriesName && <span className="text-[10px] text-[--white] capitalize font-bold lg:bg-[--primary] w-fit px-1 rounded-[5px]">
                             ({element?.seriesName ? element?.seriesName : "No Series"})
                           </span>}
                           <span className="text-[11px] font-bold capitalize text-gray-900 hover:underline">
@@ -241,15 +241,15 @@ const token = localStorage.getItem("token");
                       >
                         <div className="hidden lg:flex">
                             {isInplay ? (
-                              <div className="bg-[--primary] text-[9px] ms-4 text-[--secondary] !w-[60px] flex items-center justify-center h-[22px] rounded-[3px] font-semibold">Inplay</div>
+                              <div className="bg-[--primary] text-[9px] ms-4 text-white !w-[60px] flex items-center justify-center h-[22px] rounded-[3px] font-semibold">Inplay</div>
                             ) :
                             (
-                              <div className="bg-[--secondary] text-[9px] ms-4 text-[--primary] !w-[60px] flex items-center justify-center h-[22px] rounded-[3px] font-semibold">{moment(element.matchDate, "DD-MM-YYYY HH:mm:ss A").format("HH:mm")}</div>
+                              <div className="border-[--primary] border-2 text-[9px] ms-4 text-[--primary] !w-[60px] flex items-center justify-center h-[22px] rounded-[3px] font-semibold">{moment(element.matchDate, "DD-MM-YYYY HH:mm:ss A").format("HH:mm")}</div>
                             )
                           }
                         </div>
                         <div className="flex flex-col uppercase w-full px-2">
-                          {element?.seriesName && <span className="text-[7px] text-[--primary] capitalize font-bold lg:bg-[--secondary] w-fit px-1 rounded-[5px]">
+                          {element?.seriesName && <span className="text-[10px] text-[--white] capitalize font-bold lg:bg-[--primary] w-fit px-1 rounded-[5px]">
                             ({element?.seriesName ? element?.seriesName : "No Series"})
                           </span>}
                           <span className="text-[11px] font-bold capitalize text-gray-900 hover:underline">
@@ -278,10 +278,10 @@ const token = localStorage.getItem("token");
                       <div className="
                       ">
                         {isInplay ? (
-                            <div className="bg-[--primary] flex lg:hidden text-[9px] ms-4 text-[--secondary] !w-[60px] items-center justify-center h-[22px] rounded-[3px] font-semibold">Inplay</div>
+                            <div className="bg-[--primary] flex lg:hidden text-[9px] ms-4 text-white !w-[60px] items-center justify-center h-[22px] rounded-[3px] font-semibold">Inplay</div>
                           ) :
                           (
-                            <div className="bg-[--secondary] text-[9px] flex lg:hidden ms-4 text-[--primary] !w-[60px] items-center justify-center h-[22px] rounded-[3px] font-semibold">{moment(element.matchDate, "DD-MM-YYYY HH:mm:ss A").format("HH:mm")}</div>
+                            <div className="border-2 border-[--primary] text-[9px] flex lg:hidden ms-4 text-[--primary] !w-[60px] items-center justify-center h-[22px] rounded-[3px] font-semibold">{moment(element.matchDate, "DD-MM-YYYY HH:mm:ss A").format("HH:mm")}</div>
                           )
                         }
                       </div>

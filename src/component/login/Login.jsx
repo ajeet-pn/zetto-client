@@ -341,26 +341,24 @@ function Login({ setIsLoginOpen, onClose }) {
                 disabled={!(username && password) || loadingLogin}
                 className={`h-[50px] rounded-[3px] text-[16px] transition-all duration-200 flex justify-center items-center ${
                   username && password
-                    ? "bg-[#03b37f] text-white"
-                    : "text-[#c2c7c3] border-[#c2c7c3] bg-[#0e684e] cursor-not-allowed"
+                    ? "bg-[#a41a1aff] text-white"
+                    : "text-[#c2c7c3] border-[#c2c7c3] bg-[--primary] cursor-not-allowed"
                 }`}
               >
                 {loadingLogin ? <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" /> : "LOGIN"}
               </button>
-
-              {/* OR separator */}
               <div className="flex items-center">
                 <hr className="flex-grow border-t border-[#767f99]" />
                 <span className="text-[#767f99] text-[12px] mx-2">or</span>
                 <hr className="flex-grow border-t border-[#767f99]" />
               </div>
 
-              {/* REQUEST DEMO */}
+            
               <button
                 type="button"
                 onClick={handleDemoClick}
                 disabled={loadingDemo}
-                className="h-[50px] rounded-[3px] text-[16px] transition-all duration-200 bg-[#03b37f] text-white flex justify-center items-center"
+                className="h-[50px] rounded-[3px] text-[16px] transition-all duration-200 bg-[#a41a1aff] text-white flex justify-center items-center"
               >
                 {loadingDemo ? <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" /> : "Request a Demo"}
               </button>

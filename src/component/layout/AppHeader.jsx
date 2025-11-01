@@ -387,13 +387,13 @@ const AppHeader = ({ setSidebarOpen }) => {
                     <div
                       onClick={() => { setSingupModalOpen(true);
                       }}
-                      className="bg-[var(--secondary)] cursor-pointer hover:bg-[var(--secondary)] text-[var(--black)] bg-theme2  hover:opacity-[0.7] transition text-black !rounded-[3px] flex justify-center items-center !text-[10px] font-bold !px-[22px] h-[25px]">
+                      className="bg-white cursor-pointer hover:bg-[var(--primary)] text-[var(--black)] hover:text-[var(--white)] bg-theme2 border !border-white !rounded-[3px]  hover:opacity-[0.7] transition text-black !rounded-[3px] flex justify-center items-center !text-[10px] font-bold !px-[22px] h-[25px]">
                       SIGN UP
                     </div>
                     
                     <div onClick={() => { setLoginModalOpen(true);
                       }}
-                      className="hover:bg-[var(--secondary)] text-[var(--white)] text-xs uppercase py-1 cursor-pointer text-white hover:!text-black hover:!bg-white font-bold border !border-white !rounded-[3px] !text-[10px] !px-[25px] h-[25px] !bg-transparent">
+                      className="hover:bg-[var(--primary)]  text-xs uppercase py-1 cursor-pointer text-black hover:!text-white bg-white font-bold border !border-white !rounded-[3px] !text-[10px] !px-[25px] h-[25px] ">
                       Login
                     </div>
                   </div>
