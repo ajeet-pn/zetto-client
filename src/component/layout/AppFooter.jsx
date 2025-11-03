@@ -183,7 +183,7 @@ const navigate = useNavigate();
             }
             <li 
             // onClick={() => handleClick("/")} 
-            className=" mx-auto absolute z-50 bottom-[10px] left-1/2 -translate-x-1/2">
+            className=" mx-auto absolute z-50 bg-white rounded-full bottom-[10px] left-1/2 -translate-x-1/2">
               <Link to='/' className="">
                 {/* <i className="fa fa-home" aria-hidden="true"></i> */}
                 <img className="!w-[60px] !h-[60px]" src="/images/zetto/home_icon.png" alt="" />
