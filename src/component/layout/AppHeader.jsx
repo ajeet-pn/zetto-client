@@ -12,7 +12,7 @@ import { Link, useNavigate } from "react-router-dom";
 import LiveMatches from "../dashboard/LiveMatches";
 import Login from "../login/Login";
 import { domainName } from "../../config/Auth";
-import { getClientExposure, getUserBalance } from "../../redux/reducers/user_reducer";
+import { getClientExposure, getDomainSettingData, getUserBalance } from "../../redux/reducers/user_reducer";
 import { IoMdArrowDropdown } from "react-icons/io";
 import Signup from "../../pages/signup/Signup";
 
@@ -136,9 +136,28 @@ const AppHeader = ({ setSidebarOpen }) => {
     document.body.classList.remove("!overflow-hidden")
   }
 
+  const fetchDomainSetting = () => {
+        let domainSetting = {
+          domainUrl: window.location.origin,
+        };
+    
+        dispatch(getDomainSettingData(domainSetting)).then((res) => {
+          if (!res?.error) {
+            const domainData = res?.payload?.data;
+            localStorage.setItem(
+              "clientdomainSetting",
+              JSON.stringify(domainData)
+            );
+          }
+        });
+      };
+    
+
 
   useEffect(() => {
   if (singupModalOpen || loginModalOpen) {
+    fetchDomainSetting()
+
     // Disable scroll
     document.body.style.overflow = "hidden";
   } else {

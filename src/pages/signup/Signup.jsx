@@ -33,7 +33,7 @@ function SignUp({ isSignUpOpen, onClose }) {
   });
 
   const domainSetting = JSON.parse(localStorage.getItem("clientdomainSetting"));
-  const isOtpEnabled = domainSetting?.isSignUpOtp === true;
+  const isOtpEnabled = domainSetting?.isSignUpOtp == true;
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
