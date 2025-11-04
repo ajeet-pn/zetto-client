@@ -195,7 +195,7 @@ function Deposit() {
         { imgs: "/deposit/bank2.png", title: "bank", method: "bank" },
         { imgs: "/deposit/bhim.png", title: "bhimUpi", method: "upi" },
         { imgs: "/images/zetto/paytm-pay.png", title: "paytm", method: "upi" },
-        { imgs: "/images/zetto/gpay.png", title: "googlePay", method: "upi" },
+        { imgs: "/images/zetto/g-pay.png", title: "googlePay", method: "upi" },
         { imgs: "/images/zetto/phonepe-pay.png", title: "phonePay", method: "upi" },
     ];
 
@@ -511,6 +511,8 @@ function Deposit() {
                                     </div>
                                 )}
                             </div>
+                            {payAccountFiel?.img && <div><img src={payAccountFiel?.img} alt=""  height={100} width={100}/></div>}
+                           
                             <div>
                                 <label className="block text-sm font-medium mb-2">UTR Number</label>
                                 <input
