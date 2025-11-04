@@ -8,9 +8,7 @@ function Deposit() {
     const [showAccount, setShowAccount] = useState();
     const [error, setError] = useState({});
     const [fileName, setFileName] = useState("");
-
-    // Flow management
-    const [flowStep, setFlowStep] = useState(1); // 1: Amount, 2: Payment Method, 3: Confirmation
+    const [flowStep, setFlowStep] = useState(1);
     const [selectedMethod, setSelectedMethod] = useState(null);
     const [bankViewModal, setBankViewModal] = useState(false);
     const [upiViewModal, setUpiViewModal] = useState(false);
