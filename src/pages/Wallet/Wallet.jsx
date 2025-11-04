@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { apiCall } from "../../config/HTTP";
 import { Link } from "react-router-dom";
+import { message } from "antd";
 
 
 const Wallet = () => {
@@ -128,7 +129,7 @@ const Wallet = () => {
         "website/saveAccountDetails",
         formData
       );
-    //   toast.success("Account details added successfully!");
+      message.success("Account details added successfully!");
       setFormData({
         accountNumber: "",
         ifscCode: "",
@@ -138,7 +139,7 @@ const Wallet = () => {
       });
       getBankDetails();
     } catch (error) {
-    //   toast.error("Failed to add account details. Please try again.");
+      message.error("Failed to add account details. Please try again.");
     }
   };
 
@@ -170,7 +171,7 @@ const Wallet = () => {
       );
 
       if (response?.error === false) {
-        // toast.success(`${eWalletTab} transfer request submitted successfully!`);
+        message.success(`${eWalletTab} transfer request submitted successfully!`);
         setEWalletData({
           ...eWalletData,
           name: "",
@@ -180,10 +181,10 @@ const Wallet = () => {
         });
         setEWalletAmount("");
       } else {
-        // toast.error(response?.message || `Failed to submit ${eWalletTab} transfer`);
+        message.error(response?.message || `Failed to submit ${eWalletTab} transfer`);
       }
     } catch (error) {
-    //   toast.error(error?.data?.message || `Failed to submit ${eWalletTab} transfer. Please try again.`);
+      message.error(error?.data?.message || `Failed to submit ${eWalletTab} transfer. Please try again.`);
     } finally {
       setIsSubmitting(false);
     }
@@ -206,13 +207,13 @@ const Wallet = () => {
       );
 
       if (response?.error === false) {
-        // toast.success("Bank transfer request submitted successfully!");
+        message.success("Bank transfer request submitted successfully!");
         setBankAmount("");
       } else {
-        // toast.error(response?.message || "Failed to submit bank transfer");
+        message.error(response?.message || "Failed to submit bank transfer");
       }
     } catch (error) {
-    //   toast.error(error?.data?.message || "Failed to submit bank transfer. Please try again.");
+      message.error(error?.data?.message || "Failed to submit bank transfer. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -257,22 +258,22 @@ const Wallet = () => {
           <button
             onClick={() => handleTabChange("Add Account")}
             className={`px-4 sm:px-8 py-3 rounded-l-md ${activeTab === "Add Account"
-              ? "bg-blue-700 rounded-lg text-black"
+              ? "bg-[--primary] rounded-lg text-white"
               : "text-black"
               }`}
           >
             Account
           </button>
           
-          {/* <button
+          <button
             onClick={() => handleTabChange("E-Wallet Transfer")}
             className={`px-4 sm:px-8 py-3 rounded-r-md ${activeTab === "E-Wallet Transfer"
-              ? "bg-blue-700 rounded-lg text-black"
+              ? "bg-[--primary] rounded-lg text-white"
               : "text-black"
               }`}
           >
-            E-Wallet Transfer
-          </button> */}
+            Crypto
+          </button>
         </div>
       </div>
 
@@ -548,7 +549,7 @@ const Wallet = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="bg-white border-b py-2 text-start text-lg font-bold">
+                  <tr className="bg-white border-b py-2 text-start text-[--primary] text-lg font-bold">
                     <td className="px-6">{accountDetails?.accountNumber || '-'}</td>
                     <td className="px-6">{accountDetails?.accountHolder || '-'}</td>
                     <td className="px-6">{accountDetails?.bankName || '-'}</td>
@@ -566,7 +567,7 @@ const Wallet = () => {
             <div className="md:hidden block text-gray-100 uppercase bg-gray-50 py-2">
               <div className="flex items-center px-2 bg-secondary border-b  py-2  text-center text-sm font-bold">
                 <span className="flex-1 text-start border-r text-black">Account Number</span>
-                <span className="flex-1 text-left pl-4">
+                <span className="flex-1 text-left pl-4 text-[--primary]">
                   {accountDetails?.accountNumber || '-'}
                 </span>
               </div>
@@ -580,14 +581,14 @@ const Wallet = () => {
 
               <div className="flex items-center px-2 bg-secondary border-b py-2 text-center text-sm font-bold">
                 <span className="flex-1 text-start border-r text-black">Name</span>
-                <span className="flex-1 text-left pl-4">
+                <span className="flex-1 text-left pl-4 text-[--primary]">
                   {accountDetails?.accountHolder || '-'}
                 </span>
               </div>
 
               <div className="flex items-center px-2 bg-secondary border-b py-2 text-center text-sm font-bold">
                 <span className="flex-1 text-start border-r text-black">Bank Name</span>
-                <span className="flex-1 text-left pl-4">
+                <span className="flex-1 text-left pl-4 text-[--primary]">
                   {accountDetails?.bankName || '-'}
                 </span>
               </div>
@@ -632,7 +633,7 @@ const Wallet = () => {
                 <button
                   key={presetAmount}
                   type="button"
-                  className={`px-4 py-1 text-sm font-bold border border-gray-300 rounded-lg 
+                  className={`px-4 py-2 text-sm font-bold border border-gray-300 rounded-lg 
                   ${
                     activeAmount === presetAmount
                       ? "bg-[--primary] text-[--secondary]"
@@ -670,7 +671,7 @@ const Wallet = () => {
 
             <button
               type="submit"
-              className="mx-0  bg-[--primary] md:bg-[white] text-[--secondary] md:text-gray-400 w-full font-semibold py-3 mt-6 text-sm rounded-md block md:border mb-5 md:border-gray-200"
+              className="mx-0  bg-[--primary]  text-[--secondary] md:text-gray-400 w-full font-semibold py-3 mt-6 text-sm rounded-md block md:border mb-5 md:border-gray-200"
               disabled={isSubmitting}
             >
               {isSubmitting ? "Submitting..." : "Submit"}
@@ -682,68 +683,26 @@ const Wallet = () => {
 
       {activeTab === "E-Wallet Transfer" && (
         <div className="p-4">
-          <div className="flex justify-center mb-6">
-            <div className="bg-white rounded-lg flex">
-              <button
-                onClick={() => handleEWalletTabChange("Easypaisa")}
-                className={`px-6 py-2 rounded-l-md ${eWalletTab === "Easypaisa"
-                  ? "bg-blue-500 text-white"
-                  : "bg-gray-200 text-black"
-                  }`}
-              >
-                Easypaisa
-              </button>
-              <button
-                onClick={() => handleEWalletTabChange("JazzCash")}
-                className={`px-6 py-2 rounded-r-md ${eWalletTab === "JazzCash"
-                  ? "bg-blue-500 text-white"
-                  : "bg-gray-200 text-black"
-                  }`}
-              >
-                JazzCash
-              </button>
-            </div>
-          </div>
 
           <div className="rounded-lg max-w-6xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm mb-1">Name *</label>
-                <input
-                  type="text"
-                  name="name"
-                  value={eWalletData.name}
-                  onChange={handleEWalletInputChange}
-                  className={`w-full p-1.5 bg-white border-2 border-secondary rounded-md text-black ${eWalletErrors.name ? "border-red-500 border" : ""
-                    }`}
-                  placeholder="Full Name"
-                />
-                {eWalletErrors.name && (
-                  <p className="text-red-500 text-xs mt-1">
-                    {eWalletErrors.name}
-                  </p>
-                )}
-              </div>
+              
+              <div className="flex flex-wrap justify-center w-full gap-1 mt-10">
+                 {[300, 1000, 2000, 5000, 10000, 25000].map((value) => (
+                            <button
+                                key={value}
+                                onClick={() => handleQuickAmountSelect(value, true)}
+                                className={`py-3 px-3 rounded-lg border-2 font-bold text-sm ${eWalletAmount == value
+                                    ? 'bg-[--primary] text-[--white]'
+                                    : 'bg-white text-[--primary] border-2 border-[--primary]'
+                                    }`}
+                            >
+                                ₹{value}
+                            </button>
+                        ))}
+              
+            </div>
 
-              <div className="">
-                <label className="block text-sm mb-1">
-                  {eWalletTab === "Easypaisa" ? "Easypaisa Number *" : "JazzCash Number *"}
-                </label>
-                <input
-                  type="text"
-                  name={eWalletTab === "Easypaisa" ? "easypaisaUpiId" : "jazzcashUpiId"}
-                  value={eWalletTab === "Easypaisa" ? eWalletData.easypaisaUpiId : eWalletData.jazzcashUpiId}
-                  onChange={handleEWalletInputChange}
-                  className={`w-full  p-1.5 bg-white border-2 border-secondary rounded-md text-black ${eWalletErrors.upiId ? "border-red-500 border" : ""
-                    }`}
-                  placeholder={eWalletTab === "Easypaisa" ? "Easypaisa Number" : "JazzCash Number"}
-                />
-                {eWalletErrors.upiId && (
-                  <p className="text-red-500 text-xs mt-1">
-                    {eWalletErrors.upiId}
-                  </p>
-                )}
-              </div>
 
               <div className="md:col-span-2">
                 <label className="block text-sm mb-1">Amount *</label>
@@ -759,26 +718,52 @@ const Wallet = () => {
                   <span className="text-red-500 text-xs">{eWalletErrors.amount}</span>
                 )}
               </div>
+              {/* <div>
+                <label className="block text-sm mb-1">Name *</label>
+                <input
+                  type="text"
+                  name="name"
+                  value={eWalletData.name}
+                  onChange={handleEWalletInputChange}
+                  className={`w-full p-1.5 bg-white border-2 border-secondary rounded-md text-black ${eWalletErrors.name ? "border-red-500 border" : ""
+                    }`}
+                  placeholder="Full Name"
+                />
+                {eWalletErrors.name && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {eWalletErrors.name}
+                  </p>
+                )}
+              </div> */}
+
+              <div className="col-span-2">
+                <label className="block text-sm mb-1">
+                  Wallet Address
+                </label>
+                <input
+                  type="text"
+                  name={eWalletTab === "Easypaisa" ? "easypaisaUpiId" : "jazzcashUpiId"}
+                  value={eWalletTab === "Easypaisa" ? eWalletData.easypaisaUpiId : eWalletData.jazzcashUpiId}
+                  onChange={handleEWalletInputChange}
+                  className={`w-full  p-1.5 bg-white border-2 border-secondary rounded-md text-black ${eWalletErrors.upiId ? "border-red-500 border" : ""
+                    }`}
+                  placeholder="Enter The Wallet Address"
+                />
+                {eWalletErrors.upiId && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {eWalletErrors.upiId}
+                  </p>
+                )}
+              </div>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-1 mt-10">
-              {[300, 1000, 2000, 5000, 10000, 25000].map((presetAmount) => (
-                <button
-                  key={presetAmount}
-                  type="button"
-                  className="bg-black px-4 py-1 text-sm font-bold rounded-full text-white"
-                  onClick={() => handleQuickAmountSelect(presetAmount, true)}
-                >
-                  {presetAmount}
-                </button>
-              ))}
-            </div>
-
+            
             <button
               type="submit"
-              className="bg-button px-10 py-2 mt-6 text-sm rounded-md block mx-auto"
-              onClick={handleEWalletSubmit}
-              disabled={isSubmitting}
+              className="bg-[--primary] px-10 py-2 mt-6 text-sm text-white rounded-md block mx-auto"
+              onClick={()=> alert("Crypto Withdraw Comming Soon")}
+              // onClick={handleEWalletSubmit}
+              // disabled={isSubmitting}
             >
               {isSubmitting ? "Submitting..." : "Submit"}
             </button>

@@ -215,9 +215,9 @@ const getSportName = (sportId) => {
           <Banner/>
         </div>
         <GameSlider/>
-        <div className='block md:hidden mt-2' >
+        {/* <div className='block md:hidden mt-2' >
           <GameSlider className='mt-2'/>
-        </div>
+        </div> */}
           <div className="flex flex-nowrap overflow-x-auto items-center gap-1 md:px-2 py-2">
         {tabList.map((tab) => (
           <div

@@ -56,7 +56,7 @@ const Profile = () => {
     </div>
 
     {/* CTA Button */}
-    <button className="bg-[#001c38] text-[#00FFFF] font-semibold py-2 px-4 rounded w-full hover:opacity-90 transition">
+    <button className="bg-[--primary] text-[--white] font-semibold py-2 px-4 rounded w-full hover:opacity-90 transition">
         COMPLETE YOUR PROFILE
     </button>
 </div>

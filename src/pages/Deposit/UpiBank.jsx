@@ -36,6 +36,8 @@ function Deposit() {
                 "website/getBankDetailsByUserId"
             );
             if (bankDetailsUserData?.data) {
+            
+                
                 setBankAcountData(bankDetailsUserData?.data?.account);
                 setBankAcountUpi(bankDetailsUserData?.data?.upi);
             }
@@ -213,8 +215,8 @@ function Deposit() {
                                 key={value}
                                 onClick={() => updateStackOnclic(value)}
                                 className={`py-3 px-2 rounded-lg border-2 font-bold text-sm ${payAccountFiel.amount === value
-                                    ? 'bg-[#001F3F] text-[#00FFE6]'
-                                    : 'border-gray-300 bg-white text-gray-700'
+                                    ? 'bg-[--primary] text-[--white]'
+                                    : 'bg-white text-[--primary] border-2 border-[--primary]'
                                     }`}
                             >
                                 ₹{value}
@@ -273,7 +275,7 @@ function Deposit() {
                             }
                             className={`rounded-lg w-full text-sm font-bold uppercase py-3 px-8 transition-all ${!payAccountFiel.amount || payAccountFiel.amount < 500 || payAccountFiel.amount > 500000
                                     ? "bg-transparent text-gray-500 cursor-not-allowed border border-gray-300"
-                                    : "bg-[#001F3F] hover:bg-[#00FFE6] hover:text-black text-white"
+                                    : "bg-[--primary] hover:bg-[--white] hover:text-[--primary] text-white hover:border-2 hover:border-[--primary]"
                                 }`}
                             onClick={payment}
                         >
@@ -381,9 +383,9 @@ function Deposit() {
                             </>
                         )}
 
-                        {selectedMethod === "upi" && (
+                        {selectedMethod == "upi" && (
                             <div>
-                                <span className="text-sm font-semibold mt-4">Method 1</span>
+                                <span className="text-sm font-semibold mt-4">Method 2</span>
                                 <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
                                     {bankAcountUpi && Object.keys(bankAcountUpi).map((method) => (
                                         <div
@@ -412,16 +414,13 @@ function Deposit() {
                                     <>
                                         <div className="grid md:grid-cols-2 grid-cols-1">
                                             <div className="max-w-[350px] mt-2">
-                                                <div className="flex items-center justify-between mb-3">
-                                                    <span className="text-sm font-semibold text-gray-800">Method 2 (Copy payment details)</span>
-                                                </div>
                                                 <div
                                                     style={{ backgroundImage: 'url("/manual-pg.png")' }}
                                                     className="flex items-center justify-between p-2 rounded-lg border border-blue-200"
                                                 >
                                                     <div className="font-semibold text-gray-800">
                                                         <span className="text-sm text-gray-800 break-all">
-                                                            {showAccount?.filteredData?.upiId}
+                                                            {showAccount?.filteredData[0]?.upiId}
                                                         </span>
                                                     </div>
                                                     <button
@@ -436,16 +435,16 @@ function Deposit() {
                                                 </div>
                                             </div>
                                             <div className="max-w-[350px] mt-2">
-                                                <div className="flex items-center justify-between mb-3">
+                                                {/* <div className="flex items-center justify-between mb-3">
                                                     <span className="text-sm font-semibold text-gray-800">Method 3 (Copy payment details)</span>
-                                                </div>
+                                                </div> */}
                                                 <div
                                                     style={{ backgroundImage: 'url("/manual-pg.png")' }}
                                                     className="flex items-center justify-between p-2 rounded-lg border border-blue-200"
                                                 >
                                                     <div className="font-semibold text-gray-800">
                                                         <span className="text-sm text-gray-800 break-all">
-                                                            {showAccount?.filteredData?.mobNo}
+                                                            {showAccount?.filteredData[0]?.mobNo}
                                                         </span>
                                                     </div>
                                                     <button
@@ -464,7 +463,7 @@ function Deposit() {
                                         <div className="w-full flex py-4 px-4 gap-2 flex-col justify-center items-center">
                                             <span className="text-[12px] font-semibold capitalize">{selectedMethod} QR Code</span>
                                             <img
-                                                src={showAccount?.filteredData?.image}
+                                                src={showAccount?.filteredData[0]?.image}
                                                 alt="QR Code"
                                                 title="QR Code"
                                                 className="md:h-60 h-52 md:w-[250px] w-60"
@@ -533,7 +532,7 @@ function Deposit() {
                             </div>
                             <div className="flex justify-end">
                                 <button
-                                    className="rounded-lg w-full text-sm font-bold uppercase bg-[#001F3F] hover:bg-[#00FFE6] hover:text-black text-white py-3 px-8"
+                                    className="rounded-lg w-full text-sm font-bold uppercase bg-[--primary] hover:bg-[--white] hover:text-black hover:border-2 hover:border-[--primary] text-white py-3 px-8"
                                     onClick={payment}
                                 >
                                     Submit
@@ -544,7 +543,7 @@ function Deposit() {
                 )}
 
                 {/* Notes Section */}
-                <div className="flex flex-col w-full md:px-10 px-4 m-auto md:w-[700px] mb-[100px] md:mb-0">
+                {selectedMethod && <div className="flex flex-col w-full md:px-10 px-4 m-auto md:w-[700px] mb-[100px] md:mb-10">
                     <div className="font-semibold text-[12px] text-club4-second-text2 mb-2">
                         Note:
                     </div>
@@ -566,7 +565,7 @@ function Deposit() {
                             </div>
                         ))}
                     </div>
-                </div>
+                </div>}
             </div>
         </>
     );
