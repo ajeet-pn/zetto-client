@@ -3,6 +3,7 @@ import axios from "axios";
 import { domainName } from "./Auth";
 import settings from "../domainConfig";
 import CryptoJS from "crypto-js";
+import { message } from "antd";
 
 
 
@@ -112,10 +113,13 @@ export const httpPost = async (url, params, isNotify) => {
       }
       return result.data;
     } else {
+      
       return false;
     }
   } catch (err) {
     // message.error(err?.response?.data?.message)
+    
+    
     message.error(err?.response?.data?.message);
     // setTimeout(() => message.dismiss(toastId), 1000);
     if (err?.request?.status) {

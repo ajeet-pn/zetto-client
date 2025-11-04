@@ -127,7 +127,8 @@ if (user.password !== user.confirmPassword) {
       }
 
       const response = await httpPost("website/registerClient", loginDetails);
-
+      console.log(response, "gggggggggggggg");
+      
       if (response) {
         setUser({
           name: "",
