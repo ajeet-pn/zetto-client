@@ -31,7 +31,7 @@ const Deposit = () => {
               : "text-gray-400"
           }`}
         >
-          Crypto
+          USDT
         
         </button>
       </div>

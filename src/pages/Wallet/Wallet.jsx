@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { apiCall } from "../../config/HTTP";
 import { Link } from "react-router-dom";
 import { message } from "antd";
+import UsdtWallet from "./UsdtWallet";
 
 
 const Wallet = () => {
@@ -272,7 +273,7 @@ const Wallet = () => {
               : "text-black"
               }`}
           >
-            Crypto
+            USDT
           </button>
         </div>
       </div>
@@ -423,13 +424,13 @@ const Wallet = () => {
         <>
           <form onSubmit={handleSubmit} className="px-3 rounded-lg max-w-6xl mx-auto">
             <div className="grid grid-cols-4 gap-4">
-              <div className="col-span-2">
+              {/* <div className="col-span-2">
                 <label className="block text-sm mb-1">Payment Option *</label>
                 <select className="w-full p-1.5 border-secondary border-2 bg-white rounded-md text-black">
                   <option value={''}>Normal</option>
                   <option value={'bank'}>Normal</option>
                 </select>
-              </div>
+              </div> */}
               <div className="col-span-2">
                 <label className="block text-sm mb-1">Name *</label>
                 <input
@@ -683,91 +684,7 @@ const Wallet = () => {
 
       {activeTab === "E-Wallet Transfer" && (
         <div className="p-4">
-
-          <div className="rounded-lg max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              
-              <div className="flex flex-wrap justify-center w-full gap-1 mt-10">
-                 {[300, 1000, 2000, 5000, 10000, 25000].map((value) => (
-                            <button
-                                key={value}
-                                onClick={() => handleQuickAmountSelect(value, true)}
-                                className={`py-3 px-3 rounded-lg border-2 font-bold text-sm ${eWalletAmount == value
-                                    ? 'bg-[--primary] text-[--white]'
-                                    : 'bg-white text-[--primary] border-2 border-[--primary]'
-                                    }`}
-                            >
-                                ₹{value}
-                            </button>
-                        ))}
-              
-            </div>
-
-
-              <div className="md:col-span-2">
-                <label className="block text-sm mb-1">Amount *</label>
-                <input
-                  type="number"
-                  className={`w-full p-1.5 bg-white border-2 border-secondary rounded-md text-black ${eWalletErrors.amount ? "border-red-500" : ""
-                    }`}
-                  placeholder="Amount"
-                  value={eWalletAmount}
-                  onChange={(e) => handleAmountChange(e, true)}
-                />
-                {eWalletErrors.amount && (
-                  <span className="text-red-500 text-xs">{eWalletErrors.amount}</span>
-                )}
-              </div>
-              {/* <div>
-                <label className="block text-sm mb-1">Name *</label>
-                <input
-                  type="text"
-                  name="name"
-                  value={eWalletData.name}
-                  onChange={handleEWalletInputChange}
-                  className={`w-full p-1.5 bg-white border-2 border-secondary rounded-md text-black ${eWalletErrors.name ? "border-red-500 border" : ""
-                    }`}
-                  placeholder="Full Name"
-                />
-                {eWalletErrors.name && (
-                  <p className="text-red-500 text-xs mt-1">
-                    {eWalletErrors.name}
-                  </p>
-                )}
-              </div> */}
-
-              <div className="col-span-2">
-                <label className="block text-sm mb-1">
-                  Wallet Address
-                </label>
-                <input
-                  type="text"
-                  name={eWalletTab === "Easypaisa" ? "easypaisaUpiId" : "jazzcashUpiId"}
-                  value={eWalletTab === "Easypaisa" ? eWalletData.easypaisaUpiId : eWalletData.jazzcashUpiId}
-                  onChange={handleEWalletInputChange}
-                  className={`w-full  p-1.5 bg-white border-2 border-secondary rounded-md text-black ${eWalletErrors.upiId ? "border-red-500 border" : ""
-                    }`}
-                  placeholder="Enter The Wallet Address"
-                />
-                {eWalletErrors.upiId && (
-                  <p className="text-red-500 text-xs mt-1">
-                    {eWalletErrors.upiId}
-                  </p>
-                )}
-              </div>
-            </div>
-
-            
-            <button
-              type="submit"
-              className="bg-[--primary] px-10 py-2 mt-6 text-sm text-white rounded-md block mx-auto"
-              onClick={()=> alert("Crypto Withdraw Comming Soon")}
-              // onClick={handleEWalletSubmit}
-              // disabled={isSubmitting}
-            >
-              {isSubmitting ? "Submitting..." : "Submit"}
-            </button>
-          </div>
+<UsdtWallet />
         </div>
       )}
     </div>

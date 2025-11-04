@@ -53,51 +53,89 @@
 
 
 
+import React, { useEffect, useState } from "react";
+import Login from "../login/Login";
 
 const GameSlider = () => {
-    const imagesMethod = [{
-      image: "https://trovetown.in/assets/images/provider_images/wingogames-730-280.gif",
+  const [loginModal, setLoginModal] = useState(false);
+  const token = localStorage.getItem("token");
+
+  const imagesMethod = [
+    {
+      image: "/images/zetto/wingogames-730-280.gif",
       orderBy: 4,
       name: "color-pridaction",
-      gameId: "600096"
+      gameId: "600096",
     },
     {
-      image: "https://trovetown.in/assets/images/provider_images/fungames-730_280.gif",
+      image: "/images/zetto/fungames-730_280.gif",
       orderBy: 3,
       name: "fun-games",
-      gameId: "151084"
+      gameId: "151084",
     },
     {
-      image: "https://trovetown.in/assets/images/provider_images/aviator-730-280.gif",
+      image: "/images/zetto/aviator-730-280.gif",
       orderBy: 2,
       name: "Aviator",
-      gameId: "860001"
+      gameId: "860001",
     },
     {
-      image: "https://trovetown.in/assets/images/provider_images/evoplay-730-280.gif",
+      image: "/images/zetto/evoplay-730-280.gif",
       orderBy: 1,
       name: "mines",
-      gameId: "151075"
-    }
+      gameId: "151075",
+    },
   ];
+
+  const handleImageClick = (gameId) => {
+    if (token) {
+      // Agar token hai to redirect kare
+      window.location.href = `/iframe-casino/${gameId}`;
+    } else {
+      // Agar token nahi hai to login modal dikhaye
+      setLoginModal(true);
+    }
+  };
+
+    useEffect(() => {
+    if (loginModal) {
+      document.body.style.overflow = "hidden";
+    } else {
+      // Re-enable scroll
+      document.body.style.overflow = "";
+    }
+  
+    // Cleanup when component unmounts
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [loginModal]);
+
   return (
     <div className="w-full overflow-hidden relative md:py-2 md:grid-cols-4 grid grid-cols-2 gap-1">
+      {loginModal && (
+        <div
+          className="fixed inset-0 bg-black/50 flex items-center justify-center z-[99]"
+        >
+          <Login onClose={() => setLoginModal(false)} />
+        </div>
+      )}
+
       {imagesMethod.map((img, index) => (
-           <div
-             key={index}
-             className="flex-shrink-0  mx-1 rounded-[8px] overflow-hidden"
-           >
-             <img
-             onClick={() => window.location.href = `/iframe-casino/${img?.gameId}`}
-               src={img?.image}
-               alt={`slide-${index}`}
-               className="w-full h-[60px] object-cover rounded-[8px]"
-             />
-           </div>
-         ))}
+        <div
+          key={index}
+          className="flex-shrink-0 mx-1 rounded-[8px] overflow-hidden"
+        >
+          <img
+            onClick={() => handleImageClick(img?.gameId)}
+            src={img?.image}
+            alt={`slide-${index}`}
+            className="w-full h-[60px] object-cover rounded-[8px] cursor-pointer"
+          />
+        </div>
+      ))}
     </div>
+  );
+};
 
-  )
-}
-
-export default GameSlider
+export default GameSlider;
