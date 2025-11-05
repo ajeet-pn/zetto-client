@@ -268,7 +268,7 @@ function Login({ setIsLoginOpen, onClose }) {
                 <input
                   type="text"
                   placeholder="Username"
-                  className="h-[43px] w-full border border-[#c0ccda] placeholder:text-[#9da3bd] placeholder:text-[16px] text-white px-2"
+                  className="h-[43px] w-full bg-[#353434] border border-[#c0ccda] placeholder:text-[#9da3bd] placeholder:text-[16px] text-white px-2"
                   name="username"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
@@ -285,7 +285,7 @@ function Login({ setIsLoginOpen, onClose }) {
                 <input
                   placeholder="Password"
                   type={showPassword ? "text" : "password"}
-                  className="py-2 w-full border border-[#c0ccda] text-white placeholder:text-[#9da3bd] placeholder:text-[16px] px-2"
+                  className="py-2 w-full border bg-[#353434] border-[#c0ccda] text-white placeholder:text-[#9da3bd] placeholder:text-[16px] px-2"
                   name="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}

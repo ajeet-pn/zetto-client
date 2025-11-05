@@ -324,10 +324,29 @@ if (user.password !== user.confirmPassword) {
           <div className="bg-[#353434] mx-6 text-sm py-1">
             <div className="text-white text-center">Register as New User</div>
             <div className="text-white text-center">Get your instent ID From Whatsapp</div>
-            <div className="flex items-center uperrcase px-1">
+              {domainSetting?.whatsappNumber ? (
+    <a
+      passHref={true}
+      href={`https://wa.me/${domainSetting?.whatsappNumber}`}
+      title="Whatsapp"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+<div className="flex items-center uperrcase px-1">
               <div className="p-3 bg-green-600"><FaWhatsapp /></div>
               <div className="bg-green-600 h-6 flex-1 uppercase text-center font-bold">Click Here</div>
             </div>
+    </a>
+  ) : (
+<div className="flex items-center uperrcase px-1">
+              <div className="p-3 bg-green-600"><FaWhatsapp /></div>
+              <div className="bg-green-600 h-6 flex-1 uppercase text-center font-bold">Click Here</div>
+            </div>
+  )}
+            {/* <div className="flex items-center uperrcase px-1">
+              <div className="p-3 bg-green-600"><FaWhatsapp /></div>
+              <div className="bg-green-600 h-6 flex-1 uppercase text-center font-bold">Click Here</div>
+            </div> */}
           </div>
           <div className="flex items-center">
                 <hr className="flex-grow border-t-2 border-[#767f99]" />
@@ -364,7 +383,7 @@ if (user.password !== user.confirmPassword) {
           <div className="relative flex items-center">
             
             <div className="relative w-[80px] px-1 text-white text-sm">
-              <div className="text-[12px] font-semibold !text-white ">
+              <div className="text-[12px] font-semibold  text-nowrap !text-white ">
                 Mobile No.
                 </div>
               
