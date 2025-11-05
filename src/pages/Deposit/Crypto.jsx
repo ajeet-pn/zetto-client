@@ -90,6 +90,7 @@ function Crypto() {
                 screenShotImg: payAccountFiel.img,
                 amount: payAccountFiel.amount,
                 utrNo: payAccountFiel.utrNo,
+                accountMethod: "crypto",
             };
 
             try {
@@ -110,6 +111,8 @@ function Crypto() {
                       message.success(elementPositionDataResponse?.message)
                           setSelectedMethod(null);
                           setUpiViewModal(false);
+                          
+                          
                     }
                     
                     setFlowStep(2);
@@ -300,7 +303,7 @@ function Crypto() {
                             }
                             className={`rounded-lg w-full text-sm font-bold uppercase py-3 px-8 transition-all ${!payAccountFiel.amount || payAccountFiel.amount < 500 || payAccountFiel.amount > 500000
                                     ? "bg-transparent text-gray-500 cursor-not-allowed border border-gray-300"
-                                    : "bg-[--primary] hover:bg-[--white] hover:text-[--primary] text-white hover:border-2 hover:border-[--primary]"
+                                    : "bg-green-800 hover:bg-[--white] hover:text-[--black] text-white hover:border-2 hover:border-green-800"
                                 }`}
                             onClick={paymentUsdt}
                         >
@@ -313,7 +316,13 @@ function Crypto() {
                 {/* Step 2: Payment Method Selection */}
                 {(flowStep === 2 || flowStep === 3) && (
                     <div className="p-4">
-                      <div className="w-full flex py-4 px-4 gap-2 flex-col justify-center items-center">
+                      
+                            <div>
+                                
+
+                                {upiViewModal && (
+                                    <>
+                                    <div className="w-full flex py-4 px-4 gap-2 flex-col justify-center items-center">
                                             <span className="text-[12px] font-semibold capitalize">USDT QR Code</span>
                                             <img
                                                 src={"/images/zetto/USDT.jpeg"}
@@ -322,11 +331,6 @@ function Crypto() {
                                                 className="md:h-60 h-52 md:w-[250px] w-60"
                                             />
                                         </div>
-                            <div>
-                                
-
-                                {upiViewModal && (
-                                    <>
                                         <div className="flex justify-center">
                                             <div className=" mt-2">
                                                 <div
@@ -412,7 +416,7 @@ function Crypto() {
                             </div>
                             <div className="flex justify-end">
                                 <button
-                                    className="rounded-lg w-full text-sm font-bold uppercase bg-[--primary] hover:bg-[--white] hover:text-black hover:border-2 hover:border-[--primary] text-white py-3 px-8"
+                                    className="rounded-lg w-full text-sm font-bold uppercase bg-green-800 hover:bg-[--white] hover:text-black hover:border-2 hover:border-green-800 text-white py-3 px-8"
                                     onClick={payment}
                                 >
                                     Submit

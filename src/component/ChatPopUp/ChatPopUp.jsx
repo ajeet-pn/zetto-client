@@ -21,7 +21,7 @@ export default function ChatPopUp() {
                 isOpen ? "translate-y-0 opacity-100" : "translate-y-[110%] opacity-0"
                 }`}
             >
-                <div className="bg-[#20e2ec] text-white h-[120px] flex gap-8 items-center px-4 py-3 rounded-t-xl">
+                <div className="bg-[--primary] text-white h-[120px] flex gap-8 items-center px-4 py-3 rounded-t-xl">
                     <div>
                         {/* <img className="!w-[50px] !h-[50px] rounded-full" src="/images/zetto/chatlogo.png" alt="" srcset="" /> */}
                     </div>
@@ -73,7 +73,7 @@ export default function ChatPopUp() {
                 isOpen ? 
                 <button
                     onClick={() => setIsOpen(false)}
-                    className="text-white hover:rotate-180 w-[48px] h-[48px] rounded-full bg-[#20e2ec] absolute -top-[15%] z-[100000] right-[8px] flex items-center justify-center transition-transform duration-300"
+                    className="text-white hover:rotate-180 w-[48px] h-[48px] rounded-full bg-[--primary] absolute -top-[15%] z-[100000] right-[8px] flex items-center justify-center transition-transform duration-300"
                 >
                     <IoIosArrowDown  size={22} />
                 </button>

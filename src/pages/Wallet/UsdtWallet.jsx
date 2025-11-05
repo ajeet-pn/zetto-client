@@ -83,13 +83,12 @@ function UsdtWallet() {
     const payment = async (e) => {
         e.preventDefault();
        
-alert("Crypto Withdraw Coming Soon")
-        // Final submission
         if (handleValidation()) {
             const data = {
-                // screenShotImg: payAccountFiel.img,
+                cryptoBarCodeImg: payAccountFiel.img,
                 amount: payAccountFiel.amount,
-                utrNo: payAccountFiel.utrNo,
+                cryptoAddress: payAccountFiel.utrNo,
+                accountMethod: "crypto",
             };
 
             try {
@@ -117,6 +116,7 @@ alert("Crypto Withdraw Coming Soon")
         
                 }
             } catch (error) {
+                message.error(error?.data?.message)
                 console.error("Error submitting deposit:", error);
             }
         }
@@ -171,8 +171,8 @@ alert("Crypto Withdraw Coming Soon")
     const handleValidation = () => {
         const errors = {};
 
-        if (!payAccountFiel.utrNo || payAccountFiel.utrNo.length < 6 || payAccountFiel.utrNo.length > 12) {
-            errors.utrNo = "UTR No must be between 6 and 12 digits.";
+        if (!payAccountFiel.utrNo || payAccountFiel.utrNo.length < 7 || payAccountFiel.utrNo.length > 12) {
+            errors.utrNo = "Wallet must be between 7 and 12 digits.";
         }
 
         if (!payAccountFiel.amount) {
@@ -209,13 +209,7 @@ alert("Crypto Withdraw Coming Soon")
         "500", "1000", "2000", "3000", "4000", "5000", "10000", "20000"
     ];
 
-    const paymentImage = [
-        { imgs: "/deposit/bank2.png", title: "bank", method: "bank" },
-        { imgs: "/deposit/bhim.png", title: "bhimUpi", method: "upi" },
-        { imgs: "/images/zetto/paytm-pay.png", title: "paytm", method: "upi" },
-        { imgs: "/images/zetto/g-pay.png", title: "googlePay", method: "upi" },
-        { imgs: "/images/zetto/phonepe-pay.png", title: "phonePay", method: "upi" },
-    ];
+
 
     return (
         <>
@@ -291,8 +285,34 @@ USDT <span className="text-[10px]">(TRC20)</span>
                         </span>
                     </div>
 
-
-                    <div className="mb-2">
+ <div>
+                                <label className="block text-sm font-medium mb-2">OR Code </label>
+                                <div className="border-2 border-dashed bg-transparent border-gray-300 rounded-lg p-4 text-center">
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={fileUpload}
+                                        className="hidden"
+                                        id="fileInput"
+                                    />
+                                    <label htmlFor="fileInput" className="cursor-pointer">
+                                        <div className="flex flex-col items-center">
+                                            <span className="text-3xl text-gray-400 mb-2">+</span>
+                                            <span className="text-sm text-gray-600">
+                                                {fileName || "Click to upload screenshot"}
+                                            </span>
+                                        </div>
+                                    </label>
+                                </div>
+                                {error.img && (
+                                    <div className="text-red-600 text-sm mt-1 font-bold">
+                                        {error.img}
+                                    </div>
+                                )}
+                            </div>
+                            {payAccountFiel?.img && <div><img src={payAccountFiel?.img} alt=""  height={100} width={100}/></div>}
+                           
+                    <div className="my-2">
                                 <label className="block text-sm font-medium mb-2">Wallet Address</label>
                                 <input
                                     className={`focus:outline-none px-4 bg-transparent rounded-lg w-full border text-[#212529] text-[13px] py-3 ${error.utrNo ? "border-red-500 border-2" : "border-gray-300"
@@ -321,14 +341,13 @@ USDT <span className="text-[10px]">(TRC20)</span>
                             }
                             className={`rounded-lg w-full text-sm font-bold uppercase py-3 px-8 transition-all ${!payAccountFiel.amount || payAccountFiel.amount < 500 || payAccountFiel.amount > 500000
                                     ? "bg-transparent text-gray-500 cursor-not-allowed border border-gray-300"
-                                    : "bg-[--primary] hover:bg-[--white] hover:text-[--primary] text-white hover:border-2 hover:border-[--primary]"
+                                    : "bg-green-800 hover:bg-[--white] hover:text-[--black] text-white hover:border-2 hover:border-green-800"
                                 }`}
                             onClick={payment}
                         >
                             Continue
                         </button>
                     </div>
-
                 </div>
 
                 {/* Step 2: Payment Method Selection */}

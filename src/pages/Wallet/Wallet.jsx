@@ -672,7 +672,7 @@ const Wallet = () => {
 
             <button
               type="submit"
-              className="mx-0  bg-[--primary]  text-[--secondary] md:text-gray-400 w-full font-semibold py-3 mt-6 text-sm rounded-md block md:border mb-5 md:border-gray-200"
+              className="mx-0  bg-green-800 text-[--secondary] md:text-white w-full font-semibold py-3 mt-6 text-sm rounded-md block md:border mb-5 md:border-gray-200"
               disabled={isSubmitting}
             >
               {isSubmitting ? "Submitting..." : "Submit"}

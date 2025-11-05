@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BiInfoCircle } from "react-icons/bi";
 import { apiCall, httpPostFormData } from "../../config/HTTP";
+import { message } from "antd";
 
 function Deposit() {
     const [bankAcountData, setBankAcountData] = useState();
@@ -89,6 +90,10 @@ function Deposit() {
                 );
 
                 if (elementPositionDataResponse) {
+                    if(!elementPositionDataResponse?.error){
+                      message.success(elementPositionDataResponse?.message)
+                          
+                    }
                     setPayAccountFiel({
                         amount: "",
                         utrNo: "",
@@ -275,7 +280,7 @@ function Deposit() {
                             }
                             className={`rounded-lg w-full text-sm font-bold uppercase py-3 px-8 transition-all ${!payAccountFiel.amount || payAccountFiel.amount < 500 || payAccountFiel.amount > 500000
                                     ? "bg-transparent text-gray-500 cursor-not-allowed border border-gray-300"
-                                    : "bg-[--primary] hover:bg-[--white] hover:text-[--primary] text-white hover:border-2 hover:border-[--primary]"
+                                    : "bg-green-800 hover:bg-[--white] hover:text-[--black] text-white hover:border-2 hover:border-green-800"
                                 }`}
                             onClick={payment}
                         >
@@ -532,7 +537,7 @@ function Deposit() {
                             </div>
                             <div className="flex justify-end">
                                 <button
-                                    className="rounded-lg w-full text-sm font-bold uppercase bg-[--primary] hover:bg-[--white] hover:text-black hover:border-2 hover:border-[--primary] text-white py-3 px-8"
+                                    className="rounded-lg w-full text-sm font-bold uppercase bg-green-800 hover:bg-[--white] hover:text-black hover:border-2 hover:border-green-800 text-white py-3 px-8"
                                     onClick={payment}
                                 >
                                     Submit

@@ -207,6 +207,8 @@ const getSportName = (sportId) => {
   return sport ? sport.sportName : "";
 };
 
+const domainSettingData = JSON.parse(localStorage.getItem('clientdomainSetting'))
+
 
   return (
     <>
@@ -276,10 +278,29 @@ const getSportName = (sportId) => {
          { !token ? 
                         <>
                             <li>
-                            <Link>
-                                <img className="rounded-[4px] w-full h-auto mt-2" src="/images/zetto/wpbanner.png" alt="" />
-                            </Link>
-                            </li> 
+  {domainSettingData?.whatsappNumber ? (
+    <a
+      passHref={true}
+      href={`https://wa.me/${domainSettingData.whatsappNumber}`}
+      title="Whatsapp"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <img
+        className="rounded-[4px] w-full h-auto mt-2"
+        src="/images/zetto/wpbanner.jpeg"
+        alt="Whatsapp Banner"
+      />
+    </a>
+  ) : (
+    <img
+      className="rounded-[4px] w-full h-auto mt-2"
+      src="/images/zetto/wpbanner.jpeg"
+      alt="Whatsapp Banner"
+    />
+  )}
+</li>
+
                         </>
                         : null
                     }

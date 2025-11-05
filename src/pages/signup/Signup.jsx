@@ -2,13 +2,15 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { message } from "antd";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BsEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 import { httpPost } from "../../config/HTTP";
 import { FaWhatsapp } from "react-icons/fa";
+import { login } from "../../redux/reducers/auth.reducer";
 
 function SignUp({ isSignUpOpen, onClose }) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -57,7 +59,8 @@ function SignUp({ isSignUpOpen, onClose }) {
   };
 
   const handleOnSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
+
 
     if (!user.mobileNo || user.mobileNo.length !== 10) {
       setErrors({ ...errors, mobileNo: "Mobile number must be 10 digits" });
@@ -107,48 +110,168 @@ if (user.password !== user.confirmPassword) {
       return;
     }
 
-    setLoading(true);
+  setLoading(true);
 
-    try {
-      const loginDetails = {
-        domainUrl: window.location.origin,
-        name: user.name,
-        username: user.username,
-        mobileNo: `${countryCode}${user.mobileNo}`,
-        password: user.password,
-      };
+  try {
+    const registerPayload = {
+      domainUrl: window.location.origin,
+      name: user.name,
+      username: user.username,
+      mobileNo: `${countryCode}${user.mobileNo}`,
+      password: user.password,
+    };
 
-      if (user.referralCode) {
-        loginDetails.referralCode = user.referralCode;
-      }
-
-      if (user.otp) {
-        loginDetails.otp = user.otp;
-      }
-
-      const response = await httpPost("website/registerClient", loginDetails);
-      console.log(response, "gggggggggggggg");
-      
-      if (response) {
-        setUser({
-          name: "",
-          username: "",
-          mobileNo: "",
-          password: "",
-          referralCode: "",
-          otp: ""
-        });
-        window.location.href = "/";
-        message.success(response?.message);
-      } else {
-        message.error("Registration failed. Please check your details.");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    } finally {
-      setLoading(false);
+    if (user.referralCode) {
+      registerPayload.referralCode = user.referralCode;
     }
-  };
+
+    if (user.otp) {
+      registerPayload.otp = user.otp;
+    }
+
+    // Step 1: Register User
+    const registerResponse = await httpPost("website/registerClient", registerPayload);
+
+    if (!registerResponse?.error) {
+      message.success(registerResponse?.message || "Registration successful!");
+
+      const loginPayload = {
+        username: user.username,
+        password: user.password,
+        isClient: true,
+        host: window.location.host,
+      };
+      try {
+        
+        const loginResult = await dispatch(login(loginPayload));
+        if (!loginResult?.payload?.userinfo?.error) {
+          // Login successful
+          localStorage.setItem("isRedirected", "false");
+          window.location.href = "/dashboard"; // or navigate("/dashboard")
+        } else {
+          message.error(loginResult?.message || "Auto login failed. Please login manually.");
+          window.location.href = "/"; // fallback
+        }
+      } catch (loginError) {
+        console.error("Auto login failed:", loginError);
+        message.warning("Registered! But auto login failed. Redirecting to login...");
+      
+      }
+
+      // Reset form
+      setUser({
+        name: "",
+        username: "",
+        mobileNo: "",
+        password: "",
+        confirmPassword: "",
+        referralCode: "",
+        otp: ""
+      });
+
+    } else {
+      message.error(registerResponse?.message || "Registration failed.");
+    }
+  } catch (error) {
+    console.error("Registration Error:", error);
+  } finally {
+    setLoading(false);
+  }
+};
+
+//   const handleOnSubmit = async (e) => {
+//     e.preventDefault();
+
+//     if (!user.mobileNo || user.mobileNo.length !== 10) {
+//       setErrors({ ...errors, mobileNo: "Mobile number must be 10 digits" });
+//       return;
+//     }
+
+//     if (!user.name || user.name.length < 3) {
+//       setErrors({ ...errors, name: "Name must be at least 3 characters long" });
+//       return;
+//     }
+
+//     if (!user.password || user.password.length < 6) {
+//       setErrors({
+//         ...errors,
+//         password: "Password must be at least 6 characters long and must be in the format: Ab1234",
+//       });
+//       return;
+//     }
+//     if (!user.confirmPassword || user.confirmPassword.length < 6) {
+//   setErrors({
+//     ...errors,
+//     confirmPassword: "Confirm password must be at least 6 characters long",
+//   });
+//   return;
+// }
+
+// if (user.password !== user.confirmPassword) {
+//   setErrors({
+//     ...errors,
+//     confirmPassword: "Passwords do not match",
+//   });
+//   return;
+// }
+
+//     // if (!/[A-Z]/.test(user.password)) {
+//     //   setErrors({ ...errors, password: "Password must contain at least one uppercase letter" });
+//     //   return;
+//     // }
+
+//     if (!/[a-z]/.test(user.password)) {
+//       setErrors({ ...errors, password: "Password must contain at least one lowercase letter" });
+//       return;
+//     }
+
+//     if (!/\d/.test(user.password)) {
+//       setErrors({ ...errors, password: "Password must contain at least one digit" });
+//       return;
+//     }
+
+//     setLoading(true);
+
+//     try {
+//       const loginDetails = {
+//         domainUrl: window.location.origin,
+//         name: user.name,
+//         username: user.username,
+//         mobileNo: `${countryCode}${user.mobileNo}`,
+//         password: user.password,
+//       };
+
+//       if (user.referralCode) {
+//         loginDetails.referralCode = user.referralCode;
+//       }
+
+//       if (user.otp) {
+//         loginDetails.otp = user.otp;
+//       }
+
+//       const response = await httpPost("website/registerClient", loginDetails);
+//       console.log(response, "gggggggggggggg");
+      
+//       if (response) {
+//         setUser({
+//           name: "",
+//           username: "",
+//           mobileNo: "",
+//           password: "",
+//           referralCode: "",
+//           otp: ""
+//         });
+//         window.location.href = "/";
+//         message.success(response?.message);
+//       } else {
+//         message.error("Registration failed. Please check your details.");
+//       }
+//     } catch (error) {
+//       console.error("Error:", error);
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
 
   const handleGetOtp = async () => {
     if (!user.mobileNo || user.mobileNo.length !== 10) {

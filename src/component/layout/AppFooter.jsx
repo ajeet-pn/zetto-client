@@ -48,6 +48,8 @@ const navigate = useNavigate();
   };
 }, [loginModalOpen]);
 
+const domainSetting = JSON.parse(localStorage.getItem('clientdomainSetting'));
+    let socialMediaLink = domainSetting?.socialMedia
 
   return (
     <>
@@ -66,10 +68,10 @@ const navigate = useNavigate();
                     <img src="/images/zetto/fb1.png" alt="" className='!w-[26px] !h-[26px]'/>
                   </div> */}
                   <div className='min-w-[30px] cursor-pointer'>
-                    <img src="/images/zetto/insta1.png" alt="" className='!w-[26px] !h-[26px]'/>
+                    <a href={socialMediaLink?.instaLink ? socialMediaLink?.instaLink : ''} target="_blank" className="text-pink-500 hover:text-pink-400"><img src="/images/zetto/insta1.png" alt="" className='!w-[26px] !h-[26px]'/> </a>
                   </div>
                   <div className='min-w-[30px] cursor-pointer'>
-                    <img src="/images/zetto/telegram1.png" alt="" className='!w-[26px] !h-[26px]'/>
+                    <a href={socialMediaLink?.telegramLink ? socialMediaLink?.telegramLink : ''} target="_blank" className="text-blue-400 hover:text-blue-300"> <img src="/images/zetto/telegram1.png" alt="" className='!w-[26px] !h-[26px]'/></a>
                   </div>
                   {/* <div className='min-w-[30px] cursor-pointer'>
                     <img src="/images/zetto/youtube1.png" alt="" className='!w-[26px] !h-[26px]'/>
@@ -194,11 +196,28 @@ const navigate = useNavigate();
             <li className='mx-auto h-full'
             // onClick={() => handleClick("/sport/all")}
             >
-              <a className="mobile-btn flex flex-col items-center">
-                <img alt="footballSport_icon" src="/images/zetto/whatsapp-icon.png" className="!h-[20px] !w-[20px] !mt-[6px]"/>
+
+              {domainSetting?.whatsappNumber ? (
+    <a
+      passHref={true}
+      href={`https://wa.me/${domainSetting.whatsappNumber}`}
+      title="Whatsapp"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="mobile-btn flex flex-col items-center"
+    >
+      <img alt="footballSport_icon" src="/images/zetto/whatsapp-icon.png" className="!h-[20px] !w-[20px] !mt-[6px]"/>
                 {/* <p className="text-white text-[10px] mt-1">Helpline</p> */}
                 <p className="text-white text-[10px] mt-1">Support</p>
-              </a>
+    </a>
+  ) : (
+    <span className="mobile-btn flex flex-col items-center">
+    <img alt="footballSport_icon" src="/images/zetto/whatsapp-icon.png" className="!h-[20px] !w-[20px] !mt-[6px]"/>
+                {/* <p className="text-white text-[10px] mt-1">Helpline</p> */}
+                <p className="text-white text-[10px] mt-1">Support</p>
+                </span>
+  )}
+             
             </li>
             {token ? (
               <li onClick={() => setIsOpen(true)}>
