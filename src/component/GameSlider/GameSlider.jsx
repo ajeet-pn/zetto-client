@@ -71,19 +71,19 @@ const GameSlider = () => {
       image: "/images/zetto/fungames-730_280.gif",
       orderBy: 3,
       name: "fun-games",
-      gameId: "151084",
+      gameId: "221660",
     },
     {
       image: "/images/zetto/aviator-730-280.gif",
       orderBy: 2,
       name: "Aviator",
-      gameId: "860001",
+      gameId: "525001",
     },
     {
       image: "/images/zetto/evoplay-730-280.gif",
       orderBy: 1,
       name: "mines",
-      gameId: "151075",
+      gameId: "201208",
     },
   ];
 

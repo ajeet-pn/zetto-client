@@ -566,7 +566,6 @@ const ViewMatches = () => {
     // bets Palce Modal write 
 
     const handleBackOpen = (data) => {
-        console.log(data, "cashout system design");
         if (data?.odds === 0) return;
         // setBetPlaceModalMobile(true)
         if (data) {
@@ -1054,6 +1053,8 @@ const ViewMatches = () => {
                                     <li role="presentation" class="group">
                                         <button type="button" role="tab" class={`inline-block text-center text-[10px] font-bold uppercase w-[130px]  h-[30px]  rounded ${selectedType === "score" ? "bg-[var(--primary)] text-white border-b-2" : ""}`} onClick={() => handleWatchButtonClick("score")}>
                                             <span slot="title">Score</span>
+                                            
+                                            {/* <span slot="title">Score</span> */}
                                         </button>
                                     </li>
                                     <li role="presentation" class="group">
@@ -1061,6 +1062,15 @@ const ViewMatches = () => {
                                             <span slot="title" class="flex gap-2"><span class="m-auto flex gap-1 items-center" onClick={() => handleWatchButtonClick("tv")} >Live TV <div class="w-1.5 h-1.5 bg-red-600 rounded-full"></div>
                                             </span></span>
                                         </button>
+                                    </li>
+
+                                    <li role="presentation" class="group">
+                                        <span
+                                                onClick={() => setFullScreen((state) => !state)}
+                                                className="text-white bg-[--primary] rounded-sm px-2 py-1 text-xs font-semibold"
+                                            >
+                                                {fullscreen ? "Half Score" : "Full Score"}
+                                            </span>
                                     </li>
                                 </ul>
 
@@ -1106,17 +1116,103 @@ const ViewMatches = () => {
                         
                         {!open ? <>
                         <div class="flex w-full md:w-full overflow-hidden py-2 md:py-1 md:px-0 my-1">
-                            <div class="w-full inline-flex overflow-auto ">
+                            {/* <div class="w-full inline-flex overflow-auto hide-scrollbar ">
                                 <div class="flex-none  relative space-x-2">
                                    
-                                    <button class=" bg-[var(--secondary)] text-black h-[21px] px-2 rounded-[2.83px] gap-2.5  font-bold uppercase text-[12px]  " onClick={() => handleTabClick("all")}>All</button>
-                                    {(inplayMatch?.isMatchOdds  && inplayMatch?.sportId == 4) && <button class="bg-[#feffff] border-[1px]  text-zinc-900 h-[21px] px-2 rounded-[2.83px] place-content-center gap-2.5  font-bold uppercase text-[12px] " onClick={() => handleTabClick("MatchOdds")}>Match Odds</button>}
-                                    {(inplayMatch?.isBookmaker && inplayMatch?.sportId == 4) && <button class="bg-[#feffff] border-[1px]  text-zinc-900 h-[21px] px-2 rounded-[2.83px] place-content-center gap-2.5  font-bold uppercase text-[12px] " onClick={() => handleTabClick("bookmaker")}>Bookmaker</button>}
-                                    {(inplayMatch?.isTieOdds && inplayMatch?.sportId == 4) && <button class="bg-[#feffff] border-[1px]  text-zinc-900 h-[21px] px-2 rounded-[2.83px] place-content-center gap-2.5  font-bold uppercase text-[12px] " onClick={() => handleTabClick("tied")}>tied</button>}
-                                    {(inplayMatch?.isToss && inplayMatch?.sportId == 4) && <button class="bg-[#feffff] border-[1px]  text-zinc-900 h-[21px] px-2 rounded-[2.83px] place-content-center gap-2.5  font-bold uppercase text-[12px] " onClick={() => handleTabClick("toss")}>Toss</button>}
-                                    {(inplayMatch?.isFancy && inplayMatch?.sportId == 4) && <button class="bg-[#feffff] border-[1px]  text-zinc-900 h-[21px] px-2 rounded-[2.83px] place-content-center gap-2.5  font-bold uppercase text-[12px] " onClick={() => handleTabClick("fancy")}>Fancy</button>}
+                                    <button class=" bg-[var(--secondary)]  text-[--primary] py-2  px-2 rounded-[2.83px] gap-2.5  font-bold uppercase text-[12px]  " onClick={() => handleTabClick("all")}>All</button>
+                                    {(inplayMatch?.isMatchOdds  && inplayMatch?.sportId == 4) && <button class="bg-[#feffff] border-[1px]  text-[--primary] py-2 px-2 rounded-[2.83px] place-content-center gap-2.5  font-bold uppercase text-[12px] " onClick={() => handleTabClick("MatchOdds")}>Match Odds</button>}
+                                    {(inplayMatch?.isBookmaker && inplayMatch?.sportId == 4) && <button class="bg-[#feffff] border-[1px]  text-[--primary] py-2 px-2 rounded-[2.83px] place-content-center gap-2.5  font-bold uppercase text-[12px] " onClick={() => handleTabClick("bookmaker")}>Bookmaker</button>}
+                                    {(inplayMatch?.isTieOdds && inplayMatch?.sportId == 4) && <button class="bg-[#feffff] border-[1px]  text-[--primary] py-2 px-2 rounded-[2.83px] place-content-center gap-2.5  font-bold uppercase text-[12px] " onClick={() => handleTabClick("tied")}>tied</button>}
+                                    {(inplayMatch?.isToss && inplayMatch?.sportId == 4) && <button class="bg-[#feffff] border-[1px]  text-[--primary] py-2 px-2 rounded-[2.83px] place-content-center gap-2.5  font-bold uppercase text-[12px] " onClick={() => handleTabClick("toss")}>Toss</button>}
+                                    {(inplayMatch?.isFancy && inplayMatch?.sportId == 4) && <button class="bg-[#feffff] border-[1px]  text-[--primary] py-2 px-2 rounded-[2.83px] place-content-center gap-2.5  font-bold uppercase text-[12px] " onClick={() => handleTabClick("fancy")}>Fancy</button>}
                                 </div>
-                            </div>
+                            </div> */}
+                             <div className="w-full inline-flex overflow-auto hide-scrollbar">
+      <div className="flex-none relative space-x-2">
+
+        {/* All */}
+        <button
+          className={`py-2 px-2 rounded-[2.83px] font-bold uppercase text-[12px] ${
+            activeTab === "all"
+              ? "bg-[var(--primary)] text-[--white]"
+              : "bg-[#feffff] border text-[--primary]"
+          }`}
+          onClick={() => handleTabClick("all")}
+        >
+          All
+        </button>
+
+        {/* Match Odds */}
+        {inplayMatch?.isMatchOdds && inplayMatch?.sportId === 4 && (
+          <button
+            className={`py-2 px-2 rounded-[2.83px] font-bold uppercase text-[12px] ${
+              activeTab === "MatchOdds"
+                ? "bg-[var(--primary)] text-[--white]"
+                : "bg-[#feffff] border text-[--primary]"
+            }`}
+            onClick={() => handleTabClick("MatchOdds")}
+          >
+            Match Odds
+          </button>
+        )}
+
+        {/* Bookmaker */}
+        {inplayMatch?.isBookmaker && inplayMatch?.sportId === 4 && (
+          <button
+            className={`py-2 px-2 rounded-[2.83px] font-bold uppercase text-[12px] ${
+              activeTab === "bookmaker"
+                ? "bg-[var(--primary)] text-[--white]"
+                : "bg-[#feffff] border text-[--primary]"
+            }`}
+            onClick={() => handleTabClick("bookmaker")}
+          >
+            Bookmaker
+          </button>
+        )}
+
+        {/* Tied */}
+        {inplayMatch?.isTieOdds && inplayMatch?.sportId === 4 && (
+          <button
+            className={`py-2 px-2 rounded-[2.83px] font-bold uppercase text-[12px] ${
+              activeTab === "tied"
+                ? "bg-[var(--primary)] text-[--white]"
+                : "bg-[#feffff] border text-[--primary]"
+            }`}
+            onClick={() => handleTabClick("tied")}
+          >
+            Tied
+          </button>
+        )}
+
+        {/* Toss */}
+        {inplayMatch?.isToss && inplayMatch?.sportId === 4 && (
+          <button
+            className={`py-2 px-2 rounded-[2.83px] font-bold uppercase text-[12px] ${
+              activeTab === "toss"
+                ? "bg-[var(--primary)] text-[--white]"
+                : "bg-[#feffff] border text-[--primary]"
+            }`}
+            onClick={() => handleTabClick("toss")}
+          >
+            Toss
+          </button>
+        )}
+
+        {/* Fancy */}
+        {inplayMatch?.isFancy && inplayMatch?.sportId === 4 && (
+          <button
+            className={`py-2 px-2 rounded-[2.83px] font-bold uppercase text-[12px] ${
+              activeTab === "fancy"
+                ? "bg-[var(--primary)] text-[--white]"
+                : "bg-[#feffff] border text-[--primary]"
+            }`}
+            onClick={() => handleTabClick("fancy")}
+          >
+            Fancy
+          </button>
+        )}
+      </div>
+    </div>
                         </div>
 
                             {(activeTab == "all" || activeTab == "MatchOdds") && (<MatchOddsComponent
@@ -1180,14 +1276,16 @@ const ViewMatches = () => {
                            {(activeTab == "all" || activeTab == "tied") && ( <TiedOddsComponent
                                 inplayMatch={inplayMatch}
                                 activeTab={activeTab}
-                                finalSocket={finalSocket}
-                                isMatchCoin={isMatchCoin}
+                                matchScoreDetails={matchScoreDetails}
+                               finalSocket={finalSocket}
                                 positionObj={positionObj}
-                                returnDataObject={returnDataObject}
                                 toggleRowVisibility={toggleRowVisibility}
                                 handleBackOpen={handleBackOpen}
+                                marketId={marketId}
+                                returnDataObject={returnDataObject}
                                 formatNumber={formatNumber}
                                 betplaceSection={betplaceDataThroughProps}
+                                isMatchCoin={isMatchCoin}
 
                             />)}
 

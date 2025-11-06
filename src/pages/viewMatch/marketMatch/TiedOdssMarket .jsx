@@ -129,6 +129,7 @@ const TiedOddsComponent = ({
                             </div>
 
                             <div className="lg:w-1/2 xl:w-[70%] w-[35%] grid grid-cols-6 gap-x-2">
+                            
                               {/* Available to Back (non-clickable) */}
                               {elementtemp?.ex?.availableToBack?.length > 0 &&
                                 elementtemp.ex.availableToBack.slice(1).map((tempData, index) => (
@@ -206,7 +207,7 @@ const TiedOddsComponent = ({
                                         color={"bg-[#8DD9FF]"}
                                         blinkColor={"bg-[#00B2FF]"}
                                       />
-                                    </span>
+                                    </span> 
                                   </React.Fragment>
                                 ))
                               }
@@ -249,7 +250,7 @@ const TiedOddsComponent = ({
                                         </span>
 
                                         <span
-                                          className="lg:col-span-1 col-span-3 rounded-md lg:block hidden cursor-pointer"
+                                          className="lg:col-span-1 col-span-3 rounded-md lg:hidden block cursor-pointer"
                                           onClick={() => {
                                             handleBackOpen({
                                               data: tempData,
