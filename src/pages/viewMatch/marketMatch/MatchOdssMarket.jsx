@@ -3,6 +3,7 @@ import BlinkingComponent from "../BlinkingComponent";
 import MatchDetailsHeaderSection from "../../../component/matchDetailsHeaderSection/MatchDetailsHeaderSection";
 import PlaceBetMobile from "../../../component/betplaceMobile/PlaceBetMobile";
 import CashOutSystem from "../CashoutTesting";
+import FormateValueNumber from "./FormateValueNumber";
 
 const MatchOddsComponent = ({
   inplayMatch,
@@ -158,7 +159,7 @@ const MatchOddsComponent = ({
                                 >
                                   <BlinkingComponent
                                     price={tempData.price}
-                                    size={displaySize}
+                                    size={FormateValueNumber(displaySize)}
                                     color={"bg-[#8DD9FF]"}
                                     blinkColor={"bg-[#00B2FF]"}
                                     hoverColor={"bg-sky-600"}
@@ -209,7 +210,7 @@ const MatchOddsComponent = ({
                                   >
                                     <BlinkingComponent
                                       price={tempData.price}
-                                      size={displaySize}
+                                      size={FormateValueNumber(displaySize)}
                                       color={"bg-[#8DD9FF]"}
                                       blinkColor={"bg-[#00B2FF]"}
                                     />
@@ -242,7 +243,7 @@ const MatchOddsComponent = ({
                                   >
                                     <BlinkingComponent
                                       price={tempData.price}
-                                      size={displaySize}
+                                      size={FormateValueNumber(displaySize)}
                                       color={"bg-[#94dfff]"}
                                       blinkColor={"bg-[#00B2FF]"}
                                     />
@@ -293,7 +294,7 @@ const MatchOddsComponent = ({
                                       >
                                         <BlinkingComponent
                                           price={tempData.price}
-                                          size={displaySize}
+                                          size={FormateValueNumber(displaySize)}
                                           color={"bg-[#FF94BC]"}
                                           blinkColor={"bg-[#FE7A7F]"}
                                         />
@@ -327,7 +328,7 @@ const MatchOddsComponent = ({
                                       >
                                         <BlinkingComponent
                                           price={tempData.price}
-                                          size={displaySize}
+                                          size={FormateValueNumber(displaySize)}
                                           color={"bg-[#FF94BC]"}
                                           blinkColor={"bg-[#FE7A7F]"}
                                         />
@@ -337,7 +338,7 @@ const MatchOddsComponent = ({
                                     <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden">
                                       <BlinkingComponent
                                         price={tempData.price}
-                                        size={displaySize}
+                                        size={FormateValueNumber(displaySize)}
                                         color={"bg-[#FF94BC]"}
                                         blinkColor={"bg-[#CDEBEB]"}
                                       />

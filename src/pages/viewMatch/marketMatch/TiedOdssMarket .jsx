@@ -3,6 +3,7 @@ import BlinkingComponent from '../BlinkingComponent';
 import CashOutSystem from '../CashoutTesting';
 import MatchDetailsHeaderSection from '../../../component/matchDetailsHeaderSection/MatchDetailsHeaderSection';
 import PlaceBetMobile from '../../../component/betplaceMobile/PlaceBetMobile';
+import FormateValueNumber from './FormateValueNumber';
 
 const TiedOddsComponent = ({
   inplayMatch,
@@ -132,22 +133,32 @@ const TiedOddsComponent = ({
                             
                               {/* Available to Back (non-clickable) */}
                               {elementtemp?.ex?.availableToBack?.length > 0 &&
-                                elementtemp.ex.availableToBack.slice(1).map((tempData, index) => (
+                                elementtemp.ex.availableToBack.slice(1).map((tempData, index) => {  
+                                  const matchedTrade = elementtemp.ex.tradedVolume?.find(
+      (trade) => trade.price === tempData.price
+    );
+    const displaySize = matchedTrade ? matchedTrade.size : tempData.size;
+                                  return(
                                   <span key={index} className="lg:col-span-1 col-span-3 rounded-md lg:block hidden">
                                     <BlinkingComponent
                                       price={tempData.price}
-                                      size={tempData.size}
+                                      size={FormateValueNumber(displaySize)}
                                       color={"bg-[#8DD9FF]"}
                                       blinkColor={"bg-[#00B2FF]"}
                                       hoverColor={"bg-sky-600"}
                                     />
                                   </span>
-                                ))
+                                )})
                               }
 
                               {/* First Available to Back (clickable) */}
                               {elementtemp?.ex?.availableToBack?.length > 0 &&
-                                elementtemp.ex.availableToBack.slice(0, 1).map((tempData, index) => (
+                                elementtemp.ex.availableToBack.slice(0, 1).map((tempData, index) => {
+                                  const matchedTrade = elementtemp.ex.tradedVolume?.find(
+      (trade) => trade.price === tempData.price
+    );
+    const displaySize = matchedTrade ? matchedTrade.size : tempData.size;
+                              return(
                                   <React.Fragment key={index}>
                                     <span
                                       className="md:col-span-3 sm:col-span-3 rounded-md col-span-3 lg:hidden block cursor-pointer"
@@ -173,7 +184,7 @@ const TiedOddsComponent = ({
                                     >
                                       <BlinkingComponent
                                         price={tempData.price}
-                                        size={tempData.size}
+                                        size={FormateValueNumber(displaySize)}
                                         color={"bg-[#8DD9FF]"}
                                         blinkColor={"bg-[#00B2FF]"}
                                       />
@@ -203,18 +214,23 @@ const TiedOddsComponent = ({
                                     >
                                       <BlinkingComponent
                                         price={tempData.price}
-                                        size={tempData.size}
+                                        size={FormateValueNumber(displaySize)}
                                         color={"bg-[#8DD9FF]"}
                                         blinkColor={"bg-[#00B2FF]"}
                                       />
                                     </span> 
                                   </React.Fragment>
-                                ))
+                                )})
                               }
 
                               {/* Available to Lay */}
                               {elementtemp?.ex?.availableToLay?.length > 0 &&
-                                elementtemp.ex.availableToLay.map((tempData, index) => (
+                                elementtemp.ex.availableToLay.map((tempData, index) => {
+                                  const matchedTrade = elementtemp.ex.tradedVolume?.find(
+      (trade) => trade.price === tempData.price
+    );
+    const displaySize = matchedTrade ? matchedTrade.size : tempData.size;
+                                  return(
                                   <React.Fragment key={index}>
                                     {index === 0 ? (
                                       <>
@@ -243,7 +259,7 @@ const TiedOddsComponent = ({
                                         >
                                           <BlinkingComponent
                                             price={tempData.price}
-                                            size={tempData.size}
+                                            size={FormateValueNumber(displaySize)}
                                             color={"bg-[#FF94BC]"}
                                             blinkColor={"bg-[#FE7A7F]"}
                                           />
@@ -273,7 +289,7 @@ const TiedOddsComponent = ({
                                         >
                                           <BlinkingComponent
                                             price={tempData.price}
-                                            size={tempData.size}
+                                            size={FormateValueNumber(displaySize)}
                                             color={"bg-[#FF94BC]"}
                                             blinkColor={"bg-[#FE7A7F]"}
                                           />
@@ -283,14 +299,14 @@ const TiedOddsComponent = ({
                                       <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden">
                                         <BlinkingComponent
                                           price={tempData.price}
-                                          size={tempData.size}
+                                          size={FormateValueNumber(displaySize)}
                                           color={"bg-[#FF94BC]"}
                                           blinkColor={"bg-[#CDEBEB]"}
                                         />
                                       </span>
                                     )}
                                   </React.Fragment>
-                                ))
+                                )})
                               }
                             </div>
                           </div>
