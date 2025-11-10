@@ -1,6 +1,7 @@
 import React from 'react';
 import BlinkingComponent from '../BlinkingComponent';
 import MatchDetailsHeaderSection from '../../../component/matchDetailsHeaderSection/MatchDetailsHeaderSection';
+import FormateValueNumber from './FormateValueNumber';
 
 const OtherMarketsComponent = ({
   activeTab,
@@ -103,7 +104,7 @@ const OtherMarketsComponent = ({
                           <span key={index} className="lg:col-span-1 col-span-2 rounded-md lg:block hidden">
                             <BlinkingComponent
                               price={tempData.price}
-                              size={tempData.size}
+                              size={FormateValueNumber(displaySize)}
                               color={"bg-[#8DD9FF]"}
                               blinkColor={"bg-[#00B2FF]"}
                               hoverColor={"bg-sky-600"}
@@ -113,7 +114,11 @@ const OtherMarketsComponent = ({
                       }
 
                       {elementtemp?.ex?.availableToBack?.length > 0 && 
-                        elementtemp.ex.availableToBack.slice(0, 1).map((tempData, index) => (
+                        elementtemp.ex.availableToBack.slice(0, 1).map((tempData, index) => {
+                          const matchedTrade = elementtemp.ex.tradedVolume?.find(
+                                                                              (trade) => trade.price === tempData.price);
+                                                                              const displaySize = matchedTrade ? matchedTrade.size : tempData.size
+                          return(
                           <React.Fragment key={index}>
                             <span 
                               className="md:col-span-3 sm:col-span-3 rounded-md col-span-3 lg:hidden block cursor-pointer"
@@ -139,7 +144,7 @@ const OtherMarketsComponent = ({
                             >
                               <BlinkingComponent
                                 price={tempData.price}
-                                size={tempData.size}
+                                size={FormateValueNumber(displaySize)}
                                 color={"bg-[#8DD9FF]"}
                                 blinkColor={"bg-[#00B2FF]"}
                               />
@@ -169,17 +174,21 @@ const OtherMarketsComponent = ({
                             >
                               <BlinkingComponent
                                 price={tempData.price}
-                                size={tempData.size}
+                                size={FormateValueNumber(displaySize)}
                                 color={"bg-[#8DD9FF]"}
                                 blinkColor={"bg-[#00B2FF]"}
                               />
                             </span>
                           </React.Fragment>
-                        ))
+                        )})
                       }
 
                       {elementtemp?.ex?.availableToLay?.length > 0 && 
-                        elementtemp.ex.availableToLay.map((tempData, index) => (
+                        elementtemp.ex.availableToLay.map((tempData, index) => {
+                          const matchedTrade = elementtemp.ex.tradedVolume?.find(
+                                                                              (trade) => trade.price === tempData.price);
+                                                                              const displaySize = matchedTrade ? matchedTrade.size : tempData.size
+                          return(
                           <React.Fragment key={index}>
                             {index === 0 ? (
                               <>
@@ -207,7 +216,7 @@ const OtherMarketsComponent = ({
                                 >
                                   <BlinkingComponent
                                     price={tempData.price}
-                                    size={tempData.size}
+                                    size={FormateValueNumber(displaySize)}
                                     color={"bg-[#FF94BC]"}
                                     blinkColor={"bg-[#FE7A7F]"}
                                   />
@@ -237,7 +246,7 @@ const OtherMarketsComponent = ({
                                 >
                                   <BlinkingComponent
                                     price={tempData.price}
-                                    size={tempData.size}
+                                    size={FormateValueNumber(displaySize)}
                                     color={"bg-[#FF94BC]"}
                                     blinkColor={"bg-[#FE7A7F]"}
                                   />
@@ -247,14 +256,14 @@ const OtherMarketsComponent = ({
                               <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden">
                                 <BlinkingComponent
                                   price={tempData.price}
-                                  size={tempData.size}
+                                  size={FormateValueNumber(displaySize)}
                                   color={"bg-[#FF94BC]"}
                                   blinkColor={"bg-[#CDEBEB]"}
                                 />
                               </span>
                             )}
                           </React.Fragment>
-                        ))
+                        )})
                       }
                     </>
                   ) : (
