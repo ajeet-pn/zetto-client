@@ -32,37 +32,41 @@ const OtherMarketsComponent = ({
             }
             <MatchDetailsHeaderSection marketType={element.marketType} minMax={{ min: 100, max: formatNumber(isTieCoin?.max) }}>
             
-            <div className="flex whitespace-normal max-w-full border-b border-gray-200">
-              <div className="lg:w-1/2 xl:w-[58%] w-[65%] flex px-2">
-                
-              </div>
-            
-              
-              <div className="lg:w-1/2 xl:w-[42%] w-[35%] grid grid-cols-6 py-1">
-                <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"></span>
-                <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"></span>
-                <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden">
-                  <div className="py-1 flex justify-center items-center bg-[#8DD9FF]">
-                    <div className="text-center leading-3">
-                      <span className="2xl:text-[16px] lg:text-[16px] text-xs text-gray-800 font-bold">Back</span>
-                    </div>
+            <div className="flex  whitespace-normal max-w-full border-b border-gray-200">
+                  <div className="lg:w-1/2 xl:w-[30%] w-[65%] flex items-center text-[12px] px-2">
                   </div>
-                </span>
-                <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden">
-                  <div className="py-1 flex justify-center items-center bg-[#FF94BC]">
-                    <div className="text-center leading-3">
-                      <span className="2xl:text-[16px] lg:text-[16px] text-xs text-gray-800 font-bold">Lay</span>
-                    </div>
-                  </div>
-                </span>
-                <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"></span>
-                <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"></span>
+
+                  <div className="lg:w-1/2 xl:w-[70%] w-[35%] grid grid-cols-6 gap-x-2 pe-2">
+                  <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"></span>
+                  <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"></span>
+                  
+                  <span className="lg:col-span-1 col-span-3 rounded-md w-full">
+                      <div className="py-1.5 w-full flex justify-center items-center ">
+                        <div className="text-center leading-3 w-full">
+                          <span className="text-xs uppercase w-full block  bg-[#8DD9FF] h-[20px] rounded-[4px] px-4 text-gray-800 font-bold">
+                            Back
+                          </span>
+                        </div>
+                      </div>
+                    </span>
+
+                  <span className="lg:col-span-1 col-span-3 rounded-md">
+                      <div className="py-1.5 w-full flex justify-center items-center">
+                        <div className="text-center leading-3 w-full">
+                          <span className="text-xs px-4 w-full  block rounded-[4px] h-[20px] bg-[#FF94BC] uppercase text-gray-800 font-bold">
+                            Lay
+                          </span>
+                        </div>
+                      </div>
+                    </span>
+                  <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"></span>
+                  <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"></span>
+                </div>
               </div>
-            </div>
 
             {element?.runners?.length > 0 && element.runners.map((elementtemp, index) => (
               <div className="flex whitespace-normal max-w-full border-b border-gray-200 py-1" key={index}>
-                <div className="lg:w-1/2 xl:w-[65%] w-[65%] flex px-2">
+                <div className="lg:w-1/2 xl:w-[30%] w-[65%] flex px-2">
                   <div className="w-full py-1 leading-3 flex items-center text-[#2B2f35]">
                     <span className="text-[14px] font-bold">
                       <span className="flex items-center py-2">
@@ -85,7 +89,7 @@ const OtherMarketsComponent = ({
                     </span>
                   </div>
                 </div>
-                <div className="lg:w-1/2 xl:w-[70%] w-[35%] gap-x-2 grid grid-cols-6 pe-2">
+                <div className="lg:w-1/2 xl:w-[70%] w-[35%] gap-x-2 grid grid-cols-6 pe-2 relative">
 
                   {elementtemp?.ex?.availableToBack?.length > 0 || elementtemp?.ex?.availableToLay?.length > 0 ? (
                     <>

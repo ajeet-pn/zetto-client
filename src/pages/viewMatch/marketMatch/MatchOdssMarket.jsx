@@ -76,7 +76,7 @@ const MatchOddsComponent = ({
                   Min: {minMax} | Max: {minMax}
                   </div>
 
-                  <div className="lg:w-1/2 xl:w-[70%] w-[35%] grid grid-cols-6 gap-x-2">
+                  <div className="lg:w-1/2 xl:w-[70%] w-[35%] grid grid-cols-6 gap-x-2 pe-2">
                     <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"></span>
                     <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"></span>
                     <span className="lg:col-span-1 col-span-3 rounded-md w-full">
@@ -139,7 +139,7 @@ const MatchOddsComponent = ({
                           </div>
                         </div>
 
-                        <div className="lg:w-1/2 xl:w-[70%] w-[35%] gap-x-2 grid grid-cols-6">
+                        <div className="lg:w-1/2 xl:w-[70%] w-[35%] gap-x-2 grid grid-cols-6 pe-2">
                       
                           {elementtemp?.ex?.availableToBack?.length > 0 &&
                             elementtemp.ex.availableToBack
