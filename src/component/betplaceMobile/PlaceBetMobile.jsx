@@ -5,6 +5,7 @@ import { IoCloseSharp } from 'react-icons/io5';
 import StakeSettings from '../profile/StakeSettings';
 import { FiMinus } from 'react-icons/fi';
 import { GoPlus } from 'react-icons/go';
+import BetPlaceCounter from '../BetPlaceCounter/BetPlaceCounter';
 
 export const betChipsData = {
     "1000": 1000,
@@ -209,8 +210,8 @@ export default function PlaceBetMobile(props) {
                 ? "bg-[var(--matchKhai)] "
                 : "bg-[var(--matchLagai)]"
                 } `}>
-                {betLoading && <div className='absolute top-0 left-0 h-full w-full flex justify-center items-center bg-[#ffffffc5] '>
-                    <span className="loaderbetPlace"></span>
+                {betLoading && <div className='absolute top-0 left-0 h-full w-full flex justify-center items-center bg-[#ffffffc5] border-2 border-[--primary] '>
+                    <BetPlaceCounter />
                 </div>
                 }
                 <div class="bg-neutral-700 relative h-7 rounded-[4px] flex justify-between items-center">

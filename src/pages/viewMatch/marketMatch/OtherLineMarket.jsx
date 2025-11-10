@@ -9,9 +9,10 @@ const OtherMarketsComponent = ({
   positionObj,
   returnDataObject,
   handleBackOpen,
-  formatNumber
+  formatNumber,
+  inplayMatch
 }) => {
-  if (activeTab !== "all" && activeTab !== "other") {
+  if (!inplayMatch?.isLineMarketOdds || activeTab !== "all" && activeTab !== "other") {
     return null;
   }
 
@@ -23,12 +24,15 @@ const OtherMarketsComponent = ({
         element.marketType !== "To Win the Toss" && 
         element.marketType !== "Completed Match" && (
           <div key={index}>
+            {console.log(element, "other line market" )
+            }
             <MatchDetailsHeaderSection marketType={element.marketType} minMax={{ min: 100, max: formatNumber(isTieCoin?.max) }}>
             
             <div className="flex whitespace-normal max-w-full border-b border-gray-200">
               <div className="lg:w-1/2 xl:w-[58%] w-[65%] flex px-2">
                 
               </div>
+            
               
               <div className="lg:w-1/2 xl:w-[42%] w-[35%] grid grid-cols-6">
                 <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"></span>
@@ -57,7 +61,7 @@ const OtherMarketsComponent = ({
                 <div className="lg:w-1/2 xl:w-[65%] w-[65%] flex px-2">
                   <div className="w-full py-1 leading-3 flex items-center text-[#2B2f35]">
                     <span className="text-[14px] font-bold">
-                      <span className="">
+                      <span className="flex items-center py-2">
                         {elementtemp.selectionName}{" "}
                         <div
                           key={index}
@@ -77,9 +81,180 @@ const OtherMarketsComponent = ({
                     </span>
                   </div>
                 </div>
+                <div className="lg:w-1/2 relative xl:w-[35%] w-[35%] grid grid-cols-6 gap-x-1">
 
-                <div className="lg:w-1/2 xl:w-[35%] w-[35%] grid grid-cols-6 gap-x-1">
-                  {/* Available to Back (non-clickable) */}
+  {elementtemp?.ex?.availableToBack?.length > 0 || elementtemp?.ex?.availableToLay?.length > 0 ? (
+    <>
+
+      {elementtemp?.ex?.availableToBack?.length > 0 && 
+        elementtemp.ex.availableToBack.slice(1).map((tempData, index) => (
+          <span key={index} className="lg:col-span-1 col-span-2 rounded-md lg:block hidden">
+            <BlinkingComponent
+              price={tempData.price}
+              size={tempData.size}
+              color={"bg-[#E6F2FC]"}
+              blinkColor={"bg-[#00B2FF]"}
+              hoverColor={"bg-sky-600"}
+            />
+          </span>
+        ))
+      }
+
+      {elementtemp?.ex?.availableToBack?.length > 0 && 
+        elementtemp.ex.availableToBack.slice(0, 1).map((tempData, index) => (
+          <React.Fragment key={index}>
+            <span 
+              className="md:col-span-2 sm:col-span-2 rounded-md col-span-3 md:col-start-2 lg:hidden block cursor-pointer"
+              onClick={() => {
+                handleBackOpen({
+                  data: tempData,
+                  type: "Yes",
+                  odds: tempData.price,
+                  name: elementtemp.selectionName,
+                  nameOther: element.runners,
+                  betFor: "matchOdds",
+                  oddsType: element.marketType,
+                  betType: "L",
+                  selectionId: elementtemp.selectionId,
+                  teamData: tempData.price,
+                  betfairMarketId: element.marketId,
+                  price: elementtemp.ex.availableToLay?.[0]?.price,
+                  size: elementtemp.ex.availableToLay?.[0]?.size,
+                  position: returnDataObject,
+                  newPosition: returnDataObject
+                });
+              }}
+            >
+              <BlinkingComponent
+                price={tempData.price}
+                size={tempData.size}
+                color={"bg-[#8DD2F0]"}
+                blinkColor={"bg-[#00B2FF]"}
+              />
+            </span>
+            
+            <span 
+              className="lg:col-span-1 col-span-3 rounded-md lg:block hidden cursor-pointer"
+              onClick={() => {
+                handleBackOpen({
+                  data: tempData,
+                  type: "Yes",
+                  odds: tempData.price,
+                  name: elementtemp.selectionName,
+                  nameOther: element.runners,
+                  betFor: "matchOdds",
+                  oddsType: element.marketType,
+                  betType: "L",
+                  selectionId: elementtemp.selectionId,
+                  teamData: tempData.price,
+                  betfairMarketId: element.marketId,
+                  price: elementtemp.ex.availableToLay?.[0]?.price,
+                  size: elementtemp.ex.availableToLay?.[0]?.size,
+                  position: returnDataObject,
+                  newPosition: returnDataObject
+                });
+              }}
+            >
+              <BlinkingComponent
+                price={tempData.price}
+                size={tempData.size}
+                color={"bg-[#8DD2F0]"}
+                blinkColor={"bg-[#00B2FF]"}
+              />
+            </span>
+          </React.Fragment>
+        ))
+      }
+
+      {elementtemp?.ex?.availableToLay?.length > 0 && 
+        elementtemp.ex.availableToLay.map((tempData, index) => (
+          <React.Fragment key={index}>
+            {index === 0 ? (
+              <>
+                <span 
+                  className="md:col-span-2 sm:col-span-2 rounded-md md:col-start-4 col-span-3 lg:hidden block cursor-pointer"
+                  onClick={() => {
+                    handleBackOpen({
+                      data: tempData,
+                      type: "No",
+                      odds: tempData.price,
+                      name: elementtemp.selectionName,
+                      nameOther: element.runners,
+                      betFor: "matchOdds",
+                      oddsType: element.marketType,
+                      betType: "K",
+                      selectionId: elementtemp.selectionId,
+                      teamData: tempData.price,
+                      betfairMarketId: element.marketId,
+                      price: elementtemp.ex.availableToBack?.[0]?.price,
+                      size: elementtemp.ex.availableToBack?.[0]?.size,
+                      position: returnDataObject,
+                      newPosition: returnDataObject
+                    });
+                  }}
+                >
+                  <BlinkingComponent
+                    price={tempData.price}
+                    size={tempData.size}
+                    color={"bg-[#FEAFB2]"}
+                    blinkColor={"bg-[#FE7A7F]"}
+                  />
+                </span>
+
+                <span 
+                  className="lg:col-span-1 col-span-3 rounded-md lg:block hidden cursor-pointer"
+                  onClick={() => {
+                    handleBackOpen({
+                      data: tempData,
+                      type: "No",
+                      odds: tempData.price,
+                      name: elementtemp.selectionName,
+                      nameOther: element.runners,
+                      betFor: "matchOdds",
+                      oddsType: element.marketType,
+                      betType: "K",
+                      selectionId: elementtemp.selectionId,
+                      teamData: tempData.price,
+                      betfairMarketId: element.marketId,
+                      price: elementtemp.ex.availableToBack?.[0]?.price,
+                      size: elementtemp.ex.availableToBack?.[0]?.size,
+                      position: returnDataObject,
+                      newPosition: returnDataObject
+                    });
+                  }}
+                >
+                  <BlinkingComponent
+                    price={tempData.price}
+                    size={tempData.size}
+                    color={"bg-[#FEAFB2]"}
+                    blinkColor={"bg-[#FE7A7F]"}
+                  />
+                </span>
+              </>
+            ) : (
+              <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden">
+                <BlinkingComponent
+                  price={tempData.price}
+                  size={tempData.size}
+                  color={"bg-[#FCE3E4]"}
+                  blinkColor={"bg-[#CDEBEB]"}
+                />
+              </span>
+            )}
+          </React.Fragment>
+        ))
+      }
+    </>
+  ) : (
+   
+    <div className="absolute inset-0 flex items-center justify-center bg-black/10 opacity-90  text-[--primary] font-normal">
+     SUSPENDED
+    </div>
+  )}
+</div>
+
+
+                {/* <div className="lg:w-1/2 relative xl:w-[35%] w-[35%] grid grid-cols-6 gap-x-1">
                   {elementtemp?.ex?.availableToBack?.length > 0 && 
                     elementtemp.ex.availableToBack.slice(1).map((tempData, index) => (
                       <span key={index} className="lg:col-span-1 col-span-2 rounded-md lg:block hidden">
@@ -93,8 +268,6 @@ const OtherMarketsComponent = ({
                       </span>
                     ))
                   }
-
-                  {/* First Available to Back (clickable) */}
                   {elementtemp?.ex?.availableToBack?.length > 0 && 
                     elementtemp.ex.availableToBack.slice(0, 1).map((tempData, index) => (
                       <React.Fragment key={index}>
@@ -160,8 +333,6 @@ const OtherMarketsComponent = ({
                       </React.Fragment>
                     ))
                   }
-
-                  {/* Available to Lay */}
                   {elementtemp?.ex?.availableToLay?.length > 0 && 
                     elementtemp.ex.availableToLay.map((tempData, index) => (
                       <React.Fragment key={index}>
@@ -240,7 +411,10 @@ const OtherMarketsComponent = ({
                       </React.Fragment>
                     ))
                   }
-                </div>
+                  <div className='absolute bg-red-500'>
+                  live market Close measse dikhana hai
+                  </div>
+                </div> */}
               </div>
             ))}
             </MatchDetailsHeaderSection >

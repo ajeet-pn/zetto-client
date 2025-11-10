@@ -3,6 +3,7 @@ import { apiCall } from "../../config/HTTP";
 import { Link } from "react-router-dom";
 import { message } from "antd";
 import UsdtWallet from "./UsdtWallet";
+import EUpiWallet from "./EUpiWallet";
 
 
 const Wallet = () => {
@@ -78,7 +79,7 @@ const Wallet = () => {
     const errors = {};
     if (!formData.accountNumber)
       errors.accountNumber = "Account Number is required";
-    // if (!formData.ifscCode) errors.ifscCode = "IFSC Code is required";
+    if (!formData.ifscCode) errors.ifscCode = "IFSC Code is required";
     if (!formData.accountHolder)
       errors.accountHolder = "Account Holder Name is required";
     if (!formData.bankName) errors.bankName = "Bank Name is required";
@@ -274,6 +275,17 @@ const Wallet = () => {
               }`}
           >
             USDT
+          </button>
+
+
+          <button
+            onClick={() => handleTabChange("EUpi")}
+            className={`px-4 sm:px-8 py-3 rounded-r-md ${activeTab === "EUpi"
+              ? "bg-[--primary] rounded-lg text-white"
+              : "text-black"
+              }`}
+          >
+            UPI
           </button>
         </div>
       </div>
@@ -502,21 +514,21 @@ const Wallet = () => {
 
 
 
-              {/* <div className="col-span-2">
-                <label className="block text-sm mb-1">IBAN/IFSC Number</label>
+              <div className="col-span-2">
+                <label className="block text-sm mb-1">IFSC Number</label>
                 <input
                   type="text"
                   name="ifscCode"
                   value={formData.ifscCode}
                   onChange={handleInputChange}
-                  className={`w-full p-2 bg-secondary rounded-md text-white ${errors.ifscCode ? "border-red-500 border" : ""
+                  className={`w-full p-1.5 border-secondary border-2 bg-white rounded-md text-black ${errors.ifscCode ? "border-red-500 border" : ""
                     }`}
-                  placeholder="IBAN/IFSC Number"
+                  placeholder="IFSC Number"
                 />
                 {errors.ifscCode && (
                   <p className="text-red-500 text-xs mt-1">{errors.ifscCode}</p>
                 )}
-              </div> */}
+              </div>
             </div>
 
             <button
@@ -543,10 +555,10 @@ const Wallet = () => {
                     </th>
                     {/* <th scope="col" className="px-6 lg:py-3 py-1.5">
                       Branch Name
-                    </th>
+                    </th> */}
                     <th scope="col" className="px-6 lg:py-3 py-1.5">
                       IFSC Code
-                    </th> */}
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -554,8 +566,8 @@ const Wallet = () => {
                     <td className="px-6">{accountDetails?.accountNumber || '-'}</td>
                     <td className="px-6">{accountDetails?.accountHolder || '-'}</td>
                     <td className="px-6">{accountDetails?.bankName || '-'}</td>
-                    {/* <td className="px-6">{accountDetails?.branchName || '-'}</td>
-                    <td className="px-6">{accountDetails?.ifscCode || '-'}</td> */}
+                    {/* <td className="px-6">{accountDetails?.branchName || '-'}</td> */}
+                    <td className="px-6">{accountDetails?.ifscCode || '-'}</td>
                   </tr>
                 </tbody>
               </table>
@@ -685,6 +697,14 @@ const Wallet = () => {
       {activeTab === "E-Wallet Transfer" && (
         <div className="p-4">
 <UsdtWallet />
+        </div>
+      )}
+
+
+
+      {activeTab === "EUpi" && (
+        <div className="p-4">
+<EUpiWallet />
         </div>
       )}
     </div>

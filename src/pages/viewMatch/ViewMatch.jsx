@@ -1228,6 +1228,7 @@ const ViewMatches = () => {
                                 betplaceSection={betplaceDataThroughProps}
 
                             />)}
+
                             <OtherMarketsComponent
                                 activeTab={activeTab}
                                 otherFinalSocket={otherFinalSocket}
@@ -1238,6 +1239,7 @@ const ViewMatches = () => {
                                 formatNumber={formatNumber}
                                 betplaceSection={betplaceDataThroughProps}
                                 isMatchCoin={isMatchCoin}
+                                 inplayMatch={inplayMatch}
                             />
 
 
