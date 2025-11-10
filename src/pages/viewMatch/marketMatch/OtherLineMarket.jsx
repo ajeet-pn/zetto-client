@@ -18,7 +18,11 @@ const OtherMarketsComponent = ({
 
   return (
     <>
-      {Object.values(otherFinalSocket).map((element, index) => 
+      {Object.values(otherFinalSocket).sort((a, b) => {
+    const numA = parseFloat(a.marketType.match(/(\d+(\.\d+)?)/)?.[0]) || 0;
+    const numB = parseFloat(b.marketType.match(/(\d+(\.\d+)?)/)?.[0]) || 0;
+    return numA - numB;
+  }).map((element, index) => 
         element.marketType !== "Tied Match" && 
         element.marketType !== "Match Odds" && 
         element.marketType !== "To Win the Toss" && 
@@ -87,7 +91,11 @@ const OtherMarketsComponent = ({
     <>
 
       {elementtemp?.ex?.availableToBack?.length > 0 && 
-        elementtemp.ex.availableToBack.slice(1).map((tempData, index) => (
+        elementtemp.ex.availableToBack.slice(1).map((tempData, index) => {
+          const matchedTrade = elementtemp.ex.tradedVolume?.find(
+                                                              (trade) => trade.price === tempData.price);
+                                                              const displaySize = matchedTrade ? matchedTrade.size : tempData.size
+          return(
           <span key={index} className="lg:col-span-1 col-span-2 rounded-md lg:block hidden">
             <BlinkingComponent
               price={tempData.price}
@@ -97,7 +105,7 @@ const OtherMarketsComponent = ({
               hoverColor={"bg-sky-600"}
             />
           </span>
-        ))
+        )})
       }
 
       {elementtemp?.ex?.availableToBack?.length > 0 && 
