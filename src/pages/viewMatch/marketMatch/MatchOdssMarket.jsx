@@ -243,7 +243,7 @@ const MatchOddsComponent = ({
                                     <BlinkingComponent
                                       price={tempData.price}
                                       size={displaySize}
-                                      color={"bg-[#94dfff]"}
+                                      color={"bg-[#8DD9FF]"}
                                       blinkColor={"bg-[#00B2FF]"}
                                     />
                                   </span>
