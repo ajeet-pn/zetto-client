@@ -145,7 +145,7 @@ const ViewMatchRacing = () => {
     }
 
     const setMatchDataFromLocalstorage = async () => {
-        let data = localStorage.getItem(`${eventId}_MatchOddsData`)
+        let data = localStorage.getItem(`${marketId}_MatchOddsData`)
 
 
         if (!data) {
@@ -395,9 +395,9 @@ const ViewMatchRacing = () => {
                 reconnectionAttempts: 99,
             });
 
-            socket.emit(`marketByEvent`, eventId);
-            socket.on(eventId, (data) => {
-                localStorage.setItem(`${eventId}_MatchOddsData`, data)
+            socket.emit(`marketByEvent`, marketId);
+            socket.on(marketId, (data) => {
+                localStorage.setItem(`${marketId}_MatchOddsData`, data)
                 setMatchDetailsForSocketNew(JSON.parse(data));
                 setIsConnected(true);
                 filterData(JSON.parse(data));

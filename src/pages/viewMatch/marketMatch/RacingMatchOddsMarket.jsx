@@ -2,6 +2,7 @@ import React from "react";
 import BlinkingComponent from "../BlinkingComponent";
 import MatchDetailsHeaderSection from "../../../component/matchDetailsHeaderSection/MatchDetailsHeaderSection";
 import PlaceBetMobile from "../../../component/betplaceMobile/PlaceBetMobile";
+import FormateValueNumber from "./FormateValueNumber";
 
 const RacingMatchOddsMarket = ({
   inplayMatch,
@@ -41,6 +42,8 @@ const RacingMatchOddsMarket = ({
         (element, index) =>
           element.marketType === "Match Odds" && (
             <div className="" key={index}>
+              {console.log(finalSocket, "ghgggggg")
+              }
               <MatchDetailsHeaderSection
                 marketType={inplayMatch?.marketName || ""}
                 minMax={{ min: 100, max: formatNumber(isMatchCoin?.max) }}
@@ -77,7 +80,25 @@ const RacingMatchOddsMarket = ({
                   </div>
                 </div>
                 {element?.runners?.length > 0 &&
-                  element.runners.map((elementtemp, index) => (
+                  element.runners.map((elementtemp, index) =>{
+                       const matchingMarket = inplayMatch?.marketList?.find(
+                    (mkt) => mkt?.marketId === element?.marketId
+                  );
+
+                  const selectionInfo = matchingMarket?.selectionIdData?.find(
+                    (sel) => sel?.selectionId === elementtemp?.selectionId
+                  );
+
+                  const parsedMetaData = (() => {
+  try {
+    return typeof selectionInfo?.metadata === "string"
+      ? JSON.parse(selectionInfo.metadata)
+      : selectionInfo?.metadata || {};
+  } catch {
+    return {};
+  }
+})();
+                    return (
                     <>
                       <div
                         className="flex whitespace-normal py-1 max-w-full border-b border-gray-200"
@@ -86,9 +107,24 @@ const RacingMatchOddsMarket = ({
                         <div className="lg:w-1/2 xl:w-[30%] w-[65%] flex px-2">
                           <div className="w-full py-1 leading-3 flex items-center text-[#333333]">
                             <span className="text-[13px] font-bold">
-                              <span>
+                              <span className="flex items-center">
+                                <span className="text-base w-5  font-bold">
+                                                                      {parsedMetaData?.CLOTH_NUMBER
+                                                                        ? `${parsedMetaData.CLOTH_NUMBER}.`
+                                                                        : ""}
+                                                                    </span>
+                                                                    <span className="text-base font-bold">
+                                                                      {inplayMatch?.countryCode === 'GB' ? <img src={`https://bp-silks.lhre.net/saddle/uk/${parsedMetaData?.CLOTH_NUMBER}.svg`} className="w-4 h-4" alt=""/>
+                                                                      : inplayMatch?.countryCode === 'US' ? inplayMatch?.countryCode === 'US' && <img src={`https://bp-silks.lhre.net/saddle/us/${parsedMetaData?.CLOTH_NUMBER}.svg`} className="w-4 h-4" alt=""/>
+                                                                      : <img src={`https://bp-silks.lhre.net/proxy/${parsedMetaData?.COLOURS_FILENAME}`} className="w-4 h-4" alt=""/>
+                                                                    }
+                                                  
+                                                                      
+                                                                    </span>
                                 {elementtemp.selectionName} <br />
-                                <div
+                                
+                              </span>
+                              <div
                                   key={index}
                                   className={
                                     positionObj[elementtemp.selectionId] > 0
@@ -108,7 +144,6 @@ const RacingMatchOddsMarket = ({
                                       ).toFixed(2)
                                     : ""}
                                 </div>
-                              </span>
                             </span>
                           </div>
                         </div>
@@ -118,26 +153,36 @@ const RacingMatchOddsMarket = ({
                           {elementtemp?.ex?.availableToBack?.length > 0 &&
                             elementtemp.ex.availableToBack
                               .slice(1)
-                              .map((tempData, index) => (
+                              .map((tempData, index) => {
+                                 const matchedTrade = elementtemp.ex.tradedVolume?.find(
+      (trade) => trade.price === tempData.price
+    );
+    const displaySize = matchedTrade ? matchedTrade.size : tempData.size;
+                                return(
                                 <span
                                   key={index}
                                   className="lg:col-span-1 col-span-3 h-[33px] rounded-md lg:block hidden"
                                 >
                                   <BlinkingComponent
                                     price={tempData.price}
-                                    size={tempData.size}
+                                    size={FormateValueNumber(displaySize)}
                                     color={"bg-[#8DD9FF]"}
                                     blinkColor={"bg-[#00B2FF]"}
                                     hoverColor={"bg-sky-600"}
                                   />
                                 </span>
-                              ))}
+                              )})}
 
                           {/* First Available to Back (clickable) */}
                           {elementtemp?.ex?.availableToBack?.length > 0 &&
                             elementtemp.ex.availableToBack
                               .slice(0, 1)
-                              .map((tempData, index) => (
+                              .map((tempData, index) => {
+                                 const matchedTrade = elementtemp.ex.tradedVolume?.find(
+      (trade) => trade.price === tempData.price
+    );
+    const displaySize = matchedTrade ? matchedTrade.size : tempData.size;
+                                return(
                                 <React.Fragment key={index}>
                                   <span
                                     className="md:col-span-3 sm:col-span-3 rounded-md col-span-3 lg:hidden block cursor-pointer"
@@ -166,7 +211,7 @@ const RacingMatchOddsMarket = ({
                                   >
                                     <BlinkingComponent
                                       price={tempData.price}
-                                      size={tempData.size}
+                                      size={FormateValueNumber(displaySize)}
                                       color={"bg-[#8DD9FF]"}
                                       blinkColor={"bg-[#00B2FF]"}
                                     />
@@ -199,18 +244,23 @@ const RacingMatchOddsMarket = ({
                                   >
                                     <BlinkingComponent
                                       price={tempData.price}
-                                      size={tempData.size}
+                                      size={FormateValueNumber(displaySize)}
                                       color={"bg-[#94dfff]"}
                                       blinkColor={"bg-[#00B2FF]"}
                                     />
                                   </span>
                                 </React.Fragment>
-                              ))}
+                              )})}
 
                           {/* Available to Lay */}
                           {elementtemp?.ex?.availableToLay?.length > 0 &&
                             elementtemp.ex.availableToLay.map(
-                              (tempData, index) => (
+                              (tempData, index) => {
+                                const matchedTrade = elementtemp.ex.tradedVolume?.find(
+      (trade) => trade.price === tempData.price
+    );
+    const displaySize = matchedTrade ? matchedTrade.size : tempData.size;
+                                return(
                                 <React.Fragment key={index}>
                                   {index === 0 ? (
                                     <>
@@ -245,7 +295,7 @@ const RacingMatchOddsMarket = ({
                                       >
                                         <BlinkingComponent
                                           price={tempData.price}
-                                          size={tempData.size}
+                                           size={FormateValueNumber(displaySize)}
                                           color={"bg-[#FF94BC]"}
                                           blinkColor={"bg-[#FE7A7F]"}
                                         />
@@ -279,7 +329,7 @@ const RacingMatchOddsMarket = ({
                                       >
                                         <BlinkingComponent
                                           price={tempData.price}
-                                          size={tempData.size}
+                                           size={FormateValueNumber(displaySize)}
                                           color={"bg-[#FF94BC]"}
                                           blinkColor={"bg-[#FE7A7F]"}
                                         />
@@ -289,14 +339,14 @@ const RacingMatchOddsMarket = ({
                                     <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden">
                                       <BlinkingComponent
                                         price={tempData.price}
-                                        size={tempData.size}
+                                        size={FormateValueNumber(displaySize)}
                                         color={"bg-[#FF94BC]"}
                                         blinkColor={"bg-[#CDEBEB]"}
                                       />
                                     </span>
                                   )}
                                 </React.Fragment>
-                              )
+                              )}
                             )}
                         </div>
                       </div>
@@ -322,7 +372,7 @@ const RacingMatchOddsMarket = ({
                           />
                         )}
                     </>
-                  ))}
+                  )})}
               </MatchDetailsHeaderSection>
             </div>
           )

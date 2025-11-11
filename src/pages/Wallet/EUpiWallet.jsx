@@ -81,15 +81,14 @@ function EUpiWallet() {
 
     }
     const payment = async (e) => {
-        alert("upi payment Coming soon")
-        return null;
+       
         e.preventDefault();
        
         if (handleValidation()) {
             const data = {
                 upiQr: payAccountFiel.img,
                 amount: payAccountFiel.amount,
-                upi: payAccountFiel.utrNo,
+                upiId: payAccountFiel.utrNo,
             };
 
             try {
@@ -172,16 +171,16 @@ function EUpiWallet() {
     const handleValidation = () => {
         const errors = {};
 
-        if (!payAccountFiel.utrNo || payAccountFiel.utrNo.length < 7 || payAccountFiel.utrNo.length > 12) {
-            errors.utrNo = "Wallet must be between 7 and 12 digits.";
-        }
+        // if (!payAccountFiel.utrNo || payAccountFiel.utrNo.length < 7 || payAccountFiel.utrNo.length > 12) {
+        //     errors.utrNo = "Wallet must be between 7 and 12 digits.";
+        // }
 
         if (!payAccountFiel.amount) {
             errors.amount = "Amount Cannot Be Blank.";
         }
 
         if (!payAccountFiel.img) {
-            errors.img = "Please upload a screenshot.";
+            errors.img = "Please upload a Qr Code.";
         }
 
         setError(errors);

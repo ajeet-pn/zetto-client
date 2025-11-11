@@ -47,6 +47,7 @@ const TiedOddsComponent = ({
               {Object.values(finalSocket)?.map((element, index) =>
                 element.marketType === "Tied Match" && (
                   <div className="bg-white" key={index}>
+                    
                     <MatchDetailsHeaderSection
                       cashOut={
                         element?.runners?.length > 0 && (

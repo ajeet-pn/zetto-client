@@ -131,7 +131,9 @@ function InplayMatches({ activeTab, matchlistItems, sportName }) {
                   <FaTv className="text-black" />
                   <div className="text-[12px] min-w-full font-[600] capitalize">{match?.key}</div>
                 </div>
-                {<div className=" min-w-full items-end grid grid-cols-6 gap-1">
+                {console.log(match, "matchtttt")
+                }
+                {<div className=" min-w-full items-end grid grid-cols-5 gap-1">
 
                   {match?.value?.map((allMatchTime, newindex) => (
                     <div onClick={() => {
@@ -143,7 +145,8 @@ function InplayMatches({ activeTab, matchlistItems, sportName }) {
   }}
                     key={newindex} className="bg-[#d1d5db] rounded-[4px] text-black px-2.5 py-[4px] font-semibold text-[12px] text-center cursor-pointer">
                       {moment(allMatchTime?.matchDate, 'YYYY-MM-DD HH:mm:ss', true).isValid() ? (
-                        moment(allMatchTime.matchDate, 'YYYY-MM-DD HH:mm:ss').format("HH:mm")
+                        moment.utc(allMatchTime.matchDate, "YYYY-MM-DD HH:mm:ss").local().format("HH:mm")
+
                       ) : null}
 
                     </div>
