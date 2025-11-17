@@ -213,7 +213,7 @@ const token = localStorage.getItem("token");
               >
                 <div className="flex  w-full h-full">
                   <div className="lg:w-[50%] w-full flex justify-between items-center bg-white">
-                    <div className="flex items-center justify-start w-full bg-white">
+                    <div className="flex items-center justify-start w-full ">
                       {token ? <a
                         href={`/sport-view/${element?.marketId}/${element?.eventId}/${element?.sportId}`}
                         className="flex items-center justify-start py-1 space-x-1 w-full"
@@ -227,7 +227,7 @@ const token = localStorage.getItem("token");
                             )
                           }
                         </div>
-                        <div className="flex flex-col uppercase w-full px-2">
+                        <div className="flex flex-col uppercase w-full truncate px-2">
                           {element?.seriesName && <span className="text-[10px] text-[--white] capitalize font-bold lg:bg-[--primary] w-fit px-1 rounded-[5px]">
                             ({element?.seriesName ? element?.seriesName : "No Series"})
                           </span>}
@@ -248,7 +248,7 @@ const token = localStorage.getItem("token");
                             )
                           }
                         </div>
-                        <div className="flex flex-col uppercase w-full px-2">
+                        <div className="flex flex-col uppercase w-full truncate px-2">
                           {element?.seriesName && <span className="text-[10px] text-[--white] capitalize font-bold lg:bg-[--primary] w-fit px-1 rounded-[5px]">
                             ({element?.seriesName ? element?.seriesName : "No Series"})
                           </span>}

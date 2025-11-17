@@ -168,8 +168,9 @@ const tabList = [
   { id: 7, label: "RACING", icon: "🏇", tab: false, link: '/in-play/7' },
   { id: 4339, label: "GREYHOUND", icon: "🐕", tab: false, link: '/in-play/4339' },
   { id: "casino", label: "CASINO", icon: "🎰", tab: false, link: '/all-casino' },
-  { id: "sportsbook", label: "SPORTSBOOK", icon: "📒", tab: true, link: '' },
+  { id: "sportsbook", label: "SPORTSBOOK", icon: "📒", tab: false, link: `/iframe-casino/${550000}` },
 ];
+
 
 
 const Dashboard = ({ }) => {
@@ -220,7 +221,7 @@ const domainSettingData = JSON.parse(localStorage.getItem('clientdomainSetting')
         {/* <div className='block md:hidden mt-2' >
           <GameSlider className='mt-2'/>
         </div> */}
-          <div className="flex flex-nowrap overflow-x-auto items-center gap-1 md:px-2 py-2">
+          <div className="flex flex-nowrap overflow-x-auto hide-scrollbar items-center gap-1 md:px-2 py-2">
         {tabList.map((tab) => (
           <div
             key={tab.id}

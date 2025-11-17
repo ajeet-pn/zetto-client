@@ -30,6 +30,8 @@ import { IoHome } from "react-icons/io5";
 import { IoMdTv } from "react-icons/io";
 import RacingMatchOddsMarket from "./marketMatch/RacingMatchOddsMarket";
 import settings from "../../domainConfig";
+import BlinkingComponent from "./BlinkingComponent";
+import MatchDetailsHeaderSection from "../../component/matchDetailsHeaderSection/MatchDetailsHeaderSection";
 
 
 
@@ -62,6 +64,10 @@ const ViewMatchRacing = () => {
 
     const [fancyBetData, setFancyBetData] = useState([])
     const [oddsBetData, setOddsBetData] = useState([])
+      const [showCombinedMobileBet, setShowCombinedMobileBet] = useState(false);
+       const [combindedFlag, setCombindedFlag] = useState(false);
+    const [openBetList, setOpenBetList] = useState([]);
+    const [combinedOdds, setCombinedOddsDisplay] = useState(null);
 
 
     const [returnDataObject, setReturnDataObject] = useState({})
@@ -93,6 +99,7 @@ const ViewMatchRacing = () => {
     const closeRulesModal = () => setIsRulesOpen(false);
     const [isScorecardOpen, setIsScorecardOpen] = useState(true);
     const [fullscreen, setFullScreen] = useState(false);
+        const [matchOddsSelected, setMatchOddsSelected] = useState([]);
 
     const [open, setOpen] = useState(false);
 
@@ -566,23 +573,92 @@ const ViewMatchRacing = () => {
 
     // bets Palce Modal write 
 
-    const handleBackOpen = (data) => {
-        console.log(data, "cashout system design");
-        if (data?.odds === 0) return;
-        // setBetPlaceModalMobile(true)
-        if (data) {
-            setBetShow(false);
-            setBetShowM(false);
-            setBetSlipData({
-                ...data,
-                stake: data.stake != null ? data.stake : '0',
-                count: data.odds,
-                teamname: data.name,
-                teamData: data.teamData
-            });
+    // const handleBackOpen = (data) => {
+       
+    //     if (data?.odds === 0) return;
+    //     // setBetPlaceModalMobile(true)
+    //     if (data) {
+    //         setBetShow(false);
+    //         setBetShowM(false);
+    //         setBetSlipData({
+    //             ...data,
+    //             stake: data.stake != null ? data.stake : '0',
+    //             count: data.odds,
+    //             teamname: data.name,
+    //             teamData: data.teamData
+    //         });
+    //     }
+    // };
+
+        const handleBackOpen = (data, isCombined = false) => {
+            if (data?.odds === 0) return;
+    if ((inplayMatch?.countryCode != 'GB' && inplayMatch?.countryCode != "IE") && inplayMatch?.sportId == 7 && data?.inplayCheck === true && data?.statusCheck === 'OPEN') {
+      message.error("Inplay Bets are Not Allowed");
+      return;
+    }   
+        setBetShow(false);
+        setBetShowM(false);
+
+        if (isCombined) {
+          setCombindedFlag(true)
+          // Handle combined bet
+          const matchOddsData = finalSocket['Match Odds'];
+          if (!matchOddsData || !matchOddsData.runners) {
+            message.error("Invalid combined bet data");
+            return;
+          }
+
+          const selectedRunners = matchOddsData.runners.filter((_, index) => matchOddsSelected.includes(index + 1));
+          const selectionIds = selectedRunners.map(runner => runner.selectionId);
+         
+          
+          const teamNames = selectedRunners.map(runner => runner.selectionName).join('+');
+
+          setBetSlipData({
+            stake: '0',
+            count: data.odds,
+            teamname: teamNames,
+            teamData: data.odds,
+            betFor: "matchOdds",
+            oddsType: "Match Odds",
+            betType: data.type === "Yes" ? "L" : "K",
+            selectionId: selectionIds, // Array for combined bets
+            betfairMarketId: matchOddsData.marketId,
+            price: data.odds,
+            size: data.size,
+            position: returnDataObject,
+            newPosition: returnDataObject,
+            isCombined: true // Flag to indicate combined bet
+          });
+        } else {
+            setCombindedFlag(false)
+          // Handle single bet (existing logic)
+          setBetSlipData({
+            data: data.data,
+            type: data.type,
+            odds: data.odds,
+            name: data.name,
+            nameOther: data.nameOther,
+            inplayCheck: data.inplayCheck,
+            statusCheck: data.statusCheck,
+            betFor: data.betFor,
+            oddsType: data.oddsType,
+            betType: data.betType,
+            selectionId: data.selectionId,
+            teamData: data.teamData,
+            betfairMarketId: data.betfairMarketId,
+            price: data.price,
+            size: data.size,
+            position: data.position,
+            newPosition: data.newPosition,
+            stake: '0',
+            count: data.odds,
+            teamname: data.name
+          });
         }
-    };
+  };
     const handleBackclose = () => {
+     
         setBetSlipData({
             stake: '0',
             count: 0,
@@ -590,6 +666,7 @@ const ViewMatchRacing = () => {
             teamData: null,
             name: ""
         });
+        setShowCombinedMobileBet(false)
 
     };
 
@@ -606,8 +683,6 @@ const ViewMatchRacing = () => {
         if (betSlipData.stake <= 0) {
             return;
         }
-
-
 
         try {
             const betObject = {
@@ -695,6 +770,100 @@ const ViewMatchRacing = () => {
             openBets()
         }
     };
+
+      const placeBetCombind = async () => {
+  try {
+    // Calculate combined odds
+    const result = calculateCombinedOddsW(matchOddsSelected);
+    if (!result) return message.error("Unable to calculate combined odds.");
+
+    const { odds, totalInverse } = result;
+
+    // Display combined odds
+    // setCombinedOddsDisplay(totalInverse);
+
+    // Calculate distributed stakes
+    let stakePerRace = matchOddsSelected.map((raceIndex, i) => {
+      return betSlipData.stake * (1 / odds[i]) / totalInverse;
+    });
+
+    setBetLoading(true);
+
+    // Prepare all API promises
+    const betPromises = matchOddsSelected.map((raceIndex, i) => {
+      const stakeForRace = stakePerRace[i];
+
+      const betObject = {
+        odds: odds[i],
+        amount: stakeForRace,
+        selectionId: betSlipData.isCombined
+          ? betSlipData.selectionId[i]
+          : betSlipData.selectionId + "",
+        marketId: marketId + "",
+        eventId: eventId,
+        betFor: betSlipData.betFor + "",
+        run: betSlipData.run ? betSlipData.run + "" : "0",
+        oddsType:
+          betSlipData.oddsType === "Match Odds"
+            ? "matchOdds"
+            : betSlipData.oddsType === "Tied Match"
+            ? "tiedMatch"
+            : betSlipData.oddsType + "",
+        type: betSlipData.betType + "",
+        isCombined: betSlipData.isCombined || false,
+      };
+
+      if (
+        betSlipData.oddsType !== "bookmaker" &&
+        betSlipData.oddsType !== "fancy"
+      ) {
+        betObject["betfairMarketId"] = betSlipData.betfairMarketId + "";
+      }
+
+      // Return API Promise
+      return apiCall("POST", "sports/oddBetPlaced", betObject);
+    });
+
+    // Run all bets in parallel 🔥
+    const responses = await Promise.all(betPromises);
+
+    // Check results
+    responses.forEach((res, i) => {
+      if (!res.error) {
+        console.log(`Bet placed for race ${matchOddsSelected[i]}`);
+      } else {
+        console.log(`Bet FAILED for race ${matchOddsSelected[i]}`);
+      }
+    });
+
+    // After all bets processed
+    setBetLoading(false);
+    setBetShow(false);
+    setBetShowM(false);
+    message.success("All bets placed successfully!");
+  
+
+    dispatch(getActiveBetsCount());
+    openBets();
+    dispatch(getUserBalance());
+    await fetchBetLists();
+    await matchOddsPos();
+
+    if (
+      betSlipData.oddsType === "Match Odds" &&
+      (inplayMatch.countryCode === "GB" ||
+        inplayMatch.countryCode === "IE") &&
+      inplayMatch.sportId === 7
+    ) {
+      await getOpenBets();
+    }
+  } catch (error) {
+    message.error(error?.data?.message || "Bet failed");
+    setBetLoading(false);
+    console.error("Error placing bet:", error);
+    setErrorMessage(error?.data?.message || "Bet failed");
+  }
+};
 
 
 
@@ -881,6 +1050,99 @@ const ViewMatchRacing = () => {
         handleButtonValues
     }
 
+       const handleCheckboxClick = (itemId) => {
+    setMatchOddsSelected((prev) => {
+      if (prev.includes(itemId)) {
+        return prev.filter((id) => id !== itemId);
+      } else {
+        if (matchOddsSelected?.length >= 5) return [...prev];
+        return [...prev, itemId];
+      }
+    });
+  };
+
+      const calculateCombinedOdds = (type = 'back') => {
+    try {
+      if (matchOddsSelected.length < 2) return null;
+
+      const matchOddsData = finalSocket['Match Odds'];
+      if (!matchOddsData || !matchOddsData.runners) return null;
+
+      let totalProbability = 0;
+      const selectedRunners = matchOddsData.runners.filter((_, index) => matchOddsSelected.includes(index + 1));
+
+      selectedRunners.forEach((runner) => {
+        const odds = type === 'back' ? runner.ex?.availableToBack?.[0]?.price : runner.ex?.availableToLay?.[0]?.price;
+        if (odds && !isNaN(odds)) {
+          totalProbability += 1 / odds;
+        }
+      });
+
+      if (totalProbability === 0) return null;
+      const combinedOdds = (1 / totalProbability) - 1;
+      return Math.round(combinedOdds * 100) / 100;
+    } catch (error) {
+      console.error('Error calculating combined odds:', error);
+      return null;
+    }
+  };
+
+
+  const calculateCombinedOddsW = (selectedRaces, type = 'back') => {
+
+  
+  try {
+
+    // Ensure array
+ 
+
+
+    if (selectedRaces.length < 2) return null;
+
+    const matchOddsData = finalSocket['Match Odds'];
+    if (!matchOddsData || !matchOddsData.runners) return null;
+
+    let totalInverse = 0;
+    let odds = [];
+
+    selectedRaces?.forEach((raceIndex) => {
+      const runner = matchOddsData.runners[raceIndex - 1];
+       const raceOdds = type === 'back' ? runner.ex?.availableToBack?.[0]?.price : runner.ex?.availableToLay?.[0]?.price;
+
+      if (raceOdds && !isNaN(raceOdds)) {
+        odds.push(raceOdds);
+        totalInverse += 1 / raceOdds;
+      }
+    });
+
+    if (totalInverse === 0) return null;
+
+    const combinedOdds = (1 / totalInverse) - 1;
+
+
+    setCombinedOddsDisplay(Math.round(combinedOdds * 100) / 100);
+
+    return {
+      odds,
+      combinedOdds: Math.round(combinedOdds * 100) / 100,
+      totalInverse,
+    };
+
+  } catch (error) {
+    console.error("Error calculating combined odds:", error);
+    return null;
+  }
+};
+
+ const combinedBackOdds = [
+    calculateCombinedOdds('back'),
+    calculateCombinedOddsW('back')
+];
+
+const combinedLayOdds = [
+    calculateCombinedOdds('lay'),
+    calculateCombinedOddsW('lay')
+];
 
     return (isLoading ? <span className="animate-spin h-5 w-5"></span> :
         <div>
@@ -982,18 +1244,196 @@ const ViewMatchRacing = () => {
                                 </div>
                             </div>
                         )}
+   {matchOddsSelected?.length > 1 && (
+              <>
+               <MatchDetailsHeaderSection
+                               marketType={"Combined Market"}
+                               minMax={{ min: 100, max: formatNumber(isMatchCoin?.max) }}
+                               
+                             >
+                               <div className="flex whitespace-normal max-w-full border-b border-gray-200">
+                                 <div className="lg:w-1/2 xl:w-[30%] w-[65%] flex items-center text-[12px] px-2">
+                                 Min: 100 | Max: 50000
+                                 </div>
+               
+                                 <div className="lg:w-1/2 xl:w-[70%] w-[35%] grid grid-cols-6 gap-x-2">
+                                   <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"></span>
+                                   <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"></span>
+                                   <span className="lg:col-span-1 col-span-3 rounded-md w-full">
+                                     <div className="py-1.5 w-full flex justify-center items-center ">
+                                       <div className="text-center leading-3 w-full">
+                                         <span className="text-xs uppercase w-full block  bg-[#8DD9FF] h-[20px] rounded-[4px] px-4 text-gray-800 font-bold">
+                                           Back
+                                         </span>
+                                       </div>
+                                     </div>
+                                   </span>
+                                   <span className="lg:col-span-1 col-span-3 rounded-md">
+                                     <div className="py-1.5 w-full flex justify-center items-center">
+                                       <div className="text-center leading-3 w-full">
+                                         <span className="text-xs px-4 w-full  block rounded-[4px] h-[20px] bg-[#FF94BC] uppercase text-gray-800 font-bold">
+                                           Lay
+                                         </span>
+                                       </div>
+                                     </div>
+                                   </span>
+                                   <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"></span>
+                                   <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"></span>
+                                 </div>
+                               </div>
+                                </MatchDetailsHeaderSection>
+               <div className={`flex  whitespace-normal max-w-full border-b border-gray-300`}>
+                  <div className="lg:w-1/2 xl:w-[30%] w-[65%] 0 flex px-2">
+                    <div className="w-11/12 py-1 leading-3 flex items-center text-[#333333]">
+                      <span className="text-[16px] font-bold flex items-center gap-2">
+                        <span>{matchOddsSelected?.join('+')}<br /></span>
+                      </span>
+                    </div>
+                  </div>
+                  <div className="lg:w-1/2 xl:w-[70%] w-[35%] grid grid-cols-6 gap-x-1">
+                    <span className="lg:col-span-1 col-span-3 rounded-md lg:block hidden">
+                      <BlinkingComponent color={"bg-[#94dfff]"} blinkColor={"bg-[#00B2FF]"} hoverColor={"bg-sky-600"} />
+                    </span>
+                    <span className="lg:col-span-1 col-span-3 rounded-md lg:block hidden">
+                      <BlinkingComponent color={"bg-[#94dfff]"} blinkColor={"bg-[#00B2FF]"} hoverColor={"bg-sky-600"} />
+                    </span>
+                    <span
+                    // onClick={() => alert('Bet not accepted at this time')}
+                      className="md:col-span-3 sm:col-span-3 rounded-md col-span-3 lg:hidden block cursor-pointer"
+                      onClick={() =>
+                      {
+                        handleBackOpen(
+                          {
+                            odds: combinedBackOdds,
+                            type: "Yes",
+                            betType: "L",
+                            size: 100, // Default size, adjust as needed
+                            betFor: "matchOdds",
+                            oddsType: "Match Odds",
+                            betfairMarketId: finalSocket['Match Odds']?.marketId
+                          },
+                          true
+                        )
+                        setShowCombinedMobileBet(true);
+                        // setShowCombinedMobileBet(true);
+                      }
+
+                      }
+                    >
+                      <BlinkingComponent
+                        price={combinedBackOdds || '-'}
+                        color={"bg-[#94dfff]"} blinkColor={"bg-[#00B2FF]"}
+                      />
+                    </span>
+                    <span
+                    // onClick={() => alert('Bet not accepted at this time')}
+                      className="lg:col-span-1 col-span-3 rounded-md lg:block hidden cursor-pointer"
+                      onClick={() =>{
+                        handleBackOpen(
+                          {
+                            odds: combinedBackOdds,
+                            type: "Yes",
+                            betType: "L",
+                            size: 100, // Default size, adjust as needed
+                            betFor: "matchOdds",
+                            oddsType: "Match Odds",
+                            betfairMarketId: finalSocket['Match Odds']?.marketId
+                          },
+                          true
+                        )
+                         
+                      }
+                      }
+                    >
+                      <BlinkingComponent
+                        price={combinedBackOdds || '-'}
+                        color={"bg-[#94dfff]"}
+                        blinkColor={"bg-[#00B2FF]"}
+                      />
+                    </span>
+                    <span
+                    // onClick={() => alert('Bet not accepted at this time')}
+                      className="lg:col-span-1 col-span-3 rounded-md lg:hidden cursor-pointer"
+                      onClick={() =>{
+                        handleBackOpen(
+                          {
+                            odds: combinedLayOdds,
+                            type: "No",
+                            betType: "K",
+                            size: 100, // Default size, adjust as needed
+                            betFor: "matchOdds",
+                            oddsType: "Match Odds",
+                            betfairMarketId: finalSocket['Match Odds']?.marketId
+                          },
+                          true
+                        )
+                        setShowCombinedMobileBet(true);
+                 
+                      }
+                      }
+                    >
+                      <BlinkingComponent
+                        price={combinedLayOdds || '-'}
+                        color={"bg-[#FF94BC]"}
+                        blinkColor={"bg-[#FE7A7F]"}
+                      />
+                    </span>
+                    <span
+                    // onClick={() => alert('Bet not accepted at this time')}
+                      className="lg:col-span-1 col-span-3 rounded-md lg:block hidden cursor-pointer"
+                      onClick={() =>{
+                        handleBackOpen(
+                          {
+                            odds: combinedLayOdds,
+                            type: "No",
+                            betType: "K",
+                            size: 100, // Default size, adjust as needed
+                            betFor: "matchOdds",
+                            oddsType: "Match Odds",
+                            betfairMarketId: finalSocket['Match Odds']?.marketId
+                          },
+                          true
+                        )
+                          
+                      }
+                      }
+                    >
+                      <BlinkingComponent
+                        price={combinedLayOdds || '-'}
+                        color={"bg-[#FF94BC]"}
+                        blinkColor={"bg-[#FE7A7F]"}
+                      />
+                    </span>
+                    <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden">
+                      <BlinkingComponent color={"bg-[#FF94BC]"} blinkColor={"bg-[#FE7A7F]"} />
+                    </span>
+                    <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden">
+                      <BlinkingComponent color={"bg-[#FF94BC]"} blinkColor={"bg-[#FE7A7F]"} />
+                    </span>
+                  </div>
+                </div>
+
+                {showCombinedMobileBet && (
+                                  <PlaceBetMobile
+                                     closeRow={() => setShowCombinedMobileBet(false)}
+                                    closeSec={"combined"}
+                                    matchName={inplayMatch?.matchName}
+                                    openBets={openBets}
+                                    betSlipData={betSlipData}
+                                    handleClose={handleBackclose}
+                                     placeBet={combindedFlag ? placeBetCombind  : placeBet}
+                                    count={betSlipData.count}
+                                    betLoading={betLoading}
+                                    increaseCount={increaseCount}
+                                    decreaseCount={decreaseCount}
+                                    matchOddsSelected={matchOddsSelected}
+                                  />
+                                )}
+              </>
+            )}
 
                        
                         {!open ? <>
-                         <div class="flex w-full md:w-full overflow-hidden py-2 md:py-1 md:px-0 my-1">
-                            <div class="w-full inline-flex overflow-auto ">
-                                <div class="flex-none  relative space-x-2">
-                                    
-                                    <button class=" bg-[var(--secondary)] text-black h-[21px] px-2 rounded-[2.83px] gap-2.5  font-bold uppercase text-[12px]  " onClick={() => handleTabClick("all")}>All</button>
-                                </div>
-                            </div>
-                        </div>
-
                             {(activeTab == "all" || activeTab == "MatchOdds") && (<RacingMatchOddsMarket
                                 inplayMatch={inplayMatch}
                                 activeTab={activeTab}
@@ -1005,6 +1445,8 @@ const ViewMatchRacing = () => {
                                 handleBackOpen={handleBackOpen}
                                 formatNumber={formatNumber}
                                 betplaceSection={betplaceDataThroughProps}
+                                matchOddsSelected={matchOddsSelected}
+                                handleCheckboxClick={handleCheckboxClick}
 
                             />)}
 
@@ -1022,7 +1464,7 @@ const ViewMatchRacing = () => {
                                             key={tab}
                                             onClick={() => setActiveBets(tab)}
                                             className={`px-4 py-2 uppercase text-[12px] font-[600] w-full ${activeBets === tab
-                                                ? " text-[var(--secondary)] border-b-2 border-b-[var(--secondary)] bg-gray-50"
+                                                ? " text-[var(--secondary)] border-b-2 border-b-[var(--secondary)] bg-[--primary]"
                                                 : "hover:text-[var(--secondary)] text-black"
                                                 }`}
                                         >
@@ -1196,7 +1638,7 @@ const ViewMatchRacing = () => {
                                     closeRow={closeRow}
                                     matchData={inplayMatch}
                                     betSlipData={betSlipData}
-                                    placeBet={placeBet}
+                                     placeBet={combindedFlag ? placeBetCombind  : placeBet}
                                     errorMessage={errorMessage}
                                     successMessage={successMessage}
                                     count={betSlipData.count}
@@ -1215,7 +1657,7 @@ const ViewMatchRacing = () => {
                                         key={tab}
                                         onClick={() => setActiveBets(tab)}
                                         className={`px-4 py-2 uppercase text-[12px] font-[600] w-full ${activeBets === tab
-                                            ? " text-[var(--secondary)] border-b-2 border-b-[var(--secondary)] bg-gray-50"
+                                            ? " text-[var(--secondary)] border-b-2 border-b-[var(--secondary)] bg-[--primary]"
                                             : "hover:text-[var(--secondary)] text-black"
                                             }`}
                                     >

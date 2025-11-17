@@ -4,7 +4,7 @@ const Rules = () => {
           <div className="text-[15px] gap-3 rounded-t-[5px] text-black bg-[--secondary] px-5 h-[31px] flex items-center font-semibold" >
               <img className='!w-5 !h-5' src="/images/zetto/homeblack.png" alt="" srcset="" />
               <img className='!w-4 !h-4 rotate-90 ' src="/images/zetto/arrowblack.png" alt="" srcset="" />
-            BETTING RULES AT Bhimexch</div>
+            BETTING RULES AT Minister777</div>
         <div className="text-black bg-white  flex flex-col px-2 py-2 lg:px-28"><div className="mt-2 content">
 <p><span className="" ><strong>1. Cricket General:</strong></span></p>
 <p>&nbsp;</p>

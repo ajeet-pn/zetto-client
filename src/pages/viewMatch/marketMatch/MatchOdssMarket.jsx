@@ -141,7 +141,7 @@ const MatchOddsComponent = ({
 
                         <div className="lg:w-1/2 xl:w-[70%] w-[35%] gap-x-2 grid grid-cols-6 pe-2">
                       
-                          {elementtemp?.ex?.availableToBack?.length > 0 &&
+                          {/* {elementtemp?.ex?.availableToBack?.length > 0 &&
                             elementtemp.ex.availableToBack
                               .slice(1)
                               .map((tempData, index) => {
@@ -249,10 +249,252 @@ const MatchOddsComponent = ({
                                     />
                                   </span>
                                 </React.Fragment>
-                              )})}
+                              )})} */}
+
+                              {(() => {
+                              const availableToBack = elementtemp.ex?.availableToBack || [];
+                              const paddedBack = [...availableToBack];
+                              while (paddedBack.length < 3) {
+                                paddedBack.push({ price: 0, size: 0 });
+                              }
+                              return (
+                                <>
+                                  {paddedBack.slice(1).reverse().map((tempData, idx) => {
+                                    const matchedTrade = elementtemp.ex.tradedVolume?.find(
+                                      (trade) => trade.price === tempData.price
+                                    );
+                                    const displaySize = matchedTrade ? matchedTrade.size : tempData.size;
+                                    return (
+                                      <span
+                                        key={`back-${elementtemp.selectionId}-extra-${idx}`}
+                                        className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"
+                                         onClick={() =>
+                                            handleBackOpen({
+                                              data: tempData,
+                                              type: "Yes",
+                                              odds: tempData.price,
+                                              name: elementtemp.selectionName,
+                                              nameOther: element.runners,
+                                              betFor: "matchOdds",
+                                              oddsType: element.marketType,
+                                              betType: "L",
+                                              selectionId: elementtemp.selectionId,
+                                              teamData: tempData.price,
+                                              betfairMarketId: element.marketId,
+                                              price: elementtemp.ex.availableToLay?.[0]?.price,
+                                              size: elementtemp.ex.availableToLay?.[0]?.size,
+                                              position: returnDataObject,
+                                              newPosition: returnDataObject,
+                                            })}
+                                      >
+                                        <BlinkingComponent
+                                          price={tempData.price || 0}
+                                          size={FormateValueNumber(displaySize) || 0}
+                                          color={"bg-[#8DD9FF]"}
+                                    blinkColor={"bg-[#00B2FF]"}
+                                    hoverColor={"bg-sky-600"}
+                                        />
+                                      </span>
+                                    );
+                                  })}
+
+                                  {paddedBack.slice(0, 1).map((tempData, idx) => {
+                                    const matchedTrade = elementtemp.ex.tradedVolume?.find(
+                                      (trade) => trade.price === tempData.price
+                                    );
+                                    const displaySize = matchedTrade ? matchedTrade.size : tempData.size;
+                                    return (
+                                      <React.Fragment key={`back-${elementtemp.selectionId}-main-${idx}`}>
+                                        <span
+                                          className="md:col-span-2 sm:col-span-2 rounded-md col-span-3 md:col-start-2 lg:hidden block"
+                                          onClick={() =>
+                                            handleBackOpen({
+                                              data: tempData,
+                                              type: "Yes",
+                                              odds: tempData.price,
+                                              name: elementtemp.selectionName,
+                                              nameOther: element.runners,
+                                              betFor: "matchOdds",
+                                              oddsType: element.marketType,
+                                              betType: "L",
+                                              selectionId: elementtemp.selectionId,
+                                              teamData: tempData.price,
+                                              betfairMarketId: element.marketId,
+                                              price: elementtemp.ex.availableToLay?.[0]?.price,
+                                              size: elementtemp.ex.availableToLay?.[0]?.size,
+                                              position: returnDataObject,
+                                              newPosition: returnDataObject,
+                                            })
+                                          }
+                                        >
+                                          <BlinkingComponent
+                                            price={tempData.price || 0}
+                                            size={FormateValueNumber(displaySize) || 0}
+                                            color={"bg-[#8DD9FF]"}
+                                    blinkColor={"bg-[#00B2FF]"}
+                                    hoverColor={"bg-sky-600"}
+                                          />
+                                        </span>
+
+                                        <span
+                                          className="lg:col-span-1 col-span-3 rounded-md lg:block hidden"
+                                          onClick={() =>
+                                            handleBackOpen({
+                                              data: tempData,
+                                              type: "Yes",
+                                              odds: tempData.price,
+                                              name: elementtemp.selectionName,
+                                              nameOther: element.runners,
+                                              betFor: "matchOdds",
+                                              oddsType: element.marketType,
+                                              betType: "L",
+                                              selectionId: elementtemp.selectionId,
+                                              teamData: tempData.price,
+                                              betfairMarketId: element.marketId,
+                                              price: elementtemp.ex.availableToLay?.[0]?.price,
+                                              size: elementtemp.ex.availableToLay?.[0]?.size,
+                                              position: returnDataObject,
+                                              newPosition: returnDataObject,
+                                            })
+                                          }
+                                        >
+                                          <BlinkingComponent
+                                            price={tempData.price || 0}
+                                            size={FormateValueNumber(displaySize) || 0}
+                                            color={"bg-[#8DD9FF]"}
+                                    blinkColor={"bg-[#00B2FF]"}
+                                    hoverColor={"bg-sky-600"}
+                                          />
+                                        </span>
+                                      </React.Fragment>
+                                    );
+                                  })}
+                                </>
+                              );
+                            })()}
 
                           {/* Available to Lay */}
-                          {elementtemp?.ex?.availableToLay?.length > 0 &&
+                           {(() => {
+                              const availableToLay = elementtemp.ex?.availableToLay || [];
+                              const paddedLay = [...availableToLay];
+                              while (paddedLay.length < 3) {
+                                paddedLay.push({ price: 0, size: 0 });
+                              }
+
+                              return (
+                                <>
+                                  {paddedLay.map((tempData, layIdx) => {
+                                    const matchedTrade = elementtemp.ex.tradedVolume?.find(
+                                      (trade) => trade.price === tempData.price
+                                    );
+                                    const displaySize = matchedTrade ? matchedTrade.size : tempData.size;
+                                    const isFirst = layIdx === 0;
+                                    const key = `lay-${elementtemp.selectionId}-${layIdx}`;
+
+                                    return isFirst ? (
+                                      <React.Fragment key={key}>
+                                        {/* Mobile view - first lay (blinking, clickable) */}
+                                        <span
+                                          className="md:col-span-2 sm:col-span-2 rounded-md md:col-start-4 col-span-3 lg:hidden block"
+                                          onClick={() => {
+                                            toggleRowVisibility(elementtemp.selectionId);
+                                            handleBackOpen({
+                                              data: tempData,
+                                              type: "No",
+                                              odds: tempData.price,
+                                              name: elementtemp.selectionName,
+                                              nameOther: element.runners,
+                                              betFor: "matchOdds",
+                                              oddsType: element.marketType,
+                                              betType: "K",
+                                              selectionId: elementtemp.selectionId,
+                                              teamData: tempData.price,
+                                              betfairMarketId: element.marketId,
+                                              price: elementtemp.ex.availableToBack?.[0]?.price,
+                                              size: elementtemp.ex.availableToBack?.[0]?.size,
+                                              position: returnDataObject,
+                                              newPosition: returnDataObject,
+                                            });
+                                          }}
+                                        >
+                                          <BlinkingComponent
+                                            price={tempData.price || 0}
+                                            size={FormateValueNumber(displaySize) || "0"}
+                                             color={"bg-[#FF94BC]"}
+                                          blinkColor={"bg-[#FE7A7F]"}
+                                          />
+                                        </span>
+
+                                        {/* Desktop view - first lay */}
+                                        <span
+                                          className="lg:col-span-1 col-span-3 rounded-md lg:block hidden"
+                                          onClick={() =>
+                                            handleBackOpen({
+                                              data: tempData,
+                                              type: "No",
+                                              odds: tempData.price,
+                                              name: elementtemp.selectionName,
+                                              nameOther: element.runners,
+                                              betFor: "matchOdds",
+                                              oddsType: element.marketType,
+                                              betType: "K",
+                                              selectionId: elementtemp.selectionId,
+                                              teamData: tempData.price,
+                                              betfairMarketId: element.marketId,
+                                              price: elementtemp.ex.availableToBack?.[0]?.price,
+                                              size: elementtemp.ex.availableToBack?.[0]?.size,
+                                              position: returnDataObject,
+                                              newPosition: returnDataObject,
+                                            })
+                                          }
+                                        >
+                                          <BlinkingComponent
+                                            price={tempData.price || 0}
+                                            size={FormateValueNumber(displaySize) || "0"}
+                                             color={"bg-[#FF94BC]"}
+                                          blinkColor={"bg-[#FE7A7F]"}
+                                          />
+                                        </span>
+                                      </React.Fragment>
+                                    ) : (
+                                      // Other lay items (non-first) - only on desktop
+                                      <span
+                                        key={key}
+                                        className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"
+                                        onClick={() => {
+                                            toggleRowVisibility(elementtemp.selectionId);
+                                            handleBackOpen({
+                                              data: tempData,
+                                              type: "No",
+                                              odds: tempData.price,
+                                              name: elementtemp.selectionName,
+                                              nameOther: element.runners,
+                                              betFor: "matchOdds",
+                                              oddsType: element.marketType,
+                                              betType: "K",
+                                              selectionId: elementtemp.selectionId,
+                                              teamData: tempData.price,
+                                              betfairMarketId: element.marketId,
+                                              price: elementtemp.ex.availableToBack?.[0]?.price,
+                                              size: elementtemp.ex.availableToBack?.[0]?.size,
+                                              position: returnDataObject,
+                                              newPosition: returnDataObject,
+                                            });
+                                          }}
+                                      >
+                                        <BlinkingComponent
+                                          price={tempData.price || 0}
+                                          size={FormateValueNumber(displaySize) || "0"}
+                                           color={"bg-[#FF94BC]"}
+                                          blinkColor={"bg-[#FE7A7F]"}
+                                        />
+                                      </span>
+                                    );
+                                  })}
+                                </>
+                              );
+                            })()}
+                          {/* {elementtemp?.ex?.availableToLay?.length > 0 &&
                             elementtemp.ex.availableToLay.map(
                               (tempData, index) => {
                                    const matchedTrade = elementtemp.ex.tradedVolume?.find(
@@ -346,7 +588,7 @@ const MatchOddsComponent = ({
                                   )}
                                 </React.Fragment>
                               )}
-                            )}
+                            )} */}
                         </div>
                       </div>
                       {betSlipData?.oddsType === "Match Odds" &&

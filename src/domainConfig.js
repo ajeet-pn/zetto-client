@@ -1,11 +1,11 @@
 const BhimexchSettings = {
-  title: "Bhimexch | India’s Most Trusted Online Cricket Betting Id Provider",
-  favicon: "/logo/zetto-logo.png",
-  logo: "/logo/zetto-logo.png",
+  title: "Minister777 | India’s Most Trusted Online Cricket Betting Id Provider",
+  favicon: "/logo/minister777.png",
+  logo: "/logo/minister777.png",
   logo1: "/logo/silver-reddyBook.png",
   SOCKET_URL: "https://socket.trovetown.co/",
-  apiurl: 'https://api.bhimexch.com/v1/',
-  domainName: "Bhimexch",
+  apiurl: 'https://api.minister777.com/v1/',
+  domainName: "Minister777",
   colors: {
     "--primary": "#6b0000",
     "--secondary": "#fff",

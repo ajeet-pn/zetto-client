@@ -10,20 +10,20 @@ const ResponsibleGaming = () => {
               <img className='!w-4 !h-4 rotate-90 ' src="/images/zetto/arrowblack.png" alt="" srcset="" />
               Responsible Gambling</div>
             <div className="text-black bg-white flex text-[25px] flex-col px-2 py-2 lg:px-28 content">
-              <h1 className="text-[25px] font-bold" style={{textAlign: "center"}}>RESPONSIBLE GAMING POLICY OF BHIMEXCH</h1>
+              <h1 className="text-[25px] font-bold" style={{textAlign: "center"}}>RESPONSIBLE GAMING POLICY OF Minister777</h1>
 <p>&nbsp;</p>
 {/* <p className="text-[16px]"><strong>1. PRIVACY</strong></p> */}
 <p className="text-[18px] py-3">
-Although gambling is a form of recreation, some players try to turn it into a means of earning money, which leads to the development of addiction. BHIMEXCH has a policy dedicated to responsible gambling and tries to minimize the risks associated with the development of gambling addiction.</p>
+Although gambling is a form of recreation, some players try to turn it into a means of earning money, which leads to the development of addiction. Minister777 has a policy dedicated to responsible gambling and tries to minimize the risks associated with the development of gambling addiction.</p>
 <p>&nbsp;</p>
-<p className="text-[18px] py-3">The policy on responsible gaming provides a framework for identifying risky behavior through a patented internal system. It identifies users who lose a lot and are exposed to financial or mental risks when betting or playing games in BHIMEXCH. In such cases, the support team contacts the player to provide an objective assessment of the situation and discuss the possibilities of activating self-restriction and/or self-exclusion.</p>
+<p className="text-[18px] py-3">The policy on responsible gaming provides a framework for identifying risky behavior through a patented internal system. It identifies users who lose a lot and are exposed to financial or mental risks when betting or playing games in Minister777. In such cases, the support team contacts the player to provide an objective assessment of the situation and discuss the possibilities of activating self-restriction and/or self-exclusion.</p>
 <p>&nbsp;</p>
 <p className="text-[18px] py-3">The company constantly informs players about effective restriction tools such as spending limits, deposit restrictions, and playing session time limits.</p>
 <p>&nbsp;</p>
 <p className="text-[18px] py-3">
-BHIMEXCH carefully monitors the age of users and does not allow users under 18 years old to use the site or BHIMEXCH mobile app. The company may ask you to prove your age by providing proof of identity at any time and suspend your account until you provide this information.</p>
+Minister777 carefully monitors the age of users and does not allow users under 18 years old to use the site or Minister777 mobile app. The company may ask you to prove your age by providing proof of identity at any time and suspend your account until you provide this information.</p>
 <p>&nbsp;</p>
-<p className="text-[18px] py-3">Parents or guardians are advised to use filtering software to prevent minors from visiting BHIMEXCH India..</p>
+<p className="text-[18px] py-3">Parents or guardians are advised to use filtering software to prevent minors from visiting Minister777 India..</p>
             <div className="text-[18px] font-[900] italic py-3">SELF-CONTROL</div>
 
 <p className="text-[18px] py-3">Gambling addiction is a real problem, recognized by the global health community, and users can take a simple test to detect the development of the condition. This will help to determine the extent of the player’s involvement in gambling and identify the development of addiction in the early stages.</p>
@@ -45,19 +45,19 @@ Do you gamble in a state of euphoria or other unstable emotional states?</li>
 <p className="text-[18px] py-3">If you answered ‘Yes’ to most of these questions, you are encouraged to take a more detailed test using sites of organizations combating gambling addiction. They can help you and provide more ways to fight it.</p>
             <div className="text-[18px] font-[900] italic py-3">SELF-EXCLUSION</div>
 <p className="text-[18px] py-3">
-If you find yourself developing a gambling addiction and gaming is no longer fun for you but has become an obsession, you can use the voluntary self-exclusion function. You can contact BHIMEXCH support via live chat or e-mail to activate the feature..</p>
+If you find yourself developing a gambling addiction and gaming is no longer fun for you but has become an obsession, you can use the voluntary self-exclusion function. You can contact Minister777 support via live chat or e-mail to activate the feature..</p>
 <p className="text-[18px] py-3">
 
-Self-exclusion means that you voluntarily limit your access to the BHIMEXCH website, mobile application, and services for a certain period of time. Also, you will not receive marketing or promotional material from the company and the affiliates it partners with.</p>
+Self-exclusion means that you voluntarily limit your access to the Minister777 website, mobile application, and services for a certain period of time. Also, you will not receive marketing or promotional material from the company and the affiliates it partners with.</p>
 <p className="text-[18px] py-3">
 It is also a good idea to seek professional help from a psychologist, which can be obtained by contacting Gambling Anonymous (www.gamblersanonymous.org.uk) or Gambling Therapy (www.gamblingtherapy.org/).</p>
 <p className="text-[18px] py-3">
 A player who has activated the self-exclusion function may not create a new gaming account, bet or gamble via an existing profile, and/or deposit funds.</p>
-            <div className="text-[18px] font-[900] italic py-3">BHIMEXCH ACTIONS</div>
+            <div className="text-[18px] font-[900] italic py-3">Minister777 ACTIONS</div>
 <p className="text-[18px] py-3">
-BHIMEXCH reserves the right to exclude a player who behaves inappropriately, shows signs of mental illness, and shows excessive gambling addiction, as assessed and advised by customer service.</p>
+Minister777 reserves the right to exclude a player who behaves inappropriately, shows signs of mental illness, and shows excessive gambling addiction, as assessed and advised by customer service.</p>
 <p className="text-[18px] py-3">
-BHIMEXCH is able to keep accounts closed or decline a reactivation request for player safety.</p>
+Minister777 is able to keep accounts closed or decline a reactivation request for player safety.</p>
 <p className="text-[18px] py-3">
 Gambling addiction problems need to be dealt with immediately, and the company is there to support you should you have any questions or concerns.</p>
             </div>
