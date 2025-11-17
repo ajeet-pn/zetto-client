@@ -62,7 +62,7 @@ const SaffronExchSettings = {
 
 
 const domainSettings = {
-  "bhimexch.com": BhimexchSettings,
+  "ministerexch.com": BhimexchSettings,
   "safffronexchange.com": SaffronExchSettings,
   "localhost:3000": BhimexchSettings,
 
