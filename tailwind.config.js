@@ -6,6 +6,18 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        // 👇 This applies your custom font globally (font-sans)
+        sans: [
+          'ui-sans-serif',
+          'system-ui',
+          'sans-serif',
+          '"Apple Color Emoji"',
+          '"Segoe UI Emoji"',
+          '"Segoe UI Symbol"',
+          '"Noto Color Emoji"',
+        ],
+      },
       colors: {
         // 'primary': '#9F4636',
         // 'primary90': '#9F4636E6',

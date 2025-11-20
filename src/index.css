@@ -19,7 +19,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-* {
+html, body {
   font-family: ui-sans-serif,system-ui,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji" !important;
 }
 .react-datepicker-wrapper{
@@ -173,4 +173,11 @@ body {
 .hide-scrollbar {
   -ms-overflow-style: none; /* IE and Edge */
   overflow: auto;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  /* height: 1px;
+  background-color: #6b0000; */
+  display: none !important;
 }

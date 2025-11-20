@@ -127,11 +127,11 @@ function AllCasino() {
       <div className="w-full min-h-screen max-w-6xl mx-auto px-2 md:px-4">
         <SlotBanner />
          <div className="relative block md:hidden my-4">
-          <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
+          {/* <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" /> */}
           <input
             type="text"
             placeholder="Search Games"
-            className="pl-10 pr-3 py-2 border border-gray-500 bg-transparent rounded-md w-full text-sm text-black focus:outline-none"
+            className="pl-4 pr-3 py-2 border border-gray-400 bg-transparent rounded-md w-full text-sm text-black focus:outline-none"
             // value={searchQuery}
             // onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -149,9 +149,9 @@ function AllCasino() {
                   onClick={() => handlProviderCasinoList(item)}
                 >
                   <div
-                    className={`px-5 py-1 rounded-[5px] border ${
+                    className={`px-5 py-1 rounded-t border ${
                       isSelected
-                        ? "bg-[var(--secondary)] text-black"
+                        ? "bg-[var(--primary)] text-white"
                         : "text-black"
                     }`}
                   >
@@ -166,13 +166,13 @@ function AllCasino() {
         </div>
 
         {/* 🔹 Category Tabs */}
-<div className="flex justify-between items-center flex-wrap">
-                <div className="flex md:w-[80%] justify-start items-center overflow-x-auto">
+        <div className="flex justify-between items-center">
+                <div className="flex md:w-[80%] justify-start items-center overflow-x-auto mt-3">
           <button
             onClick={() => setSelectedCategory("All")}
-            className={`px-4 py-2 rounded-t-[5px] whitespace-nowrap flex justify-center items-center text-sm uppercase ${
+            className={`px-4 py-1.5 rounded-t whitespace-nowrap flex justify-center items-center text-sm uppercase ${
               selectedCategory === "All"
-                ? "bg-[var(--secondary)] text-black"
+                ? "bg-[var(--primary)] text-white"
                 : "bg-transparent text-black"
             }`}
           >
@@ -202,11 +202,11 @@ function AllCasino() {
           </div>
 
  <div className="relative hidden md:block">
-                  <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
+                  {/* <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" /> */}
                   <input
                     type="text"
                     placeholder="Search Games"
-                    className="pl-10 pr-3 py-2 border border-gray-500 bg-transparent rounded-md min-w-[200px] text-sm text-black focus:outline-none"
+                    className="pl-4 py-2 ms-3 border border-gray-400 bg-transparent rounded-md min-w-[200px] text-sm text-black focus:outline-none"
                     // value={searchQuery}
                     // onChange={(e) => setSearchQuery(e.target.value)}
                   />
@@ -227,38 +227,37 @@ function AllCasino() {
                     (g) => g.category === cat.name
                   );
                   if (!catGames?.length) return null;
-
                   return (
                     <div key={cidx} className="my-5 relative">
                       {/* Header */}
                       <div className="flex justify-between items-center mb-2 px-1">
-                        <h2 className="text-[18px] font-semibold text-black flex items-center gap-2">
-                          {cat.icon && (
+                        <h2 className="text-[15px] font-semibold text-black tracking-wide flex items-center gap-2">
+                          {/* {cat.icon && (
                             <img
                               src={cat.icon}
                               alt={cat.name}
                               className="w-6 h-6 object-contain rounded-sm"
                             />
-                          )}
+                          )} */}
                           {cat.name}
                         </h2>
                         <div className="flex items-center gap-2">
                           <button
                             onClick={() => setSelectedCategory(cat.name)}
-                            className="text-[12px] text-[var(--secondary)] bg-[var(--primary)] p-1 rounded hover:underline"
+                            className="text-[12px] text-[var(--secondary)] bg-[var(--primary)] py-0.5 leading-0 px-2 rounded hover:underline"
                           >
                             View All
                           </button>
                           <div className="flex gap-1">
                             <button
                               onClick={() => scroll(cidx, "left")}
-                              className="p-1 bg-gray-200 rounded-full hover:bg-gray-300"
+                              className="p-1 !bg-[var(--primary)] rounded text-white hover:bg-gray-300"
                             >
                               <FaChevronLeft size={14} />
                             </button>
                             <button
                               onClick={() => scroll(cidx, "right")}
-                              className="p-1 bg-gray-200 rounded-full hover:bg-gray-300"
+                              className="p-1 !bg-[var(--primary)]  rounded text-white hover:bg-gray-300"
                             >
                               <FaChevronRight size={14} />
                             </button>
@@ -274,18 +273,18 @@ function AllCasino() {
                         {catGames.map((item, idx) => (
                           <div
                             key={idx}
-                            className="flex-shrink-0 w-[150px] md:w-[180px] cursor-pointer hover:scale-105 transition-transform duration-300"
+                            className="flex-shrink-0 w-[120px] md:w-[180px] cursor-pointer hover:scale-105 transition-transform duration-300"
                             onClick={() => handleResponseCasino(item)}
                           >
                             <div className="relative">
                               <img
                                 src={item?.urlThumb}
                                 alt={item?.gameName}
-                                className="w-full h-[190px] object-cover rounded-md"
+                                className="w-full h-[175px] sm:h-[230px] object-cover rounded-md"
                               />
-                              <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-sm font-semibold py-1 text-center rounded-b-md">
+                              {/* <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-sm font-semibold py-1 text-center rounded-b-md">
                                 {item?.gameName}
-                              </div>
+                              </div> */}
                             </div>
                           </div>
                         ))}
