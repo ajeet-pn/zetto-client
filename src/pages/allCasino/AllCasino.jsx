@@ -139,7 +139,7 @@ function AllCasino() {
 
         {/* 🔍 Provider Tabs + Search */}
         <div className="flex justify-between items-center my-3">
-          <div className="flex overflow-x-auto gap-2">
+          <div className="flex overflow-x-auto gap-2 border-b border-gray-300 text-[12px]">
             {["All", ...(groupCasinoList?.providerList || [])]?.map((item, idx) => {
               const isSelected = selectedProvider === item;
               return (
@@ -166,11 +166,11 @@ function AllCasino() {
         </div>
 
         {/* 🔹 Category Tabs */}
-        <div className="flex justify-between items-center">
-                <div className="flex md:w-[80%] justify-start items-center overflow-x-auto mt-3">
+        <div className="flex text-[12px] justify-between border-b border-gray-300 items-center">
+                <div className="flex md:w-[80%] justify-start items-center  overflow-x-auto">
           <button
             onClick={() => setSelectedCategory("All")}
-            className={`px-4 py-1.5 rounded-t whitespace-nowrap flex justify-center items-center text-sm uppercase ${
+            className={`px-4 py-1  rounded-t  whitespace-nowrap flex justify-center items-center text-[12px] ${
               selectedCategory === "All"
                 ? "bg-[var(--primary)] text-white"
                 : "bg-transparent text-black"
@@ -183,9 +183,9 @@ function AllCasino() {
             <button
               key={idx}
               onClick={() => setSelectedCategory(cat.name)}
-              className={`px-4 py-2 rounded-t-[5px] whitespace-nowrap flex justify-center items-center text-sm uppercase ${
+              className={`px-6 rounded-t-[5px]  whitespace-nowrap flex justify-center items-center uppercase ${
                 selectedCategory === cat.name
-                  ? "bg-[var(--secondary)] text-black"
+                  ? "bg-[var(--primary)] text-white"
                   : "bg-transparent text-black"
               }`}
             >
@@ -193,7 +193,7 @@ function AllCasino() {
                 <img
                   src={cat.icon}
                   alt={cat.name}
-                  className="w-7 h-7 mr-2 rounded-sm object-contain"
+                  className="w-7 h-7 mr-2 rounded-full object-contain"
                 />
               )}
               {cat.name}
@@ -206,7 +206,7 @@ function AllCasino() {
                   <input
                     type="text"
                     placeholder="Search Games"
-                    className="pl-4 py-2 ms-3 border border-gray-400 bg-transparent rounded-md min-w-[200px] text-sm text-black focus:outline-none"
+                    className="pl-4 py-1 ms-3 border border-gray-400 bg-transparent rounded min-w-[200px] text-sm text-black focus:outline-none"
                     // value={searchQuery}
                     // onChange={(e) => setSearchQuery(e.target.value)}
                   />
@@ -228,7 +228,7 @@ function AllCasino() {
                   );
                   if (!catGames?.length) return null;
                   return (
-                    <div key={cidx} className="my-5 relative">
+                    <div key={cidx} className="my-3 relative">
                       {/* Header */}
                       <div className="flex justify-between items-center mb-2 px-1">
                         <h2 className="text-[15px] font-semibold text-black tracking-wide flex items-center gap-2">
@@ -268,7 +268,7 @@ function AllCasino() {
                       {/* Slider */}
                       <div
                         ref={(el) => (sliderRefs.current[cidx] = el)}
-                        className="flex gap-3 overflow-x-auto scrollbar-hide pb-2 scroll-smooth"
+                        className="flex md:gap-2 gap-1 overflow-x-auto scrollbar-hide pb-2 scroll-smooth"
                       >
                         {catGames.map((item, idx) => (
                           <div
@@ -276,16 +276,16 @@ function AllCasino() {
                             className="flex-shrink-0 w-[120px] md:w-[180px] cursor-pointer hover:scale-105 transition-transform duration-300"
                             onClick={() => handleResponseCasino(item)}
                           >
-                            <div className="relative">
-                              <img
-                                src={item?.urlThumb}
-                                alt={item?.gameName}
-                                className="w-full h-[175px] sm:h-[230px] object-cover rounded-md"
-                              />
-                              {/* <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-sm font-semibold py-1 text-center rounded-b-md">
-                                {item?.gameName}
-                              </div> */}
-                            </div>
+                            
+
+                            <div className="relative w-full md:h-[230px] h-[175px]">
+  <img
+    src={item?.urlThumb}
+    alt={item?.gameName}
+    className="w-full h-full object-cover rounded-md"
+  />
+</div>
+
                           </div>
                         ))}
                       </div>
@@ -305,11 +305,13 @@ function AllCasino() {
                       onClick={() => handleResponseCasino(item)}
                       className="relative w-full cursor-pointer hover:scale-105 transition-transform duration-300"
                     >
-                      <img
-                        src={item?.urlThumb}
-                        alt={item?.gameName}
-                        className="w-full rounded-lg object-cover min-h-[175px] max-h-[175px] md:min-h-[230px] md:max-h-[230px]"
-                      />
+                                                  <div className="relative w-full md:h-[230px] h-[175px]">
+  <img
+    src={item?.urlThumb}
+    alt={item?.gameName}
+    className="w-full h-full object-cover rounded-md"
+  />
+</div>
                     </div>
                   </div>
                 ))}
