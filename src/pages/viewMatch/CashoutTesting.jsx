@@ -313,14 +313,13 @@ const CashOutSystem = (props) => {
     <button
       onClick={handleCashout}
       disabled={!isCashoutAvailable}
-      className={`text-sm text-white px-3 py-0.5 ml-1 rounded-[1px] ${isCashoutAvailable
-          ? 'shadow-[inset_0px_-10px_20px_0px_#9f0101] bg-[linear-gradient(180deg,#fa7e29_0%,#F6682F_80%,#F6682F_100%)] hover:bg-green-600 cursor-pointer'
-          : 'shadow-[inset_0px_-10px_20px_0px_#9f0101] bg-[linear-gradient(180deg,#fa7e29_0%,#F6682F_80%,#F6682F_100%)] opacity-35 cursor-not-allowed'
+      className={`text-[10px] flex items-center text-black font-bold uppercase px-1 py-0.5 rounded ${isCashoutAvailable
+          ? 'bg-gray-100 hover:bg-green-600 cursor-pointer'
+          : 'bg-gray-300 opacity-35 cursor-not-allowed'
         }`}
       title={!isCashoutAvailable ?
         (cashoutPerformed ? "Already cashed out" : "Cashout not available") : ""}
     >
-      {/* {isCashoutAvailable ? `Cashout ${cashoutData.cashoutValue}` : "Cashout"} */}
       Cashout
     </button>
   );

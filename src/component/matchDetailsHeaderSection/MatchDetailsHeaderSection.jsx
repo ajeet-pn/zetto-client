@@ -56,27 +56,12 @@ const MatchDetailsHeaderSection = ({ children, marketType, minMax, cashOut }) =>
             {/* Header */}
             <div className="cursor-pointer bg-[--primary] h-[33px]">
                 <p className="flex items-center justify-between flex-wrap h-full px-3">
-                    <div className="flex items-center">
-                        <span className="text-[--secondary] uppercase text-[12px] font-bold flex justify-start items-center
+                    <div className="flex items-center w-full justify-between">
+                        <div className="text-[--secondary] uppercase text-[12px] font-bold flex justify-start items-center
                             ">
                             {marketType}
-                        </span>
-
-                        {/* <button
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                toggleBookmark();
-                            }}
-                            className="ml-2 focus:outline-none"
-                            aria-label={isBookmarked ? 'Remove bookmark' : 'Add bookmark'}
-                        >
-                            {isBookmarked ? (
-                                <FaBookmark size={16} className='text-[var(--primary)]' />
-                            ) : (
-                                <FaRegBookmark size={16} className='text-[var(--primary)]' />
-                            )}
-                        </button> */}
-                        {/* {cashOut} */}
+                        </div>
+                    <div className=''> {cashOut} </div>
                     </div>
 
                     {/* <span className="h-10 flex items-center space-x-1 text-black text-[10px] font-semibold sm:text-[9px]">

@@ -211,7 +211,7 @@ const token = localStorage.getItem("token");
                 className="divide-y divide-[#f8f8f8] border border-gray-400 md:pb-0  px-1 bg-white "
                 key={index}
               >
-                <div className="flex   w-full ">
+                <div className="flex  py-0.5 w-full ">
                   <div className="lg:w-[50%]  w-full flex justify-between items-center bg-white">
                     <div className="flex items-center justify-start w-full ">
                       {token ? <a
