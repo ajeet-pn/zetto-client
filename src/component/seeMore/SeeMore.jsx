@@ -11,12 +11,12 @@ const SeeMoreLess = () => {
     <div className='mx-5 md:mx-20' >
       <div className='text-[20px] font-bold text-start'>Online Sports Betting Exchange</div>
       <p className='text-[12px] py-2 '>
-        India’s online betting exchange and casino company, Minister777, is more than just a platform for betting enthusiasts,
+        India’s online betting exchange and casino company, ministerexch, is more than just a platform for betting enthusiasts,
         it transcends traditional betting by blending excitement and entertainment into every interaction.
       </p>
       <p className='text-[12px] py-2 '>
         We've mixed the thrill of betting exchange with the excitement of a sport and casino, creating an awesome
-        experience just for you. We've got something for everyone, so your time with Minister777 is always special.
+        experience just for you. We've got something for everyone, so your time with ministerexch is always special.
       </p>
       <p className='text-[12px] py-2 '>
         Our team, made up of experts, works hard to stay on top of the games, ensuring you're part of the most fun and thrilling experiences.
@@ -29,20 +29,20 @@ const SeeMoreLess = () => {
         Make Your Move, Bet Now! Zet. Set. Go!
       </p>
       <p className='text-[16px] py-2 font-semibold '>
-        Why Choose Minister777 as Your Online Sports Betting Exchange Platform
+        Why Choose ministerexch as Your Online Sports Betting Exchange Platform
       </p>
       <p className='text-[12px] py-2 '>
-        With just one click, you can access live cricket, other sports, and casino betting on our user-friendly platform. Place Your Debut Bet with Minister777 Exchange! 
+        With just one click, you can access live cricket, other sports, and casino betting on our user-friendly platform. Place Your Debut Bet with ministerexch Exchange! 
       </p>
       <p className='text-[14px] py-2 font-semibold '>Unmatched Variety
       </p>
       <p className='text-[12px] py-2 '>
-        Explore a diverse selection of sports events and find the perfect match for your betting preferences, Minister777 has it all.
+        Explore a diverse selection of sports events and find the perfect match for your betting preferences, ministerexch has it all.
       </p>
       <p className='text-[14px] py-2 font-semibold '>
         Innovative Betting Exchange
       </p>
-      <p className='text-[12px] py-2 '>Minister777 goes beyond traditional sports betting with our revolutionary betting exchange platform. Experience the power to set your odds, trade bets with fellow enthusiasts, and take control of your betting journey like never before.
+      <p className='text-[12px] py-2 '>ministerexch goes beyond traditional sports betting with our revolutionary betting exchange platform. Experience the power to set your odds, trade bets with fellow enthusiasts, and take control of your betting journey like never before.
       </p>
       <p className='text-[14px] py-2 font-semibold '>Live Betting Experience
 
@@ -53,7 +53,7 @@ const SeeMoreLess = () => {
       <p className='text-[14px] py-2 font-semibold '>Secure and Transparent
       </p>
       <p className='text-[12px] py-2 '>
-      At Minister777, we prioritise the safety and security of our users. Our robust platform ensures that your transactions are secure, and your data is protected. With transparent processes and fair play, you can bet with confidence, knowing that your success is determined by skill and strategy.
+      At ministerexch, we prioritise the safety and security of our users. Our robust platform ensures that your transactions are secure, and your data is protected. With transparent processes and fair play, you can bet with confidence, knowing that your success is determined by skill and strategy.
       </p>
       <p className='text-[14px] py-2 font-semibold '>Exclusive Bonuses/Promotions
       </p>
@@ -81,7 +81,7 @@ const SeeMoreLess = () => {
         <li className='list-disc text-[12px]'>We take pride in being one of the online betting companies accepting Indian rupees.</li>
         <li className='list-disc text-[12px]'>
           Our customer support is ready round the clock to help with any questions or worries.</li>
-        <li className='list-disc text-[12px]'>You can trust that Minister777 is a fully licensed and legal online sports betting company that follows all the rules and regulations.</li>
+        <li className='list-disc text-[12px]'>You can trust that ministerexch is a fully licensed and legal online sports betting company that follows all the rules and regulations.</li>
         <li className='list-disc text-[12px]'>Experience a high acceptance rate with our fastest matching bet feature, ensuring your odds are matched swiftly.</li>
         <p className='text-[14px] py-2'>
           Besides, we offer GUARANTEED WITHDRAWAL UNDER 45 MINUTES.
@@ -92,12 +92,12 @@ const SeeMoreLess = () => {
         How to Get Started with India’s Online Sports Betting Company
       </p>
       <p className='text-[14px]'>
-        Getting started on your betting adventure with an online sports betting company in India, Minister777 is remarkably simple, and you can break it down into a few easy-to-follow steps. Let's explore the process in detail to ensure you have a clear understanding of how to kick off your journey on Minister777.
+        Getting started on your betting adventure with an online sports betting company in India, ministerexch is remarkably simple, and you can break it down into a few easy-to-follow steps. Let's explore the process in detail to ensure you have a clear understanding of how to kick off your journey on ministerexch.
       </p>
       <p className='text-[14px] py-2 font-semibold '>Step 1: Registration
       </p>
       <p className='text-[14px]'>
-          To begin, you'll need to create an account on the Minister777 platform. This involves providing basic personal information, such as your name, email address, and preferred login details. Make sure to use accurate details to ensure a smooth and secure registration process.
+          To begin, you'll need to create an account on the ministerexch platform. This involves providing basic personal information, such as your name, email address, and preferred login details. Make sure to use accurate details to ensure a smooth and secure registration process.
       </p>
       <p className='text-[14px] py-2 font-semibold '>Step 2: Verification
       </p>
@@ -107,7 +107,7 @@ const SeeMoreLess = () => {
       <p className='text-[14px] py-2 font-semibold '>Step 3: Deposit Funds
       </p>
       <p className='text-[14px]'>
-        Once your account is verified, it's time to add funds to your Minister777 account. You can choose from a variety of payment methods, including UPI, GPay, PhonePe, Paytm, and bank transfers.   
+        Once your account is verified, it's time to add funds to your ministerexch account. You can choose from a variety of payment methods, including UPI, GPay, PhonePe, Paytm, and bank transfers.   
       </p>
       <p className='text-[14px] py-2 font-semibold '>Step 4: Welcome Bonus
       </p>
@@ -117,22 +117,22 @@ const SeeMoreLess = () => {
       <p className='text-[14px] py-2 font-semibold '>Step 5: Explore Betting Markets
       </p>
       <p className='text-[14px]'>
-          With funds in your account, you can now explore the diverse range of betting markets offered by Minister777. From sports events to casino games, the platform provides a wide array of options for users to place their bets. Take some time to familiarise yourself with the available markets and choose the ones that align with your interests.  
+          With funds in your account, you can now explore the diverse range of betting markets offered by ministerexch. From sports events to casino games, the platform provides a wide array of options for users to place their bets. Take some time to familiarise yourself with the available markets and choose the ones that align with your interests.  
       </p>
         <p className='text-[14px] py-2 font-semibold '>Step 6: Place Your Bets
         </p>
         <p className='text-[14px]'>
-          After selecting your preferred markets, you can start placing your bets. Minister777 offers a user-friendly interface that makes the betting process straightforward. Simply choose the outcome you want to bet on, enter your stake, and confirm your bet.
+          After selecting your preferred markets, you can start placing your bets. ministerexch offers a user-friendly interface that makes the betting process straightforward. Simply choose the outcome you want to bet on, enter your stake, and confirm your bet.
         </p>
         <p className='text-[14px] py-2 font-semibold '>Monitor and Manage Your Bets
         </p>
         <p className='text-[14px]'>
-          Once your bets are placed, you can monitor their progress in real-time. Minister777 provides live updates and detailed statistics to help you stay informed.
+          Once your bets are placed, you can monitor their progress in real-time. ministerexch provides live updates and detailed statistics to help you stay informed.
         </p>
         <p className='text-[16px] py-2 font-semibold '>Online Betting Exchange & Casino Platform Offerings
         </p>
         <p className='text-[14px]'>
-          Get into an unforgettable sports betting exchange experience with Minister777! You'll have many exciting options, ensuring that you'll keep coming back for more.
+          Get into an unforgettable sports betting exchange experience with ministerexch! You'll have many exciting options, ensuring that you'll keep coming back for more.
         </p>
         <p className='text-[14px] py-2 font-semibold '>Sports Betting Exchange
         </p>
@@ -155,7 +155,7 @@ const SeeMoreLess = () => {
           <p className='text-[16px] py-2 font-semibold '>Sports Betting Exchange Markets
         </p>
         <p className='text-[14px]'>
-          Minister777’s online sports betting exchange platform provides a platform where users can bet against each other rather than against a traditional bookmaker. This creates several unique markets:
+          ministerexch’s online sports betting exchange platform provides a platform where users can bet against each other rather than against a traditional bookmaker. This creates several unique markets:
         </p>
         <p className='text-[14px]'>Back and Lay Markets:
         </p>
@@ -177,7 +177,7 @@ const SeeMoreLess = () => {
         </p>
         <p className='text-[14px]'>Outright Markets: Betting on the overall outcome of a tournament or league, such as the winner of a championship
         </p>
-          <p className='text-[16px] py-2 font-semibold '>Casino Game Providers at Minister777.in
+          <p className='text-[16px] py-2 font-semibold '>Casino Game Providers at ministerexch.in
         </p>
         <p className='text-[14px]'>As an online casino company, we take pride in partnering with top Casino Game Providers to offer our players a diverse and thrilling gaming experience.
         </p> 
@@ -200,9 +200,9 @@ const SeeMoreLess = () => {
         <p className='text-[14px]'>Known for their innovative approach, Spribe brings you an exciting and fast-paced game that combines elements of skill and chance. With exciting card and dice games, Aviator offers a refreshing break from traditional casino games, providing an exciting experience for players seeking something new and thrilling.
         </p> 
           <p className='text-[14px] py-2 font-semibold '>
-            Join Minister777: Your Place to Bet, Connect & Win Together
+            Join ministerexch: Your Place to Bet, Connect & Win Together
         </p>
-        <p className='text-[14px]'>Be a part of the ultimate online sports betting exchange community at Minister777, where your winning odds are not just a statistic – they're your key to an exhilarating and rewarding betting experience! Join Minister777 today!
+        <p className='text-[14px]'>Be a part of the ultimate online sports betting exchange community at ministerexch, where your winning odds are not just a statistic – they're your key to an exhilarating and rewarding betting experience! Join ministerexch today!
         </p>  
         <p className='text-[16px] py-2 font-semibold '>
             FAQs related to Online Sports Betting Exchange
@@ -213,29 +213,29 @@ const SeeMoreLess = () => {
         <p className='text-[14px]'>A sports betting exchange is a platform that allows users to bet against each other rather than against the bookmaker. Users can both back (bet for) and lay (bet against) outcomes, creating a marketplace for odds.
         </p>
         <p className='text-[14px] font-semibold'>
-          2. How does Minister777’s online betting exchange differ from a traditional sportsbook?
+          2. How does ministerexch’s online betting exchange differ from a traditional sportsbook?
         </p>
         <p className='text-[14px]'>In a traditional sportsbook, users bet against the bookmaker, while in a betting exchange, users bet against each other. Exchanges offer more flexibility as users can set their own odds and either back or lay a particular outcome.
         </p>  
-          <p className='text-[14px] font-semibold'>3. Why does a user want to bet on the Minister777 exchange in India?</p>
+          <p className='text-[14px] font-semibold'>3. Why does a user want to bet on the ministerexch exchange in India?</p>
           <p className='text-[12px] py-2 '>
             That’s because online sports betting exchange offers better odds, the ability to lay bets and act as a
             bookmaker, the flexibility to set your own odds, and the potential for higher returns due to the absence
             of a traditional bookmaker's margin.
           </p>
 
-          <p className='text-[14px] font-semibold'>4. Is the Minister777 betting exchange safe in India?</p>
+          <p className='text-[14px] font-semibold'>4. Is the ministerexch betting exchange safe in India?</p>
           <p className='text-[12px] py-2 '>
-            Certainly! Minister777 withdrawals are not only safe but also provide a seamless experience in India. We take
+            Certainly! ministerexch withdrawals are not only safe but also provide a seamless experience in India. We take
             pride in offering guaranteed withdrawals within 45 minutes. Players have a multitude of options to
             conveniently withdraw their winnings using our encrypted and secure payment methods. Rest assured, our
             reliability and speed are second to none. Although withdrawal times may vary based on the chosen method,
             you can expect a prompt and efficient process throughout.
           </p>
 
-          <p className='text-[14px] font-semibold'>5. Can I place in-play (live) bets on the Minister777 betting exchange platform?</p>
+          <p className='text-[14px] font-semibold'>5. Can I place in-play (live) bets on the ministerexch betting exchange platform?</p>
           <p className='text-[12px] py-2 '>
-            Yes, Minister777 allows in-play betting, enabling users to place bets while the event is in progress.
+            Yes, ministerexch allows in-play betting, enabling users to place bets while the event is in progress.
           </p>
         </div>
       )}

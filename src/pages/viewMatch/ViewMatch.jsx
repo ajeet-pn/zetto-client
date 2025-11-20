@@ -1033,10 +1033,10 @@ const ViewMatches = () => {
                             {inplayMatch &&
                                 inplayMatch?.matchName ? (
                                 <div className="bg-[var(--secondary)] item-center px-2 py-1.5 flex justify-start">
-                                    <div className="text-black text-[14px] px-1 font-semibold flex justify-start items-center truncate w-1/2" onClick={closeModal}>{inplayMatch?.matchName}</div> |
-                                    <div className="flex justify-between w-full">
+                                    <div className="text-black text-[14px] px-1  font-semibold flex justify-start items-center  w-1/2" onClick={closeModal}>{inplayMatch?.matchName}</div> 
+                                    <div className="flex justify-between  flex-1 items-center">
                                         <div className="text-start px-1 text-black text-[14px] font-semibold flex justify-start items-center" onClick={() => handleBets() || handelScoreModalComplete()}>
-                                            MY BETS
+                                        |    MY BETS
                                         </div>
                                         <div onClick={() => handelScoreModalComplete()} className="cursor-pointer px-1"><IoMdTv size={25} /></div>
                                     </div>
@@ -1342,7 +1342,7 @@ const ViewMatches = () => {
                                             key={tab}
                                             onClick={() => setActiveBets(tab)}
                                             className={`px-4 py-2 uppercase text-[12px] font-[600] w-full ${activeBets === tab
-                                                ? " text-[var(--secondary)] border-b-2 border-b-[var(--secondary)] bg-gray-50"
+                                                ? " text-[var(--secondary)] border-b-2 border-b-[var(--secondary)] bg-[--primary]"
                                                 : "hover:text-[var(--secondary)] text-black"
                                                 }`}
                                         >
@@ -1361,7 +1361,7 @@ const ViewMatches = () => {
                                         <div className="min-w-full ">
                                             <div className="overflow-hidden w-full ">
                                                 <table className="min-w-full capitalize border border-[#f8f8f8]">
-                                                    <thead>
+                                                    {/* <thead>
                                                         <tr className="w-full text-black/80 text-[14px] font-[400] bg-[#ffffff] text-left border border-[#f8f8f8]">
                                                             <th className="px-[6px] py-1 border border-[#f8f8f8] whitespace-nowrap">Selname</th>
                                                             <th className="px-[6px] py-1 border border-[#f8f8f8] whitespace-nowrap">Odds</th>
@@ -1370,7 +1370,7 @@ const ViewMatches = () => {
                                                                 Date/Time
                                                             </th>
                                                         </tr>
-                                                    </thead>
+                                                    </thead> */}
                                                     <tbody>
                                                         {/* Odds Bets */}
                                                         {activeBets === "oddsBetData" &&
@@ -1535,8 +1535,8 @@ const ViewMatches = () => {
                                         key={tab}
                                         onClick={() => setActiveBets(tab)}
                                         className={`px-4 py-2 uppercase text-[12px] font-[600] w-full ${activeBets === tab
-                                            ? " text-[var(--secondary)] border-b-2 border-b-[var(--secondary)] bg-gray-50"
-                                            : "hover:text-[var(--secondary)] text-black"
+                                            ? " text-[var(--secondary)] border-b-2 border-b-[var(--secondary)] bg-[--primary]"
+                                            : "hover:text-[var(--primary)] text-black"
                                             }`}
                                     >
                                         {tab === "oddsBetData"
@@ -1554,7 +1554,7 @@ const ViewMatches = () => {
                                     <div className="min-w-full">
                                         <div className="overflow-hidden w-full">
                                             <table className="min-w-full capitalize border border-[#f8f8f8]">
-                                                <thead>
+                                                {/* <thead>
                                                     <tr className="w-full text-black/80 text-[14px] font-[400] bg-[#ffffff] text-left border border-[#f8f8f8]">
                                                         <th className="px-[6px] py-1 border border-[#f8f8f8] whitespace-nowrap">Selname</th>
                                                         <th className="px-[6px] py-1 border border-[#f8f8f8] whitespace-nowrap">Odds</th>
@@ -1563,7 +1563,7 @@ const ViewMatches = () => {
                                                             Date/Time
                                                         </th>
                                                     </tr>
-                                                </thead>
+                                                </thead> */}
                                                 <tbody>
                                                     {activeBets === "oddsBetData" &&
                                                         (oddsBetData?.length > 0 ? (
@@ -1674,261 +1674,13 @@ const ViewMatches = () => {
                     </div>
                     <div className="py-1">
                         <Link to={'/why-choose-us'}>
-                            <img className="rounded-[4px] w-full h-auto" src="/images/zetto/why.jpeg" alt="" />
+                            <img className="rounded-[4px] w-full h-auto" src="/images/zetto/why.png" alt="" />
                         </Link>
                     </div>
 
-                    {/* <div className="mt-1">
-                        <div className="bg-[var(--darkcolor)] rounded-t-md py-1.5 px-4 font-bold text-white text-sm">
-                            <span>My Bets</span>
-                        </div>
-                        <div className="flex justify-between items-center border-x border-t border-[#C6D2D8] bg-white w-full">
-                            {["oddsBetData", "UnsettleBets", "fancyBetData"]?.map((tab) => (
-                                <button
-                                    key={tab}
-                                    onClick={() => setActiveBets(tab)}
-                                    className={`px-4 py-2 uppercase text-[12px] font-[600] w-full ${activeBets === tab
-                                        ? " text-[var(--secondary)] border-b-2 border-b-[var(--secondary)] bg-gray-50"
-                                        : "hover:text-[var(--secondary)] text-black"
-                                        }`}
-                                >
-                                    {tab === "oddsBetData"
-                                        ? "MATCHED"
-                                        : tab === "UnsettleBets"
-                                            ? "Unsettle"
-                                            : tab === "fancyBetData"
-                                                ? "Fancy"
-                                                : "-"}
-                                </button>
-                            ))}
-                        </div>
-                        <div className="overflow-hidden w-full border border-[#C6D2D8] border-t-0">
-                            <div className="max-w-full overflow-auto">
-                                <div className="min-w-full">
-                                    <div className="overflow-hidden w-full">
-                                        <table className="min-w-full capitalize border border-[#f8f8f8]">
-                                            <thead>
-                                                <tr className="w-full text-black/80 text-[14px] font-[400] bg-[#ffffff] text-left border border-[#f8f8f8]">
-                                                    <th className="px-[6px] py-1 border border-[#f8f8f8] whitespace-nowrap">Selname</th>
-                                                    <th className="px-[6px] py-1 border border-[#f8f8f8] whitespace-nowrap">Odds</th>
-                                                    <th className="px-[6px] py-1 border border-[#f8f8f8] whitespace-nowrap">Stake</th>
-                                                    <th className="px-[6px] py-1 border border-[#f8f8f8] whitespace-nowrap">
-                                                        Date/Time
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {activeBets === "oddsBetData" &&
-                                                    (oddsBetData?.length > 0 ? (
-                                                        oddsBetData.map((element, index) => (
-                                                            <tr
-                                                                key={index}
-                                                                className={`w-full text-[#333333] text-[0.8125rem] border-b border-t divide-x divide-white text-left ${element?.type === "K"
-                                                                    ? "bg-[var(--matchKhai)]"
-                                                                    : "bg-[var(--matchLagai)]"
-                                                                    }`}
-                                                            >
-                                                                <td className="px-[6px] border border-[#f8f8f8] py-1 whitespace-nowrap">
-                                                                    <div>
-                                                                        {element?.teamName} <br />
-                                                                        <span className="font-bold">
-                                                                            {element?.marketName}
-                                                                        </span>
-                                                                    </div>
-                                                                </td>
-                                                                <td className="px-[6px] border border-[#f8f8f8] py-1 whitespace-nowrap">
-                                                                    {element?.odds}
-                                                                </td>
-                                                                <td className="px-[6px] border border-[#f8f8f8] py-1 whitespace-nowrap">
-                                                                    {element?.amount}
-                                                                </td>
-                                                                <td className="px-[6px] border border-[#f8f8f8] py-1 whitespace-nowrap">
-                                                                    {element?.date}
-                                                                </td>
-                                                            </tr>
-                                                        ))
-                                                    ) : (
-                                                        <tr>
-                                                            <td colSpan={4} className="text-center py-2 text-sm">
-                                                                No Odds Bet found!
-                                                            </td>
-                                                        </tr>
-                                                    ))}
-
-                                                {activeBets === "fancyBetData" &&
-                                                    (fancyBetData?.length > 0 ? (
-                                                        fancyBetData.map((element, index) => (
-                                                            <tr
-                                                                key={index}
-                                                                className={`w-full text-[#333333] text-[0.8125rem] border-b border-t text-left divide-x divide-white ${element?.type === "N"
-                                                                    ? "bg-[var(--matchKhai)]"
-                                                                    : "bg-[var(--matchLagai)]"
-                                                                    }`}
-                                                            >
-                                                                <td className="px-[6px] border border-[#f8f8f8] py-1 whitespace-nowrap">
-                                                                    <span className="font-medium text-xs">
-                                                                        {element?.sessionName}
-                                                                    </span>
-                                                                </td>
-                                                                <td className="px-[6px] border border-[#f8f8f8] py-1 whitespace-nowrap">
-                                                                    {element?.odds}
-                                                                </td>
-                                                                <td className="px-[6px] border border-[#f8f8f8] py-1 whitespace-nowrap">
-                                                                    {element?.amount}
-                                                                </td>
-                                                                <td className="px-[6px] border border-[#f8f8f8] py-1 whitespace-nowrap">
-                                                                    {element?.date}
-                                                                </td>
-                                                            </tr>
-                                                        ))
-                                                    ) : (
-                                                        <tr>
-                                                            <td colSpan={4} className="text-center py-2 text-sm">
-                                                                No Fancy Bets found!
-                                                            </td>
-                                                        </tr>
-                                                    ))}
-
-                                                {activeBets === "UnsettleBets" &&
-                                                    (fancyBetData?.length > 0 ? (
-                                                        fancyBetData.map((element, index) => (
-                                                            <tr
-                                                                key={index}
-                                                                className="w-full text-[#333333] text-[0.8125rem] border-b border-t text-left"
-                                                            >
-                                                                <td className="px-[6px] border border-[#f8f8f8] py-1 whitespace-nowrap">
-                                                                    {element?.name}
-                                                                </td>
-                                                                <td className="px-[6px] border border-[#f8f8f8] py-1 whitespace-nowrap">
-                                                                    {element?.odds}
-                                                                </td>
-                                                                <td className="px-[6px] border border-[#f8f8f8] py-1 whitespace-nowrap">
-                                                                    {element?.amount}
-                                                                </td>
-                                                                <td className="px-[6px] border border-[#f8f8f8] py-1 whitespace-nowrap">
-                                                                    {element?.date}
-                                                                </td>
-                                                            </tr>
-                                                        ))
-                                                    ) : (
-                                                        <tr>
-                                                            <td colSpan={4} className="text-center py-2 text-sm">
-                                                                No Unsettle Bets found!
-                                                            </td>
-                                                        </tr>
-                                                    ))}
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> */}
                 </div>
             </div>
 
-            <>
-
-            </>
-            {/* {matchTab === 2 && (
-                <div className="w-full fixed inset-0 z-10">
-                    <div className="bg-[var(--darkcolor)] rounded-t-md mt-1 py-1.5 px-4 font-bold text-white text-sm">
-                        <span> My Bets</span>
-                    </div>
-                    <div className="overflow-hidden w-full  border border-[#C6D2D8]">
-                        <div className="max-w-full overflow-auto ">
-                            <div className="inline-block min-w-full ">
-                                <div className="overflow-hidden w-full ">
-                                    <table className="min-w-full capitalize">
-                                        <thead>
-                                            <tr className="w-full text-black/80 text-[14px] font-semibold bg-[#CCCCCC] text-left">
-                                                <th className="px-[6px] py-1 whitespace-nowrap">
-                                                    Matched Bets
-                                                </th>
-                                                <th className="px-[6px] py-1 whitespace-nowrap">
-                                                    Odds
-                                                </th>
-                                                <th className="px-[6px] py-1 whitespace-nowrap">
-                                                    Stake
-                                                </th>
-                                                <th className="px-[6px] py-1 whitespace-nowrap">
-                                                    Date/Time
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {oddsBetData && oddsBetData?.length > 0 ? (
-                                                oddsBetData?.map((element, index) => (
-                                                    <tr
-                                                        key={index}
-                                                        className={`w-full text-[#333333]  text-[0.8125rem] border-b border-t divide-x divide-white text-left ${element?.type === "K"
-                                                            ? "bg-[var(--matchKhai)]"
-                                                            : "bg-[var(--matchLagai)]"
-                                                            }`}
-                                                    >
-                                                        <td className="px-[6px] py-1 whitespace-nowrap">
-                                                            <div>
-                                                                {element?.teamName} <br />
-                                                                <span className="font-bold">{element?.marketName}</span>
-                                                            </div>
-                                                        </td>
-                                                        <td className="px-[6px] py-1 whitespace-nowrap">
-                                                            {element && element?.oddsType === "matchOdds"
-                                                                ? parseFloat(Number(element?.odds) + 1)
-                                                                    .toFixed(2)
-                                                                    .replace(/\.?0+$/, "")
-                                                                : element &&
-                                                                    (element?.oddsType === "bookmaker" || element?.oddsType === "toss")
-                                                                    ? parseFloat(element?.odds * 100)
-                                                                        .toFixed(2)
-                                                                        .replace(/\.?0+$/, "")
-                                                                    : parseFloat(element?.odds)
-                                                                        .toFixed(2)
-                                                                        .replace(/\.?0+$/, "")}
-                                                        </td>
-                                                        <td className="px-[6px] py-1 whitespace-nowrap">
-                                                            {element?.amount}
-                                                        </td>
-                                                        <td className="px-[6px] py-1 whitespace-nowrap">
-                                                            {element?.date}
-                                                        </td>
-                                                    </tr>
-                                                ))
-                                            ) : fancyBetData && fancyBetData?.length > 0 ? (
-                                                fancyBetData?.map((element, index) => (
-                                                    <tr
-                                                        key={index}
-                                                        className={`w-full text-[#333333] text-[0.8125rem] border-b border-t text-left divide-x-2 divide-white ${element?.type === "N"
-                                                            ? "bg-[var(--matchKhai)]"
-                                                            : "bg-[var(--matchLagai)]"
-                                                            }`}
-                                                    >
-                                                        <td className="px-[6px] py-1 whitespace-nowrap">
-                                                            <span className="font-medium text-xs">{element?.sessionName}</span>
-                                                        </td>
-                                                        <td className="px-[6px] py-1 whitespace-nowrap">
-                                                            {element?.odds}
-                                                        </td>
-                                                        <td className="px-[6px] py-1 whitespace-nowrap">
-                                                            {element?.amount}
-                                                        </td>
-                                                    </tr>
-                                                ))
-                                            ) : (
-                                                <tr>
-                                                    <td colSpan={3} className="text-center py-2 text-sm">
-                                                        No records found
-                                                    </td>
-                                                </tr>
-                                            )}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )} */}
         </div >
     );
 };

@@ -189,7 +189,7 @@ const AppHeader = ({ setSidebarOpen }) => {
                 <img onClick={() => {
                   navigate("/dashboard");
                 }}
-                  src={settings.logo} className="h-[2rem] md:h-[45px] md:w-60 w-48  cursor-pointer" />
+                  src={settings.logo} className="h-[3rem] md:h-[75px] md:w-60 w-48  cursor-pointer" />
               </div>
               {token ? (
                 <>
@@ -406,8 +406,8 @@ const AppHeader = ({ setSidebarOpen }) => {
                     <div
                       onClick={() => { setSingupModalOpen(true);
                       }}
-                      className="bg-white cursor-pointer hover:bg-[var(--primary)] text-[var(--black)] hover:text-[var(--white)] bg-theme2 border !border-white !rounded-[3px]  hover:opacity-[0.7] transition text-black !rounded-[3px] flex justify-center items-center !text-[10px] font-bold !px-[22px] h-[25px]">
-                      SIGN UP
+                      className="hover:bg-[var(--primary)]  text-xs uppercase py-1 cursor-pointer text-black hover:!text-white bg-white font-bold border !border-white !rounded-[3px] !text-[10px] !px-[25px] h-[25px] ">
+                      SIGNUP
                     </div>
                     
                     <div onClick={() => { setLoginModalOpen(true);

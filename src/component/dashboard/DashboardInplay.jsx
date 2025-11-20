@@ -208,11 +208,11 @@ const token = localStorage.getItem("token");
             const isInplay = isInplayMatch(element);
             return (
               <div
-                className="divide-y divide-[#f8f8f8] border border-gray-400 md:pb-0 h-[58px] px-1 bg-white lg:h-[44px]"
+                className="divide-y divide-[#f8f8f8] border border-gray-400 md:pb-0  px-1 bg-white "
                 key={index}
               >
-                <div className="flex  w-full h-full">
-                  <div className="lg:w-[50%] w-full flex justify-between items-center bg-white">
+                <div className="flex   w-full ">
+                  <div className="lg:w-[50%]  w-full flex justify-between items-center bg-white">
                     <div className="flex items-center justify-start w-full ">
                       {token ? <a
                         href={`/sport-view/${element?.marketId}/${element?.eventId}/${element?.sportId}`}
@@ -227,7 +227,7 @@ const token = localStorage.getItem("token");
                             )
                           }
                         </div>
-                        <div className="flex flex-col uppercase w-full truncate px-2">
+                        <div className="flex flex-col uppercase w-full   px-2">
                           {element?.seriesName && <span className="text-[10px] text-[--white] capitalize font-bold lg:bg-[--primary] w-fit px-1 rounded-[5px]">
                             ({element?.seriesName ? element?.seriesName : "No Series"})
                           </span>}
@@ -248,12 +248,12 @@ const token = localStorage.getItem("token");
                             )
                           }
                         </div>
-                        <div className="flex flex-col uppercase w-full truncate px-2">
-                          {element?.seriesName && <span className="text-[10px] text-[--white] capitalize font-bold lg:bg-[--primary] w-fit px-1 rounded-[5px]">
+                        <div className="flex flex-col uppercase   px-2">
+                          {element?.seriesName && <span className="text-[10px] md:block hidden text-[--white] capitalize font-bold lg:bg-[--primary] w-fit px-1 rounded-[5px]">
                             ({element?.seriesName ? element?.seriesName : "No Series"})
                           </span>}
                           <span className="text-[11px] font-bold capitalize text-gray-900 hover:underline">
-                            {element?.matchName}
+                            {element?.matchName} <br/> <span className="md:hidden block text-xs">{moment(element.matchDate, "DD-MM-YYYY HH:mm:ss A").format("DD-MM-YYYY HH:mm")}</span>
                           </span>
                         </div>
                       </span>}

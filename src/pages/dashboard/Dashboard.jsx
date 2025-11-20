@@ -274,7 +274,7 @@ const domainSettingData = JSON.parse(localStorage.getItem('clientdomainSetting')
 
 <div className="block lg:hidden">
         <Link to={'/why-choose-us'}>
-                                <img className="rounded-[4px] w-full h-auto" src="/images/zetto/why.jpeg" alt=""/>
+                                <img className="rounded-[4px] w-full h-auto" src="/images/zetto/why.png" alt=""/>
          </Link>
          { !token ? 
                         <>
@@ -289,14 +289,14 @@ const domainSettingData = JSON.parse(localStorage.getItem('clientdomainSetting')
     >
       <img
         className="rounded-[4px] w-full h-auto mt-2"
-        src="/images/zetto/wpbanner.jpeg"
+        src="/images/zetto/wpbanner.png"
         alt="Whatsapp Banner"
       />
     </a>
   ) : (
     <img
       className="rounded-[4px] w-full h-auto mt-2"
-      src="/images/zetto/wpbanner.jpeg"
+      src="/images/zetto/wpbanner.png"
       alt="Whatsapp Banner"
     />
   )}

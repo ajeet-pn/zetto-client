@@ -10,14 +10,14 @@ const PrivecyPolicy = () => {
               <img className='!w-4 !h-4 rotate-90 ' src="/images/zetto/arrowblack.png" alt="" srcset="" />
               KYC and Privacy Policy</div>
             <div className="text-black bg-white flex text-[25px] flex-col px-2 py-2 lg:px-28 content">
-              <h1 className="text-[25px] font-bold" style={{textAlign: "center"}}>PRIVACY POLICY Minister777</h1>
+              <h1 className="text-[25px] font-bold" style={{textAlign: "center"}}>PRIVACY POLICY ministerexch</h1>
 <p>&nbsp;</p>
 <p className="text-[16px]"><strong>1. PRIVACY</strong></p>
 <p className="text-[16px] py-3">Never Ending Gaming N.V is committed to protecting your personal information. This Privacy Policy lets you know what information we collect when you use our services, why we collect this information and how we use the collected information.</p>
 <p>&nbsp;</p>
 <p className="text-[16px] py-3">Please note that this Privacy Policy will be agreed between you and . (‘We’, ‘Us’ or ‘Our’, as appropriate). This Privacy Policy is an integrated part of ’s Terms and Conditions.</p>
 <p>&nbsp;</p>
-<p className="text-[16px] py-3">The website www.Minister777.com ("Casino", "Website", “Never Ending Gaming N.V..”, "We", "Us", "Our") is owned and operated by Never Ending Gaming N.V a Never Ending Gaming N.V.. registered in accordance with Curaçao Law, registration No 162816, Address: Abraham de Veerstraat 9, Curacao. is licensed and regulated by the Curacao Gaming Authority and operates under the License No. 365/JAZ issued to Gaming Services Provider, Authorized and Regulated by the Government of Curaçao.</p>
+<p className="text-[16px] py-3">The website www.ministerexch.com ("Casino", "Website", “Never Ending Gaming N.V..”, "We", "Us", "Our") is owned and operated by Never Ending Gaming N.V a Never Ending Gaming N.V.. registered in accordance with Curaçao Law, registration No 162816, Address: Abraham de Veerstraat 9, Curacao. is licensed and regulated by the Curacao Gaming Authority and operates under the License No. 365/JAZ issued to Gaming Services Provider, Authorized and Regulated by the Government of Curaçao.</p>
 <p>&nbsp;</p>
 <p className="text-[16px] py-3">We may periodically make changes to this Privacy Policy and will notify you of these changes by posting the modified terms on our platforms. We recommend that you revisit this Privacy Policy regularly.</p>
 <p>&nbsp;</p>

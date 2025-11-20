@@ -26,7 +26,7 @@ export default function ChatPopUp() {
                         {/* <img className="!w-[50px] !h-[50px] rounded-full" src="/images/zetto/chatlogo.png" alt="" srcset="" /> */}
                     </div>
                 <div>
-                    <h2 className="text-[22px] font-bold">Minister777</h2>
+                    <h2 className="text-[22px] font-bold">ministerexch</h2>
                     <p className="text-[15px] leading-none">ZET SET GO!</p>
                 </div>
                 {/* <button
@@ -38,8 +38,8 @@ export default function ChatPopUp() {
                 </div>
 
                 <div className="px-4 py-10 bg-gray-50 rounded-t-[16px] text-gray-800 text-sm">
-                <p className="font-semibold mb-2">Minister777</p>
-                <p className="rounded-[16px] rounded-bl-0 p-2 bg-[#f8f8f8] max-w-[310px] w-full">Hi, Welcome to Minister777. How may I help you?</p>
+                <p className="font-semibold mb-2">ministerexch</p>
+                <p className="rounded-[16px] rounded-bl-0 p-2 bg-[#f8f8f8] max-w-[310px] w-full">Hi, Welcome to ministerexch. How may I help you?</p>
 
                 <div className="mt-4">
                     <p className="font-medium">Please confirm your username</p>

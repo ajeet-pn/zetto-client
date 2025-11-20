@@ -60,7 +60,7 @@ const domainSetting = JSON.parse(localStorage.getItem('clientdomainSetting'));
               {/* Logo */}
               <div className="flex flex-col gap-2 space-x-4">
                 <Link to='/dashboard'>
-                  <img src={settings.logo} alt="Zetto Logo" className="h-[3rem] md:h-[65px]" />
+                  <img src={settings.logo} alt="Zetto Logo" className="h-[3rem] md:h-[75px]" />
                 </Link>
                 <div className='text-[12px] font-semibold !ms-0'>FOLLOW US ON</div>
                 <div className='flex gap-2 !ms-0'>

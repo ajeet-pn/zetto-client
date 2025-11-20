@@ -77,7 +77,7 @@ const GameSlider = () => {
       image: "/images/zetto/aviator-730-280.gif",
       orderBy: 2,
       name: "Aviator",
-      gameId: "525001",
+      gameId: "201206",
     },
     {
       image: "/images/zetto/evoplay-730-280.gif",

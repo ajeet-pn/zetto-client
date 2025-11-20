@@ -64,7 +64,7 @@ export const ReferAFriend = () => {
                     Refer a Friend and Win Big!
                     </h2>
                     <p className="text-gray-600 mb-6 text-[18px] text-start">
-                    Invite your friends to join and play on Minister777, and enjoy a bonus of{" "}
+                    Invite your friends to join and play on ministerexch, and enjoy a bonus of{" "}
                     ₹1000! Refer
                     now and claim your reward!
                     </p>
@@ -78,7 +78,7 @@ export const ReferAFriend = () => {
                         Simply follow these easy steps and get ₹1000 FREE REFERRAL BONUS:
                     </p>
                     <ol className="list-decimal list-inside space-y-2 text-[18px] text-gray-700">
-                        <li>Login to your Minister777 account.</li>
+                        <li>Login to your ministerexch account.</li>
                         <li>Click on the Hamburger Menu and choose “Refer a Friend”.</li>
                         <li>Share your Referral Code with your friends.</li>
                         <li>
@@ -115,7 +115,7 @@ export const ReferAFriend = () => {
                         One account per player. Duplicate accounts will be disqualified.
                         </li>
                         <li>
-                        Minister777 reserves the right to amend or cancel the promotion anytime.
+                        ministerexch reserves the right to amend or cancel the promotion anytime.
                         </li>
                         <li>Other General Terms & Conditions apply.</li>
                     </ul>

@@ -55,7 +55,7 @@ const AppRightSIdebar = () => {
                 <ul className="p-0">
                     <li>
                     <Link to={'/why-choose-us'}>
-                        <img className="rounded-[4px] w-full h-auto" src="/images/zetto/why.jpeg" alt=""/>
+                        <img className="rounded-[4px] w-full h-auto" src="/images/zetto/why.png" alt=""/>
                     </Link>
                     </li>
                     { !token ? 
@@ -71,14 +71,14 @@ const AppRightSIdebar = () => {
     >
       <img
         className="rounded-[4px] w-full h-auto mt-2"
-        src="/images/zetto/wpbanner.jpeg"
+        src="/images/zetto/wpbanner.png"
         alt="Whatsapp Banner"
       />
     </a>
   ) : (
     <img
       className="rounded-[4px] w-full h-auto mt-2"
-      src="/images/zetto/wpbanner.jpeg"
+      src="/images/zetto/wpbanner.png"
       alt="Whatsapp Banner"
     />
   )}
