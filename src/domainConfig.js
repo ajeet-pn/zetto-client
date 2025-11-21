@@ -4,7 +4,7 @@ const BhimexchSettings = {
   logo: "/logo/minister777.png",
   logo1: "/logo/silver-reddyBook.png",
   SOCKET_URL: "https://socket.trovetown.co/",
-  apiurl: 'https://api.10xbpexch.com/v1/',
+  apiurl: 'https://api.ministerexch.com/v1/',
   domainName: "ministerexch",
   colors: {
     "--primary": "#6b0000",
@@ -77,3 +77,5 @@ const settings = domainSettings[currentDomain] || domainSettings["localhost:3000
 //   }
 // });
 export default settings;
+
+

@@ -162,6 +162,20 @@ export const getUserLedger = createAsyncThunk(
   }
 );
 
+export const getCateogeory = createAsyncThunk(
+  "user/getCateogeory",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const getCategory = await userServices.getCateogeory(payload);
+      return getCategory;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+
+
 const userSlice = createSlice({
   name: "user",
   initialState,
@@ -321,6 +335,19 @@ const userSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
+      //category Data
+      .addCase(getCateogeory.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getCateogeory.fulfilled, (state, action) => {
+        state.loading = false;
+        state.getCateogeoryData = action.payload?.data;
+      })
+      .addCase(getCateogeory.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
+      
   },
 });
 
