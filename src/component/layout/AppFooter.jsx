@@ -402,7 +402,7 @@ const domainSetting = JSON.parse(localStorage.getItem('clientdomainSetting'));
         <div
           onClick={() => {
             localStorage.clear();
-            window.location.reload();
+            window.location.href = '/';
           }}
           className="flex bg-[--secondary] text-[14px] h-[55px] rounded-[4px] p-3 m-4 justify-center items-center gap-2 text-black font-semibold uppercase"
         >

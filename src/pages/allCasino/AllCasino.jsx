@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useGroupCasinoList from "../../component/IntGroupCasinoList/IntGroupCasinoList";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getCateogeory,
   getInternationalGroupCasinoList,
-  getCasinoListByProviderName,
 } from "../../redux/reducers/user_reducer";
 import Loader from "../../component/loader/Loader";
 import SlotBanner from "../../component/SlotBanner/SlotBanner";
@@ -18,14 +16,11 @@ function AllCasino() {
   const [selectedSubCategoryId, setSelectedSubCategoryId] = useState(""); // Tracks which sub-cat is active
   const [isLoginModal, setIsLoginModal] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [categories, setCategories] = useState([]);
-  const [providerWiseCasinoList, setProviderWiseCasinoList] = useState([]);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const groupCasinoList = useGroupCasinoList();
 
-  const { loading, getInternationalGroupCasinoListData, getCasinoListByProviderNameData } = useSelector(
+  const { loading, getInternationalGroupCasinoListData } = useSelector(
     (state) => state.user
   );
 
@@ -82,31 +77,6 @@ function AllCasino() {
     }
   }, [categoryData]);
 
-    // Load default provider data (for "All" tab)
-    useEffect(() => {
-      if (groupCasinoList?.providerList?.length && !providerWiseCasinoList.length) {
-        dispatch(getCasinoListByProviderName({ provider: groupCasinoList.providerList[0] }));
-      }
-    }, [groupCasinoList, providerWiseCasinoList.length, dispatch]);
-  
-    // Update provider wise list + extract categories
-    useEffect(() => {
-      if (getCasinoListByProviderNameData?.length) {
-        setProviderWiseCasinoList(getCasinoListByProviderNameData);
-  
-        const categoryMap = {};
-        getCasinoListByProviderNameData.forEach((item) => {
-          if (item.category && !categoryMap[item.category]) {
-            categoryMap[item.category] = {
-              name: item.category,
-              icon: item.categoryIcon || item.urlThumb,
-            };
-          }
-        });
-        setCategories(Object.values(categoryMap));
-      }
-    }, [getCasinoListByProviderNameData]);
-  
 
   // Step 4: Main Category Click
   const handleMainCategoryClick = (item) => {
@@ -119,12 +89,7 @@ function AllCasino() {
     dispatch(getInternationalGroupCasinoList({ subCateogeoryId: subCatId }));
   };
 
-  // Step 6: Default Provider Load (for slider view if needed later)
-  useEffect(() => {
-    if (groupCasinoList?.providerList?.length && !getCasinoListByProviderNameData?.length) {
-      dispatch(getCasinoListByProviderName({ provider: groupCasinoList.providerList[0] }));
-    }
-  }, [groupCasinoList, getCasinoListByProviderNameData, dispatch]);
+
   console.log(getInternationalGroupCasinoListData, "getInternationalGroupCasinoListData");
   
 
@@ -133,10 +98,27 @@ function AllCasino() {
     item?.gameName?.toLowerCase().includes(searchTerm.toLowerCase())
   ) || [];
 
-  const filteredProviderList = providerWiseCasinoList.filter((item) =>
-    item?.gameName?.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // Check if we should show slider design
+  const isAllCategoryView = () => {
+    const selectedSubCat = subCategory.find(cat => cat._id === selectedSubCategoryId);
+    return selectedSubCat?.cateogeoryName === "all" && selectedSubCat?.cateogeoryType === "sub";
+  };
 
+  // Extract categories from filteredGames
+  const categoriesFromGames = () => {
+    const categoryMap = {};
+    filteredGames.forEach((item) => {
+      if (item.category && !categoryMap[item.category]) {
+        categoryMap[item.category] = {
+          name: item.category,
+          icon: item.categoryIcon || item.urlThumb,
+        };
+      }
+    });
+    return Object.values(categoryMap);
+  };
+
+  const categoriesList = categoriesFromGames();
 
   const scroll = (index, direction) => {
     const ref = sliderRefs.current[index];
@@ -172,10 +154,11 @@ function AllCasino() {
                 className="flex-shrink-0 cursor-pointer"
               >
                 <div
-                  className={`px-5 py-1 rounded-t border ${
+                  className={`px-5 py-1 rounded-t border flex gap-0.5 ${
                     isActive ? "bg-[var(--primary)] text-white" : "text-black"
                   }`}
                 >
+                  {item.cateogeoryImg && <img src={item.cateogeoryImg} width={10} height={10}/>}
                   {item.cateogeoryName}
                 </div>
               </div>
@@ -186,25 +169,7 @@ function AllCasino() {
         {/* Sub Category Tabs + Search */}
         <div className="flex text-[12px] justify-between border-b border-gray-300 items-center my-4">
           <div className="flex overflow-x-auto whitespace-nowrap">
-            {/* "All" Tab */}
-            {/* <button
-              onClick={() => {
-                if (subCategory.length > 0) {
-                  const firstId = subCategory[0]._id;
-                  setSelectedSubCategoryId(firstId);
-                  dispatch(getInternationalGroupCasinoList({ subCateogeoryId: firstId }));
-                }
-              }}
-              className={`px-6 py-1 rounded-t-[5px] uppercase ${
-                selectedSubCategoryId === subCategory[0]?._id
-                  ? "bg-[var(--primary)] text-white"
-                  : "bg-transparent text-black"
-              }`}
-            >
-              All
-            </button> */}
-
-            {/* Sub Categories */}
+            
             {subCategory?.map((cat, idx) => (
               <button
                 key={cat._id}
@@ -234,26 +199,91 @@ function AllCasino() {
           <Loader />
         ) : (
           <>
-          <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-5 xl:grid-cols-5 gap-1 gap-2 md:px-0 px-1 pt-1 pb-4">
-            {filteredGames.map((item, idx) => (
-              <div key={idx} className="flex flex-col items-center">
-                <div
-                  onClick={() => handleResponseCasino(item)}
-                  className="relative w-full cursor-pointer hover:scale-105 transition-transform duration-300"
-                >
-                  <div className="relative w-[120px] h-[175px] md:w-[160px] md:h-[230px]">
-                    <img
-                      src={item?.urlThumb || item?.image}
-                      alt={item?.gameName}
-                      className="w-full h-full object-cover rounded-md"
-                    />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+            {/* Show Slider Design ONLY when viewing "all" subcategory */}
+            {isAllCategoryView() && categoriesList.length > 0 ? (
+              <div className="space-y-6 md:px-0 px-1 pt-1 pb-4">
+                {categoriesList.map((cat, cidx) => {
+                  const catGames = filteredGames?.filter?.(
+                    (g) => g?.category === cat?.name
+                  ) || [];
 
-                </>
+                  if (!catGames?.length) return null;
+
+                  return (
+                    <div key={cidx} className="my-3 relative">
+                      {/* Header */}
+                      <div className="flex justify-between items-center mb-2 px-1">
+                        <h2 className="text-[15px] font-semibold text-black tracking-wide flex items-center gap-2">
+                          {cat?.name}
+                        </h2>
+                        <div className="flex items-center gap-2">
+                          <button className="text-[12px] text-[var(--secondary)] bg-[var(--primary)] py-0.5 leading-0 px-2 rounded hover:underline">
+                            View All
+                          </button>
+                          <div className="flex gap-1">
+                            <button
+                              onClick={() => scroll(cidx, "left")}
+                              className="p-1 !bg-[var(--primary)] rounded text-white hover:bg-gray-300"
+                            >
+                              <FaChevronLeft size={14} />
+                            </button>
+                            <button
+                              onClick={() => scroll(cidx, "right")}
+                              className="p-1 !bg-[var(--primary)] rounded text-white hover:bg-gray-300"
+                            >
+                              <FaChevronRight size={14} />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Slider */}
+                      <div
+                        ref={(el) => (sliderRefs.current[cidx] = el)}
+                        className="flex md:gap-2 gap-1 overflow-x-auto scrollbar-hide pb-2 scroll-smooth"
+                      >
+                        {catGames.map((item, idx) => (
+                          <div
+                            key={idx}
+                            className="flex-shrink-0 w-[120px] md:w-[180px] cursor-pointer hover:scale-105 transition-transform duration-300"
+                            onClick={() => handleResponseCasino(item)}
+                          >
+                            <div className="relative w-full w-[120px] h-[175px] md:w-[160px] md:h-[230px]">
+                              <img
+                                src={item?.urlThumb || item?.image}
+                                alt={item?.gameName}
+                                className="w-full h-full object-cover rounded-md"
+                              />
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              /* Grid Layout for other categories */
+              <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-5 xl:grid-cols-5 gap-1 gap-2 md:px-0 px-1 pt-1 pb-4">
+                {filteredGames.map((item, idx) => (
+                  <div key={idx} className="flex flex-col items-center">
+                    <div
+                      onClick={() => handleResponseCasino(item)}
+                      className="relative w-full cursor-pointer hover:scale-105 transition-transform duration-300"
+                    >
+                      <div className="relative w-[120px] h-[175px] md:w-[160px] md:h-[230px]">
+                        <img
+                          src={item?.urlThumb || item?.image}
+                          alt={item?.gameName}
+                          className="w-full h-full object-cover rounded-md"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </>
         )}
       </div>
       </section>
