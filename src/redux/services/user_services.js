@@ -134,6 +134,16 @@ async function getUserLedger(data) {
   }
 }
 
+async function getCateogeory(data) {
+  try {
+    const user = await apiCall("POST", "website/getCateogeory", data);
+    return user;
+  } catch (error) {
+    return Promise.reject(error);
+  }
+}
+
+
 
 export const userServices = {
   getUserStatement,
@@ -146,4 +156,5 @@ export const userServices = {
   getInternationalGroupCasinoList,
   getCasinoListByProviderName,
   getUserLedger,
+  getCateogeory,
 }
