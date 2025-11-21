@@ -6,13 +6,13 @@ export const SPORTSCONSTANT = [
     mobileicon: "/images/zetto/inplay-icon.png",
     url: "/dashboard" ,
   },
-  {
-    text: 'Upcoming',
-    count: "4",
-    icon: "/images/zetto/upcoming-icon.png",
-    mobileicon: "/images/zetto/upcoming-icon.png",
-    url: "/dashboard" ,
-  },
+  // {
+  //   text: 'Upcoming',
+  //   count: "4",
+  //   icon: "/images/zetto/upcoming-icon.png",
+  //   mobileicon: "/images/zetto/upcoming-icon.png",
+  //   url: "/dashboard" ,
+  // },
   {
     text: 'Cricket',
     count: "4",

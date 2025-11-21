@@ -160,7 +160,7 @@ export const AllSportsArray = [
 
 const tabList = [
   { id: "inplay", label: "IN-PLAY", icon: "▶️", tab: true },
-  { id: "upcoming", label: "UPCOMING", icon: "⏰", tab: true },
+  // { id: "upcoming", label: "UPCOMING", icon: "⏰", tab: true },
   { id: 4, label: "CRICKET", icon: "🏏", tab: true  },
   { id: 1, label: "FOOTBALL", icon: "⚽", tab: true  },
   { id: 2, label: "TENNIS", icon: "🎾", tab: true  },
@@ -177,19 +177,24 @@ const Dashboard = ({ }) => {
 
   const { sportMatchList } = useSelector((state) => state.sport);
   const groupCasinoList = useGroupCasinoList();
-  const matchlistLocal = localStorage.getItem("matchList")
-    ? JSON.parse(localStorage.getItem("matchList"))
-    : [];
-    const token = localStorage.getItem('token');
+  const token = localStorage.getItem('token');
 
   const [matchData, setMatchData] = useState([]);
   const [activeTab, setActiveTab] = useState("inplay");
 
   useEffect(() => {
-    let matchListData = matchlistLocal ? matchlistLocal : sportMatchList;
+    const matchlistLocal = localStorage.getItem("matchList")
+      ? JSON.parse(localStorage.getItem("matchList"))
+      : [];
+    
+    let matchListData = matchlistLocal && matchlistLocal.length > 0 
+      ? matchlistLocal 
+      : sportMatchList;
+    
     setMatchData(matchListData);
   }, [sportMatchList]);
 
+console.log(sportMatchList, "sportMatchListsportMatchList");
 
 const filteredData = matchData?.filter((match) => {
   if (activeTab == "inplay") {
@@ -243,11 +248,11 @@ const domainSettingData = JSON.parse(localStorage.getItem('clientdomainSetting')
       </div>
         <div className="space-y-0">
       {activeTab == "inplay" ? (
-        [...new Set(filteredData.filter(item => [4, 2, 1].includes(item.sportId)).map(item => item.sportId))].sort((a, b) => {
+        [...new Set(filteredData?.filter(item => [4, 2, 1].includes(item.sportId)).map(item => item.sportId))].sort((a, b) => {
     const order = [4, 2, 1]; 
     return order.indexOf(a) - order.indexOf(b);
   }).map((sportId) => {
-          const sportWiseMatches = filteredData.filter(item => item.sportId === sportId);
+          const sportWiseMatches = filteredData?.filter(item => item.sportId === sportId);
           const sportName = getSportName(sportId);
           return (
             <DashboardInplay
@@ -315,4 +320,4 @@ const domainSettingData = JSON.parse(localStorage.getItem('clientdomainSetting')
   )
 }
 
-export default React.memo(Dashboard);
+export default Dashboard;

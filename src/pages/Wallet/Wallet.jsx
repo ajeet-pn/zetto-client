@@ -584,13 +584,12 @@ const Wallet = () => {
                   {accountDetails?.accountNumber || '-'}
                 </span>
               </div>
-
-              {/* <div className="flex items-center px-2 bg-white border-b py-2 dark:bg-gray-800 dark:border-gray-700 text-center text-sm font-bold">
-                <span className="flex-1 text-start">IFSC Code</span>
-                <span className="flex-1 text-left pl-4">
-                  {accountDetails?.ifscCode || '-'}
+              <div className="flex items-center px-2 bg-secondary border-b  py-2  text-center text-sm font-bold">
+                <span className="flex-1 text-start border-r text-black">IFSC Code</span>
+                <span className="flex-1 text-left pl-4 text-[--primary]">
+                   {accountDetails?.ifscCode || '-'}
                 </span>
-              </div> */}
+              </div>
 
               <div className="flex items-center px-2 bg-secondary border-b py-2 text-center text-sm font-bold">
                 <span className="flex-1 text-start border-r text-black">Name</span>

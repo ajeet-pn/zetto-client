@@ -9,7 +9,7 @@ function AllSports({ activeAllSporttab, setactiveAllSporttab }) {
     const tabRefs = useRef([]);
     const dispatch = useDispatch();
     const handleTabClick = (element, index) => {
-        dispatch(getSportMatchList({_id:element?.sportId}))
+        // dispatch(getSportMatchList({_id:element?.sportId}))
         localStorage.setItem('dashboardActiveTabKey',element?.sportId)
         setactiveAllSporttab(element?.sportId);
         tabRefs.current[index]?.scrollIntoView({

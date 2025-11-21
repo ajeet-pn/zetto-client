@@ -228,11 +228,11 @@ const token = localStorage.getItem("token");
                           }
                         </div>
                         <div className="flex flex-col uppercase w-full   px-2">
-                          {element?.seriesName && <span className="text-[10px] text-[--white] capitalize font-bold lg:bg-[--primary] w-fit px-1 rounded-[5px]">
+                          {element?.seriesName && <span className="text-[10px] md:block hidden text-[--white] capitalize font-bold lg:bg-[--primary] w-fit px-1 rounded-[5px]">
                             ({element?.seriesName ? element?.seriesName : "No Series"})
                           </span>}
                           <span className="text-[11px] font-bold capitalize text-gray-900 hover:underline">
-                            {element?.matchName}
+                            {element?.matchName}  <br/> <span className="md:hidden block text-xs">{moment(element.matchDate, "DD-MM-YYYY HH:mm:ss A").format("DD-MM-YYYY HH:mm")}</span>
                           </span>
                         </div>
                       </a> : <span
