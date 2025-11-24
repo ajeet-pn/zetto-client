@@ -240,19 +240,19 @@ function AllCasino() {
                       {/* Slider */}
                       <div
                         ref={(el) => (sliderRefs.current[cidx] = el)}
-                        className="flex md:gap-2 gap-1 overflow-x-auto scrollbar-hide pb-2 scroll-smooth"
+                        className="flex gap-1 overflow-x-auto scrollbar-hide pb-2 scroll-smooth"
                       >
                         {catGames.map((item, idx) => (
                           <div
                             key={idx}
-                            className="flex-shrink-0 w-[120px] md:w-[180px] cursor-pointer hover:scale-105 transition-transform duration-300"
+                            className="flex-shrink-0  cursor-pointer hover:scale-105 transition-transform duration-300"
                             onClick={() => handleResponseCasino(item)}
                           >
-                            <div className="relative w-full w-[120px] h-[175px] md:w-[160px] md:h-[230px]">
+                            <div className="relative w-[140px] md:w-[180px]">
                               <img
                                 src={item?.urlThumb || item?.image}
                                 alt={item?.gameName}
-                                className="w-full h-full object-cover rounded-md"
+                                className="w-full h-[85px] md:h-[130px] "
                               />
                             </div>
                           </div>
@@ -264,18 +264,18 @@ function AllCasino() {
               </div>
             ) : (
               /* Grid Layout for other categories */
-              <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-5 xl:grid-cols-5 gap-1 gap-2 md:px-0 px-1 pt-1 pb-4">
+              <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-5 xl:grid-cols-5 gap-0.5 md:px-0 px-1 pt-1 pb-4">
                 {filteredGames.map((item, idx) => (
                   <div key={idx} className="flex flex-col items-center">
                     <div
                       onClick={() => handleResponseCasino(item)}
-                      className="relative w-full cursor-pointer hover:scale-105 transition-transform duration-300"
+                      className="relative w-full border border-[--primary] cursor-pointer hover:scale-105 transition-transform duration-300"
                     >
-                      <div className="relative w-[120px] h-[175px] md:w-[160px] md:h-[230px]">
+                      <div className="relative">
                         <img
                           src={item?.urlThumb || item?.image}
                           alt={item?.gameName}
-                          className="w-full h-full object-cover rounded-md"
+                          className="w-full  h-[85px] md:h-[130px] "
                         />
                       </div>
                     </div>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { apiCall } from "../../config/HTTP";
 import Loader from "../../component/loader/Loader";
+import { domainName } from "../../config/Auth";
 
 const IframeCasino = () => {
   const [casinoData, setCasinoData] = useState(null);
@@ -45,6 +46,7 @@ const IframeCasino = () => {
         casinoLogin
       );
 
+
       if (casinoLoginResponse && casinoLoginResponse.data) {
         setCasinoData(casinoLoginResponse.data);
       } else {
@@ -66,9 +68,13 @@ const IframeCasino = () => {
       setLoading(false); // ✅ Loader stop hamesha finally me hona chahiye
     }
   };
-
+  const user = JSON.parse(localStorage.getItem(`user_info_${domainName}`));
   return (
     <div className="iframeCasinoMain">
+            <div className="w-full px-2 uppercase py-0.5 flex justify-between bg-[--primary]">
+<div className="bg-black text-white text-xs px-2 flex items-center" onClick={() => navigate(-1)}> Back </div>
+<div className="text-xs font-bold text-white">{user?.data?.username}</div>
+      </div>
       {showAlert && (
         <div
           className={`absolute top-[2%] right-[2%] px-5 py-3 z-30 ${

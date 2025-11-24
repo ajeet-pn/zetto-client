@@ -84,12 +84,9 @@ const AppContent = () => {
       <Route path='/unsettled-bets' element={<UnsettledBets />} />
       <Route path='/refferal' element={<Refferal />} />
       <Route path='/profit-loss' element={<ProfitLoss />} />
-
-      
-            
-            <Route path="/iframe-casino/:gameId?" element={<IframeCasino />} />
+            {/* <Route path="/iframe-casino/:gameId?" element={<IframeCasino />} />
             <Route path="/iframe-casino-new/:provider?/:gameId?"  element={<IframeCasinonew />} />
-            <Route path="/iframe-qtech-casino/:gameId?"  element={<IframeQtech />} />
+            <Route path="/iframe-qtech-casino/:gameId?"  element={<IframeQtech />} /> */}
 
     </Routes>
 

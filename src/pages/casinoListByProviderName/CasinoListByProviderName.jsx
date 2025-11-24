@@ -82,7 +82,7 @@ const CasinoListByProviderName = () => {
                         <button
                             key={idx}
                             onClick={() => setSelectedCategory(category)}
-                            className={`px-4 py-2 h-16 text-sm font-bold capitalize rounded-lg ${selectedCategory === category ? 'bg-[--secondary] text-black' : 'bg-[--primary] text-white'}`}
+                            className={`px-2 py-2 h-10 text-sm font-bold capitalize rounded-lg ${selectedCategory === category ? 'bg-[--secondary] text-black' : 'bg-[--primary] text-white'}`}
                         >
                             {category}
                         </button>
@@ -91,14 +91,14 @@ const CasinoListByProviderName = () => {
 
 
                 {/* Provider-wise Casino Games */}
-                <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-7 gap-6  mb-20 py-3">
+                <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-7 gap-2  mb-20 py-3">
                     {uniqueList?.map((item, idx) => (
-                        <div key={idx} className="flex flex-col items-center gap-3 border-2 border-orange-600 rounded-lg">
+                        <div key={idx} className="flex flex-col items-center  border-2 border-orange-600 rounded">
                             <img
                                 onClick={() => handleResponseCasino(item)}
                                 src={item?.urlThumb}
                                 alt={item?.gameName}
-                                className="w-32 h-32 sm:w-32 sm:h-32 md:w-44 md:h-40 object-cover rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300"
+                                className="w-full  h-[85px] md:h-[130px] object-cover rounded cursor-pointer hover:scale-105 transition-transform duration-300"
                             />
                         </div>
                     ))}

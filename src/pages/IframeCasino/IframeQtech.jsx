@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { apiCall } from "../../config/HTTP";
 import Loader from "../../component/loader/Loader";
+import { domainName } from "../../config/Auth";
 
 
 
@@ -73,9 +74,13 @@ const IframeQtech = (props) => {
         }
 
     };
-
+  const user = JSON.parse(localStorage.getItem(`user_info_${domainName}`));
     return (
         <div className='iframeCasinoMain md:pb-1 pb-8'>
+        <div className="w-full px-2 uppercase py-0.5 flex justify-between bg-[--primary]">
+<div className="bg-black text-white text-xs px-2 flex items-center" onClick={() => navigate(-1)}> Back </div>
+<div className="text-xs font-bold text-white">{user?.data?.username}</div>
+      </div>
             {showAlert && <div className={`absolute top-[2%] right-[2%] px-5 py-3 z-30 ${errorType === 1 ? "bg-red-600" : "bg-green-600"}  rounded`}><span className='white-text font-bold'>{resMessage}</span></div>}
             {loading === true ?
                 <Loader />

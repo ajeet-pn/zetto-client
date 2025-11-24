@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
 import Layout from './layout/Layout'
 import { ToastContainer } from 'react-toastify'
 import { BalanceProvider } from './global/contextApi/BalanceContext'
@@ -25,6 +25,7 @@ function setMultipleRootCssVariables(colors) {
 
 function App() {
   const dispatch = useDispatch();
+    const location = useLocation();
 
   const cosinoGroupList = JSON.parse(localStorage.getItem('cosinoGroupList'))
   const {userDomainData} = useSelector((state) => state.user);
@@ -106,17 +107,35 @@ function App() {
   }, [dispatch])
 
 
+
+  useEffect(() => {
+    const path = location.pathname;
+
+    const iframeRoutes = [
+      "/iframe-casino",
+      "/iframe-casino-new",
+      "/iframe-qtech-casino"
+    ];
+
+    const shouldRemove = iframeRoutes.some(route => path.startsWith(route));
+    if (shouldRemove) {
+      document.body.classList.remove("pt-[94px]");
+    } else {
+      document.body.classList.add("h-dvh", "pt-[94px]");
+    }
+  }, [location.pathname]);
+
+
   return (
     <>
       <ToastContainer />
       <BalanceProvider>
-        <BrowserRouter>
           <Routes>
-            
-            {/* <Route path='/signup' element={<Signup />} /> */}
             <Route path="*" element={<Layout />} />
+            <Route path="/iframe-casino/:gameId?" element={<IframeCasino />} />
+            <Route path="/iframe-casino-new/:provider?/:gameId?"  element={<IframeCasinonew />} />
+            <Route path="/iframe-qtech-casino/:gameId?"  element={<IframeQtech />} />
           </Routes>
-        </BrowserRouter>
       </BalanceProvider>
     </>
 

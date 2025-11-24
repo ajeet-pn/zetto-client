@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { domainName } from '../../config/Auth';
 import settings from '../../domainConfig';
 import Login from '../login/Login';
+import { GiCommercialAirplane } from "react-icons/gi";
 
 const AppFooter = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -176,9 +177,9 @@ const domainSetting = JSON.parse(localStorage.getItem('clientdomainSetting'));
                 <li className='mx-auto h-full'
                 // onClick={() => handleConditionalClick()}
                 >
-                <Link to='/wallet'  className="mobile-btn flex flex-col items-center">
-                  <img alt="casino-icon" src="/images/zetto/star.png" className="!h-[20px] !w-[20px] !mt-[6px]"/>
-                  <p className="text-white text-[10px] mt-1">Wallet</p>
+                <Link to={`/iframe-casino/${201206}`}  className="mobile-btn flex flex-col items-center">
+                  <GiCommercialAirplane color='white' className="!w-[20px] !h-[20px] !mt-[6px]"/>
+                  <p className="text-white text-[10px] mt-1">Aviator</p>
                   </Link>
                 </li>
               )
