@@ -19,7 +19,10 @@ const OtherMarketsComponent = ({
 
   return (
     <>
-      {Object.values(otherFinalSocket).sort((a, b) => {
+      {Object.values(otherFinalSocket).filter(item => {
+    const t = item.marketType.trim();
+    return !/(Line|Total)$/.test(t) && t !== "Match Odds (Inc. Tie)";
+  }).sort((a, b) => {
     const isFirstA = a.marketType.includes("1st Innings");
                 const isFirstB = b.marketType.includes("1st Innings");
                 if (isFirstA && !isFirstB) return -1;
@@ -35,8 +38,7 @@ const OtherMarketsComponent = ({
         element.marketType !== "To Win the Toss" && 
         element.marketType !== "Completed Match" && (
           <div key={index}>
-            {console.log(element, "other line market" )
-            }
+         
             <MatchDetailsHeaderSection marketType={element.marketType} minMax={{ min: 100, max: formatNumber(isTieCoin?.max) }}>
             
             <div className="flex  whitespace-normal max-w-full border-b border-gray-200">
