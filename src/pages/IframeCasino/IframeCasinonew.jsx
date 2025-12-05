@@ -60,12 +60,13 @@ if (response?.status === "OP_GENERAL_ERROR") {
 
       if (!response.error) {
         setCasinoData(response.data || {});
+        setLoading(false);
         // Loader will hide when iframe finishes loading
       } else {
         setShowAlert(true);
         setErrorType(1);
         setResMessage(response.message || "Something went wrong");
-        setLoading(false);
+        
         return;
       }
     } catch (error) {

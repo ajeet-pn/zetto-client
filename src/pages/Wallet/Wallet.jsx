@@ -101,9 +101,9 @@ const Wallet = () => {
     }
 
     if (!eWalletAmount) errors.amount = "Amount is required";
-  if (!eWalletAmount || eWalletAmount < 300 || eWalletAmount > 25000) {
+  if (!eWalletAmount || eWalletAmount < 300 || eWalletAmount > 500000) {
 
-    errors.amount = 'Amount must be between ₨300 and ₨25,000.';
+    errors.amount = 'Amount must be between ₨300 and ₨500000.';
 }
 
     setEWalletErrors(errors);
@@ -113,9 +113,9 @@ const Wallet = () => {
   const validateBankTransfer = () => {
     const errors = {};
     if (!bankAmount) errors.amount = "Amount is required";
-    if (!bankAmount || bankAmount < 300 || bankAmount > 25000) {
+    if (!bankAmount || bankAmount < 300 || bankAmount > 500000) {
 
-    errors.amount = 'Amount must be between ₨300 and ₨25,000.';
+    errors.amount = 'Amount must be between ₨300 and ₨5,00,000.';
 }
     setErrors(errors);
     return Object.keys(errors).length === 0;
@@ -641,7 +641,7 @@ const Wallet = () => {
 
                 <label className="block text-sm mt-5 mb-1 capitalize text-[--primary] font-semibold">Select Your Amount </label>
             <div className="grid grid-cols-4 md:grid-cols-6 justify-start gap-1 ">
-              {[300, 1000, 2000, 5000, 10000, 25000].map((presetAmount) => (
+              {[300, 1000, 2000, 5000, 10000, 25000, 500000].map((presetAmount) => (
                 <button
                   key={presetAmount}
                   type="button"
