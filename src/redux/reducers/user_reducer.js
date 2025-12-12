@@ -301,13 +301,16 @@ const userSlice = createSlice({
       // providers list according to provider
       .addCase(getCasinoListByProviderName.pending, (state) => {
         state.loading = true;
+        state.loadingCasino = true;
       })
       .addCase(getCasinoListByProviderName.fulfilled, (state, action) => {
         state.loading = false;
+        state.loadingCasino = false;
         state.getCasinoListByProviderNameData = action.payload?.data;
       })
       .addCase(getCasinoListByProviderName.rejected, (state, action) => {
         state.loading = false;
+        state.loadingCasino = false;
         state.error = action.payload;
       })
 

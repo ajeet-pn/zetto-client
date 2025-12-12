@@ -161,7 +161,7 @@ const ViewMatches = () => {
         setMatchDataFromLocalstorage()
         const handleVisibilityChange = () => {
             if (document.visibilityState === 'visible' && isConnected && inplayMatch?.data?.socketUrl) {
-                callSocket(inplayMatch?.data?.socketUrl);
+                callSocket(inplayMatch?.data);
             } else if (document.visibilityState === 'hidden') {
                 cleanupWebSocket();
             }
@@ -318,8 +318,10 @@ const ViewMatches = () => {
                 setInplayMatch(inplayMatchResponse.data);
                 const data = inplayMatchResponse?.data;
 
+
+
                 if (inplayMatchResponse?.data?.socketPerm) {
-                    callSocket(inplayMatchResponse?.data?.socketUrl, inplayMatchResponse.data?.sportId);
+                    callSocket(inplayMatchResponse?.data, inplayMatchResponse.data?.sportId);
                 } else {
                     callCache(inplayMatchResponse?.data?.cacheUrl);
                 }
@@ -336,6 +338,8 @@ const ViewMatches = () => {
         }
     };
 
+    console.log(inplayMatch, "gggggggggggggggggggggggg");
+    
 
     useEffect(() => {
 
@@ -379,14 +383,77 @@ const ViewMatches = () => {
     }, [inplayMatch]);
 
 
-    const callSocket = async (socketUrl, matchId) => {
+//     const callSocket = async (socketUrl, matchId) => {
 
 
-        if (socketState && socketState.connected) {
-            return;
-        }
-        try {
-            const socket = io.connect(socketUrl, {
+//         if (socketState && socketState.connected) {
+//             return;
+//         }
+//         try {
+// let socketBetFair = ""
+//             if(socketUrl?.betfairSocketUrl){
+//              socketBetFair = io.connect(socketUrl?.betfairSocketUrl, {
+//                 transports: ["websocket"],
+//                 reconnection: true,
+//                 reconnectionDelay: 1000,
+//                 reconnectionDelayMax: 5000,
+//                 reconnectionAttempts: 99,
+//             }); } 
+//             const socket = io.connect(socketUrl?.socketUrl, {
+//                 transports: ["websocket"],
+//                 reconnection: true,
+//                 reconnectionDelay: 1000,
+//                 reconnectionDelayMax: 5000,
+//                 reconnectionAttempts: 99,
+//             });
+
+//             console.log(socket, "socketBetFairsocketBetFairsocketBetFair");
+            
+//             if(socketUrl?.betfairSocketUrl){
+//             socketBetFair.emit(`marketByEvent`, eventId);
+//             }else{
+//             socket.emit(`marketByEvent`, eventId);
+//             }
+
+
+//             socket.on(eventId, (data) => {
+//                 localStorage.setItem(`${eventId}_MatchOddsData`, data)
+//                 setMatchDetailsForSocketNew(JSON.parse(data));
+//                 setIsConnected(true);
+//                 filterData(JSON.parse(data));
+//             });
+
+//             if (matchId === 4 || matchId === 999) {
+//                 socket.emit("JoinRoom", marketId);
+//                 socket.on(marketId, (data) => {
+//                     localStorage.setItem(`${marketId}_BookmakerData`, data);
+//                     setMatchScoreDetails(JSON.parse(data).result);
+//                 });
+//             }
+
+
+
+//             socket.on('disconnect', () => {
+//                 setIsConnected(false);
+//             });
+
+//             setSocketState(socket);
+
+//         }
+
+//         catch (error) {
+//             console.error("Error in socket connection:", error);
+//         }
+//     };
+
+
+const callSocket = async (socketUrl, matchId) => {
+    try {
+        if (socketState?.connected) return;
+
+        let socketBetFair = null;
+        if (socketUrl?.betfairSocketUrl) {
+            socketBetFair = io.connect(socketUrl.betfairSocketUrl, {
                 transports: ["websocket"],
                 reconnection: true,
                 reconnectionDelay: 1000,
@@ -394,37 +461,56 @@ const ViewMatches = () => {
                 reconnectionAttempts: 99,
             });
 
-            socket.emit(`marketByEvent`, eventId);
-            socket.on(eventId, (data) => {
-                localStorage.setItem(`${eventId}_MatchOddsData`, data)
-                setMatchDetailsForSocketNew(JSON.parse(data));
-                setIsConnected(true);
-                filterData(JSON.parse(data));
-            });
-
-            if (matchId === 4 || matchId === 999) {
-                socket.emit("JoinRoom", marketId);
-                socket.on(marketId, (data) => {
-                    localStorage.setItem(`${marketId}_BookmakerData`, data);
-                    setMatchScoreDetails(JSON.parse(data).result);
-                });
-            }
-
-
-
-            socket.on('disconnect', () => {
-                setIsConnected(false);
-            });
-
-            setSocketState(socket);
-
+            socketBetFair.emit("marketByEvent", eventId);
+            
+            socketBetFair.on(eventId, (data) => {
+            localStorage.setItem(`${eventId}_MatchOddsData`, typeof data === "string" ? data : JSON.stringify(data));
+            const parsed = typeof data === "string" ? JSON.parse(data) : data;
+            setMatchDetailsForSocketNew(parsed);
+            setIsConnected(true);
+            filterData(parsed);
+        });
         }
 
-        catch (error) {
-            console.error("Error in socket connection:", error);
-        }
-    };
+  
+        const socket = io.connect(socketUrl.socketUrl, {
+            transports: ["websocket"],
+            reconnection: true,
+            reconnectionDelay: 1000,
+            reconnectionDelayMax: 5000,
+            reconnectionAttempts: 99,
+        });
 
+        socket.emit("marketByEvent", eventId);
+        
+        socket.on(eventId, (data) => {
+            localStorage.setItem(`${eventId}_MatchOddsData`, typeof data === "string" ? data : JSON.stringify(data));
+            const parsed = typeof data === "string" ? JSON.parse(data) : data;
+            setMatchDetailsForSocketNew(parsed);
+            setIsConnected(true);
+            filterData(parsed);
+        });
+
+        if (matchId === 4 || matchId === 999) {
+            socket.emit("JoinRoom", marketId);
+            socket.on(marketId, (data) => {
+                localStorage.setItem(`${marketId}_BookmakerData`, typeof data === "string" ? data : JSON.stringify(data));
+
+                const parsed = typeof data === "string" ? JSON.parse(data) : data;
+
+                setMatchScoreDetails(parsed.result);
+            });
+        }
+
+        socket.on("disconnect", () => {
+            setIsConnected(false);
+        });
+
+        setSocketState(socket);
+    } catch (error) {
+        console.error("Error in socket connection:", error);
+    }
+};
 
     const callCache = async (cacheUrl) => {
         try {

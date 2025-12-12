@@ -3,7 +3,7 @@ const BhimexchSettings = {
   favicon: "/logo/minister777.png",
   logo: "/logo/minister777.png",
   logo1: "/logo/silver-reddyBook.png",
-  SOCKET_URL: "https://socket.trovetown.co/",
+  SOCKET_URL: "https://api.ministerexch.com",
   apiurl: 'https://api.ministerexch.com/v1/',
   domainName: "ministerexch",
   colors: {
