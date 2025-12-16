@@ -214,7 +214,7 @@ function UsdtWallet() {
     return (
         <>
             <div>
-                <div className="p-6">
+                <div className="p-1">
                     {/* Header */}
                     <div>
                       <h2>Select Crypto Currency</h2>
@@ -227,17 +227,18 @@ USDT <span className="text-[10px]">(TRC20)</span>
                     </div>
 
                     {/* Amount Selection Grid */}
-                    <div className="grid grid-cols-4 md:grid-cols-5 lg:grid-cols-9 gap-2 mb-8">
+                    <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-9 gap-2 mb-8">
                         {predefinedValues.map((value) => (
                             <button
                                 key={value}
                                 onClick={() => updateStackOnclic(value)}
-                                className={`py-3 px-2 rounded-lg border-2 font-bold text-sm ${payAccountFiel.amount === value
+                                className={`py-3 px-2 flex items-center rounded-lg border-2 font-bold text-sm ${payAccountFiel.amount === value
                                     ? 'bg-[--primary] text-[--white]'
                                     : 'bg-white text-[--primary] border-2 border-[--primary]'
                                     }`}
                             >
-                                ₹{value}
+                                <img alt="svgImg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciICB2aWV3Qm94PSIwIDAgNDggNDgiIHdpZHRoPSI0OHB4IiBoZWlnaHQ9IjQ4cHgiPjxjaXJjbGUgY3g9IjI0IiBjeT0iMjQiIHI9IjIwIiBmaWxsPSIjMjZhNjlhIi8+PHJlY3Qgd2lkdGg9IjE4IiBoZWlnaHQ9IjUiIHg9IjE1IiB5PSIxMyIgZmlsbD0iI2ZmZiIvPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik0yNCwyMWMtNC40NTcsMC0xMiwwLjczNy0xMiwzLjVTMTkuNTQzLDI4LDI0LDI4czEyLTAuNzM3LDEyLTMuNVMyOC40NTcsMjEsMjQsMjF6IE0yNCwyNiBjLTUuNTIzLDAtMTAtMC44OTUtMTAtMmMwLTEuMTA1LDQuNDc3LTIsMTAtMnMxMCwwLjg5NSwxMCwyQzM0LDI1LjEwNSwyOS41MjMsMjYsMjQsMjZ6Ii8+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTI0LDI0YzEuMDk1LDAsMi4wOTMtMC4wMzcsMy0wLjA5OFYxM2gtNnYxMC45MDJDMjEuOTA3LDIzLjk2MywyMi45MDUsMjQsMjQsMjR6Ii8+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTI1LjcyMywyNS45NjhjLTAuMTExLDAuMDA0LTAuMjIzLDAuMDA3LTAuMzM2LDAuMDFDMjQuOTMyLDI1Ljk5MSwyNC40NzIsMjYsMjQsMjYgcy0wLjkzMi0wLjAwOS0xLjM4Ny0wLjAyMWMtMC4xMTMtMC4wMDMtMC4yMjUtMC4wMDYtMC4zMzYtMC4wMWMtMC40MzUtMC4wMTUtMC44NjMtMC4wMzQtMS4yNzctMC4wNlYzNmg2VjI1LjkwOCBDMjYuNTg2LDI1LjkzNCwyNi4xNTgsMjUuOTUzLDI1LjcyMywyNS45Njh6Ii8+PC9zdmc+" width={20}/>
+                                {value}
                             </button>
                         ))}
                     </div>
@@ -253,7 +254,10 @@ USDT <span className="text-[10px]">(TRC20)</span>
                         <div className="flex w-auto  rounded-lg">
                             <div className="flex items-center px-3 mr-2 border-r rounded-lg  gradient-border">
                                 <button id="currency" type="button" className="text-lg font-medium">
-                                    <span className="gradient-text">₹</span>
+                                    <span className="gradient-text">
+ <img alt="svgImg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciICB2aWV3Qm94PSIwIDAgNDggNDgiIHdpZHRoPSI0OHB4IiBoZWlnaHQ9IjQ4cHgiPjxjaXJjbGUgY3g9IjI0IiBjeT0iMjQiIHI9IjIwIiBmaWxsPSIjMjZhNjlhIi8+PHJlY3Qgd2lkdGg9IjE4IiBoZWlnaHQ9IjUiIHg9IjE1IiB5PSIxMyIgZmlsbD0iI2ZmZiIvPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik0yNCwyMWMtNC40NTcsMC0xMiwwLjczNy0xMiwzLjVTMTkuNTQzLDI4LDI0LDI4czEyLTAuNzM3LDEyLTMuNVMyOC40NTcsMjEsMjQsMjF6IE0yNCwyNiBjLTUuNTIzLDAtMTAtMC44OTUtMTAtMmMwLTEuMTA1LDQuNDc3LTIsMTAtMnMxMCwwLjg5NSwxMCwyQzM0LDI1LjEwNSwyOS41MjMsMjYsMjQsMjZ6Ii8+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTI0LDI0YzEuMDk1LDAsMi4wOTMtMC4wMzcsMy0wLjA5OFYxM2gtNnYxMC45MDJDMjEuOTA3LDIzLjk2MywyMi45MDUsMjQsMjQsMjR6Ii8+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTI1LjcyMywyNS45NjhjLTAuMTExLDAuMDA0LTAuMjIzLDAuMDA3LTAuMzM2LDAuMDFDMjQuOTMyLDI1Ljk5MSwyNC40NzIsMjYsMjQsMjYgcy0wLjkzMi0wLjAwOS0xLjM4Ny0wLjAyMWMtMC4xMTMtMC4wMDMtMC4yMjUtMC4wMDYtMC4zMzYtMC4wMWMtMC40MzUtMC4wMTUtMC44NjMtMC4wMzQtMS4yNzctMC4wNlYzNmg2VjI1LjkwOCBDMjYuNTg2LDI1LjkzNCwyNi4xNTgsMjUuOTUzLDI1LjcyMywyNS45Njh6Ii8+PC9zdmc+" width={30}/>
+
+                                    </span>
                                 </button>
                             </div>
 

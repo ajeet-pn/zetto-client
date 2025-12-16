@@ -672,7 +672,7 @@ const Wallet = () => {
                   value={bankAmount}
                   onChange={(e) => handleAmountChange(e, false)}
                 />
-                <div className="absolute top-[46%] left-[10px] text-gray-600">₹</div>
+                <div className="absolute top-[53%] left-[10px] text-lg font-bold text-gray-600">₹</div>
                 {/* <div className="text-[13px] text-gray-400 capitalize font-semibold mt-1">Available to Withdraw </div> */}
                 {errors.amount && (
                   <span className="text-red-500 text-xs">{errors.amount}</span>
