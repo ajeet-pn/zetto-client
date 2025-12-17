@@ -71,7 +71,7 @@ useEffect(() => {
       setSelectedProvider(value);
       setIsCasinoModal(true);
       if (value === "All") {
-        const payload = selectedCategory === "All" ? "Game Lobby" : selectedCategory;
+        const payload = selectedCategory === "All" ? "Live Blackjack" : selectedCategory;
         dispatch(getCasinoListByCateogeory({category: payload}));
       } else {
         dispatch(getCasinoListByCateogeory({ category: value }));
@@ -79,11 +79,9 @@ useEffect(() => {
     };
 
     useEffect(()=>{
-      const payload = "Game Lobby"
+      const payload = "Live Blackjack"
 handlProviderCasinoList( payload)
     },[])
-
-console.log(providerNames, "providerNamesproviderNames");
 
 
   return (
@@ -212,19 +210,19 @@ console.log(providerNames, "providerNamesproviderNames");
                               </div>
                               <div
                                 ref={(el) => (sliderRefs.current[cidx] = el)}
-                                className="flex md:gap-2 gap-1 overflow-x-auto scrollbar-hide pb-2 scroll-smooth"
+                                className="flex  gap-1 overflow-x-auto scrollbar-hide pb-2 scroll-smooth"
                               >
                                 {providerData?.items?.map((item, idx) => (
                                   <div
                                     key={idx}
-                                    className="flex-shrink-0 w-[120px] md:w-[180px] cursor-pointer hover:scale-105 transition-transform duration-300"
+                                    className="flex-shrink-0  cursor-pointer "
                                     onClick={() => handleResponseCasino(item)}
                                   >
-                                    <div className="relative w-full md:h-[230px] h-[175px]">
+                                    <div className="relative md:w-[230px] w-[150px] ">
                                        <img
                                        src={item?.urlThumb}
                                        alt={item?.gameName}
-                                       className="w-full h-full object-cover rounded-md bg-[var(--primary)]"
+                                       className="w-full h-[90px] md:h-[150px] rounded border-2 border-[var(--primary)]"
                                        />
                                     </div>
                                   </div>
@@ -240,17 +238,17 @@ console.log(providerNames, "providerNamesproviderNames");
                         {categoryWiseCasinoList?.find((item) => item.providerName === selectedCategory)?.items?.map((item, idx) => (
                           <div
                             key={idx}
-                            className="flex flex-col items-center md:gap-2 relative w-full"
+                            className="flex flex-col items-center md:gap-2 gap-1 relative w-full"
                           >
                             <div
                               onClick={() => handleResponseCasino(item)}
-                              className="relative w-full cursor-pointer hover:scale-105 transition-transform duration-300"
+                              className="relative w-full cursor-pointer "
                             >
-                              <div className="relative w-full md:h-[230px] h-[175px]">
+                              <div className="relative md:w-[230px] w-full px-1">
                                 <img
                                   src={item?.urlThumb}
                                   alt={item?.gameName}
-                                  className="w-full h-full object-cover rounded-md"
+                                  className="w-full  h-[90px] md:h-[130px] object-cover rounded border-2 border-[var(--primary)]"
                                 />
                               </div>
                             </div>

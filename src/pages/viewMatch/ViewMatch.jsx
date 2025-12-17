@@ -667,6 +667,7 @@ const callSocket = async (socketUrl, matchId) => {
         }
     };
     const handleBackclose = () => {
+    
         setBetSlipData({
             stake: '0',
             count: 0,
